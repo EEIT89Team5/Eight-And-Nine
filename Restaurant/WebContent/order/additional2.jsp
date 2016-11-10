@@ -83,9 +83,9 @@ ${classVO.class_name}:
 	<h3>購物車小計</h3>
 	<table>
 
-		<tr><td>商品數量:${orderQ }</td></tr>			
-<%-- 		<tr><td>單點主菜數量:<%= orderXSvc.getDishQuantity(1,40,orderList) %></td></tr> --%>
-<%-- 		<tr><td>套餐數量:<%= orderXSvc.getPackageQuantity(orderList) %></td></tr> --%>
+		<tr><td>菜色數量:${orderQ}</td></tr>
+		<tr><td>主菜數量:${mainQ}</td></tr>
+		<tr><td>套餐數量:${pcgQ}</td></tr>
 		<tr><td>總金額:${orderP}</td></tr>
 	</table><br>
 	<form METHOD="post" ACTION="order.do" name="form1">
