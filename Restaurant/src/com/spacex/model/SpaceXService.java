@@ -3,6 +3,10 @@ package com.spacex.model;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.emp.model.EmpDAO_interface;
 import com.space.model.SpaceVO;
 
 public class SpaceXService {
@@ -10,7 +14,8 @@ public class SpaceXService {
 	private SpaceXDAO_interface dao;
 	
 	public SpaceXService() {
-		dao = new SpaceXDAO();
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		dao =(SpaceXDAO_interface) context.getBean("spacexDAO");
 	}
 
 	public void insert(Integer space_id,String table_id,Integer table_maxP,Double table_x,

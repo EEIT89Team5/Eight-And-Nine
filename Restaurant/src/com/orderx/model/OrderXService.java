@@ -2,6 +2,11 @@ package com.orderx.model;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.emp.model.EmpDAO_interface;
 import com.order.model.OrderVO;
 import com.product.model.ProductVO;
 public class OrderXService {
@@ -9,7 +14,8 @@ public class OrderXService {
 	private OrderXDAO_interface dao;
 	
 	public OrderXService(){
-		this.dao=new OrderXDAO();
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		dao =(OrderXDAO_interface) context.getBean("orderxDAO");
 	}
 	
 	public OrderXVO insert(Integer order_id, Integer product_id, Timestamp orderX_time,Integer orderX_num, String orderX_status ){

@@ -4,7 +4,11 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.discount.model.DiscountVO;
+import com.emp.model.EmpDAO_interface;
 import com.emp.model.EmpVO;
 import com.member.model.MemberVO;
 import com.orderx.model.OrderXVO;
@@ -14,7 +18,8 @@ public class OrderService {
 	private OrderDAO_interface dao;
 
 	public OrderService() {
-		this.dao = new OrderDAO();
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		dao =(OrderDAO_interface) context.getBean("orderDAO");
 	}
 
 	public OrderVO addOrder(String order_table, Date order_date, Integer order_price, Integer order_numP,

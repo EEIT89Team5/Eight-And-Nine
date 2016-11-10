@@ -3,12 +3,16 @@ package com.emp.model;
 import java.sql.Date;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 public class EmpService {
 
 	private EmpDAO_interface dao;
 
 	public EmpService() {
-		dao = new EmpDAO();
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		dao =(EmpDAO_interface) context.getBean("empDAO");
 	}
 
 	public EmpVO addEmp(String emp_name, String emp_gender,String emp_title,String emp_fulltime, 

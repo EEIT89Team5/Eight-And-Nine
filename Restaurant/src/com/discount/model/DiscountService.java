@@ -2,11 +2,17 @@ package com.discount.model;
 
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.emp.model.EmpDAO_interface;
+
 public class DiscountService {
 	private DiscountDAO_interface dao;
 
 	public DiscountService() {
-		dao = new DiscountDAO();
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		dao =(DiscountDAO_interface) context.getBean("discountDAO");
 	}
 
 	public DiscountVO addDisc(String disc_name, Double disc_value) {

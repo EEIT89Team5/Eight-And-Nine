@@ -2,85 +2,44 @@ package com.discount.model;
 
 import java.util.List;
 import org.hibernate.*;
-
-import hibernate.util.HibernateUtil;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 
 public class DiscountDAO implements DiscountDAO_interface{
 
 	private static final String GET_ALL_STMT = "from DiscountVO";
 	
+	
+	private HibernateTemplate hibernateTemplate;    
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) { 
+        this.hibernateTemplate = hibernateTemplate;
+    }
+	
 	@Override
-	public void insert(DiscountVO discountVO) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			session.saveOrUpdate(discountVO);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
+	public void insert(DiscountVO discountVO) {	
+		hibernateTemplate.saveOrUpdate(discountVO);
 	}
 
 	@Override
 	public void update(DiscountVO discountVO) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			session.saveOrUpdate(discountVO);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
+		hibernateTemplate.saveOrUpdate(discountVO);
 	}
 
 	@Override
 	public void delete(Integer disc_id) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-
-			DiscountVO discountVO = new DiscountVO();
-			discountVO.setDisc_id(disc_id);
-			session.delete(discountVO);
-
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
-		
+		DiscountVO discountVO =(DiscountVO) hibernateTemplate.get(DiscountVO.class, disc_id);
+		hibernateTemplate.delete(discountVO);
 	}
 
 	@Override
 	public DiscountVO findByPrimaryKey(Integer disc_id) {
-		DiscountVO discountVO = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			discountVO = (DiscountVO) session.get(DiscountVO.class, disc_id);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
+		DiscountVO discountVO =(DiscountVO) hibernateTemplate.get(DiscountVO.class, disc_id);
 		return discountVO;
 	}
 
 	@Override
 	public List<DiscountVO> getAll() {
 		List<DiscountVO> list = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			Query query = session.createQuery(GET_ALL_STMT);
-			list = query.list();
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
+		list=hibernateTemplate.find(GET_ALL_STMT);
 		return list;
 	}
 	

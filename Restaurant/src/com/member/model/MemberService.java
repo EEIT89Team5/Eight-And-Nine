@@ -3,12 +3,18 @@ package com.member.model;
 import java.sql.Date;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.emp.model.EmpDAO_interface;
+
 public class MemberService {
 	
 	private MemberDAO_interface dao;
 	
 	public MemberService(){
-		this.dao=new MemberDAO();
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		dao =(MemberDAO_interface) context.getBean("memberDAO");
 	}
 	
 	public MemberVO addMember(String member_name,String member_phone, String member_email,String member_password,String member_gender,Date member_register){

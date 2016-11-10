@@ -13,29 +13,28 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.discount.model.DiscountVO;
+import com.dishclass.model.DishClassDAO_interface;
 import com.emp.model.EmpVO;
 import com.member.model.MemberVO;
 import com.orderx.model.OrderXVO;
 import com.product.model.ProductVO;
 
-import hibernate.util.HibernateUtil;
-
 public class OrderDAO implements OrderDAO_interface {
+
+	private HibernateTemplate hibernateTemplate;
+
+	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+		this.hibernateTemplate = hibernateTemplate;
+	}
 
 	@Override
 	public void insert(OrderVO orderVO) {
-
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			session.save(orderVO);
-			session.getTransaction().commit();
-		} catch (RuntimeException e) {
-			session.getTransaction().rollback();
-			throw e;
-		}
+		hibernateTemplate.saveOrUpdate(orderVO);
 	}
 
 	@Override
@@ -43,32 +42,48 @@ public class OrderDAO implements OrderDAO_interface {
 
 		OrderVO neworderVO = new OrderVO();
 		Integer newID = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
 
-			// 新增訂單(with total price)
-			session.save(orderVO);
-			// 查詢最新訂單ID
-			Query query = session.createQuery("SELECT MAX(order_id) FROM OrderVO ");
-			List<Integer> orderRS = (List<Integer>) query.list();
-			for (Integer id : orderRS) {
-				newID = id;
-			}
-			neworderVO.setOrder_id(newID);
-			;
-			// 新增訂單明細(加入查詢到之最新訂單ID)
-			for (OrderXVO orderXs : orderXVOs) {
-				orderXs.setOrderVO(neworderVO);
-				session.saveOrUpdate(orderXs);
-			}
-			// commit
-			session.getTransaction().commit();
+		hibernateTemplate.saveOrUpdate(orderVO);
 
-		} catch (RuntimeException e) {
-			session.getTransaction().rollback();
-			throw e;
+		List<Integer> orderRS = hibernateTemplate.find("SELECT MAX(order_id) FROM OrderVO ");
+		for (Integer id : orderRS) {
+			newID = id;
 		}
+
+		neworderVO.setOrder_id(newID);
+		for (OrderXVO orderXs : orderXVOs) {
+			orderXs.setOrderVO(neworderVO);
+			hibernateTemplate.saveOrUpdate(orderXs);
+		}
+
+		// Session session =
+		// HibernateUtil.getSessionFactory().getCurrentSession();
+		// try {
+		// session.beginTransaction();
+		//
+		// // 新增訂單(with total price)
+		// session.save(orderVO);
+		// // 查詢最新訂單ID
+		// Query query = session.createQuery("SELECT MAX(order_id) FROM OrderVO
+		// ");
+		// List<Integer> orderRS = (List<Integer>) query.list();
+		// for (Integer id : orderRS) {
+		// newID = id;
+		// }
+		// neworderVO.setOrder_id(newID);
+		// ;
+		// // 新增訂單明細(加入查詢到之最新訂單ID)
+		// for (OrderXVO orderXs : orderXVOs) {
+		// orderXs.setOrderVO(neworderVO);
+		// session.saveOrUpdate(orderXs);
+		// }
+		// // commit
+		// session.getTransaction().commit();
+		//
+		// } catch (RuntimeException e) {
+		// session.getTransaction().rollback();
+		// throw e;
+		// }
 
 		return orderVO;
 	}
@@ -76,173 +91,126 @@ public class OrderDAO implements OrderDAO_interface {
 	@Override
 	public OrderVO insertXs(OrderVO orderVO, List<OrderXVO> orderXVOs) {
 
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
+		hibernateTemplate.saveOrUpdate(orderVO);
 
-			// 更新訂單價格
-			session.update(orderVO);
-
-			// 新增加訂明細
-			for (OrderXVO orderXs : orderXVOs) {
-				orderXs.setOrderVO(orderVO);
-				session.saveOrUpdate(orderXs);
-			}
-			// commit
-			session.getTransaction().commit();
-
-		} catch (RuntimeException e) {
-			session.getTransaction().rollback();
-			throw e;
+		for (OrderXVO orderXs : orderXVOs) {
+			orderXs.setOrderVO(orderVO);
+			hibernateTemplate.saveOrUpdate(orderXs);
 		}
+
+		// Session session =
+		// HibernateUtil.getSessionFactory().getCurrentSession();
+		// try {
+		// session.beginTransaction();
+		//
+		// // 更新訂單價格
+		// session.update(orderVO);
+		//
+		// // 新增加訂明細
+		// for (OrderXVO orderXs : orderXVOs) {
+		// orderXs.setOrderVO(orderVO);
+		// session.saveOrUpdate(orderXs);
+		// }
+		// // commit
+		// session.getTransaction().commit();
+		//
+		// } catch (RuntimeException e) {
+		// session.getTransaction().rollback();
+		// throw e;
+		// }
 
 		return orderVO;
 	}
 
 	@Override
 	public void update(OrderVO orderVO) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			session.saveOrUpdate(orderVO);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
+		hibernateTemplate.saveOrUpdate(orderVO);
 	}
 
 	@Override
 	public void delete(Integer order_id) {
 
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			OrderVO orderVO = (OrderVO) session.get(OrderVO.class, order_id);
-			session.delete(orderVO);
-			session.getTransaction().commit();
-		} catch (RuntimeException e) {
-			session.getTransaction().rollback();
-			throw e;
-		}
+		OrderVO orderVO = (OrderVO) hibernateTemplate.get(OrderVO.class, order_id);
+		hibernateTemplate.delete(orderVO);
 	}
 
 	@Override
 	public OrderVO findsByPrimaryKey(Integer order_id) {
-		OrderVO orderVO = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-			session.beginTransaction();
-			orderVO = (OrderVO) session.get(OrderVO.class, order_id);
-			session.getTransaction().commit();
-		} catch (RuntimeException e) {
-			session.getTransaction().rollback();
-			throw e;
-		}
+		OrderVO orderVO = (OrderVO) hibernateTemplate.get(OrderVO.class, order_id);
 		return orderVO;
-
 	}
-
-	
 
 	@Override
 	public List<OrderXVO> getOrderDetailsByPrimaryKey(Integer order_id) {
-		OrderXVO orderVO = null;
-		List<OrderXVO> list = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			Query query = session.createQuery("FROM OrderXVO WHERE orderVO.order_id = ?");
-			query.setInteger(0, order_id);
-			list = query.list();
-			session.getTransaction().commit();
 
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
+		List<OrderXVO> list = null;
+		list = hibernateTemplate.find("FROM OrderXVO WHERE orderVO.order_id = ?", order_id);
+
 		return list;
 	}
-	
+
 	@Override
 	public List<OrderVO> getUnpaidOrdersByDate(Date order_date) {
 		List<OrderVO> list = null;
-		Session session = HibernateUtil.getSessionFactory().openSession();
-
-		try {
-			session.beginTransaction();
-			Query query = session.createQuery("FROM OrderVO WHERE order_paytime IS NULL AND order_date=? ");
-			query.setDate(0, order_date);
-			list = query.list();
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
-
+		list = hibernateTemplate.find("FROM OrderVO WHERE order_paytime IS NULL AND order_date=? ", order_date);
 		return list;
 	}
-	
+
 	@Override
 	public List<OrderVO> getAll() {
 		List<OrderVO> list = null;
-		Session session = HibernateUtil.getSessionFactory().openSession();
-
-		try {
-			session.beginTransaction();
-			Query query = session.createQuery("FROM OrderVO");
-			list = query.list();
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
-
+		list = hibernateTemplate.find("FROM OrderVO");
 		return list;
 	}
-	
+
 	@Override
 	public OrderVO findsByTableName(String order_table) {
 		OrderVO orderVO = null;
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-
-		try {
-			session.beginTransaction();
-			Query query = session.createQuery("FROM OrderVO WHERE order_table = ? order by order_id");
-			query.setParameter(0, order_table);
-			List<OrderVO> list = query.list();
-			if(list.size()!=0)
-				orderVO=list.get(0);
-			session.getTransaction().commit();
-		} catch (RuntimeException e) {
-			session.getTransaction().rollback();
-			throw e;
-		}
+		// Session session =
+		// HibernateUtil.getSessionFactory().getCurrentSession();
+		//
+		// try {
+		// session.beginTransaction();
+		// Query query = session.createQuery("FROM OrderVO WHERE order_table = ?
+		// order by order_id");
+		// query.setParameter(0, order_table);
+		// List<OrderVO> list = query.list();
+		// if(list.size()!=0)
+		// orderVO=list.get(0);
+		// session.getTransaction().commit();
+		// } catch (RuntimeException e) {
+		// session.getTransaction().rollback();
+		// throw e;
+		// }
 		return orderVO;
 	}
 
 	@Override
 	public OrderVO getOrderDetailsByTableName(String order_table) {
 		OrderVO orderVO = null;
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		try {
-			session.beginTransaction();
-			Query query = session.createQuery("FROM OrderVO WHERE order_table=? and order_paytime is null");
-			query.setParameter(0, order_table);
-			List<OrderVO> list = query.list();
-			if(list.size()!=0)
-				orderVO=list.get(0);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
+		// Session session = HibernateUtil.getSessionFactory().openSession();
+		// try {
+		// session.beginTransaction();
+		// Query query = session.createQuery("FROM OrderVO WHERE order_table=?
+		// and order_paytime is null");
+		// query.setParameter(0, order_table);
+		// List<OrderVO> list = query.list();
+		// if(list.size()!=0)
+		// orderVO=list.get(0);
+		// session.getTransaction().commit();
+		// } catch (RuntimeException ex) {
+		// session.getTransaction().rollback();
+		// throw ex;
+		// }
 		return orderVO;
 	}
 
 	public static void main(String[] args) {
-		OrderDAO orderDAO = new OrderDAO();
+
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-DriverManagerDataSource.xml");
+
+		OrderDAO_interface orderDAO = (OrderDAO_interface) context.getBean("orderDAO");
+//		OrderDAO orderDAO = new OrderDAO();
 		OrderVO ordervo1 = new OrderVO();
 		//
 		ordervo1.setOrder_id(3);
@@ -318,9 +286,9 @@ public class OrderDAO implements OrderDAO_interface {
 		listXVO.add(orderXVO1);
 		listXVO.add(orderXVO2);
 		listXVO.add(orderXVO3);
-		// orderDAO.insertWithXs(ordervo1, listXVO);
+		 //orderDAO.insertWithXs(ordervo1, listXVO);
 
-		// orderDAO.insertXs(ordervo1, listXVO);
+		orderDAO.insertXs(ordervo1, listXVO);
 
 		// // --------getMainCourseQuantity()------------
 		// Integer MDQ = orderDAO.getDishQuantity(3,60,listXVO);
@@ -398,7 +366,5 @@ public class OrderDAO implements OrderDAO_interface {
 		}
 
 	}
-
-
 
 }

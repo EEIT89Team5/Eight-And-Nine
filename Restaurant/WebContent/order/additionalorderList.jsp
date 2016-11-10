@@ -4,9 +4,7 @@
 <%@ page import="com.orderx.model.*"%>
 <%@ page import="java.util.*"%>
 
-<% OrderXService orderXSvc=new OrderXService();
-	List<OrderXVO> orderList=(List<OrderXVO>)session.getAttribute("orderList");
-	%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -50,9 +48,10 @@
 			
 		</c:forEach>
 
-		<tr><td>單點主菜數量:<%= orderXSvc.getDishQuantity(1,40,orderList) %></td></tr>
-		<tr><td>套餐數量:<%= orderXSvc.getPackageQuantity(orderList) %></td></tr>
-		<tr><td>加點總金額:<%= orderXSvc.getTotalPrice(orderList) %></td></tr>
+		<tr><td>商品數量:${orderQ }</td></tr>			
+<%-- 		<tr><td>單點主菜數量:<%= orderXSvc.getDishQuantity(1,40,orderList) %></td></tr> --%>
+<%-- 		<tr><td>套餐數量:<%= orderXSvc.getPackageQuantity(orderList) %></td></tr> --%>
+		<tr><td>總金額:${orderP}</td></tr>
 	</table><br>
 	<form METHOD="post" ACTION="order.do">
 		<input type="hidden" name="action" value="add_final_order">

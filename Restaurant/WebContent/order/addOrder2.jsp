@@ -68,6 +68,7 @@ ${classVO.class_name}:
 					<option value="7">7</option>			
 				</select>
 			<input type="hidden" name="product" value="${productVO.product_id}">
+			<input type="hidden" name="price" value="${productVO.product_price}">
 			<input type="hidden" name="action" value="add_S_orderX">
 			<input type="submit" value="加入訂單">
 			</form>
@@ -81,11 +82,11 @@ ${classVO.class_name}:
 <c:if test="${not empty orderList}">
 	<h3>購物車小計</h3>
 	<table>
-			<% OrderXService orderXSvc=new OrderXService();
-				List<OrderXVO> orderList=(List<OrderXVO>)session.getAttribute("orderList");	%>
-		<tr><td>單點主菜數量:<%= orderXSvc.getDishQuantity(1,40,orderList) %></td></tr>
-		<tr><td>套餐數量:<%= orderXSvc.getPackageQuantity(orderList) %></td></tr>
-		<tr><td>總金額:${orderVO.order_price}</td></tr>
+
+		<tr><td>商品數量:${orderQ }</td></tr>			
+<%-- 		<tr><td>單點主菜數量:<%= orderXSvc.getDishQuantity(1,40,orderList) %></td></tr> --%>
+<%-- 		<tr><td>套餐數量:<%= orderXSvc.getPackageQuantity(orderList) %></td></tr> --%>
+		<tr><td>總金額:${orderP}</td></tr>
 	</table><br>
 	<form METHOD="post" ACTION="order.do" name="form1">
 		<input type="hidden" name="action" value="check_orderList">

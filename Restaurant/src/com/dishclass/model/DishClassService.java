@@ -2,12 +2,18 @@ package com.dishclass.model;
 
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.emp.model.EmpDAO_interface;
+
 public class DishClassService {
 
 	private DishClassDAO_interface dao;
 	
 	public DishClassService(){
-		this.dao=new DishClassDAO();
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		dao =(DishClassDAO_interface) context.getBean("dishclassDAO");
 	}
 	
 	public DishClassVO getOneClass(Integer class_id){

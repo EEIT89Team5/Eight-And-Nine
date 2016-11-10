@@ -4,12 +4,18 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.emp.model.EmpDAO_interface;
+
 public class ReserveService {
 
 	private ReserveDAO_interface dao;
 	
 	public ReserveService() {
-		dao = new ReserveDAO();
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		dao =(ReserveDAO_interface) context.getBean("reserveDAO");
 	}
 
 	public void insert(String date,String time,String res_name,String res_gender,String res_phone,Integer res_numP,String res_remark){

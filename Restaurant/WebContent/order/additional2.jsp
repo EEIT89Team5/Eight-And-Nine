@@ -43,38 +43,50 @@
 </table>
 
 <h3>點餐</h3>
-<form METHOD="post" ACTION="order.do">
+
+${classVO.class_name}:
 <table>
-	<tbody>	
-		<tr>
-			<td>
-				${classVO.class_name}:
-				<select size="1" name="product" >
-					<c:forEach var="productVO" items="${productList}">	
-						<option value="${productVO.product_id}">${productVO.product_name}</option>
-					</c:forEach>
+	<tr>
+		<td>圖片</td>
+		<td>菜名</td>
+		<td>價格</td>
+		<td></td>
+	</tr>
+<c:forEach var="productVO" items="${productList}">
+	<tr>
+		<td><img alt="${productVO.product_id}" src="${pageContext.servletContext.contextPath}/getImage?id=${productVO.product_id}" height="200"></td>
+		<td>${productVO.product_name}</td>
+		<td>${productVO.product_price}元</td>
+		<td>
+			<form METHOD="post" ACTION="order.do">
+			數量:<select size="1" name="number">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>			
 				</select>
-			</td>
-			<td>
-				數量:<input type="text" name="number">
-			</td>
-			<td>
-				<input type="hidden" name="action" value="add_add_S_orderX">
-				<input type="submit" value="加入訂單">
-			</td>
-		</tr>
-	</tbody>
+			<input type="hidden" name="product" value="${productVO.product_id}">
+			<input type="hidden" name="price" value="${productVO.product_price}">
+			<input type="hidden" name="action" value="add_add_S_orderX">
+			<input type="submit" value="加入訂單">
+			</form>
+		</td>
+	</tr>
+</c:forEach>	
+
 </table>
-</form>
 
 <c:if test="${not empty orderList}">
 	<h3>購物車小計</h3>
 	<table>
-			<% OrderXService orderXSvc=new OrderXService();
-				List<OrderXVO> orderList=(List<OrderXVO>)session.getAttribute("orderList");	%>
-		<tr><td>單點主菜數量:<%= orderXSvc.getDishQuantity(1,40,orderList) %></td></tr>
-		<tr><td>套餐數量:<%= orderXSvc.getPackageQuantity(orderList) %></td></tr>
-		<tr><td>加點總金額:<%= orderXSvc.getTotalPrice(orderList) %></td></tr>
+
+		<tr><td>商品數量:${orderQ }</td></tr>			
+<%-- 		<tr><td>單點主菜數量:<%= orderXSvc.getDishQuantity(1,40,orderList) %></td></tr> --%>
+<%-- 		<tr><td>套餐數量:<%= orderXSvc.getPackageQuantity(orderList) %></td></tr> --%>
+		<tr><td>總金額:${orderP}</td></tr>
 	</table><br>
 	<form METHOD="post" ACTION="order.do" name="form1">
 		<input type="hidden" name="action" value="add_check_orderList">

@@ -7,25 +7,29 @@ import java.util.Map;
 
 import org.hibernate.Query;
 import org.hibernate.classic.Session;
+import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.space.model.SpaceVO;
 import com.table.model.TableVO;
 
-import hibernate.util.HibernateUtil;
-
 public class SpaceXDAO implements SpaceXDAO_interface {
 
+	private HibernateTemplate hibernateTemplate;    
+    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) { 
+        this.hibernateTemplate = hibernateTemplate;
+    }
+	
 	@Override
 	public void insert(SpaceXVO spaceXVO) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			session.save(spaceXVO);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		try {
+//			session.beginTransaction();
+//			session.save(spaceXVO);
+//			session.getTransaction().commit();
+//		} catch (RuntimeException ex) {
+//			session.getTransaction().rollback();
+//			throw ex;
+//		}
 
 	}
 
@@ -37,18 +41,18 @@ public class SpaceXDAO implements SpaceXDAO_interface {
 
 	@Override
 	public void delete(Integer space_id) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		try {
-			session.beginTransaction();
-			Query query = session.createQuery("delete from SpaceXVO where space_id=?");
-			query.setParameter(0, space_id);
-			int count=query.executeUpdate();
-			System.out.println("刪除了幾筆資料 : "+count);
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		try {
+//			session.beginTransaction();
+//			Query query = session.createQuery("delete from SpaceXVO where space_id=?");
+//			query.setParameter(0, space_id);
+//			int count=query.executeUpdate();
+//			System.out.println("刪除了幾筆資料 : "+count);
+//			session.getTransaction().commit();
+//		} catch (RuntimeException ex) {
+//			session.getTransaction().rollback();
+//			throw ex;
+//		}
 
 	}
 
@@ -68,30 +72,30 @@ public class SpaceXDAO implements SpaceXDAO_interface {
 
 	@Override
 	public List<Map<String, String>> getAll() {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		List<Map<String, String>> list1=new ArrayList<Map<String, String>>();
-		List<SpaceXVO> listxx=null;
-//		Map<String,String> m1=null;
-		try {
-			session.beginTransaction();
-			Query query = session.createQuery("from SpaceXVO");
-			 listxx = query.list();
-			for(SpaceXVO vo : listxx){
-				Map<String,String> m1 = new HashMap<>();
-				m1.put("space_id",String.valueOf(vo.getSpaceVO().getSpace_id()));
-				m1.put("table_id",vo.getTable_id());
-				m1.put("table_maxP",String.valueOf(vo.getTable_maxP()));
-				m1.put("table_x",String.valueOf(vo.getTable_x()));
-				m1.put("table_y",String.valueOf(vo.getTable_y()));
-				m1.put("table_shape",vo.getTable_shape());
-//				System.out.println(vo.getTable_shape());
-				list1.add(m1);
-			}
-			session.getTransaction().commit();
-		} catch (RuntimeException ex) {
-			session.getTransaction().rollback();
-			throw ex;
-		}
+//		List<SpaceXVO> listxx=null;
+////		Map<String,String> m1=null;
+//		try {
+//			session.beginTransaction();
+//			Query query = session.createQuery("from SpaceXVO");
+//			 listxx = query.list();
+//			for(SpaceXVO vo : listxx){
+//				Map<String,String> m1 = new HashMap<>();
+//				m1.put("space_id",String.valueOf(vo.getSpaceVO().getSpace_id()));
+//				m1.put("table_id",vo.getTable_id());
+//				m1.put("table_maxP",String.valueOf(vo.getTable_maxP()));
+//				m1.put("table_x",String.valueOf(vo.getTable_x()));
+//				m1.put("table_y",String.valueOf(vo.getTable_y()));
+//				m1.put("table_shape",vo.getTable_shape());
+////				System.out.println(vo.getTable_shape());
+//				list1.add(m1);
+//			}
+//			session.getTransaction().commit();
+//		} catch (RuntimeException ex) {
+//			session.getTransaction().rollback();
+//			throw ex;
+//		}
 		return list1;
 	}
 

@@ -4,12 +4,18 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.emp.model.EmpDAO_interface;
+
 public class TableService {
 
 	private TableDAO_interface dao;
 
 	public TableService() {
-		dao = new TableDAO();
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		dao =(TableDAO_interface) context.getBean("tableDAO");
 	}
 
 	public void addTable(Integer space_id) {

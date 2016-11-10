@@ -3,6 +3,10 @@ package com.product.model;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.emp.model.EmpDAO_interface;
 import com.packageformat.model.PackageFormatVO;
 
 public class ProductService {
@@ -10,7 +14,8 @@ public class ProductService {
 	private ProductDAO_interface dao;
 	
 	public ProductService(){
-		this.dao=new ProductDAO();
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-JndiObjectFactoryBean.xml");
+		dao =(ProductDAO_interface) context.getBean("productDAO");
 	}
 	
 	public List<PackageFormatVO> packageformat(Integer product_id){
