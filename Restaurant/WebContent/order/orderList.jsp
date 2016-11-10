@@ -51,8 +51,10 @@
 		</c:forEach>
 
 		<tr><td>菜色數量:${orderQ}</td></tr>
-<%-- 		<tr><td>套餐數量:<%= orderXSvc.getPackageQuantity(orderList) %></td></tr> --%>
+		<tr><td>主菜數量:${mainQ}</td></tr>
+		<tr><td>套餐數量:${pcgQ}</td></tr>
 		<tr><td>總金額:${orderP}</td></tr>
+		
 	</table><br>
 	<form METHOD="post" ACTION="order.do">
 		<input type="hidden" name="action" value="final_order">

@@ -110,7 +110,7 @@ public class OrderServlet extends HttpServlet {
 				System.out.println(tableVO);
 				Integer people = tableVO.getTable_numP();// 人數
 				String test = req.getParameter("member").trim();
-				Integer member=null;
+				Integer member = null;
 				if (test != "") {
 					member = new Integer(req.getParameter("member").trim());// 會員
 				}
@@ -135,18 +135,24 @@ public class OrderServlet extends HttpServlet {
 					failureView.forward(req, resp);
 					return;
 				}
-				
+
 				HttpSession session = req.getSession();
 				session.setAttribute("orderVO", orderVO);// session存入訂單orderVO
 
 				List<OrderXVO> orderList = new LinkedList<OrderXVO>();// 新增購物車
 				session.setAttribute("orderList", orderList);// session存入購物車orderList
-				
-				Integer orderQ=0;
+
+				Integer mainQ = 0;
+				session.setAttribute("mainQ", mainQ);
+
+				Integer pcgQ = 0;
+				session.setAttribute("pcgQ", pcgQ);
+
+				Integer orderQ = 0;
 				session.setAttribute("orderQ", orderQ);
-				
-				Integer orderP=0;
-				session.setAttribute("orderP",orderP);
+
+				Integer orderP = 0;
+				session.setAttribute("orderP", orderP);
 
 				DishClassService classSvc = new DishClassService();
 				DishClassVO classVO = classSvc.getOneClass(10);
@@ -210,11 +216,11 @@ public class OrderServlet extends HttpServlet {
 			System.out.println("==========================================");
 			try {
 				HttpSession session = req.getSession();
-				
+
 				Integer product_id = new Integer(req.getParameter("product"));
 				Integer product_price = new Integer(req.getParameter("price"));
 				Integer orderX_num = new Integer(req.getParameter("number"));
-				
+
 				ProductService productSvc = new ProductService();// 查詢Product並丟productVO至購物車
 				ProductVO productVO = null;
 				productVO = productSvc.findByPrimaryKey(product_id);
@@ -238,17 +244,29 @@ public class OrderServlet extends HttpServlet {
 				}
 				session.setAttribute("orderList", orderList);// session存入新orderList
 
-				Integer orderQ=(Integer) session.getAttribute("orderQ");//修改orderQ
-				orderQ=orderQ+orderX_num;
+				if (productVO.getProductKindVO().getKind_id() == 2) {// 若新增套餐修改pcgQ
+					Integer pcgQ = (Integer) session.getAttribute("pcgQ");
+					pcgQ = pcgQ + orderX_num;
+					session.setAttribute("pcgQ", pcgQ);
+				} else if (productVO.getProductKindVO().getKind_id() == 1) {// 若新增單點主菜修改mainQ
+					if (productVO.getDishClassVO().getClass_id() == 40) {
+						Integer mainQ = (Integer) session.getAttribute("mainQ");
+						mainQ = mainQ + orderX_num;
+						session.setAttribute("mainQ", mainQ);
+					}
+				}
+
+				Integer orderQ = (Integer) session.getAttribute("orderQ");// 修改orderQ
+				orderQ = orderQ + orderX_num;
 				session.setAttribute("orderQ", orderQ);
-				
-				Integer orderP=(Integer) session.getAttribute("orderP");//修改orderP
-				orderP=orderP+product_price*orderX_num;
+
+				Integer orderP = (Integer) session.getAttribute("orderP");// 修改orderP
+				orderP = orderP + product_price * orderX_num;
 				session.setAttribute("orderP", orderP);
-				
+
 				OrderVO orderVO = (OrderVO) session.getAttribute("orderVO");
 				orderVO.setOrder_price(orderP);// 查詢orderVO最新價格
-				session.setAttribute("orderVO", orderVO);// session存入新orderVO			
+				session.setAttribute("orderVO", orderVO);// session存入新orderVO
 
 				String url = "/order/addOrder2.jsp";// 至addOrder2繼續購物
 				RequestDispatcher successView = req.getRequestDispatcher(url);
@@ -276,21 +294,38 @@ public class OrderServlet extends HttpServlet {
 				Integer alt = new Integer(req.getParameter("alt").trim());
 				Integer altNumber = new Integer(req.getParameter("altNumber").trim());
 
-				Integer oldQ=orderList.get(alt - 1).getOrderX_num();
-				Integer productP=orderList.get(alt - 1).getProductVO().getProduct_price();
-				
-				Integer orderQ=(Integer) session.getAttribute("orderQ");
-				Integer orderP=(Integer) session.getAttribute("orderP");
-				orderQ=orderQ-oldQ+altNumber;
-				orderP=orderP+(altNumber-oldQ)*productP;
+				OrderXVO alterOrderXVO = orderList.get(alt - 1);
+				Integer productId = alterOrderXVO.getProductVO().getProduct_id();
+				Integer productP = alterOrderXVO.getProductVO().getProduct_price();
+				Integer oldQ = alterOrderXVO.getOrderX_num();
+
+				ProductService productSvc = new ProductService();
+				ProductVO productVO = productSvc.findByPrimaryKey(productId);
+
+				if (productVO.getProductKindVO().getKind_id() == 2) {// 若修改套餐修改pcgQ
+					Integer pcgQ = (Integer) session.getAttribute("pcgQ");
+					pcgQ = pcgQ - oldQ + altNumber;
+					session.setAttribute("pcgQ", pcgQ);
+				} else if (productVO.getProductKindVO().getKind_id() == 1) {// 若修改單點主菜修改mainQ
+					if (productVO.getDishClassVO().getClass_id() == 40) {
+						Integer mainQ = (Integer) session.getAttribute("mainQ");
+						mainQ = mainQ - oldQ + altNumber;
+						session.setAttribute("mainQ", mainQ);
+					}
+				}
+
+				Integer orderQ = (Integer) session.getAttribute("orderQ");
+				Integer orderP = (Integer) session.getAttribute("orderP");
+				orderQ = orderQ - oldQ + altNumber;
+				orderP = orderP + (altNumber - oldQ) * productP;
 				session.setAttribute("orderQ", orderQ);
 				session.setAttribute("orderP", orderP);
-				
+
 				OrderXVO deleteOrderXVO = orderList.get(alt - 1);
 				orderList.get(alt - 1).setOrderX_num(altNumber);// 修改orderList
 
 				session.setAttribute("orderList", orderList);// session存入最新orderList
-				
+
 				OrderXService orderXSvc = new OrderXService();
 
 				OrderVO orderVO = (OrderVO) session.getAttribute("orderVO");
@@ -321,30 +356,37 @@ public class OrderServlet extends HttpServlet {
 				List<OrderXVO> orderList = (List<OrderXVO>) session.getAttribute("orderList");
 
 				Integer del = new Integer(req.getParameter("del").trim());// 取得要刪除orderList裡物件的位置
-				// System.out.println("----");
-				// System.out.println("del"+del);
-				// System.out.println("sizeBEFORE"+orderList.size());/////!!!!!!!!!!!!!!!!
-				// System.out.println(orderList.get(del-1).getProduct_id());
+
 				OrderXVO deleteOrderXVO = orderList.get(del - 1);
-				
-				Integer orderQ=(Integer) session.getAttribute("orderQ");
-				Integer orderP=(Integer) session.getAttribute("orderP");
+				Integer productId = deleteOrderXVO.getProductVO().getProduct_id();
+				Integer oldQ = deleteOrderXVO.getOrderX_num();
+
+				ProductService productSvc = new ProductService();
+				ProductVO productVO = productSvc.findByPrimaryKey(productId);
+
+				if (productVO.getProductKindVO().getKind_id() == 2) {// 若修改套餐修改pcgQ
+					Integer pcgQ = (Integer) session.getAttribute("pcgQ");
+					pcgQ = pcgQ - oldQ;
+					session.setAttribute("pcgQ", pcgQ);
+				} else if (productVO.getProductKindVO().getKind_id() == 1) {// 若修改單點主菜修改mainQ
+					if (productVO.getDishClassVO().getClass_id() == 40) {
+						Integer mainQ = (Integer) session.getAttribute("mainQ");
+						mainQ = mainQ - oldQ;
+						session.setAttribute("mainQ", mainQ);
+					}
+				}
+
+				Integer orderQ = (Integer) session.getAttribute("orderQ");
+				Integer orderP = (Integer) session.getAttribute("orderP");
 				session.setAttribute("orderQ", orderQ);
 				session.setAttribute("orderP", orderP);
-				orderQ=orderQ-deleteOrderXVO.getOrderX_num();
-				orderP=orderP-(deleteOrderXVO.getOrderX_num())*(deleteOrderXVO.getProductVO().getProduct_price());
-				
+				orderQ = orderQ - deleteOrderXVO.getOrderX_num();
+				orderP = orderP - (deleteOrderXVO.getOrderX_num()) * (deleteOrderXVO.getProductVO().getProduct_price());
+
 				orderList.remove(deleteOrderXVO);// 刪除
-				// System.out.println("sizeAFTER"+orderList.size());
-				// System.out.println("----for----");
-				// for(OrderXVO orderxvos:orderList){
-				// System.out.println(orderxvos.getProduct_id());
-				// System.out.println(orderxvos.getOrderX_num());
-				// }
 
 				session.setAttribute("orderQ", orderQ);
 				session.setAttribute("orderP", orderP);
-				
 
 				session.setAttribute("orderList", orderList);// session存入最新orderList
 
@@ -353,7 +395,6 @@ public class OrderServlet extends HttpServlet {
 				OrderVO orderVO = (OrderVO) session.getAttribute("orderVO");
 				orderVO.setOrder_price(orderXSvc.getTotalPrice(orderList));// 查詢orderVO最新價格
 				session.setAttribute("orderVO", orderVO);// session存入最新orderVO
-				
 
 				String url = "/order/orderList.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
@@ -412,9 +453,9 @@ public class OrderServlet extends HttpServlet {
 				// orderVO.setOrder_price(totalP);
 				OrderService orderSvc = new OrderService();
 				orderVO = orderSvc.addOrderWithX(orderVO, orderList);// orderVO及orderList一併由Service方法送入資料庫中
-				String table_name=orderVO.getOrder_table();
-				TableService tableSvc=new TableService();
-				TableVO tableVO=tableSvc.getOneTable(table_name);
+				String table_name = orderVO.getOrder_table();
+				TableService tableSvc = new TableService();
+				TableVO tableVO = tableSvc.getOneTable(table_name);
 				tableVO.setTable_status("用餐中");
 				tableSvc.update(tableVO);
 				session.setAttribute("orderVO", orderVO);
@@ -477,12 +518,12 @@ public class OrderServlet extends HttpServlet {
 				List<OrderXVO> orderList = new LinkedList<OrderXVO>();
 				session.setAttribute("orderList", orderList);// 新增之訂單明細
 
-				Integer orderQ=0;
+				Integer orderQ = 0;
 				session.setAttribute("orderQ", orderQ);
-				
-				Integer orderP=0;
-				session.setAttribute("orderP",orderP);
-				
+
+				Integer orderP = 0;
+				session.setAttribute("orderP", orderP);
+
 				DishClassService classSvc = new DishClassService();
 				DishClassVO classVO = classSvc.getOneClass(10);
 				session.setAttribute("classVO", classVO);
@@ -566,15 +607,14 @@ public class OrderServlet extends HttpServlet {
 					orderList.add(orderXVO);
 				}
 
-				
-				Integer orderQ=(Integer) session.getAttribute("orderQ");//修改orderQ
-				orderQ=orderQ+orderX_num;
+				Integer orderQ = (Integer) session.getAttribute("orderQ");// 修改orderQ
+				orderQ = orderQ + orderX_num;
 				session.setAttribute("orderQ", orderQ);
-				
-				Integer orderP=(Integer) session.getAttribute("orderP");//修改orderP
-				orderP=orderP+product_price*orderX_num;
+
+				Integer orderP = (Integer) session.getAttribute("orderP");// 修改orderP
+				orderP = orderP + product_price * orderX_num;
 				session.setAttribute("orderP", orderP);
-							
+
 				session.setAttribute("orderList", orderList);
 
 				String url = "/order/additional2.jsp";
@@ -600,14 +640,14 @@ public class OrderServlet extends HttpServlet {
 
 				Integer alt = new Integer(req.getParameter("alt").trim());
 				Integer altNumber = new Integer(req.getParameter("altNumber").trim());
-				
-				Integer oldQ=orderList.get(alt - 1).getOrderX_num();
-				Integer productP=orderList.get(alt - 1).getProductVO().getProduct_price();
-				
-				Integer orderQ=(Integer) session.getAttribute("orderQ");
-				Integer orderP=(Integer) session.getAttribute("orderP");
-				orderQ=orderQ-oldQ+altNumber;
-				orderP=orderP+(altNumber-oldQ)*productP;
+
+				Integer oldQ = orderList.get(alt - 1).getOrderX_num();
+				Integer productP = orderList.get(alt - 1).getProductVO().getProduct_price();
+
+				Integer orderQ = (Integer) session.getAttribute("orderQ");
+				Integer orderP = (Integer) session.getAttribute("orderP");
+				orderQ = orderQ - oldQ + altNumber;
+				orderP = orderP + (altNumber - oldQ) * productP;
 				session.setAttribute("orderQ", orderQ);
 				session.setAttribute("orderP", orderP);
 
@@ -638,20 +678,20 @@ public class OrderServlet extends HttpServlet {
 				List<OrderXVO> orderList = (List<OrderXVO>) session.getAttribute("orderList");
 
 				Integer del = new Integer(req.getParameter("del").trim());
-				
-				OrderXVO deleteOrderXVO = orderList.get(del - 1);
-				
-				Integer orderQ=(Integer) session.getAttribute("orderQ");
-				Integer orderP=(Integer) session.getAttribute("orderP");
 
-				orderQ=orderQ-deleteOrderXVO.getOrderX_num();
-				orderP=orderP-(deleteOrderXVO.getOrderX_num())*(deleteOrderXVO.getProductVO().getProduct_price());
-							
+				OrderXVO deleteOrderXVO = orderList.get(del - 1);
+
+				Integer orderQ = (Integer) session.getAttribute("orderQ");
+				Integer orderP = (Integer) session.getAttribute("orderP");
+
+				orderQ = orderQ - deleteOrderXVO.getOrderX_num();
+				orderP = orderP - (deleteOrderXVO.getOrderX_num()) * (deleteOrderXVO.getProductVO().getProduct_price());
+
 				orderList.remove(deleteOrderXVO);
 
 				session.setAttribute("orderQ", orderQ);
 				session.setAttribute("orderP", orderP);
-				
+
 				session.setAttribute("orderList", orderList);
 
 				String url = "/order/additionalorderList.jsp";
@@ -715,10 +755,10 @@ public class OrderServlet extends HttpServlet {
 
 				OrderService orderSvc = new OrderService();
 				orderVO = orderSvc.addOrderWithNewX(orderVO, orderList);
-				
-				String table_name=orderVO.getOrder_table();
-				TableService tableSvc=new TableService();
-				TableVO tableVO=tableSvc.getOneTable(table_name);
+
+				String table_name = orderVO.getOrder_table();
+				TableService tableSvc = new TableService();
+				TableVO tableVO = tableSvc.getOneTable(table_name);
 				tableVO.setTable_status("用餐中");
 				tableSvc.update(tableVO);
 
