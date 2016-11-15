@@ -87,7 +87,7 @@ $(function(){
 				$('#sp4').empty();
 		}
 		if(count==0){
-			alert("success");
+// 			alert("success");
 			$('#formx').submit();
 		}
 	});
@@ -97,6 +97,7 @@ $(function(){
 // 	});
 	
 	$('#date').datepicker({	
+		autoclose: true,
 		format: 'yyyy-mm-dd',
 	    todayBtn: "linked",
 	    todayHighlight: true

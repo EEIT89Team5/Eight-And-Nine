@@ -19,6 +19,7 @@ import com.packageformat.model.PackageFormatVO;
 import com.productkind.model.ProductKindVO;
 
 
+
 public class ProductDAO implements ProductDAO_interface {
 	
 	private HibernateTemplate hibernateTemplate;    
@@ -169,6 +170,11 @@ public class ProductDAO implements ProductDAO_interface {
 		//Service的updatePro轉交
 		@Override
 		public ProductVO update(ProductVO productVO) {
+//			hibernateTemplate.get(ProductVO.class, productVO.getProduct_id());
+//			byte[] img=img1.getProduct_img();
+//			productVO.setProduct_img(img);
+			hibernateTemplate.saveOrUpdate(productVO);
+			
 //			Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 //			try {
 //				session.beginTransaction();
@@ -194,6 +200,9 @@ public class ProductDAO implements ProductDAO_interface {
 		//Service的updateProimg轉交
 		@Override
 		public ProductVO proimgup(ProductVO productVO) {
+			ProductVO proup=hibernateTemplate.get(ProductVO.class, productVO.getProduct_id());
+			proup.setProduct_img(productVO.getProduct_img());
+			hibernateTemplate.saveOrUpdate(proup);
 //			Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 //			try {
 //				session.beginTransaction();
@@ -211,6 +220,8 @@ public class ProductDAO implements ProductDAO_interface {
 		//Service的deletePro轉交
 		@Override
 		public void delete(Integer product_id) {
+			ProductVO proVO=hibernateTemplate.get(ProductVO.class,product_id);
+			hibernateTemplate.delete(proVO);
 //			Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 //			try {
 //				session.beginTransaction();
@@ -228,6 +239,7 @@ public class ProductDAO implements ProductDAO_interface {
 		//Service的addSinglePro轉交
 		@Override
 		public ProductVO insertSinglePro(ProductVO productVO) {
+			hibernateTemplate.saveOrUpdate(productVO);
 			
 //			Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 //			try{
@@ -245,6 +257,7 @@ public class ProductDAO implements ProductDAO_interface {
 		//Service的addPack轉交
 		@Override
 		public ProductVO insertPack(ProductVO productVO) {
+			hibernateTemplate.saveOrUpdate(productVO);
 //				Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 //			try {
 //				session.beginTransaction();
@@ -260,6 +273,7 @@ public class ProductDAO implements ProductDAO_interface {
 		//Service的addPackPro轉交
 		@Override
 		public ProductVO insertPackPro(ProductVO productVO) {
+			hibernateTemplate.saveOrUpdate(productVO);
 //			Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 //			try {
 //				session.beginTransaction();
@@ -278,7 +292,8 @@ public class ProductDAO implements ProductDAO_interface {
 		@Override
 		public List<ProductVO> selectPackPro(ProductVO productVO) {
 //			Session session=HibernateUtil.getSessionFactory().getCurrentSession();
-			List<ProductVO> list=null;
+//			 list=null;
+			 List<ProductVO>list=hibernateTemplate.find("FROM ProductVO WHERE product_pcg=? and product_kind=? and product_price=? order by product_class" ,new Object[]{productVO.getProduct_pcg(),productVO.getProductKindVO().getKind_id(),productVO.getProduct_price()});
 //			try {
 //				session.beginTransaction();
 //				Query query=session.createQuery("from ProductVO where product_pcg=? and product_kind=? and product_price=? order by product_class");
@@ -296,6 +311,7 @@ public class ProductDAO implements ProductDAO_interface {
 		
 		@Override
 		public PackageFormatVO AddClassNum(PackageFormatVO packageFormatVO){
+			hibernateTemplate.saveOrUpdate(packageFormatVO);
 //			Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 //			try {
 //				session.beginTransaction();
@@ -312,8 +328,8 @@ public class ProductDAO implements ProductDAO_interface {
 		
 		@Override
 		public PackageFormatVO UPclassNumber(PackageFormatVO packageFormatVO){
-//			Session session=HibernateUtil.getSessionFactory().getCurrentSession();
-			PackageFormatVO PKVO=null;
+//			Session session=HibernateUtil.getSessionFactory().getCurrentSession();		
+			hibernateTemplate.saveOrUpdate(packageFormatVO);
 //			try {
 //				session.beginTransaction();
 //				Query query=session.createQuery("update PackageFormatVO set class_number=? where pcg_id=? and class_id=?");
@@ -326,7 +342,7 @@ public class ProductDAO implements ProductDAO_interface {
 //				session.getTransaction().rollback();
 //				ex.printStackTrace();
 //			}
-			return PKVO;
+			return packageFormatVO;
 			
 			
 		}
@@ -334,8 +350,11 @@ public class ProductDAO implements ProductDAO_interface {
 		@Override
 		public ProductVO UpdatePackPro(ProductVO productVO) {
 //			Session session=HibernateUtil.getSessionFactory().getCurrentSession();
-//			
-			ProductVO PKVO=null;
+			ProductVO proVO=hibernateTemplate.get(ProductVO.class,productVO.getProduct_id());
+			Integer pcg=proVO.getProduct_pcg();
+			productVO.setProduct_pcg(pcg);
+	
+			hibernateTemplate.saveOrUpdate(productVO);
 //			try {
 //				session.beginTransaction();
 //				Query query=session.createQuery("update ProductVO set product_name=?,product_price=?,product_kind=? where product_id=?");
@@ -349,7 +368,7 @@ public class ProductDAO implements ProductDAO_interface {
 //				session.getTransaction().rollback();
 //				ex.printStackTrace();
 //			}
-			return PKVO;
+			return productVO;
 		}
 
 		
@@ -360,6 +379,7 @@ public class ProductDAO implements ProductDAO_interface {
 		@Override
 		public List<ProductVO> getSingle(){
 			List<ProductVO> list=null;
+			list=hibernateTemplate.find("FROM ProductVO WHERE product_kind=?", 1);
 //			Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 //		try{	
 //			session.beginTransaction();
@@ -379,7 +399,8 @@ public class ProductDAO implements ProductDAO_interface {
 		//Service的getAll轉交
 		@Override
 		public List<ProductVO> getAll() {
-				List<ProductVO> list=null;
+			List<ProductVO> list = new LinkedList<ProductVO>();
+			list=hibernateTemplate.find("FROM ProductVO");
 //				Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 //			try{	
 //				session.beginTransaction();
@@ -399,6 +420,7 @@ public class ProductDAO implements ProductDAO_interface {
 		public List<ProductVO> SelectPack(Integer product_kind) {
 //			Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 			List<ProductVO> list=null;
+			list=hibernateTemplate.find("FROM ProductVO WHERE product_kind=?", product_kind);
 //			try {
 //				session.beginTransaction();
 //				Query query=session.createQuery("from ProductVO where product_kind=?");
@@ -417,7 +439,14 @@ public class ProductDAO implements ProductDAO_interface {
 		@Override
 		public Integer SelectMAXPack(Integer product_kind) {
 //			Session session=HibernateUtil.getSessionFactory().getCurrentSession();
-			Integer result=null;
+//			 Integer result=null;
+			 List<Integer> result0=hibernateTemplate.find("select MAX(product_id) from ProductVO where product_kind=?",2);
+			 Integer result=null;
+			 for(Integer readresult:result0){
+				 System.out.println(readresult);
+				 result=readresult;
+			 }
+ 
 //			try{
 //				session.beginTransaction();
 //				Query query=session.createSQLQuery("select max(product_id) from Product where product_kind=?");
@@ -434,9 +463,10 @@ public class ProductDAO implements ProductDAO_interface {
 		
 		//Service的getOneClass轉交
 		@Override
-		public List<ProductVO> getOneClass(Integer product_class,Integer product_price) {
+		public List<ProductVO> getOneClass(Integer product_class,Integer inMenu) {
 //			Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 			List<ProductVO> list=null;
+			list=hibernateTemplate.find("from ProductVO where product_class=? and product_price!=0 and inMenu=?",new Object[]{product_class,inMenu});
 //			try {
 //				session.beginTransaction();
 //				Query query=session.createQuery("from ProductVO where product_class=? and product_price!=? ");
@@ -458,6 +488,7 @@ public class ProductDAO implements ProductDAO_interface {
 		public List<ProductVO> getOneSingleClass(Integer product_class,Integer product_price) {
 //			Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 			List<ProductVO> list=null;
+			list=hibernateTemplate.find("from ProductVO where product_class=? and product_price=?",new Object[]{product_class,product_price} );
 //			try {
 //				session.beginTransaction();
 //				Query query=session.createQuery("from ProductVO where product_class=? and product_price=?");
@@ -477,6 +508,7 @@ public class ProductDAO implements ProductDAO_interface {
 		@Override
 		public List<ProductVO> getClass(Integer product_pcg) {
 			List<ProductVO> list=null;
+			list=hibernateTemplate.find("from ProductVO where product_pcg=? order by product_class",product_pcg);
 //				Session session=HibernateUtil.getSessionFactory().getCurrentSession();
 //			try {
 //				session.beginTransaction();
@@ -489,6 +521,43 @@ public class ProductDAO implements ProductDAO_interface {
 //					ex.printStackTrace();
 //			}
 			return list;
+		}
+		
+		//------------------------eating!!!--------------
+		@Override
+			public List<Object> getProductByPackage(String pcgName) {
+				List<Object> list=null;
+				list=hibernateTemplate.find("select product_name from ProductVO where pcgVO.product_name=? order by product_id",pcgName);
+//				Session session=HibernateUtil.getSessionFactory().getCurrentSession();
+//				try {
+//					session.beginTransaction();
+//					Query query=session.createQuery("select product_name from ProductVO where pcgVO.product_name=? order by product_id");
+//					query.setParameter(0, pcgName);
+//					list=query.list();
+//					session.getTransaction().commit();
+//				} catch(RuntimeException ex){
+//					session.getTransaction().rollback();
+//						ex.printStackTrace();
+//				}
+				return list;
+			}
+		
+		@Override
+		public List<ProductVO> getProductByClass(Integer class_id) {
+			List<ProductVO> productVOs = new LinkedList<ProductVO>();
+			productVOs=hibernateTemplate.find("FROM ProductVO WHERE product_kind=1 AND product_class=?",class_id);
+//			Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+//			try {
+//				session.beginTransaction();
+//				Query query = session.createQuery("FROM ProductVO WHERE product_kind=1 AND product_class=?");
+//				query.setInteger(0, class_id);
+//				productVOs = query.list();
+//				session.getTransaction().commit();
+//			} catch (RuntimeException e) {
+//				session.getTransaction().rollback();
+//				throw e;
+//			}
+			return productVOs;
 		}
 
 	public static void main(String args[]) {
@@ -530,7 +599,7 @@ public class ProductDAO implements ProductDAO_interface {
 //			System.out.println("商品圖片:" + productVOs.getProduct_img());
 //			System.out.println("在菜單中" + productVOs.getInMenu());
 //			System.out.println("商品介紹" + productVOs.getProduct_intro());
-		
+
 //		}
 		
 

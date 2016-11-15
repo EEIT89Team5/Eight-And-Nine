@@ -40,7 +40,7 @@ public interface ProductDAO_interface {
 	public PackageFormatVO UPclassNumber(PackageFormatVO packageFormatVO);
 	public List<ProductVO> SelectPack(Integer product_kind);
 	public List<ProductVO> selectPackPro (ProductVO productVO);
-	public List<ProductVO> getOneClass (Integer product_class,Integer product_price);
+	public List<ProductVO> getOneClass (Integer product_class,Integer inMenu);
 	public List<ProductVO> getOneSingleClass (Integer product_class,Integer product_price);
 	public List<ProductVO> getClass (Integer product_pcg);
 	public List<ProductVO> getAll();
@@ -48,5 +48,11 @@ public interface ProductDAO_interface {
 	public ProductVO UpdatePackPro(ProductVO productVO);
 	public List<PackageFormatVO> getFormat(Integer product_id);
 	public void delete (Integer product_id);
+	
+	//------------------eating的
+	
+	public List<Object> getProductByPackage(String pcgName);
+	
+	public List<ProductVO> getProductByClass(Integer class_id);
 	
 }

@@ -1,34 +1,52 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="Big5"%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="com.emp.model.*"%>
+
 <%
-	EmpVO empVO = (EmpVO) request.getAttribute("empVO"); //EmpServlet.java (Concroller), ¦s¤JreqªºempVOª«¥ó (¥]¬AÀ°¦£¨ú¥XªºempVO, ¤]¥]¬A¿é¤J¸ê®Æ¿ù»~®ÉªºempVOª«¥ó)
+	EmpVO empVO = (EmpVO) request.getAttribute("empVO");
+
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>­û¤u¸ê®Æ­×§ï</title></head>
-<link rel="stylesheet" type="text/css" href="js/calendar.css">
-<script language="JavaScript" src="js/calendarcode.js"></script>
-<div id="popupcalendar" class="text"></div>
+<title>å“¡å·¥è³‡æ–™ä¿®æ”¹</title></head>
+<style>
+@font-face{
+   font-family: "BoldFace";   
+   src: url("../font/BoldFace.ttc");  
+}
+td{
+   	font-family: "BoldFace";   
+   	font-size:25px; 
+/*   	color:white;   */
+}
+#bbody{
+background: #333;
+}
+#Div1{
+	width: 650px;
+	padding:20px;
+	border-radius: 10px
+	
+}
+tr{
+	height: 50px
+}
 
-<body bgcolor='white'>
+</style>
+
+
+<body id="bbody">
+
 <div align="center">
 
-<table border='1' cellpadding='5' cellspacing='0' width='500'>
-	<tr bgcolor='#DDDDDD' align='center' valign='middle' height='20'>
-		<td>
-		<h3>­û¤u¸ê®Æ­×§ï</h3>
-		<a href="../index.jsp">¦^­º­¶</a>
-		<a href='all_emp.jsp'>¬d¸ß©Ò¦³­û¤u</a>
-		</td>
-	</tr>
-</table>
+<img src="../img/emplogo.png"><br>
+<a href="all_emp.jsp"><img src="../img/UPDATE.png"></a>
 
-<h5>­û¤u¸ê®Æ­×§ï:</h5>
-<%-- ¿ù»~ªí¦C --%>
+<%-- éŒ¯èª¤è¡¨åˆ— --%>
+<br>
 <c:if test="${not empty errorMsgs}">
-	<font color='red'>½Ğ­×¥¿¥H¤U¿ù»~:
+	<font color='red' style="font-family: BoldFace;font-size:20px">è«‹ä¿®æ­£ä»¥ä¸‹éŒ¯èª¤:
 	<ul>
 		<c:forEach var="message" items="${errorMsgs}">
 			<li>${message}</li>
@@ -38,93 +56,136 @@
 </c:if>
 
 <FORM METHOD="post" ACTION="emp.do" name="form1">
-
+<c:set var="empp" value="${empVO}"></c:set>
+<div id="Div1" align="left" style="border: 1px red solid;background:rgba(0,0,0,0.5);">
 <table border="0" >
 	<tr>
-		<td>­û¤u½s¸¹:</td>
-		<td><%=empVO.getEmp_id()%></td>
+		<td style="color:white;">å“¡å·¥ç·¨è™Ÿ:</td>
+		<td style="color:red"><%=empVO.getEmp_id()%></td>
 	</tr>
 	<tr>
-		<td>­û¤u©m¦W:</td>
-		<td><input type="TEXT" name="emp_name" size="45" value="<%=empVO.getEmp_name()%>" /></td>
+		<td style="color:white;">å“¡å·¥å§“å:</td>
+		<td><input class="form-control" type="TEXT" name="emp_name" size="45" style="font-size:25px;width: 200px" value="<%=empVO.getEmp_name()%>" /></td>
 	</tr>
 	<tr>
-		<td>©Ê§O:</td>
-		<td><input type="TEXT" name="emp_gender" size="45"	value="<%=empVO.getEmp_gender()%>" /></td>
+		<td style="color:white;">æ€§åˆ¥:</td>
+		<td><select name="emp_gender" class="form-control" style="font-size:25px;width: 200px;height: 40px">
+			<option  value="ç”·æ€§" <c:if test="${empp.emp_gender=='ç”·æ€§'}">selected</c:if>>ç”·</option>
+			<option  value="å¥³æ€§" <c:if test="${empp.emp_gender=='å¥³æ€§'}">selected</c:if>>å¥³</option>
+		</select></td>
+<%-- 		<td><input class="form-control" type="TEXT" name="emp_gender" size="45"	style="font-size:25px;width: 300px" value="<%=empVO.getEmp_gender()%>" /></td> --%>
 	</tr>
 	<tr>
-		<td>Â¾¦ì:</td>
-		<td><input type="TEXT" name="emp_title" size="45"	value="<%=empVO.getEmp_title()%>" /></td>
+		<td style="color:white;">è·ä½:</td>
+		<td><select name="emp_title" class="form-control" style="font-size:25px;width: 200px;height: 40px" >
+			<option  value="å“¡å·¥" <c:if test="${empp.emp_title=='å“¡å·¥'}">selected</c:if>>å“¡å·¥</option>
+			<option  value="é ˜ç­" <c:if test="${empp.emp_title=='é ˜ç­'}">selected</c:if>>é ˜ç­</option>
+			<option  value="ç¶“ç†" <c:if test="${empp.emp_title=='ç¶“ç†'}">selected</c:if>>ç¶“ç†</option>
+		</select></td>
+<%-- 		<td><input class="form-control" type="TEXT" name="emp_title" size="45"	style="font-size:25px;width: 300px" value="<%=empVO.getEmp_title()%>" /></td> --%>
 	</tr>
 	<tr>
-		<td>¥¿Â¾/¤uÅª:</td>
-		<td><input type="TEXT" name="emp_fulltime" size="45"	value="<%=empVO.getEmp_fulltime()%>" /></td>
+		<td style="color:white;">æ­£è·/å·¥è®€:</td>
+		<td><select name="emp_fulltime" class="form-control" style="font-size:25px;width: 200px;height: 40px">
+			<option  value="æ­£è·" <c:if test="${empp.emp_fulltime=='æ­£è·'}">selected</c:if>>æ­£è·</option>
+			<option  value="å·¥è®€" <c:if test="${empp.emp_fulltime=='å·¥è®€'}">selected</c:if>>å·¥è®€</option>
+		</select></td>
+<%-- 		<td><input class="form-control" type="TEXT" name="emp_fulltime" size="45" style="font-size:25px" value="<%=empVO.getEmp_fulltime()%>" /></td> --%>
 	</tr>
 	<tr>
-		<td>Á~¤ô:</td>
-		<td><input type="TEXT" name="emp_salary" size="45"	value="<%=empVO.getEmp_salary()%>" /></td>
+		<td style="color:white;">è–ªæ°´:</td>
+		<td><input class="form-control" type="TEXT" name="emp_salary" size="45"	style="font-size:25px;width: 200px" value="<%=empVO.getEmp_salary()%>" /></td>
 	</tr>
 	<tr>
-		<td>¶±¥Î¤é´Á:</td>
+		<td style="color:white;">é›‡ç”¨æ—¥æœŸ:</td>
 		<td>
-		    <input class="cal-TextBox"
-			onFocus="this.blur()" size="9" readonly type="text" name="emp_hiredate" value="<%=empVO.getEmp_hiredate()%>">
-			<a class="so-BtnLink"
-			href="javascript:calClick();return false;"
-			onmouseover="calSwapImg('BTN_date', 'img_Date_OVER',true);"
-			onmouseout="calSwapImg('BTN_date', 'img_Date_UP',true);"
-			onclick="calSwapImg('BTN_date', 'img_Date_DOWN');showCalendar('form1','hiredate','BTN_date');return false;">
-		    <img align="middle" border="0" name="BTN_date"	src="images/btn_date_up.gif" width="22" height="17" alt="¶}©l¤é´Á"></a>
+		    <input class="form-control" size="9" readonly type="text" name="emp_hiredate" id="emp_hiredate" style="font-size:25px;width: 200px" value="<%=empVO.getEmp_hiredate()%>">
+<!-- 			<a class="so-BtnLink" -->
+<!-- 			href="javascript:calClick();return false;" -->
+<!-- 			onmouseover="calSwapImg('BTN_date', 'img_Date_OVER',true);" -->
+<!-- 			onmouseout="calSwapImg('BTN_date', 'img_Date_UP',true);" -->
+<!-- 			onclick="calSwapImg('BTN_date', 'img_Date_DOWN');showCalendar('form1','hiredate','BTN_date');return false;"> -->
+<!-- 		    <img align="middle" border="0" name="BTN_date"	src="images/btn_date_up.gif" width="22" height="17" alt="é–‹å§‹æ—¥æœŸ"></a> -->
 		</td>
 	</tr>
 	<tr>
-		<td>ª¬ºA:</td>
-		<td><input type="TEXT" name="emp_status" size="45"	value="<%=empVO.getEmp_status()%>" /></td>
+		<td style="color:white;">ç‹€æ…‹:</td>
+
+		<td>
+		<select name="emp_status" class="form-control" style="font-size:25px;width: 200px;height: 40px">	
+			<option value="åœ¨è·ä¸­" <c:if test="${empp.emp_status=='åœ¨è·ä¸­'}">selected</c:if>>åœ¨è·ä¸­</option>
+			<option value="å·²é›¢è·" <c:if test="${empp.emp_status=='å·²é›¢è·'}">selected</c:if>>å·²é›¢è·</option>
+		</select>
+		</td>
+<%-- 		<td><input class="form-control" type="TEXT" name="emp_status" size="45"	style="font-size:25px" value="<%=empVO.getEmp_status()%>" /></td> --%>
 	</tr>
 
-</table>
-<h5>­Ó¤H¸ê®Æ­×§ï:</h5>
-<table border="0">
 	<tr>
-		<td>¥Í¤é:</td>
+		<td style="color:white;">ç”Ÿæ—¥:</td>
 		<td>
-		    <input class="cal-TextBox"
-			onFocus="this.blur()" size="9" readonly type="text" name="emp_birthday" value="<%=empVO.getEmp_birthday()%>">
-			<a class="so-BtnLink"
-			href="javascript:calClick();return false;"
-			onmouseover="calSwapImg('BTN_date', 'img_Date_OVER',true);"
-			onmouseout="calSwapImg('BTN_date', 'img_Date_UP',true);"
-			onclick="calSwapImg('BTN_date', 'img_Date_DOWN');showCalendar('form1','hiredate','BTN_date');return false;">
-		    <img align="middle" border="0" name="BTN_date"	src="images/btn_date_up.gif" width="22" height="17" alt="¶}©l¤é´Á"></a>
+		    <input class="form-control" size="9" readonly type="text" name="emp_birthday" id="emp_birthday" style="font-size:25px;width: 200px;" value="<%=empVO.getEmp_birthday()%>">
+<!-- 			<a class="so-BtnLink" -->
+<!-- 			href="javascript:calClick();return false;" -->
+<!-- 			onmouseover="calSwapImg('BTN_date', 'img_Date_OVER',true);" -->
+<!-- 			onmouseout="calSwapImg('BTN_date', 'img_Date_UP',true);" -->
+<!-- 			onclick="calSwapImg('BTN_date', 'img_Date_DOWN');showCalendar('form1','hiredate','BTN_date');return false;"> -->
+<!-- 		    <img align="middle" border="0" name="BTN_date"	src="images/btn_date_up.gif" width="22" height="17" alt="é–‹å§‹æ—¥æœŸ"></a> -->
 		</td>
 	</tr>
 	<tr>
-		<td>¨­¥÷ÃÒ¸¹½X:</td>
-		<td><input type="TEXT" name="emp_idnumber" size="45"	value="<%=empVO.getEmp_idnumber()%>" /></td>
+		<td style="color:white;">èº«ä»½è­‰è™Ÿç¢¼:</td>
+		<td><input class="form-control" type="TEXT" name="emp_idnumber" size="45"	style="font-size:25px;width: 200px" value="<%=empVO.getEmp_idnumber()%>" /></td>
 	</tr>
 	<tr>
-		<td>¹q¸Ü:</td>
-		<td><input type="TEXT" name="emp_phone" size="45"	value="<%=empVO.getEmp_phone()%>" /></td>
+		<td style="color:white;">é›»è©±:</td>
+		<td><input class="form-control" type="TEXT" name="emp_phone" size="45"	style="font-size:25px;width: 200px" value="<%=empVO.getEmp_phone()%>" /></td>
 	</tr>
 	<tr>
-		<td>¦í§}:</td>
-		<td><input type="TEXT" name="emp_addr" size="45"	value="<%=empVO.getEmp_addr()%>" /></td>
+		<td style="color:white;">ä½å€:</td>
+		<td><input class="form-control" type="TEXT" name="emp_addr" size="55"	style="font-size:25px;width: 450px" value="<%=empVO.getEmp_addr()%>" /></td>
 	</tr>
 	<tr>
-		<td>E-Mail:</td>
-		<td><input type="TEXT" name="emp_email" size="45"	value="<%=empVO.getEmp_email()%>" /></td>
+		<td style="color:white;">E-Mail:</td>
+		<td><input class="form-control" type="TEXT" name="emp_email" size="55"	style="font-size:25px;width: 450px" value="<%=empVO.getEmp_email()%>" /></td>
 	</tr>
 	<tr>
-		<td>±K½X:</td>
-		<td><input type="TEXT" name="emp_password" size="45"	value="<%=empVO.getEmp_password()%>" /></td>
+		<td style="color:white;">å¯†ç¢¼:</td>
+		<td><input class="form-control" type="password" name="emp_password" size="55" style="font-size:25px;width: 450px" value="<%=empVO.getEmp_password()%>" /></td>
 	</tr>
 
 </table>
 
 <br>
+<div align="center">
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="emp_id" value="<%=empVO.getEmp_id()%>">
-<input type="submit" value="°e¥X­×§ï"></FORM>
+<input type="submit" value="ä¿®æ”¹" class="btn btn-warning" style="font-family:BoldFace;font-size:20px">
 </div>
+</div>
+</FORM>
+</div>
+
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/bootstrap-datepicker3.min.css">
+<script>
+$(function() {
+	
+	
+	
+$('#emp_hiredate').datepicker({	
+	format: 'yyyy-mm-dd',
+	todayBtn: "linked"		
+});
+
+$('#emp_birthday').datepicker({	
+	format: 'yyyy-mm-dd',
+    startView:'decade'		
+});
+
+});
+</script>
+
 </body>
 </html>

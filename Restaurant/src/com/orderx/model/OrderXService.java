@@ -116,5 +116,31 @@ public class OrderXService {
 			
 		}
 		
+	//----------------------------------------------------------------------------------
+		
+		public List<Object[]> getPcgAmountByMonth(String year, String month, String date) {
+			if(month.length()<2) month="0"+month;
+			if(date.length()<2) date="0"+date;
+			String dd = year+"-"+month;
+			List<Object[]> list = dao.getPcgAmountByMonth(dd+"-01", dd+"-"+date);
+			return list;
+		}
+		
+		public List<Object[]> getEachPcgByMonth(String year, String month, String date, String pcgName) {
+			if(month.length()<2) month="0"+month;
+			if(date.length()<2) date="0"+date;
+			String dd = year+"-"+month;
+			List<Object[]> list = dao.getEachPcgByMonth(dd+"-01", dd+"-"+date, pcgName);
+			return list;
+		}
+		
+		public List<Object[]> getDishesAmount(String beginDate, String endDate, Integer class_id){
+			return dao.getDishesAmount(beginDate, endDate, class_id);
+		}
+		
+		public List<Object[]> getEachDishes(String beginDate, String endDate, String dishesName){
+			return dao.getEachDishes(beginDate, endDate, dishesName);
+		}
+		
 		
 }

@@ -15,11 +15,22 @@
 
 <head>
 	<title>商品資料</title>
+<style>
+#bbody{
+background: #333;
+}
+td{
+font-family:ShowWind;
+font-size:25px;
+color:white;
+background: #333;
+}
+</style>
 </head>
-<link rel="stylesheet" type="text/css" href="../js/calendar.css">
 <link rel="stylesheet" type="text/css" href="../js/sweetalert.css">
-<script language="JavaScript" src="../js/jquery-3.1.1.min.js"></script>
 <script language="JavaScript" src="../js/sweetalert.min.js"></script>
+<script src="../js/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.css">
 <script>
 $(function() {
 	var del=null;
@@ -47,30 +58,26 @@ $(function() {
 });
 </script>
 
-<body bgcolor='white'>
+<body id="bbody">
 	<div align="center">
-<table border='1' bordercolor='#CCCCFF' width='800'>
+<table style="width: 800px" class="table table-striped">
 					<tr>
-							<th>商品編號</th>
-							<th>商品名稱</th>
-							<th>售價</th>
-							<th>類別</th>
-							<th>菜色種類</th>
-							<th>屬於套餐</th>
+							<th style="text-align: center">商品編號</th>
+							<th style="text-align: center">商品名稱</th>
+							<th style="text-align: center">類別</th>
+							<th style="text-align: center">刪除</th>
 					</tr>
 						
 		<c:forEach var="getPro" items="${getPro}">
 				<tr align='center' valign='middle'>
 								<td>${getPro.product_id}</td>
 								<td>${getPro.product_name}</td>
-								<td>${getPro.product_price}</td>
-								<td>${getPro.productKindVO.kind_name}</td>
 								<td>${getPro.dishClassVO.class_name}</td>
-								<td>${getPro.product_pcg}</td>
+
 					
 					<td>			
 						<FORM METHOD="post" name="DleteForm" ACTION="<%=request.getContextPath()%>/product/pro.do">
-							<input type="button" name="delete" value="刪除"> 
+							<input type="button" name="delete" value="刪除" class="btn btn-danger" style="font-family:ShowWind;font-size:18px"> 
 							<input type="hidden" name="product_id" value="${getPro.product_id}"> 
 							<input type="hidden" name="action" value="deletePackPro">
 						</FORM>

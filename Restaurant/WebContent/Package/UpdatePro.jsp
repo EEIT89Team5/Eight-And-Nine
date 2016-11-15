@@ -14,9 +14,32 @@
 <html>
 <head>
 	<title>修改套餐</title>
+<style>
+@font-face {  
+font-family: "ShowWind";  
+src: url("../font/ShowWind.ttc");  
+}
+#bbody{
+background: #333;
+}
+.font1{
+font-family:ShowWind;
+font-size:35px;
+color:white;
+}
+#deded{
+height:100px;
+width:200px;
+
+position: absolute;
+top:50%;
+left: 50%;
+margin-top: -50px ;
+margin-left: -100px
+}
+</style>
 </head>
-<link rel="stylesheet" type="text/css" href="../js/calendar.css">
-<script language="JavaScript" src="../js/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.css">
 <script>
 	$(function() {
 		$("#NewFileUp").change(function() {
@@ -34,36 +57,33 @@
 	});
 </script>
 
-<body bgcolor='white'>
+<body id="bbody">
 	<div align="center">
-		<tr>
-			<a href="../index.jsp">回首頁</a>
-			
-		</tr>
+		<img src="../img/packlogo.png"><br>
+		<img src="../img/select.png">	
 
-	<table border='1' cellpadding='5' cellspacing='0' height='100' width="200">
-		<tr align='center' valign='middle' height='20'>
-				<td><h3>修改套餐</h3> 
-	</table>
-					
-		<td>
-		
-<br>
-	<FORM METHOD="post" ACTION="pro.do" name="form1">
-<br>
-		套餐名稱<br><br><select size="1" name="product_id">
-<br>
-<br>
+<div id="deded">
+		<font class="font1">套餐名稱</font><br><br>
+	<FORM METHOD="post" ACTION="pro.do" name="form1">	
+		<select size="1" name="product_id" style="font-family:ShowWind;font-size:25px ">
+
 			<c:forEach var="SelectPack" items="${SelectPack}">
 				<option value="${SelectPack.product_id}">${SelectPack.product_name}
 			</c:forEach>
 			</select>
-<br>
-<br>
+			
+	
+	
+	<br>
+	<br>
 		<input type="hidden" name="action" value="SelectPackage"> 
-		<input type="submit" value="查詢">
+		<input type="submit" value="查詢" class="btn btn-info" style="font-family:ShowWind;font-size:23px;">
+</div>
+
+<br>
+	
 	</FORM>
-		</td>
+		
 		
 </body>
 

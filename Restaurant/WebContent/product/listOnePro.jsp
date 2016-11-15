@@ -8,26 +8,49 @@
 <head>
 <title>商品資料</title>
 <script language="JavaScript" src="../js/jquery-3.1.1.min.js"></script>
-<script src="../js/jquery-1.12.3.min.js"></script>
-<script src="../js/bootstrap.js"></script>
+<style>
+#bbody{
+background: #333;
+}
+@font-face {  
+  font-family: "ShowWind";  
+  src: url("../font/ShowWind.ttc");  
+}
+img{
+webkit-border-radius: 10px;
+moz-border-radius: 10px;
+border-radius: 10px;
+}
+th{
+font-family: ShowWind;
+font-size:25px;
+font-weight:bold;
+color:white;
+background: #333;
+text-align: center
+}
+td{
+font-family: ShowWind;
+font-size:25px;
+color:white;
+background:#333;
+text-align: center;
+}
+</style>
 </head>
 
-<body bgcolor='white'>
+<body id="bbody">
 	<div align="center">
-		<table border='1' cellpadding='5' cellspacing='0' width='400'>
-			<tr align='center' valign='middle' height='20'>
-				<td><h3>查詢結果</h3> <a href="../index.jsp">回首頁</a></td>
-			</tr>
-		</table>
-		
+	<img src="../img/prologo.png"><br>
+	<a href="../index.jsp"><img src="../img/UPDATESUCCESS.png"></a>
 <br>
-		<table border='1' bordercolor='#CCCCFF' width='800'>
+<br>
+		<table align="center" class="table table-striped" style="width: 800px">
 			<tr>
 				<th>商品編號</th>
 				<th>商品名稱</th>
 				<th>售價</th>
-				<th>套餐</th>
-				<th>屬於</th>
+				<th>類別</th>
 				<th>上架/下架</th>
 			</tr>
 			
@@ -38,16 +61,22 @@
 				<td>${proVO.product_id}</td>
 				<td>${proVO.product_name}</td>
 				<td>${proVO.product_price}</td>
-				<td>${proVO.productKindVO.kind_name}</td>
-				<td>${proVO.getDishClassVO().getClass_name()}</td>
-				<td>${proVO.inMenu}</td>
+				<td>
+				<c:if test="${proVO.dishClassVO.class_id==10}">前菜</c:if>
+				<c:if test="${proVO.dishClassVO.class_id==20}">沙拉</c:if>
+				<c:if test="${proVO.dishClassVO.class_id==30}">湯品</c:if>
+				<c:if test="${proVO.dishClassVO.class_id==40}">主菜</c:if>
+				<c:if test="${proVO.dishClassVO.class_id==50}">甜點</c:if>
+				<c:if test="${proVO.dishClassVO.class_id==60}">飲料</c:if>
+				</td>
+				<td><c:if test="${proVO.inMenu==1}">上架中</c:if><c:if test="${proVO.inMenu==0}">下架中</c:if></td>
 
 			</tr>
 		</table>
 	</div>
 	
 	<div align="center">
-		<table border='1' bordercolor='#CCCCFF'>
+		<table>
 <br>
 			<tr align='center' valign='middle'>
 

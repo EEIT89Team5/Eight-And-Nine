@@ -98,8 +98,8 @@ public class ProductService {
 		return dao.SelectMAXPack(product_kind);
 	}
 	
-	public List<ProductVO> getOneClass(Integer product_class,Integer product_price) {
-		return dao.getOneClass(product_class,product_price);
+	public List<ProductVO> getOneClass(Integer product_class,Integer inMenu) {
+		return dao.getOneClass(product_class,inMenu);
 	}
 	
 	public List<ProductVO> getOneSingleClass(Integer product_class,Integer product_price) {
@@ -108,6 +108,15 @@ public class ProductService {
 	
 	public List<ProductVO> getPro(Integer product_pcg) {
 		return dao.getClass(product_pcg);
+	}
+	
+	//-----------------------eating
+	public List<Object> getProductByPackage(String pcgName){
+		return dao.getProductByPackage(pcgName);
+	}
+	
+	public List<ProductVO> getProductByClass(Integer class_id) {
+		return dao.getProductByClass(class_id);
 	}
 
 	

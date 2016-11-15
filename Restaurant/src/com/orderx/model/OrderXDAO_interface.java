@@ -29,4 +29,12 @@ public interface OrderXDAO_interface {
 
 	public Integer IDMAX(OrderXVO orderXVO);
 //	==========================================================
+	
+	public List<Object[]> getPcgAmountByMonth(String begin, String end);
+	
+	public List<Object[]> getEachPcgByMonth(String begin, String end, String pcgName);
+	
+	public List<Object[]> getDishesAmount(String beginDate, String endDate, Integer class_id);
+
+	public List<Object[]> getEachDishes(String beginDate, String endDate, String dishesName);
 }

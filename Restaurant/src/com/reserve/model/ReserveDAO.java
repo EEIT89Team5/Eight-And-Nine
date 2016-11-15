@@ -17,6 +17,7 @@ public class ReserveDAO implements ReserveDAO_interface {
 	
 	@Override
 	public void insert(ReserveVO reserveVO) {
+		hibernateTemplate.save(reserveVO);
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
 //			session.beginTransaction();
@@ -31,6 +32,7 @@ public class ReserveDAO implements ReserveDAO_interface {
 
 	@Override
 	public void update(ReserveVO reserveVO) {
+		hibernateTemplate.update(reserveVO);
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
 //			session.beginTransaction();
@@ -45,6 +47,8 @@ public class ReserveDAO implements ReserveDAO_interface {
 
 	@Override
 	public void delete(Timestamp res_time, String res_phone) {
+//		List<ReserveVO> listReserveVO = hibernateTemplate.find("delete from ReserveVO where res_time=? and res_phone=?",new Object[]{res_time,res_phone});
+		hibernateTemplate.bulkUpdate("delete from ReserveVO where res_time=? and res_phone=?",new Object[]{res_time,res_phone});
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
 //			session.beginTransaction();
@@ -64,6 +68,9 @@ public class ReserveDAO implements ReserveDAO_interface {
 	public ReserveVO findByPrimaryKey(Timestamp res_time, String res_phone) {
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		ReserveVO reserveVO = null;
+		List<ReserveVO> listOne = hibernateTemplate.find("from ReserveVO where res_time=? and res_phone=?",new Object[]{res_time,res_phone});
+		if(listOne.size()!=0)
+			reserveVO = listOne.get(0);
 //		try {
 //			session.beginTransaction();
 //			Query query = session.createQuery("from ReserveVO where res_time=? and res_phone=?");
@@ -82,16 +89,17 @@ public class ReserveDAO implements ReserveDAO_interface {
 
 	@Override
 	public List<ReserveVO> findByMonth(String res_time) {
-//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		Timestamp after = null;
+		String m = res_time.substring(5,7);
+		Timestamp before = Timestamp.valueOf(res_time + "-01 00:00:00");
+		if("01".equals(m) || "03".equals(m) || "05".equals(m) || "07".equals(m) || "08".equals(m) || "10".equals(m) || "12".equals(m)){
+			after = Timestamp.valueOf(res_time + "-31 23:59:59");
+		}else{
+			after = Timestamp.valueOf(res_time + "-30 23:59:59");
+		}
 		List<ReserveVO> list = null;
-//		String m = res_time.substring(5,7);
-//		Timestamp before = Timestamp.valueOf(res_time + "-01 00:00:00");
-//		Timestamp after = null;
-//		if("01".equals(m) || "03".equals(m) || "05".equals(m) || "07".equals(m) || "08".equals(m) || "10".equals(m) || "12".equals(m)){
-//			after = Timestamp.valueOf(res_time + "-31 23:59:59");
-//		}else{
-//			after = Timestamp.valueOf(res_time + "-30 23:59:59");
-//		}
+		list=hibernateTemplate.find("from ReserveVO where res_time > ? and res_time < ?",new Object[]{before,after});
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
 //			session.beginTransaction();
 //			Query query = session.createQuery("from ReserveVO where res_time > ? and res_time < ?");
@@ -108,10 +116,11 @@ public class ReserveDAO implements ReserveDAO_interface {
 
 	@Override
 	public List<ReserveVO> findByDate(String res_time) {
-//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		List<ReserveVO> list = null;
-//		Timestamp before = Timestamp.valueOf(res_time + " 00:00:00");
-//		Timestamp after = Timestamp.valueOf(res_time + " 23:59:59");
+		Timestamp before = Timestamp.valueOf(res_time + " 00:00:00");
+		Timestamp after = Timestamp.valueOf(res_time + " 23:59:59");
+		list=hibernateTemplate.find("from ReserveVO where res_time > ? and res_time < ?",new Object[]{before,after});
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
 //			session.beginTransaction();
 //			Query query = session.createQuery("from ReserveVO where res_time > ? and res_time < ?");
@@ -128,8 +137,9 @@ public class ReserveDAO implements ReserveDAO_interface {
 
 	@Override
 	public List<ReserveVO> getAll() {
-//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		List<ReserveVO> list = null;
+		list=hibernateTemplate.find("from ReserveVO");
+//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
 //			session.beginTransaction();
 //			Query query = session.createQuery("from ReserveVO");

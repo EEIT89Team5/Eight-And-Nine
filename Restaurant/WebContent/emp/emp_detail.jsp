@@ -5,42 +5,81 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<title>個人資料</title>
+<title>員工資料</title>
+<style>
+@font-face{
+   font-family: "BoldFace";   
+   src: url("../font/BoldFace.ttc");  
+}
+
+table td{
+   	font-family: "BoldFace";   
+   	font-size:25px; 
+   	color:white;
+   	
+}
+th{
+	font-family: "BoldFace"; 
+	color:white
+}
+tr{
+ height:60px
+}
+#bbody{
+background: #333;
+}
+
+</style>
 </head>
-<body bgcolor='white'>
+<body id="bbody">
 <div align="center">
-<table border='1' cellpadding='5' cellspacing='0' width='800'>
-	<tr bgcolor='#DDDDDD' align='center' valign='middle' height='20'>
-		<td>
-		<h3>個人資料</h3>
-		<a href="../index.jsp">回首頁</a> 
-		<a href='all_emp.jsp'>查詢所有員工</a>
-		</td>
-	</tr>
+
+<img src="../img/emplogo.png">
+<br>
+<a href="all_emp.jsp"><img src="../img/select.png"></a>
+<table class="table table-striped">
+<tr>
+<td>員工編號：</td><td style="color:red">${empVO.emp_id}</td>
+</tr>
+<tr>
+<td>員工姓名：</td><td>${empVO.emp_name}</td>
+</tr>
+<tr>
+<td>員工性別：</td><td>${empVO.emp_gender}</td>
+</tr>
+<tr>
+<td>職稱：</td><td>${empVO.emp_title}</td>
+</tr>
+<tr>
+<td>薪資：</td><td>${empVO.emp_salary}</td><td><c:if test="${empVO.emp_salary>3000}">(月薪)</c:if><c:if test="${empVO.emp_salary<3000}">(時薪)</c:if></td>
+</tr>
+<tr>
+<td>員工生日：</td><td>${empVO.emp_birthday}</td>
+</tr>
+<tr>
+<td>身份證號碼：</td><td>${empVO.emp_idnumber}</td>
+</tr>
+<tr>
+<td>聯絡電話：</td><td>${empVO.emp_phone}</td>
+</tr>
+<tr>
+<td>居住地址：</td><td>${empVO.emp_addr}</td>
+</tr>
+<tr>
+<td>到職日：</td><td>${empVO.emp_hiredate}</td>
+</tr>
+<tr>
+<td>狀態：</td><td>${empVO.emp_status}</td>
+</tr>
+<tr>
+<td>EMAIL：</td><td>${empVO.emp_email}</td>
+</tr>
+
+
+
 </table>
 
-<table border='1' bordercolor='#AAAAAA' width='800'>
-	<tr>
-		<th>員工編號</th>
-		<th>員工姓名</th>
-		<th>生日</th>
-		<th>身分證號碼</th>
-		<th>電話</th>
-		<th>住址</th>
-		<th>E-Mail</th>
-		<th>密碼</th>
-	</tr>
-	<tr align='center' valign='middle'>
-		     <td>${empVO.emp_id}</td>
-			 <td>${empVO.emp_name}</td>
-             <td>${empVO.emp_birthday}</td>
-             <td>${empVO.emp_idnumber}</td>
-             <td>${empVO.emp_phone}</td>
-             <td>${empVO.emp_addr}</td>
-             <td>${empVO.emp_email}</td>
-             <td>${empVO.emp_password}</td>
-	 </tr>
-</table>
+
 </div>
 </body>
 </html>

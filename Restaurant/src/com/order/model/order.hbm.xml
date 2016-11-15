@@ -33,7 +33,7 @@
                 
         <property name="order_paytime" column="order_paytime" />
         
-        <set name="orderXs" table="OrderTableX" lazy="true" 
+        <set name="orderXs" table="OrderTableX" lazy="false" 
         					cascade="all" inverse="true" order-by="orderX_time asc">
         	<key><column name="order_id"/></key>
         	<one-to-many class="com.orderx.model.OrderXVO" />

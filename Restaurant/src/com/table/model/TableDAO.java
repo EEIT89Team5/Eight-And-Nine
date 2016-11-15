@@ -4,13 +4,18 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.classic.Session;
+import org.springframework.orm.hibernate3.HibernateCallback;
 import org.springframework.orm.hibernate3.HibernateTemplate;
+
+import com.spacex.model.SpaceXVO;
 
 public class TableDAO implements TableDAO_interface {
 
-	private static final String INSERT_STMT="INSERT INTO SpaceTable (table_name,table_x,table_y,table_shape,table_maxP) "
-			+ "SELECT table_id,table_x,table_y,table_shape,table_maxP FROM SpaceX WHERE space_id=?";
+//	private static final String INSERT_STMT="INSERT INTO SpaceTable (table_name,table_x,table_y,table_shape,table_maxP) "
+//			+ "SELECT table_id,table_x,table_y,table_shape,table_maxP FROM SpaceX WHERE space_id=?";
 
+	private static final String INSERT_STMT="INSERT INTO TableVO (table_name,table_x,table_y,table_shape,table_maxP) "
+			+ "SELECT table_id,table_x,table_y,table_shape,table_maxP FROM SpaceXVO WHERE space_id=?";
 	private HibernateTemplate hibernateTemplate;    
     public void setHibernateTemplate(HibernateTemplate hibernateTemplate) { 
         this.hibernateTemplate = hibernateTemplate;
@@ -18,6 +23,15 @@ public class TableDAO implements TableDAO_interface {
 	
 	@Override
 	public void insert(Integer space_id) {
+		List<TableVO> tableVOAll = hibernateTemplate.find("from TableVO");
+		hibernateTemplate.deleteAll(tableVOAll);
+		hibernateTemplate.bulkUpdate(INSERT_STMT, space_id);
+//		hibernateTemplate.findByNamedQuery(INSERT_STMT,space_id);
+//		List<SpaceXVO> list = hibernateTemplate.find("from SpaceXVO where space_id=?",space_id);
+//		for(SpaceXVO vo : list){
+//			
+//		}
+		
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
 //			session.beginTransaction();
@@ -26,7 +40,6 @@ public class TableDAO implements TableDAO_interface {
 //			Query queryIn = session.createSQLQuery(INSERT_STMT);
 //			queryIn.setParameter(0, space_id);
 //			int oo = queryIn.executeUpdate();
-////			System.out.println("總共新增了幾筆資料:"+oo);
 //			session.getTransaction().commit();
 //		} catch (RuntimeException ex) {
 //			session.getTransaction().rollback();
@@ -36,6 +49,7 @@ public class TableDAO implements TableDAO_interface {
 
 	@Override
 	public void updateNumP(TableVO tablevo) {
+		hibernateTemplate.update(tablevo);
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
 //			session.beginTransaction();
@@ -76,6 +90,7 @@ public class TableDAO implements TableDAO_interface {
 	public List<TableVO> getAll() {
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		List<TableVO> list = null;
+		list=hibernateTemplate.find("from TableVO");
 //		try {
 //			session.beginTransaction();
 //			Query query = session.createQuery("from TableVO");
@@ -113,7 +128,7 @@ public class TableDAO implements TableDAO_interface {
 	}
 
 	public static void main(String[] args) {
-		TableDAO dao = new TableDAO();
+//		TableDAO dao = new TableDAO();
 //		dao.insert(10);
 //		TableVO tablevo = dao.findByPrimaryKey("07桌");
 //		System.out.println(tablevo.getTable_name());
@@ -126,15 +141,15 @@ public class TableDAO implements TableDAO_interface {
 //		tablevo.setTable_status("菜上齊");
 //		dao.update(tablevo);
 		
-		List<TableVO> list = dao.getAll();
-		for(TableVO tablevo: list){
-			System.out.print(tablevo.getTable_name()+" , ");
-			System.out.print(tablevo.getTable_maxP()+" , ");
-			System.out.print(tablevo.getTable_x()+" , ");
-			System.out.print(tablevo.getTable_y()+" , ");
-			System.out.print(tablevo.getTable_shape()+" , ");
-			System.out.println(tablevo.getTable_status());
-		}
+//		List<TableVO> list = dao.getAll();
+//		for(TableVO tablevo: list){
+//			System.out.print(tablevo.getTable_name()+" , ");
+//			System.out.print(tablevo.getTable_maxP()+" , ");
+//			System.out.print(tablevo.getTable_x()+" , ");
+//			System.out.print(tablevo.getTable_y()+" , ");
+//			System.out.print(tablevo.getTable_shape()+" , ");
+//			System.out.println(tablevo.getTable_status());
+//		}
 		
 	}
 

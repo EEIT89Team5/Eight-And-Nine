@@ -8,13 +8,36 @@
 
 <html>
 <head>
-	<title>單點商品修改</title></head>
-<link rel="stylesheet" type="text/css" href="../js/calendar.css">
-<script language="JavaScript" src="../js/calendarcode.js"></script>
+	<title>商品修改</title></head>
+<style>
+@font-face {  
+  font-family: "BoldFace";  
+  src: url("../font/BoldFace.ttc");  
+}
+#bbody{
+background: #333;
+}
+td{
+font-family: BoldFace;
+font-size:25px;
+color:white;
+background:#333;
+}
+tr{
+height: 50px
+}
+img{
+webkit-border-radius: 10px;
+moz-border-radius: 10px;
+border-radius: 10px;
+}
+</style>
+<script src="../js/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" href="../css/bootstrap.css">
 <script>
 $(function()
 		{
-			$("#NewFileUp").change(function(){
+			$("#FileUp").change(function(){
 				if (this.files && this.files[0]) {
 					var reader = new FileReader();
 					
@@ -30,18 +53,12 @@ $(function()
 
 </script>
 
-<body bgcolor='white'>
+<body id="bbody">
 
 <div align="center">
 	
-	<table border='1' cellpadding='5' cellspacing='0' width='400'>
-		<tr align='center' valign='middle' height='20'>
-			<td>
-			<h3>商品修改</h3>
-			<a href="../index.jsp">回首頁</a>
-			</td>
-		</tr>
-	</table>	
+<img src="../img/prologo.png"><br>
+<a href="listAllPro.jsp"><img src="../img/UPDATE.png"></a>
 	
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -53,41 +70,41 @@ $(function()
 	</ul>
 	</font>
 </c:if>
-
+<c:set var="proVO" value="${proVO}"></c:set>
 <FORM  METHOD="post" ACTION="pro.do" name="form1" enctype="multipart/form-data" >
 
 <table border="0">
 	<tr>
-		<td>商品編號:<font color=red><b>*</b></font></td>
-		<td><%=proVO.getProduct_id()%></td>
+		<td>商品編號:</td>
+		<td><font color=red><%=proVO.getProduct_id()%></font></td>
 	</tr>
 	
 	<tr>
 		<td>商品名稱:</td>
 		<td>
-			<input type="TEXT" name="product_name" size="25" value="<%=proVO.getProduct_name()%>" />
+			<input class="form-control" type="TEXT" name="product_name" size="25"  style="color:black;width:350px;font-family:BoldFace;font-size:20px" value="${proVO.getProduct_name()}" />
 		</td>
 	</tr>
 	
 	<tr>
 		<td>售價:</td>
 		<td>
-			<input type="TEXT" name="product_price" size="7"	value="<%=proVO.getProduct_price()%>" />
+			<input class="form-control" type="TEXT" name="product_price" size="7"  style="color:black;width:100px;font-family:BoldFace;font-size:20px" value="${proVO.getProduct_price()}" />
 		</td>
 	</tr>
 		
 	<tr>
-		<td>套餐:<font color=red><b>*</b></font></td>
+		<td>套餐:</td>
 
 		<td>
-	<%=proVO.getProductKindVO().getKind_name()%>
+	<font color=red><%=proVO.getProductKindVO().getKind_name()%></font>
 		</td>
 	</tr>
 	
 	<tr>
 		<td>類別:</td>
 		<td>
-<select name="product_class">
+<select name="product_class"  style="color:black;">
 	
 　	<option value="10" <c:if test="${proVO.getDishClassVO().getClass_id()==10}">selected</c:if>>前菜</option>
 　	<option value="20" <c:if test="${proVO.getDishClassVO().getClass_id()==20}">selected</c:if>>沙拉</option>
@@ -104,9 +121,9 @@ $(function()
 	<tr>
 		<td>上架/下架:</td>
 		<td>
-<select name="inMenu">
-	　		<option value="1" <c:if test="${proVO.inMenu==1}">selected</c:if>>存在</option>
-　			<option value="0" <c:if test="${proVO.inMenu==0}">selected</c:if>>不存在</option>
+<select name="inMenu"  style="color:black">
+	　		<option value="1" <c:if test="${proVO.inMenu==1}">selected</c:if>>上架</option>
+　			<option value="0" <c:if test="${proVO.inMenu==0}">selected</c:if>>下架</option>
 </select>
 
 		</td>
@@ -115,10 +132,39 @@ $(function()
 	<tr>
 		<td>簡介:</td>
 		<td>
-			<textarea cols="40" rows="5"  name="product_intro" ></textarea>
+			<textarea rows="4" class="form-control" style="width:350px;font-size:20px;color:black"  name="product_intro"  ><c:if test="${proVO.getProduct_price()!=null}"></c:if>${proVO.getProduct_intro()}</textarea>
 		</td>
 	</tr>
+<tr><td>商品圖片:</td>
 
+		<td>
+			<input type="file" class="btn btn-default btn-file" style="background: #333;color:white" id="FileUp" name="FileUp" size="50" maxlength="20" width="500">
+		</td>
+
+	</tr>
+
+</table>
+
+<table>
+	<tr>
+<th><img src="../img/before.png" style="display:block;margin: auto"><br></th><th align="center"><img src="../img/after.png" style="display:block;margin: auto"><br></th>
+	</tr>
+<div>
+
+	<tr>
+		<td>
+<img id="Browse" src="" alt="即將上傳的圖片預覽" width="500" height="400" border="1px"/>
+		</td>
+
+		<td>
+<img width="500" height="400" src="${pageContext.servletContext.contextPath}/getImage?id=${proVO.product_id}">
+		</td>
+	</tr>
+</div>
+
+<br>
+
+</table>
 <br>
 
 	<tr>
@@ -128,10 +174,10 @@ $(function()
 <br>
 
 <input type="hidden" name="action" value="update">
-<input type="hidden" name="product_id" value="<%=proVO.getProduct_id()%>">
+<input type="hidden" name="product_id" value="${proVO.getProduct_id()}">
 <input type="hidden" name="product_kind" value="<%=proVO.getProductKindVO().getKind_id()%>">
 
-<input type="submit" value="送出修改">
+<input type="submit" value="修改" class="btn btn-warning" style="font-family:BoldFace;font-size:20px">
 
 </FORM>
 
