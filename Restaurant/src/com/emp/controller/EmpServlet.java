@@ -241,7 +241,7 @@ public class EmpServlet extends HttpServlet {
 				  
 				  msg.setFrom(new InternetAddress(username + "@gmail.com","8+9餐廳管理系統"));
 				  msg.setRecipients(Message.RecipientType.TO, 
-				    InternetAddress.parse("oh.shuai.shen@gmail.com",false));
+				    InternetAddress.parse(emp_email,false));
 				  msg.setSubject("帳號驗證信");
 
 				  msg.setText(body);
