@@ -33,9 +33,6 @@ $(document).ready(function() {
 </script>
 <!--pop up end here-->
 <style>
-/* .sidebar-icon{ */
-/* 	background-color:pink; */
-/* } */
 body,.inner-block{
 	background-color:#F5F6CE;
 }
