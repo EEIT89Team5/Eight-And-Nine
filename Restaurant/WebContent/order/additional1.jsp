@@ -14,9 +14,42 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>加點</title>
+<style>
+@font-face{
+font-family:"ShowWind";
+src: url("../font/ShowWind.ttc");  
+}
+#block {
+    	height: 300px; /*高度*/ 
+     	width: 600px;  /*寬度*/ 
+    	 background-color: black;
+     	position: absolute; 
+      	top:50%; 
+      	left:50%;
+      	
+     	margin:0px auto;
+     	background-color: rgba(0,0,0,0);
+		margin-top: -150px;
+		margin-left:-300px
+}
+.font1{
+font-family:ShowWind;
+color:white;
+font-size:30px
+}
+td{
+font-family:ShowWind;
+color:white;
+font-size:30px
+}
+
+</style>
 </head>
-<body>
-<h3>選擇加訂桌位(當天尚未結帳之桌位)</h3>
+<body background="../img/light2.png" style="background-size: cover;">
+<div align="center" id="block">
+
+
+<h3 class="font1">選擇加訂桌位(當天尚未結帳之桌位)</h3>
 <table>
 <tr>
 <td>訂單編號</td>
@@ -42,9 +75,7 @@
 
 </table>
 
-<table>
 
-</table>
-
+</div>
 </body>
 </html>
