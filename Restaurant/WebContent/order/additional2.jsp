@@ -31,14 +31,12 @@ moz-border-radius: 10px;
 border-radius: 10px;
 }
 
-
-
-
 </style>
 </head>
 <body style="background-color: black">
 <div align="center">
-<h2 style="color:white;font-family:ShowWind;font-size: 50px">加點餐step2</h2>
+<!-- <h2 style="color:white;font-family:ShowWind;font-size: 50px">加點餐step2</h2> -->
+<img src="../img/ADDMEALLOGO.png">
 <br>
 <br>
 <h3 style="color:white;font-family:ShowWind;font-size: 35px;color: red">訂單資訊</h3>
@@ -105,7 +103,7 @@ border-radius: 10px;
 
 <c:if test="${not empty orderList}">
 	<h3>購物車小計</h3>
-	<table>
+	<table style="width: 600px">
 
 		<tr><td>菜色數量:${orderQ}</td></tr>
 		<tr><td>主菜數量:${mainQ}</td></tr>
@@ -114,7 +112,7 @@ border-radius: 10px;
 	</table><br>
 	<form METHOD="post" ACTION="order.do" name="form1">
 		<input type="hidden" name="action" value="add_check_orderList">
-		<input type="submit" value="查看購物車">
+		<input type="submit" value="查看購物車" class="btn btn-success" style="font-family:ShowWind;font-size:28px">
 	</form>
 </c:if>
 </div>
