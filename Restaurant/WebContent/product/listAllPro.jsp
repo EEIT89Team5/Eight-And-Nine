@@ -66,7 +66,9 @@ $(document).ready(function() {
 <!--pop up end here-->
 <style>
  body,.inner-block{ 
- 	background-color:black; 
+ 	background-color:black;
+	background-image: url("../img/0003.png");
+	background-size: cover;
  } 
 .clerfix{
 	border-style:solid;
@@ -85,7 +87,7 @@ td{
 font-family: ShowWind;
 font-size:25px;
 color:white;
-background:black;
+background-color:rgba(0,0,0,0);
 text-align: center;
 }
 b{
@@ -93,15 +95,15 @@ font-family: ShowWind;
 font-size:18px;
 font-weight:bold;
 }
-#bbody{
-background: black;
-}
+/* #bbody{ */
+/* background: black; */
+/* } */
 th{
 font-family: ShowWind;
 font-size:25px;
 font-weight:bold;
 color:white;
-background: black;
+background-color:rgba(0,0,0,0);
 text-align: center
 }
 img{
@@ -135,8 +137,8 @@ border-radius: 10px;
 											<div class="profile_img">	
 <!-- 												<span class="prfil-img"><img src="images/p1.png" alt=""> </span>  -->
 												<div class="user-name">
-													<p>顯示是經理還是員工</p>
-													<p>顯示姓名</p>
+													<p>xxxxxxx</p>
+													<p>xxx</p>
 												</div>
 												<i class="fa fa-angle-down lnr"></i>
 												<i class="fa fa-angle-up lnr"></i>
@@ -163,7 +165,7 @@ border-radius: 10px;
 		<img src="../img/prologo.png"><br>
 		<a href="../index.jsp"><img src="../img/TOTAL.png"></a><br>
 
-		<table align="center" class="table table-striped" style="width: 1200px">
+		<table align="center" class="table" style="width: 1200px">
 			<tr>
 				<th>商品編號</th>
 				<th>商品名稱</th>

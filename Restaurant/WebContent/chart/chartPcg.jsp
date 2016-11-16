@@ -54,7 +54,7 @@ $(document).ready(function() {
 // 				console.log(datas);					
 				Highcharts.chart('container', {
 			        title: {
-			            text: yy+'年'+mm+'月各套餐被點選數量',
+			            text: '<span class="chartspan">'+yy+'年'+mm+'月各套餐被點選數量</span>',
 			            x: -20 //center
 			        },
 			        xAxis: {
@@ -68,10 +68,19 @@ $(document).ready(function() {
 			                value: 0,
 			                width: 1,
 			                color: '#808080'
-			            }]
+			            }],
+			            allowDecimals: false
 			        },
 			        tooltip: {
-			            valueSuffix: ' 次'
+			        	useHTML: true,
+			            headerFormat: '<small>{point.key}</small><br/>',
+			            valueSuffix: ' 次',
+			            style: {                      // 文字内容相关样式
+			                color: "#ff0000",
+			                fontSize: "30px",
+			                fontWeight: "blod",
+			                fontFamily: "ShowWind"
+			            }
 			        },
 			        legend: {
 			            layout: 'vertical',
@@ -93,9 +102,6 @@ $(document).ready(function() {
 		}
 	})
 
-// 	$('g text').click(function(){
-// 		alert($(this).text());
-// 	})
 	
 	$(document).on('click','#container g tspan',function(){
 		var packageName = $(this).text();
@@ -106,11 +112,8 @@ $(document).ready(function() {
 		            type: 'column'
 		        },
 		        title: {
-		            text: yy+'年'+mm+'月<span style="color:red">'+packageName+'</span>的菜色點選數量'
+		            text: '<span class="chartspan">'+yy+'年'+mm+'月</span><span style="color:red;font-family:ShowWind;font-size:30px;font-weight:bold">'+packageName+'</span><span class="chartspan">的菜色點選數量</span>'
 		        },
-// 		        subtitle: {
-// 		            text: 'Source: <a href="https://en.wikipedia.org/wiki/World_population">Wikipedia.org</a>'
-// 		        },
 		        xAxis: {
 		            categories: eachdata.pcgname,
 		            title: {
@@ -129,7 +132,16 @@ $(document).ready(function() {
 		            allowDecimals: false
 		        },
 		        tooltip: {
-		            valueSuffix: ' 次'
+		        	
+		        	useHTML: true,
+		            headerFormat: '<small>{point.key}</small><br/>',
+		            valueSuffix: ' 次',
+		            style: {                      // 文字内容相关样式
+		                color: "#ff0000",
+		                fontSize: "30px",
+		                fontWeight: "blod",
+		                fontFamily: "ShowWind"
+		            }
 		        },
 		        plotOptions: {
 		            bar: {
@@ -168,7 +180,7 @@ $(document).ready(function() {
 /* 	background-color:pink; */
 /* } */
 body,.inner-block{
-	background-color:#F5F6CE;
+	background-color:black;
 }
 .clerfix{
 	border-style:solid;
@@ -179,12 +191,31 @@ body,.inner-block{
 #menu span{
 	position:absolute;
 }
-/* g[class="highcharts-xaxis-labels"] text{ */
-/* 	font-size: 20px; */
-/* } */
+.labelcolor{
+	font-family: "ShowWind";
+	font-size:30px;
+ 	color: white; 
+} 
+.chartspan{
+	font-family: "ShowWind";
+	font-size: 30px;
+	font-weight: bold;
+ 	color:black; 
+}
+ small{ 
+ 	font-family: "ShowWind"; 
+ 	font-size: 40px; 
+ 	font-weight: bold; 
+  	color:black; 
+ }
+/*  text{ */
+/*  	font-family: "ShowWind"; */
+/*  }  */
+ 
 </style>
 </head>
 <body>	
+
 <div class="page-container sidebar-collapsed">	
    <div class="left-content">
 	   <div class="mother-grid-inner">
@@ -208,8 +239,8 @@ body,.inner-block{
 											<div class="profile_img">	
 <!-- 												<span class="prfil-img"><img src="images/p1.png" alt=""> </span>  -->
 												<div class="user-name">
-													<p>顯示是經理還是員工</p>
-													<p>顯示姓名</p>
+													<p>經理是誰是誰</p>
+													<p>哩西向</p>
 												</div>
 												<i class="fa fa-angle-down lnr"></i>
 												<i class="fa fa-angle-up lnr"></i>
@@ -231,20 +262,22 @@ body,.inner-block{
 <!--inner block start here-->
 <div class="inner-block">
 <div class="price-block-main">
-	<label for="year">年份:</label>
-	<select name="selectyy">
-		<option value="0">請選擇年份</option>
-		<c:forEach var="years" begin="2010" end="2016">
-			<option value="${years}">${years}</option>
-		</c:forEach>
-	</select>
-	<label for="month">月份:</label>
-	<select name="selectmm">
-		<option value="0">請選擇月份</option>
-		<c:forEach var="months" begin="1" end="12">
-			<option value="${months}">${months}</option>
-		</c:forEach>
-	</select><br />
+	<div id="selects">
+		<label class="labelcolor" for="year">年份:</label>
+		<select name="selectyy">
+			<option value="0">請選擇年份</option>
+			<c:forEach var="years" begin="2010" end="2016">
+				<option value="${years}">${years}</option>
+			</c:forEach>
+		</select>
+		<label class="labelcolor" for="month">月份:</label>
+		<select name="selectmm">
+			<option value="0">請選擇月份</option>
+			<c:forEach var="months" begin="1" end="12">
+				<option value="${months}">${months}</option>
+			</c:forEach>
+		</select><br />
+	</div>
 	<div id="container" style="min-width: 310px; height: 300px; margin: 0 auto"></div>
 <br/>
 

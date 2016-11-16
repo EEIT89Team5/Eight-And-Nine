@@ -360,10 +360,11 @@ div input{
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		          <ul id="menu-academico-sub" >
 			          <li><a href="../product/listAllPro.jsp">菜色查詢</a></li>
-			          <li><a href="../product/one_select_page.jsp">單一菜色查詢</a></li>
+			          <li><a href="../product/select_online_page.jsp">上架產品查詢</a></li>
+			          <li><a href="../product/select_offline_page.jsp">下架產品查詢</a></li>
 			          <li><a href="../product/addSinglePro.jsp">新增菜色</a></li>
 			          <li><a href="../Package/AddPack.jsp">新增套餐</a></li>
-			          <li><a href="../Package/UpdatePro.jsp">套餐查詢修改</a></li>           
+			          <li><a href="../Package/UpdatePro.jsp">套餐查詢修改</a></li>            
 		          </ul>
 		        </li>
 		        <li><a><i class="fa fa-sort-numeric-desc"></i><span>折扣</span><span class="fa fa-angle-right" style="float: right"></span></a>
@@ -374,9 +375,9 @@ div input{
 		        </li>
 		        <li><a><i class="fa fa-braille"></i><span>場地配置</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		          <ul>
-		            <li><a href="../space/spaceC.jsp">新增場地</a></li>
-		            <li><a href="../space/spaceQ.jsp">查詢場地</a></li>
-		            <li><a href="../space/spaceU.jsp">修改場地</a></li>		            
+		            <li><a href="spaceC.jsp">新增場地</a></li>
+		            <li><a href="spaceQ.jsp">查詢場地</a></li>
+		            <li><a href="spaceU.jsp">修改場地</a></li>		            
 		          </ul>
 		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-bar-chart"></i><span>統計圖</span><span class="fa fa-angle-right" style="float: right"></span></a>

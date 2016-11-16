@@ -207,17 +207,7 @@ background:#333;
     <div class="price-block-main">
     
     <div align="center">
-    
-	<c:if test="${not empty errorMsgs}">
-		<font color='red'>請修正以下錯誤:
-			<ul>
-				<c:forEach var="message" items="${errorMsgs}">
-					<li>${message}</li>
-				</c:forEach>
-			</ul>
-		</font>
-	</c:if>
-<div id="Div1" align="left" style="border: 1px red solid;background:rgba(0,0,0,0.7);">
+	<div id="Div1" align="left" style="border: 1px red solid;background:rgba(0,0,0,0.7);">
               <br />
          <legend style="font-size: 40px;font-family:ShowWind;color: white;font-weight:bold">新增餐點</legend>
          
