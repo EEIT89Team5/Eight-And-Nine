@@ -41,6 +41,15 @@ public class EmpDAO implements EmpDAO_interface {
 		EmpVO empVO = (EmpVO) hibernateTemplate.get(EmpVO.class, emp_id);
 		return empVO;
 	}
+	
+	@Override
+	public EmpVO getEmail(String emp_email) {
+		List<EmpVO> list = hibernateTemplate.find("FROM EmpVO WHERE emp_email = ? ",emp_email);
+		EmpVO empVO=null;
+		if(list.size()!=0)
+			 empVO=list.get(0);
+		return empVO;
+	}
 
 	@Override
 	public List<EmpVO> getAll() {

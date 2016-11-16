@@ -37,4 +37,9 @@ public class EmpService {
 	public List<EmpVO> getAll() {
 		return dao.getAll();
 	}
+	
+	public EmpVO checkIDPassword(String emp_email, String emp_password) {
+		
+		return dao.getEmail(emp_email);
+	}
 }

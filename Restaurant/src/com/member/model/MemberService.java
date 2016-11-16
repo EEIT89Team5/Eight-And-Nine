@@ -68,6 +68,11 @@ public class MemberService {
 		return dao.getAll();
 	}
 	
+	public MemberVO checkPhonePassword(String member_phone, String member_password) {
+		
+		return dao.getPhone(member_phone);
+	}
+	
 	public static void main(String[] args) {
 
 	}

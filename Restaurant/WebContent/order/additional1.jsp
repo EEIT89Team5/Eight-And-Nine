@@ -21,7 +21,7 @@ src: url("../font/ShowWind.ttc");
 }
 #block {
     	height: 300px; /*高度*/ 
-     	width: 600px;  /*寬度*/ 
+     	width: 800px;  /*寬度*/ 
     	 background-color: black;
      	position: absolute; 
       	top:50%; 
@@ -30,7 +30,7 @@ src: url("../font/ShowWind.ttc");
      	margin:0px auto;
      	background-color: rgba(0,0,0,0);
 		margin-top: -150px;
-		margin-left:-300px
+		margin-left:-400px
 }
 .font1{
 font-family:ShowWind;
@@ -50,7 +50,8 @@ font-size:30px
 
 
 <h3 class="font1">選擇加訂桌位(當天尚未結帳之桌位)</h3>
-<table>
+<br>
+<table width="750px">
 <tr>
 <td>訂單編號</td>
 <td>當日未結帳桌位</td>
@@ -64,7 +65,7 @@ font-size:30px
 	<td>${orderVO.order_price }</td>
 	<td>
 		<form method="post" action="order.do" >
-			<input type="submit" value="加訂">
+			<input type="submit" value="加訂" class="btn btn-default" style="font-family:ShowWind;font-size:18px;font-weight:bold;">
 			<input type="hidden" name="action" value="addition1"/>
 			<input type="hidden" name="order_id" value="${orderVO.order_id }"/>
 		</form>
@@ -75,7 +76,7 @@ font-size:30px
 
 </table>
 
-
+<link rel="stylesheet" href="../css/bootstrap.css">
 </div>
 </body>
 </html>

@@ -48,6 +48,16 @@ public class MemberDAO implements MemberDAO_interface {
 		MemberVO memberVO = (MemberVO) hibernateTemplate.get(MemberVO.class, member_id);
 		return memberVO;
 	}
+	
+
+	@Override
+	public MemberVO getPhone(String member_phone) {
+		List<MemberVO> list = hibernateTemplate.find("FROM MemberVO WHERE member_phone = ? ", member_phone);
+		MemberVO memberVO=null;
+		if(list.size()!=0)
+			memberVO=list.get(0);
+		return memberVO;
+	}
 
 	@Override
 	public String findByPhone(String member_phone) {
