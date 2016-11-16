@@ -8,9 +8,52 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>點餐  - addOrder1.jsp</title>
+<link rel="stylesheet" href="../css/bootstrap.css">
+<style>
+body{
+background-image: url("../img/light2.png");
+background-size: cover;
+}
+@font-face{
+font-family:"ShowWind";
+src: url("../font/ShowWind.ttc");  
+}
+td{
+font-family:"ShowWind";
+color:white;
+font-size:30px;
+padding: 10px
+}
+h2{
+font-family:"ShowWind";
+color:white;
+font-size:45px;
+font-weight: bold;
+}
+#block {
+    	height: 300px; /*高度*/ 
+     	width: 800px;  /*寬度*/ 
+    	 background-color: black;
+     	position: absolute; 
+      	top:50%; 
+      	left:50%;
+      	
+     	margin:0px auto;
+     	background-color: rgba(0,0,0,0);
+		margin-top: -150px;
+		margin-left:-400px
+}
+select{
+color: black;
+width:180px;
+height: 30px;
+font-weight: bold;"
+}
+</style>
 </head>
 <body>
-<h2>輸入桌號狀況</h2><br/>
+<div align="center" id="block">
+<h2 style="color:red">請輸入桌號狀況</h2><br/>
 <c:if test="${not empty errorMsgs}">
 	<font color='red'>請修正以下錯誤:
 	<ul>
@@ -29,8 +72,8 @@
 						</c:forEach>
 					</select>
 					</td></tr>
-		<tr><td>會員:<input type="text" name="member"></td></tr>
-		<tr><td>員工:<select name="employee">
+		<tr><td>會員:<input type="text" name="member" style="width:200px;height: 25px;color: black;font-weight: bold;"></td></tr>
+		<tr><td>員工:<select name="employee" style="color: black">
 						<c:forEach var="empVO" items="${empSvc.getAll() }">
 							<option value="${empVO.emp_id }">${empVO.emp_name }</option>
 						</c:forEach>
@@ -39,9 +82,8 @@
 	</tbody>
 </table><br/>
 <input type="hidden" name="action" value="begin_order">
-<input type="submit" value="下一步">
+<input type="submit" value="下一步" class="btn btn-warning" style="font-family:ShowWind;font-size: 25px;font-weight: bold; ">
 </form>
-
-
+</div>
 </body>
 </html>
