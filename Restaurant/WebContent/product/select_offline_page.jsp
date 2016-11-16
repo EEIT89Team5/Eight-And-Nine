@@ -157,7 +157,6 @@ border-radius: 10px;
 <!--inner block start here-->
 <div class="inner-block">
     <div class="price-block-main">
-<br>
 	<div align="center">
 		<img src="../img/prologo.png"><br>
 		<a href="../index.jsp"><img src="../img/OFFLINE.png"></a>
@@ -359,8 +358,6 @@ border-radius: 10px;
 <br/>
 <br/>
 <br/>
-
-
 
 </div>
 </div>
