@@ -30,7 +30,7 @@ background-image: url("../img/0003.png");
  <div align="center">
  <img src="../img/ADDMEALLOGO.png">
 	<h3 style="font-family:ShowWind;color:white;font-weight: bold;font-size:50px">加點訂單明細</h3>
-	<table width="800px">
+	<table width="1000px">
 		<tr>
 			<td>商品編號</td>
 			<td>商品名稱</td>
@@ -42,22 +42,21 @@ background-image: url("../img/0003.png");
 			<tr>
 				<td>${orderXVO.productVO.product_id}</td>
 				<td>${orderXVO.productVO.product_name}</td>
-				<td>${orderXVO.productVO.productKindVO.kind_name}</td>
 				<td>${orderXVO.orderX_num}</td>
 				<td>${orderXVO.productVO.product_price}</td>
 				<td>
-					<form method="post" ACTION="order.do" >
+					<form method="post" ACTION="order.do" style="text-align: center;">
 						<input type="hidden" name="alt" value="${index.count}">
 						<input type="hidden" name="action" value="add_alter_S_orderX">
-						<input type="submit" value="修改">
-						<input type="text" name="altNumber">
+						<input type="text" name="altNumber" style="color:black;width: 60px;height: 40px;font-weight: bold;" size="6">
+						<input type="submit" value="修改"  class="btn btn-success" style="font-size:23px">			
 					</form>
 				</td>
 				<td>
 					<form method="post" ACTION="order.do" >
 						<input type="hidden" name="del" value="${index.count}">
 						<input type="hidden" name="action" value="add_delete_S_orderX">
-						<input type="submit" value="刪除">
+						<input type="submit" value="刪除" class="btn btn-danger" style="font-size:23px">
 					</form>
 				</td>
 			</tr>
