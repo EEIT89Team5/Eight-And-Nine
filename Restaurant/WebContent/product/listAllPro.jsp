@@ -163,13 +163,12 @@ border-radius: 10px;
 		<img src="../img/prologo.png"><br>
 		<a href="../index.jsp"><img src="../img/TOTAL.png"></a><br>
 
-		<table align="center" class="table table-striped" style="width: 1400px">
+		<table align="center" class="table table-striped" style="width: 1200px">
 			<tr>
 				<th>商品編號</th>
 				<th>商品名稱</th>
 				<th>產品圖片</th>
 				<th>售價</th>
-				<th>套餐</th>
 				<th>商品類別</th>
 				<th>上架/下架</th>
 				<th>修改</th>
@@ -182,9 +181,8 @@ border-radius: 10px;
 				<tr align='center'>
 					<td>${proVO.product_id}</td>
 					<td>${proVO.product_name}</td>	
-				<td><img width="300" height="200" src="${pageContext.servletContext.contextPath}/getImage?id=${proVO.product_id}"></td>
+				<td><img width="200" height="100" src="${pageContext.servletContext.contextPath}/getImage?id=${proVO.product_id}"></td>
 					<td>${proVO.product_price}</td>
-					<td>${proVO.productKindVO.kind_name}</td>
 					<td>${proVO.getDishClassVO().getClass_name()}</td>
 					<td><c:if test="${proVO.inMenu==1}">上架中</c:if><c:if test="${proVO.inMenu==0}">下架中</c:if></td>
 
