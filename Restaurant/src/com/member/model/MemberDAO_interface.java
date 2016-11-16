@@ -9,5 +9,5 @@ public interface MemberDAO_interface {
 	public MemberVO findByPrimaryKey(Integer member_id);
 	public String findByPhone(String member_phone);
 	public List<MemberVO> getAll();
-
+	public MemberVO getPhone(String member_phone);
 }

@@ -139,18 +139,20 @@ public class DiscountServlet extends HttpServlet{
 					errorMsgs.add("折扣名稱:只能是中、英文字母、數字和_ , 且長度必需在2到20之間");
 	            }
 							
-				Double disc_value = null;
+				Double dd=null;
+				String disc_value = null;
 				try {
-					disc_value = new Double(req.getParameter("disc_value").trim());
+					disc_value ="0."+ new String(req.getParameter("disc_value").trim());
+					dd=new Double(disc_value);
 				} catch (NumberFormatException e) {
-					
 					errorMsgs.add("折扣請填數字.");
 				}
+				
 				
 				DiscountVO discountVO = new DiscountVO();
 				discountVO.setDisc_id(disc_id);
 				discountVO.setDisc_name(disc_name);
-				discountVO.setDisc_value(disc_value);
+				discountVO.setDisc_value(dd);
 
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("discountVO", discountVO); // 含有輸入格式錯誤的empVO物件,也存入req
@@ -162,7 +164,7 @@ public class DiscountServlet extends HttpServlet{
 				
 				/***************************2.開始修改資料*****************************************/
 				DiscountService discSvc = new DiscountService();
-				discountVO = discSvc.updateDisc(disc_id, disc_name, disc_value);
+				discountVO = discSvc.updateDisc(disc_id, disc_name, dd);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("discountVO", discountVO); // 資料庫update成功後,正確的的empVO物件,存入req
