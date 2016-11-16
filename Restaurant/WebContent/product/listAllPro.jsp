@@ -181,7 +181,7 @@ border-radius: 10px;
 				<tr align='center'>
 					<td>${proVO.product_id}</td>
 					<td>${proVO.product_name}</td>	
-				<td><img width="200" height="100" src="${pageContext.servletContext.contextPath}/getImage?id=${proVO.product_id}"></td>
+				<td><img width="240" height="160" src="${pageContext.servletContext.contextPath}/getImage?id=${proVO.product_id}"></td>
 					<td>${proVO.product_price}</td>
 					<td>${proVO.getDishClassVO().getClass_name()}</td>
 					<td><c:if test="${proVO.inMenu==1}">上架中</c:if><c:if test="${proVO.inMenu==0}">下架中</c:if></td>
