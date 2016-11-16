@@ -1,3 +1,7 @@
+@font-face {  
+  font-family: "ShowWind";  
+  src: url("../font/ShowWind.ttc");  
+}
 h4, h5, h6,
 h1, h2, h3 {margin: 0;}
 ul, ol {margin: 0;}
@@ -786,7 +790,8 @@ ul.dropdown-menu.drp-mnu li {
     padding: 3px 0;
 }
 .user-name p{
-	font-size:1em;
+	font-family:ShowWind;
+	font-size: 30px;
 	color:#FC8213;
 	line-height:1em;
 	font-weight:700;

@@ -163,7 +163,7 @@ body,.inner-block{
 <!-- 												<span class="prfil-img"><img src="images/p1.png" alt=""> </span>  -->
 												<div class="user-name">
 													<p>顯示是經理還是員工</p>
-<!-- 													<span>顯示是經理還是員工</span> -->
+													<p>顯示姓名</p>
 												</div>
 												<i class="fa fa-angle-down lnr"></i>
 												<i class="fa fa-angle-up lnr"></i>
@@ -321,7 +321,7 @@ body,.inner-block{
 		    <div class="menu">
 		      <ul id="menu" >
 		      
-		         <li><a href="../table/formatTable.do?table=index"><i class="fa fa-eye"></i><span>監控畫面</span></a></li>
+		         <li><a href="formatTable.do?table=index"><i class="fa fa-eye"></i><span>監控畫面</span></a></li>
 		        <li id="menu-comunicacao" ><a><i class="fa fa-phone-square"></i><span>預約</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		          <ul id="menu-comunicacao-sub" >
 		          	<li><a href="../reserve/reserveC.jsp">新增預約</a></li>
@@ -349,7 +349,8 @@ body,.inner-block{
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		          <ul id="menu-academico-sub" >
 			          <li><a href="../product/listAllPro.jsp">菜色查詢</a></li>
-			          <li><a href="../product/one_select_page.jsp">單一菜色查詢</a></li>
+			          <li><a href="../product/select_online_page.jsp">上架產品查詢</a></li>
+			          <li><a href="../product/select_offline_page.jsp">下架產品查詢</a></li>
 			          <li><a href="../product/addSinglePro.jsp">新增菜色</a></li>
 			          <li><a href="../Package/AddPack.jsp">新增套餐</a></li>
 			          <li><a href="../Package/UpdatePro.jsp">套餐查詢修改</a></li>           

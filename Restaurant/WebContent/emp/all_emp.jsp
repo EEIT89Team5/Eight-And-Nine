@@ -43,6 +43,8 @@ $(document).ready(function() {
 <style>
 body,.inner-block{
 	background-color:black;
+	background-image: url("../img/0003.png");
+	background-size: cover;
 }
 .clerfix{
 	border-style:solid;
@@ -57,34 +59,29 @@ body,.inner-block{
   font-family: "ShowWind";  
   src: url("../font/ShowWind.ttc");  
 }
-/* font{ */
-/* font-family: ShowWind; */
-/* font-size:17px; */
-/* font-weight:bold;  */
-/* } */
 
 th{
 font-family: ShowWind;
 font-size:25px;
 font-weight:bold;
 color:white;
-background: black
+background-color:rgba(0,0,0,0);
 }
 b{
 font-family: ShowWind;
 font-size:18px;
 font-weight:bold;
-background: black
+/* background: black */
 }
 td{
 font-family: ShowWind;
 font-size:25px;
 font-weight:bold;
 color:white;
-background: black
+background-color:rgba(0,0,0,0);
 }
 #bbody{
-background: black;
+/* background: black; */
 }
 </style>
 </head>
@@ -143,16 +140,16 @@ background: black;
 </div>
 
 <%-- 錯誤表列 --%>
-<c:if test="${not empty errorMsgs}">
-	<font color='red'>請修正以下錯誤:
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li>${message}</li>
-		</c:forEach>
-	</ul>
-	</font>
-</c:if>
-<table class="table table-striped" align="center" style="width: 1300px">
+<%-- <c:if test="${not empty errorMsgs}"> --%>
+<!-- 	<font color='red'>請修正以下錯誤: -->
+<!-- 	<ul> -->
+<%-- 		<c:forEach var="message" items="${errorMsgs}"> --%>
+<%-- 			<li>${message}</li> --%>
+<%-- 		</c:forEach> --%>
+<!-- 	</ul> -->
+<!-- 	</font> -->
+<%-- </c:if> --%>
+<table class="table " align="center" style="width: 1300px">
 	<tr>
 		<th>員工編號</th>
 		<th>員工姓名</th>
@@ -240,12 +237,12 @@ background: black;
 		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		          <ul id="menu-academico-sub" >
-			          <li><a href="product/listAllPro.jsp">菜色查詢</a></li>
-			          <li><a href="product/select_online_page.jsp">上架產品查詢</a></li>
-			          <li><a href="product/select_offline_page.jsp">下架產品查詢</a></li>
-			          <li><a href="product/addSinglePro.jsp">新增菜色</a></li>
-			          <li><a href="Package/AddPack.jsp">新增套餐</a></li>
-			          <li><a href="Package/UpdatePro.jsp">套餐查詢修改</a></li>           
+			          <li><a href="../product/listAllPro.jsp">菜色查詢</a></li>
+			          <li><a href="../product/select_online_page.jsp">上架產品查詢</a></li>
+			          <li><a href="../product/select_offline_page.jsp">下架產品查詢</a></li>
+			          <li><a href="../product/addSinglePro.jsp">新增菜色</a></li>
+			          <li><a href="../Package/AddPack.jsp">新增套餐</a></li>
+			          <li><a href="../Package/UpdatePro.jsp">套餐查詢修改</a></li>           
 		          </ul>
 		        </li>
 		        <li><a><i class="fa fa-sort-numeric-desc"></i><span>折扣</span><span class="fa fa-angle-right" style="float: right"></span></a>

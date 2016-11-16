@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Eight&Nine</title>
+<title>菜色點選次數</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -54,7 +54,7 @@ $(document).ready(function() {
 			            type: 'column'
 			        },
 			        title: {
-			            text: beginDate+'到'+endDate+"菜色被點選數量"
+			            text: '<span class="chartspan">'+beginDate+'到'+endDate+"菜色被點選數量</span>"
 			        },
 			        xAxis: {
 			            categories: data.dishesname,
@@ -74,7 +74,15 @@ $(document).ready(function() {
 			            allowDecimals: false
 			        },
 			        tooltip: {
-			            valueSuffix: ' 次'
+			        	useHTML: true,
+			            headerFormat: '<small>{point.key}</small><br/>',
+			            valueSuffix: ' 次',
+			            style: {                      // 文字内容相关样式
+			                color: "#ff0000",
+			                fontSize: "30px",
+			                fontWeight: "blod",
+			                fontFamily: "ShowWind"
+			            }
 			        },
 			        plotOptions: {
 			            bar: {
@@ -116,7 +124,8 @@ $(document).ready(function() {
 		            type: 'column'
 		        },
 		        title: {
-		            text: beginDate+'到'+endDate+'<span style="color:red">'+dishesName+'</span>被點選數量'
+		            text: '<span class="chartspan">'+beginDate+'到'+endDate+'</span><span style="color:red;font-family:ShowWind;font-size:30px;font-weight:bold">'+dishesName+'</span><span class="chartspan">被點選數量</span>'
+// 		            text: '<span class="chartspan">'+yy+'年'+mm+'月</span><span style="color:red;font-family:ShowWind;font-size:30px;font-weight:bold">'+packageName+'</span><span class="chartspan">的菜色點選數量</span>'
 		        },
 		        xAxis: {
 		            categories: eachdata.pcgname,
@@ -136,7 +145,15 @@ $(document).ready(function() {
 		            allowDecimals: false
 		        },
 		        tooltip: {
-		            valueSuffix: ' 次'
+		        	useHTML: true,
+		            headerFormat: '<small>{point.key}</small><br/>',
+		            valueSuffix: ' 次',
+		            style: {                      // 文字内容相关样式
+		                color: "#ff0000",
+		                fontSize: "30px",
+		                fontWeight: "blod",
+		                fontFamily: "ShowWind"
+		            }
 		        },
 		        plotOptions: {
 		            bar: {
@@ -175,7 +192,7 @@ $(document).ready(function() {
 /* 	background-color:pink; */
 /* } */
 body,.inner-block{
-	background-color:#F5F6CE;
+	background-color:black;
 }
 .clerfix{
 	border-style:solid;
@@ -185,6 +202,24 @@ body,.inner-block{
 }
 #menu span{
 	position:absolute;
+}
+.chartspan{
+	font-family: "ShowWind";
+	font-size: 30px;
+	font-weight: bold;
+ 	color:black; 
+}
+.chartRedspan{
+	color:red;
+	font-family:"ShowWind";
+	font-size:30px;
+	font-weight:bold;
+}
+small{ 
+ 	font-family: "ShowWind"; 
+ 	font-size: 40px; 
+ 	font-weight: bold; 
+  	color:black; 
 }
 </style>
 </head>
@@ -237,7 +272,7 @@ body,.inner-block{
     <div class="price-block-main">
 
 	    <input type="text" id="beginDate" name="beginDate" readonly="readonly" placeholder="請選擇開始日期">
-	    <span>to</span>
+	    <span style="color:white;font-size:20px;">to</span>
 	    <input type="text" id="endDate" name="endDate" readonly="readonly" placeholder="請選擇結束日期">
 		<select id="dishClass" placeholder="選擇查詢範圍">
 			<option value="0">請選擇菜色類別</option>
@@ -249,11 +284,13 @@ body,.inner-block{
 			<option value="60">飲料</option>
 		</select>
 		<input type="button" id="submitted" value="確定" />
+		<br/>
+		<br/>
 
-		<div id="container" style="min-width: 310px;width:1300px; height: 400px; margin: 0 auto"></div>
+		<div id="container" style="min-width: 310px;width:100%; height: 350px; margin: 0 auto"></div>
 
 		<br/>
-		<div id="eachDishes" style="min-width: 310px;width:1300px; height: 400px; margin: 0 auto"></div>
+		<div id="eachDishes" style="min-width: 310px;width:100%; height: 350px; margin: 0 auto"></div>
 
 <br/>
 <br/>

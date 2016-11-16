@@ -68,7 +68,16 @@ $(document).ready(function() {
 			            }]
 			        },
 			        tooltip: {
-			            valueSuffix: '元'
+			        	useHTML: true,
+			            headerFormat: '<small>'+yy+'年'+mm+'月{point.key}日</small><br/>',
+			            valueSuffix: ' 元',
+			            style: {                      // 文字内容相关样式
+			                color: "#ff0000",
+			                fontSize: "30px",
+			                fontWeight: "blod",
+			                fontFamily: "ShowWind"
+			            }
+			            
 			        },
 			        legend: {
 			            layout: 'vertical',
@@ -106,7 +115,7 @@ $(document).ready(function() {
 /* 	background-color:pink; */
 /* } */
 body,.inner-block{
-	background-color:#F5F6CE;
+	background-color:black;
 }
 .clerfix{
 	border-style:solid;
@@ -117,7 +126,23 @@ body,.inner-block{
 #menu span{
 	position:absolute;
 }
-
+.labelcolor{
+	font-family: "ShowWind";
+	font-size:30px;
+ 	color: white; 
+} 
+.chartspan{
+	font-family: "ShowWind";
+	font-size: 30px;
+	font-weight: bold;
+ 	color:black;
+}
+ small{ 
+ 	font-family: "ShowWind"; 
+ 	font-size: 40px; 
+ 	font-weight: bold; 
+  	color:black; 
+ }
 </style>
 </head>
 <body>	
@@ -167,21 +192,21 @@ body,.inner-block{
 <!--inner block start here-->
 <div class="inner-block">
 <div class="price-block-main">
-	<label for="year">年份:</label>
+	<label class="labelcolor" for="year">年份:</label>
 	<select name="selectyy">
 		<option value="0">請選擇年份</option>
 		<c:forEach var="years" begin="2010" end="2016">
 			<option value="${years}">${years}</option>
 		</c:forEach>
 	</select>
-	<label for="month">月份:</label>
+	<label class="labelcolor" for="month">月份:</label>
 	<select name="selectmm">
 		<option value="0">請選擇月份</option>
 		<c:forEach var="months" begin="1" end="12">
 			<option value="${months}">${months}</option>
 		</c:forEach>
 	</select><br />
-	<div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+	<div id="container" style="min-width: 310px;width:100%; height: 400px; margin: 0 auto"></div>
 <br/>
 <br/>
 <br/>
