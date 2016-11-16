@@ -6,10 +6,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>點餐  - addOrder2.jsp</title>
+<style>
+body{
+background-image: url("../img/0003.png");
+background-size: cover;
+}
+@font-face{
+font-family:"ShowWind";
+src: url("../font/ShowWind.ttc");  
+}
+td{
+font-family:ShowWind;
+color:white;
+font-size:40px
+}
+h2{
+font-family:ShowWind;
+color:white;
+}
+</style>
 </head>
 <body>
-<h2>訂單已成功送出</h2><br/>
-
+<div align="center">
+<!-- <h2>訂單已成功送出</h2><br/> -->
+<img src="../img/thanksorder.png">
 <table>
 	<tbody>
 		<tr><td><h3>訂單資訊</h3></h3></td></tr>
@@ -40,8 +60,6 @@
 			</c:forEach>
 	</tbody>
 </table><br/>
-
-<a href="../index.jsp"> 回首頁 </a>
-
+</div>
 </body>
 </html>

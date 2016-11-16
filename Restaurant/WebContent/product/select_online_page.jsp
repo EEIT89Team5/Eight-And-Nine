@@ -155,8 +155,8 @@ border-radius: 10px;
 				</div>
 <!--heder end here-->
 <!--inner block start here-->
-<div class="inner-block">
-    <div class="price-block-main">
+<div class="inner-block" >
+    <div class="price-block-main" >
 <div align="center">
 		<img src="../img/prologo.png"><br>
 		<a href="../index.jsp"><img src="../img/ONLINE.png"></a>
