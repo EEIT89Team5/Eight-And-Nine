@@ -6,6 +6,7 @@ import java.util.Set;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.dishclass.model.DishClassVO;
 import com.emp.model.EmpDAO_interface;
 import com.packageformat.model.PackageFormatVO;
 
@@ -22,6 +23,21 @@ public class ProductService {
 		return dao.getFormat(product_id);
 	}
 	
+	public List<ProductVO> getAllPackages() {
+		return dao.getAllPackages();	
+	}
+	
+	public List<ProductVO> getDishesByPackageAndClass(Integer pcg_id, Integer class_id){	
+		return dao.getDishesByPackageAndClass( pcg_id,  class_id);	
+	}
+	
+	public List<DishClassVO> getDishesByPackage(Integer pcg_id){	
+		return dao.getDishesByPackage( pcg_id);	
+	}
+	
+	public List<PackageFormatVO> getDishClassByPackage(Integer pcg_id){
+		return dao.getDishClassByPackage(pcg_id);
+	}
 	
 	public ProductVO findByPrimaryKey(Integer product_id){
 		return dao.findByPrimaryKey(product_id);

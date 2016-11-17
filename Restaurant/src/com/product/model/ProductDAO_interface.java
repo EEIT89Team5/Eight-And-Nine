@@ -21,10 +21,14 @@ public interface ProductDAO_interface {
 	//	套餐
 	public List<ProductVO> getAllPackages();
 	//	套餐類別
-	public List<ProductVO> getDishesByPackage(Integer pcg_id);
+
+	public List<DishClassVO> getDishesByPackage(Integer pcg_id);
 	//	套餐類別菜色
 	public List<ProductVO> getDishesByPackageAndClass(Integer pcg_id,Integer class_id);
 
+	//查詢套餐菜色的類別
+	public List<PackageFormatVO> getDishClassByPackage(Integer pcg_id);
+			
 	//全部商品
 	public List<ProductVO> getAllProducts();
 	
