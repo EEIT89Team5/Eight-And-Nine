@@ -7,9 +7,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>權限不足</title>
+<style>
+body{
+background-image: url("../img/Loginbackground.jpg");
+background-size: cover;
+}
+#block {
+    	height: 300px; /*高度*/ 
+     	width: 700px;  /*寬度*/ 
+     	position: absolute; 
+      	top:50%; 
+      	left:50%;
+      	
+     	margin:0px auto;
+		margin-top: -150px;
+		margin-left:-350px
+}
+</style>
 </head>
 <body>
-權限不足<P/>
-<a href="../index.jsp">回首頁</a>
+<div id="block">
+<a href="../index.jsp"><img src="../img/warning.png"></a>
+</div>
 </body>
 </html>
