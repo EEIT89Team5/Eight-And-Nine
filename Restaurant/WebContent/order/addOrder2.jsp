@@ -60,6 +60,7 @@ color:white
 	</tr>
 </table>
 
+<<<<<<< HEAD
 <h3>套餐</h3>
 	<table>
 		<tr>		
@@ -72,6 +73,8 @@ color:white
 	</table>
 
 
+=======
+>>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git
 <h3>單點類別</h3>
 <table>
 	<tr>
