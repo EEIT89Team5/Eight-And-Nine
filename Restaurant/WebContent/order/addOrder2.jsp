@@ -12,10 +12,33 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>點餐  - addOrder2.jsp</title>
+<style>
+body{
+background-image: url("../img/0003.png");
+background-size: cover;
+}
+@font-face{
+font-family:"ShowWind";
+src: url("../font/ShowWind.ttc");  
+}
+td{
+font-family:"ShowWind";
+color:white;
+font-size:30px;
+padding: 10px
+}
+h2{
+color:white
+}
+h3{
+color:white
+}
+</style>
 </head>
 <body>
-<h2>點餐step2</h2>
-
+<div align="center">
+<!-- <h2>點餐step2</h2> -->
+<img src="../img/ORDERLOGO.png">
 <h3>會員</h3>
 <table>
 	<tr>
@@ -104,5 +127,6 @@ ${classVO.class_name}:
 		<input type="submit" value="查看購物車">
 	</form>
 </c:if>
+</div>
 </body>
 </html>
