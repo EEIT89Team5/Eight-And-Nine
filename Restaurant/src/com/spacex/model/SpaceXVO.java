@@ -2,8 +2,11 @@ package com.spacex.model;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.space.model.SpaceVO;
 
+@XmlRootElement
 public class SpaceXVO implements Serializable {
 //	private int space_id;
 	private SpaceVO spaceVO;

@@ -1,14 +1,19 @@
 package com.product.model;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 import com.dishclass.model.DishClassVO;
 import com.orderx.model.OrderXVO;
 import com.packageformat.model.PackageFormatVO;
 import com.productkind.model.ProductKindVO;
 
+@XmlRootElement
 public class ProductVO implements Serializable{
 
 	private Integer product_id;
@@ -25,6 +30,14 @@ public class ProductVO implements Serializable{
 	private Set<PackageFormatVO> pcgFormats=new HashSet<PackageFormatVO>();
 	private Set<ProductVO> pcgDishes=new HashSet<ProductVO>();
 	private Set<OrderXVO> orderXs =new HashSet<OrderXVO>();
+	
+//	@Override
+//	public String toString() {
+//		return "ProductVO [product_id=" + product_id + ", product_name=" + product_name + ", product_price="
+//				+ product_price + ", product_pcg=" + product_pcg 
+//				+ ", inMenu=" + inMenu + ", product_intro=" + product_intro + "]";
+//	}
+	
 	
 	public Integer getProduct_id() {
 		return product_id;
@@ -68,6 +81,8 @@ public class ProductVO implements Serializable{
 	public void setPcgVO(ProductVO pcgVO) {
 		this.pcgVO = pcgVO;
 	}
+	
+	@XmlTransient
 	public byte[] getProduct_img() {
 		return product_img;
 	}
@@ -86,18 +101,21 @@ public class ProductVO implements Serializable{
 	public void setProduct_intro(String product_intro) {
 		this.product_intro = product_intro;
 	}
+	@XmlTransient
 	public Set<PackageFormatVO> getPcgFormats() {
 		return pcgFormats;
 	}
 	public void setPcgFormats(Set<PackageFormatVO> pcgFormats) {
 		this.pcgFormats = pcgFormats;
 	}
+	@XmlTransient
 	public Set<ProductVO> getPcgDishes() {
 		return pcgDishes;
 	}
 	public void setPcgDishes(Set<ProductVO> pcgDishes) {
 		this.pcgDishes = pcgDishes;
 	}
+	@XmlTransient
 	public Set<OrderXVO> getOrderXs() {
 		return orderXs;
 	}

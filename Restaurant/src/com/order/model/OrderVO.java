@@ -6,11 +6,15 @@ import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import com.discount.model.DiscountVO;
 import com.emp.model.EmpVO;
 import com.member.model.MemberVO;
 import com.orderx.model.OrderXVO;
 
+@XmlRootElement
 public class OrderVO implements Serializable {
 	
 	private Integer order_id;
@@ -100,6 +104,7 @@ public class OrderVO implements Serializable {
 		this.order_paytime = order_paytime;
 	}
 
+	@XmlTransient
 	public Set<OrderXVO> getOrderXs() {
 		return orderXs;
 	}

@@ -4,14 +4,19 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import com.spacex.model.SpaceXVO;
 
+@XmlRootElement
 public class SpaceVO implements Serializable {
 	private int space_id;
 	private String space_name;
 	private String space_size;
 	private Set<SpaceXVO> spacexs = new HashSet<SpaceXVO>();
 	
+	@XmlTransient
 	public Set<SpaceXVO> getSpacexs() {
 		return spacexs;
 	}

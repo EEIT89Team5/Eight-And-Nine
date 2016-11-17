@@ -3,9 +3,13 @@ package com.dishclass.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import com.packageformat.model.PackageFormatVO;
 import com.product.model.ProductVO;
 
+@XmlRootElement
 public class DishClassVO implements Serializable{
 	
 	private Integer class_id;
@@ -25,12 +29,14 @@ public class DishClassVO implements Serializable{
 	public void setClass_name(String class_name) {
 		this.class_name = class_name;
 	}
+	@XmlTransient
 	public Set<ProductVO> getProducts() {
 		return products;
 	}
 	public void setProducts(Set<ProductVO> products) {
 		this.products = products;
 	}
+	@XmlTransient
 	public Set<PackageFormatVO> getPcgFormats() {
 		return pcgFormats;
 	}

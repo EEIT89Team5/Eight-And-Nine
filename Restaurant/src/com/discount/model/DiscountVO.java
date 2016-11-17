@@ -4,8 +4,11 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.order.model.OrderVO;
 
+@XmlRootElement
 public class DiscountVO implements Serializable{
 	
 	private Integer disc_id;

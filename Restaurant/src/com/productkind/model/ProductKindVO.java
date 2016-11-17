@@ -3,8 +3,12 @@ package com.productkind.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import com.product.model.ProductVO;
 
+@XmlRootElement
 public class ProductKindVO implements Serializable{
 
 	private Integer kind_id;
@@ -23,6 +27,7 @@ public class ProductKindVO implements Serializable{
 	public void setKind_name(String kind_name) {
 		this.kind_name = kind_name;
 	}
+	@XmlTransient
 	public Set<ProductVO> getProducts() {
 		return products;
 	}

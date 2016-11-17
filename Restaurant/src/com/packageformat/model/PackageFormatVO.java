@@ -2,9 +2,12 @@ package com.packageformat.model;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import com.dishclass.model.DishClassVO;
 import com.product.model.ProductVO;
 
+@XmlRootElement
 public class PackageFormatVO implements Serializable{
 
 	private ProductVO productVO;

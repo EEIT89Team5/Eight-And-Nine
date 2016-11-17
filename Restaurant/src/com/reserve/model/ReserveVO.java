@@ -3,6 +3,9 @@ package com.reserve.model;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class ReserveVO implements Serializable {
 	private Timestamp res_time;
 	private String res_phone;

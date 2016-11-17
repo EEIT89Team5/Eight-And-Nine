@@ -5,8 +5,12 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
+
 import com.order.model.OrderVO;
 
+@XmlRootElement
 public class MemberVO implements Serializable {
 	
 	private Integer member_id;
@@ -75,6 +79,7 @@ public class MemberVO implements Serializable {
 		this.member_register = member_register;
 	}
 
+	@XmlTransient
 	public Set<OrderVO> getOrders() {
 		return orders;
 	}
