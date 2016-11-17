@@ -216,7 +216,9 @@ div input{
 	width: 60px;
 	margin:1px 0px;
 }
-
+.bigy input[name="table_name"]{
+	margin-top:80px;
+}
 #dropHere {
     width: 100%;
     height: 700px;
