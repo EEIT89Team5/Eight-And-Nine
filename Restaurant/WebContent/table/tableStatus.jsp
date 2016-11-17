@@ -55,12 +55,14 @@ $(function() {
 <!--pop up end here-->
 <style>
 /* 	body{background-color:#000000;} */
+.inner-block {
+    padding: 8em 0em 0em 0em;
+}
  	#main{
- 		width:1600px;
+ 		width:100%;
 		margin:40px 50px;
  	} 
  	#second{
-/*  		border:1px solid gray; */
  		margin:20px 0px;
  		position:relative;
  	}
@@ -71,6 +73,7 @@ $(function() {
 		font-weight:bold;
 		border:3px solid white;
 		position:absolute;
+		border-radius: 20px 20px;
 	}
 	.small{
 		width: 150px;

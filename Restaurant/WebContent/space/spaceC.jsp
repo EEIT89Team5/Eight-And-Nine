@@ -123,7 +123,7 @@ $(document).ready(function() {
 				});
 				$.post("spacename.do",{"text":text,"whatdo":"addspaceX","spacename":$('#space_name').val()}
 								,function(){
-					location.replace("../index.jsp");
+					location.replace("spaceQ.jsp");
 				});
 			});
 		}else{
@@ -154,9 +154,6 @@ $(document).ready(function() {
 </script>
 <!--pop up end here-->
 <style>
-/* .sidebar-icon{ */
-/* 	background-color:pink; */
-/* } */
 body,.inner-block{
 	background-color:#F5F6CE;
 }
@@ -172,7 +169,7 @@ body,.inner-block{
 	.showx {
     padding: 0.5em;
     border: 3px solid #ccc;
-/*     border-radius: 0 1em 1em 1em; */
+	border-radius: 20px 20px;
     background-color: #fff;
     background-color: rgba(255,255,255,0.5);
     text-align:center;
