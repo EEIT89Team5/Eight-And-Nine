@@ -57,9 +57,20 @@
 		<servlet-name>MemberLoginServlet</servlet-name>
 		<servlet-class>com.memberlogin.controller.MemberLoginServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>MemberAccountCheck</display-name>
+		<servlet-name>MemberAccountCheck</servlet-name>
+		<servlet-class>com.member.controller.MemberAccountCheck</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>MemberLoginServlet</servlet-name>
 		<url-pattern>/memberlogin/memberlogin.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>MemberAccountCheck</servlet-name>
+		<url-pattern>/MemberAccountCheck</url-pattern>
 	</servlet-mapping>
 	
 
