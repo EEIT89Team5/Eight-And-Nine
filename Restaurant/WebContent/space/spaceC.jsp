@@ -27,13 +27,13 @@ $(document).ready(function() {
 		showCancelButton: true,   
 		closeOnConfirm: false,   
 		animation: "slide-from-top",   
-		inputPlaceholder: "Write something" }, 
+		inputPlaceholder: "請輸入場地名稱" }, 
 		function(inputValue){   
 			if (inputValue === false) {
 				location.replace("../index.jsp");
 				return false;
 			}if (inputValue === "") {     
-				sweetAlert.showInputError("You need to write something!");     
+				sweetAlert.showInputError("名稱不可空白!");     
 				return false 
 			}
 			if (inputValue.trim() === "") {     
@@ -42,10 +42,10 @@ $(document).ready(function() {
 			}
 
 			
-			$('#space_name').val(inputValue);
+			$('#space_name').text("場地名稱:"+inputValue);
 			
-			$.post("spacename.do",{"space_name":$('#space_name').val(),"whatdo":"addspace"},function(data){
-				console.log(data);
+			$.post("spacename.do",{"space_name":inputValue,"whatdo":"addspace"},function(data){
+// 				console.log(data);
 				
 				if(data=="falsex"){
 
@@ -121,7 +121,7 @@ $(document).ready(function() {
 					else
 						text+=$(this).val()+",";
 				});
-				$.post("spacename.do",{"text":text,"whatdo":"addspaceX","spacename":$('#space_name').val()}
+				$.post("spacename.do",{"text":text,"whatdo":"addspaceX","spacename":$('#space_name').text().substring(5)}
 								,function(){
 					location.replace("spaceQ.jsp");
 				});
@@ -132,7 +132,7 @@ $(document).ready(function() {
 	});
 	
 	
-	$(document).on('click','input[value="delete"]',function(){
+	$(document).on('click','input[value="刪除"]',function(){
 		$(this).parent().parent().remove();
 	});
 	
@@ -166,54 +166,70 @@ body,.inner-block{
 #menu span{
 	position:absolute;
 }
-	.showx {
-    padding: 0.5em;
-    border: 3px solid #ccc;
+.showx {
+	padding: 0.5em;
+	border: 3px solid #ccc;
 	border-radius: 20px 20px;
-    background-color: #fff;
-    background-color: rgba(255,255,255,0.5);
-    text-align:center;
+	background-color: #fff;
+	background-color: rgba(255,255,255,0.5);
+	text-align:center;
+	font-family:ShowWind;
+	font-weight: bold;
 }
 .small{
 	width: 150px;
     height: 150px;
+    font-size: 25px;
 }
 .bigx{
 	width: 300px;
     height: 150px;
+    font-size: 25px;
 }
 .bigy{
 	width: 150px;
     height: 300px;
+    font-size: 25px;
 }
 #dragThis{
 	width: 50px;
     height: 50px;
     border: 3px solid #ccc;
+    background-color: #ccc;
 }
 #dragBigx{
 	width: 100px;
     height: 50px;
     border: 3px solid #ccc;
+    background-color: #ccc;
 }
 #dragBigy{
 	width: 50px;
     height: 100px;
     border: 3px solid #ccc;
+    background-color: #ccc;
 }
 div input{
-	width: 80px;
-	margin:10px 10px;
+	width: 60px;
+ 	margin:1px 0px; 
 }
 
 #dropHere {
-    width: 1600px;
-    height: 800px;
+    width: 100%;
+    height: 700px;
     padding: 0.5em;
     border: 3px solid #f90;
     border-radius: 1em;
     margin: 0 auto;
     position:relative;
+}
+.fontStyle{
+	font-family:ShowWind;
+	font-size:40px;
+	font-weight:bold;
+}
+.fontbig{
+	font-size:18px;
 }
 </style>
 </head>
@@ -264,54 +280,44 @@ div input{
 <!--inner block start here-->
 <div class="inner-block">
     <div class="price-block-main">
-&nbsp;&nbsp;&nbsp;<input type="text" id="space_name" disabled="disabled"/>
+    
+	<div >
+<!-- 		<span id="space_name" class="fontStyle" style="display: inline-block">場地名稱:</span> -->
 
-<table width="500px">
-<tr>
-	<td><div id="dragThis">
-			<div hidden>桌號<input type="text" name="table_name" /></div>
-			<div hidden>人數<input type="text" name="table_maxP" /></div>
-	    	<div hidden><input type="text" name="table_x" /></div>
-	        <div hidden><input type="text" name="table_y" /></div>
-	        <div hidden><input type="text" name="table_size" value="small" /></div>
-	        <div hidden><input type="button" value="delete" /></div>
-	</div></td>
-	<td><div id="dragBigx">
-			<div hidden>桌號<input type="text" name="table_name" /></div>
-			<div hidden>人數<input type="text" name="table_maxP" /></div>
-	    	<div hidden><input type="text" name="table_x" /></div>
-	        <div hidden><input type="text" name="table_y" /></div>
-	        <div hidden><input type="text" name="table_size" value="bigx" /></div>
-	        <div hidden><input type="button" value="delete" /></div>
-	</div></td>
-	<td><div id="dragBigy">
-			<div hidden>桌號<input type="text" name="table_name" /></div>
-			<div hidden>人數<input type="text" name="table_maxP" /></div>
-	    	<div hidden><input type="text" name="table_x" /></div>
-	        <div hidden><input type="text" name="table_y" /></div>
-	        <div hidden><input type="text" name="table_size" value="bigy" /></div>
-	        <div hidden><input type="button" value="delete" /></div>
-	</div></td>
-</tr>
-</table>
-
+		<table width=100% >
+		<tr><td id="space_name" class="fontStyle" style="width:65%">場地名稱:</td>
+			<td class="fontStyle" align="center">桌位樣式:</td>
+			<td "><div id="dragThis">
+					<div hidden>桌號<input type="text" name="table_name" /></div>
+					<div hidden>人數<input type="text" name="table_maxP" /></div>
+			    	<div hidden><input type="text" name="table_x" /></div>
+			        <div hidden><input type="text" name="table_y" /></div>
+			        <div hidden><input type="text" name="table_size" value="small" /></div>
+			        <div hidden><input type="button" value="刪除" class="btn btn-warning fontbig"/></div>
+			</div></td>
+			<td><div id="dragBigx">
+					<div hidden>桌號<input type="text" name="table_name" /></div>
+					<div hidden>人數<input type="text" name="table_maxP" /></div>
+			    	<div hidden><input type="text" name="table_x" /></div>
+			        <div hidden><input type="text" name="table_y" /></div>
+			        <div hidden><input type="text" name="table_size" value="bigx" /></div>
+			        <div hidden><input type="button" value="刪除" class="btn btn-warning fontbig" /></div>
+			</div></td>
+			<td><div id="dragBigy">
+					<div hidden>桌號<input type="text" name="table_name" /></div>
+					<div hidden>人數<input type="text" name="table_maxP" /></div>
+			    	<div hidden><input type="text" name="table_x" /></div>
+			        <div hidden><input type="text" name="table_y" /></div>
+			        <div hidden><input type="text" name="table_size" value="bigy" /></div>
+			        <div hidden><input type="button" value="刪除" class="btn btn-warning fontbig"/></div>
+			</div></td>
+		</tr>
+		</table>
+	</div>
 	<div id="dropHere" ></div>
-	
-	<button id="submitx" type="submit" class="btn btn-secondary ">送出</button>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-
-
+	<div align="right">
+		<button id="submitx" type="submit" class="btn btn-primary fontStyle">送出</button>
+	</div>
 
 </div>
 </div>

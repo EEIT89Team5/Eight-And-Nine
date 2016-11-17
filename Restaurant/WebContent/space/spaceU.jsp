@@ -55,7 +55,7 @@ $(document).ready(function() {
 					var input5 = $('<input type="text" hidden name="table_size" value="'+this.table_shape+'"/>');
 					div25.append(input5);
 				var div26 = $("<div></div>");
-					var input6 = $('<input type="button" value="delete" />');
+					var input6 = $('<input type="button" value="刪除" class="btn btn-warning fontbig" />');
 					div26.append(input6);
 				 div1.append(div21);
 				 div1.append(div22);
@@ -121,7 +121,7 @@ $(document).ready(function() {
 		        }
 		    });
 	
-	$(document).on('click','input[value="delete"]',function(){
+	$(document).on('click','input[value="刪除"]',function(){
 		$(this).parent().parent().remove();
 	});
 	
@@ -170,42 +170,51 @@ body,.inner-block{
 	position:absolute;
 }
 .show {
-padding: 0.5em;
-border: 3px solid #ccc;
-background-color: #fff;
-background-color: rgba(255,255,255,0.5);
-text-align:center;
+	padding: 0.5em;
+	border: 3px solid #ccc;
+	background-color: #fff;
+	background-color: rgba(255,255,255,0.5);
+	text-align:center;
+	border-radius: 20px 20px;
+	font-family:ShowWind;
+	font-weight: bold;
 }
 .small{
 	width: 150px;
     height: 150px;
+    font-size: 25px;
 }
 .bigx{
 	width: 300px;
     height: 150px;
+    font-size: 25px;
 }
 .bigy{
 	width: 150px;
     height: 300px;
+    font-size: 25px;
 }
 #dragThis{
 	width: 50px;
     height: 50px;
     border: 3px solid #ccc;
+    background-color: #ccc;
 }
 #dragBigx{
 	width: 100px;
     height: 50px;
     border: 3px solid #ccc;
+    background-color: #ccc;
 }
 #dragBigy{
 	width: 50px;
     height: 100px;
     border: 3px solid #ccc;
+	background-color: #ccc;
 }
 div input{
-	width: 80px;
-	margin:10px 10px;
+	width: 60px;
+	margin:1px 0px;
 }
 
 #dropHere {
@@ -216,6 +225,14 @@ div input{
     border-radius: 1em;
     margin: 0 auto;
     position:relative;
+}
+.fontStyle{
+	font-family:ShowWind;
+	font-size:30px;
+	font-weight:bold;
+}
+.fontbig{
+	font-size:18px;
 }
 </style>
 </head>
@@ -266,53 +283,50 @@ div input{
 <!--inner block start here-->
 <div class="inner-block">
     <div class="price-block-main">
-<jsp:useBean id="spacetotal" class="com.space.model.SpaceService" scope="page"/>
-<select id="selectspace">
-	<option value="0">請選擇場地</option>
-	<c:forEach var="space" items="${spacetotal.all}" varStatus="xx">
-<%-- 		<c:if test="${xx.first}"> --%>
-<%-- 			<option selected value="${space.space_id}">${space.space_name}</option> --%>
-<%-- 		</c:if> --%>
-		<option value="${space.space_id}">${space.space_name}</option>
-	</c:forEach>
-</select>
+		<jsp:useBean id="spacetotal" class="com.space.model.SpaceService" scope="page"/>
+		
 
-
-<table width="500px">
-<tr>
-	<td><div id="dragThis">
-			<div hidden>桌號<input type="text" name="table_name" /></div>
-			<div hidden>人數<input type="text" name="table_maxP" /></div>
-	    	<div hidden><input type="text" name="table_x" /></div>
-	        <div hidden><input type="text" name="table_y" /></div>
-	        <div hidden><input type="text" name="table_size" value="small" /></div>
-	        <div hidden><input type="button" value="delete" /></div>
-	</div></td>
-	<td><div id="dragBigx">
-			<div hidden>桌號<input type="text" name="table_name" /></div>
-			<div hidden>人數<input type="text" name="table_maxP" /></div>
-	    	<div hidden><input type="text" name="table_x" /></div>
-	        <div hidden><input type="text" name="table_y" /></div>
-	        <div hidden><input type="text" name="table_size" value="bigx" /></div>
-	        <div hidden><input type="button" value="delete" /></div>
-	</div></td>
-	<td><div id="dragBigy">
-			<div hidden>桌號<input type="text" name="table_name" /></div>
-			<div hidden>人數<input type="text" name="table_maxP" /></div>
-	    	<div hidden><input type="text" name="table_x" /></div>
-	        <div hidden><input type="text" name="table_y" /></div>
-	        <div hidden><input type="text" name="table_size" value="bigy" /></div>
-	        <div hidden><input type="button" value="delete" /></div>
-	</div></td>
-</tr>
-</table>
-
-	<div id="dropHere" ></div>
-	
-	<button id="updatexx" type="submit" class="btn btn-secondary ">更改配置</button>
-<br/>
-<br/>
-
+		<table width=100% >
+		<tr><td id="space_name" class="fontStyle" style="width:65%">
+			<label for="selectspace">場地名稱</label>
+			<select id="selectspace">
+				<option value="0">請選擇場地</option>
+				<c:forEach var="space" items="${spacetotal.all}" varStatus="xx">
+					<option value="${space.space_id}">${space.space_name}</option>
+				</c:forEach>
+			</select></td>
+			<td class="fontStyle" align="center">桌位樣式:</td>
+			<td><div id="dragThis">
+					<div hidden>桌號<input type="text" name="table_name" /></div>
+					<div hidden>人數<input type="text" name="table_maxP" /></div>
+			    	<div hidden><input type="text" name="table_x" /></div>
+			        <div hidden><input type="text" name="table_y" /></div>
+			        <div hidden><input type="text" name="table_size" value="small" /></div>
+			        <div hidden><input type="button" value="刪除" class="btn btn-warning fontbig"/></div>
+			</div></td>
+			<td><div id="dragBigx">
+					<div hidden>桌號<input type="text" name="table_name" /></div>
+					<div hidden>人數<input type="text" name="table_maxP" /></div>
+			    	<div hidden><input type="text" name="table_x" /></div>
+			        <div hidden><input type="text" name="table_y" /></div>
+			        <div hidden><input type="text" name="table_size" value="bigx" /></div>
+			        <div hidden><input type="button" value="刪除" class="btn btn-warning fontbig"/></div>
+			</div></td>
+			<td><div id="dragBigy">
+					<div hidden>桌號<input type="text" name="table_name" /></div>
+					<div hidden>人數<input type="text" name="table_maxP" /></div>
+			    	<div hidden><input type="text" name="table_x" /></div>
+			        <div hidden><input type="text" name="table_y" /></div>
+			        <div hidden><input type="text" name="table_size" value="bigy" /></div>
+			        <div hidden><input type="button" value="刪除" class="btn btn-warning fontbig"/></div>
+			</div></td>
+		</tr>
+		</table>
+		
+		<div id="dropHere" ></div>
+		<div align="right">	
+			<button id="updatexx" type="submit" class="btn btn-info fontStyle">更改配置</button>
+		</div>
 
 
 </div>

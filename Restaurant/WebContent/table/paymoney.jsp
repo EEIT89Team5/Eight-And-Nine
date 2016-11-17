@@ -17,6 +17,34 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="../js/jquery.magnific-popup.js" type="text/javascript"></script>
  <script>
 $(document).ready(function() {
+	var total = $('#origincount').val();
+	
+	var unfinishmoney = $('#total').text();
+	$('#total').html(Math.round(unfinishmoney));
+	$('#pricex').val(Math.round(unfinishmoney));
+	
+	
+	$('#discounts').change(function(){
+		var dis = $(this).find('option:selected');
+		if(dis.val()!=0){
+			var array = dis.html().split(",");
+			$('#dis_name').html(array[0]);
+			$('#dis_val').html(array[1]);
+			var newTotal = Math.round(total*array[1]);
+			$('#total').html(newTotal);
+			$('#pricex').val(newTotal);
+			$('#discountx').val(dis.val());
+			$('#discoutdiv').removeAttr("hidden");
+		}else{
+			$('#dis_name').html("");
+			$('#dis_val').html("");
+			$('#total').html(total);
+			$('#pricex').val(total);
+			$('#discountx').val("");
+			$('#discoutdiv').attr("hidden","hidden");
+		}
+	});
+	
 	$('.popup-with-zoom-anim').magnificPopup({
 		type: 'inline',
 		fixedContentPos: false,
@@ -29,35 +57,13 @@ $(document).ready(function() {
 		mainClass: 'my-mfp-zoom-in'
 	});
 	
-	var total = $('#total').html()
-	$('#discounts').change(function(){
-		var dis = $(this).find('option:selected');
-		if(dis.val()!=0){
-			var array = dis.html().split(",");
-			$('#dis_name').html(array[0]);
-			$('#dis_val').html(array[1]);
-			var newTotal = Math.round(total*array[1]);
-			$('#total').html(newTotal);
-			$('#pricex').val(newTotal);
-			$('#discountx').val(dis.val());
-		}else{
-			$('#dis_name').html("");
-			$('#dis_val').html("");
-			$('#total').html(total);
-			$('#pricex').val(total);
-			$('#discountx').val("");
-		}
-	});
 																
 });
 </script>
 <!--pop up end here-->
 <style>
-/* .sidebar-icon{ */
-/* 	background-color:pink; */
-/* } */
 body,.inner-block{
-	background-color:#F5F6CE;
+	background-color:black;
 }
 .clerfix{
 	border-style:solid;
@@ -68,14 +74,31 @@ body,.inner-block{
 #menu span{
 	position:absolute;
 }
-#maindiv{
-	width:500px;
+#outerdiv{
+	width:670px;
 	margin:0 auto;
-	border:6px solid red;
-	padding:20px;
-	font-size:25px;
-	font-weight:bold;
-	}
+	font-family:ShowWind;
+	font-weight: bold;
+	font-size:35px;
+	color:white;
+}
+#outerdiv input,#outerdiv select{
+	color:black;
+}
+/* #maindiv{ */
+/* 	width:500px; */
+/* 	margin:0 auto; */
+/* 	border:6px solid red; */
+/* 	padding:20px; */
+/* 	font-size:25px; */
+/* 	font-weight:bold; */
+/* } */
+/* .fontStyle{ */
+/* 	font-family:ShowWind; */
+/* 	font-weight: bold; */
+/* 	font-size:30px; */
+/* 	color:white; */
+/* } */
 </style>
 </head>
 <body>	
@@ -127,25 +150,37 @@ body,.inner-block{
 <div class="inner-block">
     <div class="price-block-main">
 <jsp:useBean id="disService" class="com.discount.model.DiscountService"/>
+	<div id="outerdiv">
 		<div>
-			<select id="discounts">
+			<label for="discounts" class="fontStyle">選擇折扣:</label>
+			<select id="discounts" class="fontStyle" >
 				<option value="0">無折扣</option>
 				<c:forEach var="discount" items="${disService.all}">
-					<option value="${discount.disc_id}">${discount.disc_name},${discount.disc_value}</span></option>
+					<c:if test='${discount.disc_name =="會員"}'>
+							<c:if test="${bills.memberVO.member_name != null}">
+								<option selected value="${discount.disc_id}">${discount.disc_name},${discount.disc_value}</span></option>
+								<c:set var="discountid" value="${discount.disc_id}" />
+							</c:if>
+					</c:if>
+					<c:if test='${discount.disc_name !="會員"}'>							
+						<option value="${discount.disc_id}">${discount.disc_name},${discount.disc_value}</span></option>
+					</c:if>
 				</c:forEach>
 			</select>
 		</div>
-		<div id="maindiv">
-<%-- 		<c:forEach var="bill" items="${bills}" varStatus="ii"> --%>
-<%-- 			<c:if test="${ii.first}"> --%>
-				桌號:${bills.order_table}<br />
+		<hr color="white" />
+		<div id="maindiv" class="fontStyle">
+			<div>
+				<div style="display:inline-block;width:300px">桌號:${bills.order_table}</div>
+				<div style="display:inline-block;width:350px">消費日期:${bills.order_date }</div>
+				<div style="display:inline-block;width:300px">人數:${bills.order_numP }</div>
+				<div style="display:inline-block;width:350px">點餐員工:${bills.empVO.emp_name }</div>
+				<div style="display:inline-block;width:350px">會員:${bills.memberVO.member_name }</div>
 				<c:set var="table" value="${bills.order_table}"/>
 				<c:set var="count" value="0"/>
-				消費日期:${bills.order_date }<br />
-				人數:${bills.order_numP }<br />
-				會員:${bills.memberVO.member_name }<br />
-				點餐員工:${bills.empVO.emp_name }<br /><hr />
-				<table width="500px">
+			</div>
+			<hr />
+				<table width="680px" >
 				<tr><td>品名</td><td>價格</td><td>數量</td></tr>
 
 				<c:forEach var="orderx" items="${bills.orderXs}">
@@ -158,13 +193,14 @@ body,.inner-block{
 				</c:forEach>
 				</table>
 				<hr />
-<%-- 				<c:if test="${not empty bills.discountVO}"> --%>
-<%-- 					<c:set var="count" value="${count * bills.discountVO.disc_value}"/> --%>
-<%-- 					<% double total = (Double)pageContext.getAttribute("count"); --%>
-<%-- 					   pageContext.setAttribute("count", Math.round(total));%> --%>
-<%-- 				</c:if> --%>
-<%-- 				<div width="500px"><span id="dis_name">${bills.discountVO.disc_name}</span> &nbsp;&nbsp;<span id="dis_val">${bills.discountVO.disc_value}</span></div> --%>
-				<div width="500px"><span id="dis_name"></span> &nbsp;&nbsp;<span id="dis_val"></span></div>
+				<input type="text" hidden id="origincount" value="${count}">
+				<c:if test="${bills.memberVO.member_name != null}">
+					<div id="discoutdiv" width="500px"><span id="dis_name">會員</span> &nbsp;&nbsp;<span id="dis_val">0.9</span></div>
+					<c:set var="count" value="${count * 0.9}" />
+				</c:if>
+				<c:if test="${bills.memberVO.member_name == null}">
+					<div id="discoutdiv" hidden width="500px"><span id="dis_name"></span> &nbsp;&nbsp;<span id="dis_val"></span></div>
+				</c:if>
 				<div width="500px"><span>總金額:</span>&nbsp;&nbsp;<span id="total">${count}</span></div>
 
 		</div>
@@ -172,12 +208,14 @@ body,.inner-block{
 			<input type="text" hidden name="table" value="money" />
 			<input type="text" hidden name="order_table" value="${bills.order_table}" />
 			<input type="text" hidden name="order_id" value="${bills.order_id}" />
-			<input id="pricex" type="text" hidden name="order_price" value="${count}" />
-			<input id="discountx" type="text" hidden name="order_discount" value="" />
+			<input id="pricex" type="text" hidden name="order_price" value="${count}" />		
+			<input id="discountx" type="text" hidden name="order_discount" value="${discountid}" />
 			<input type="submit" value="確定明細"/>
 		</form>
-<br/>
-<br/>
+		
+	</div>
+	
+	
 <br/>
 <br/>
 <br/>

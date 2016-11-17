@@ -43,9 +43,10 @@ public class SpaceXDAO implements SpaceXDAO_interface {
 	@Override
 	public void delete(Integer space_id) {
 		List<SpaceXVO> list = hibernateTemplate.find("from SpaceXVO where space_id=?",space_id);
-		for(SpaceXVO vo : list){
-			hibernateTemplate.delete(vo);
-		}
+		hibernateTemplate.deleteAll(list);
+//		for(SpaceXVO vo : list){
+//			hibernateTemplate.delete(vo);
+//		}
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
 //			session.beginTransaction();

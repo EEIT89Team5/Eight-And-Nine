@@ -77,13 +77,13 @@ $(document).ready(function() {
 		var valuex = $('#selectspace').find("option:selected") ;
 		if(valuex.val() != 0){
 			sweetAlert({   
-				title: "Are you sure?",   
-				text: "You will not be able to recover this imaginary file!",   
+				title: "刪除"+valuex.text()+"場地",   
+// 				text: "You will not be able to recover this imaginary file!",   
 				type: "warning",   
 				showCancelButton: true,   
 				confirmButtonColor: "#DD6B55",   
-				confirmButtonText: "Yes, delete it!",   
-				cancelButtonText: "No, cancel plx!",   
+				confirmButtonText: "刪除",   
+				cancelButtonText: "取消",   
 				closeOnConfirm: false,   
 				closeOnCancel: false }, 
 				function(isConfirm){   
@@ -96,7 +96,7 @@ $(document).ready(function() {
 							})
 						}}
 					else {     
-						sweetAlert("Cancelled", "Your imaginary file is safe :)", "error");   }
+						sweetAlert("已取消", null, "error");   }
 			});
 		}else{
 			sweetAlert("請選擇場地名稱!!");
@@ -108,9 +108,6 @@ $(document).ready(function() {
 </script>
 <!--pop up end here-->
 <style>
-/* .sidebar-icon{ */
-/* 	background-color:pink; */
-/* } */
 body,.inner-block{
 	background-color:#F5F6CE;
 }
@@ -124,23 +121,29 @@ body,.inner-block{
 	position:absolute;
 }
 .show {
-padding: 0.5em;
-border: 3px solid #ccc;
-background-color: #fff;
-background-color: rgba(255,255,255,0.5);
-text-align:center;
+	padding: 0.5em;
+	border: 3px solid #ccc;
+	background-color: #fff;
+	background-color: rgba(255,255,255,0.5);
+	text-align:center;
+	border-radius: 20px 20px;
+	font-family:ShowWind;
+	font-weight: bold;
 }
 .small{
 	width: 150px;
     height: 150px;
+    font-size: 25px;
 }
 .bigx{
 	width: 300px;
     height: 150px;
+    font-size: 25px;
 }
 .bigy{
 	width: 150px;
     height: 300px;
+    font-size: 25px;
 }
 #dragThis{
 	width: 50px;
@@ -158,10 +161,9 @@ text-align:center;
     border: 3px solid white;
 }
 div input{
-	width: 80px;
-	margin:20px 10px;
+	width: 60px;
+	margin:10px 0px;
 }
-
 
 #dropHere {
     width: 100%;
@@ -171,6 +173,14 @@ div input{
     border-radius: 1em;
     margin: 0 auto;
     position:relative;
+}
+.fontStyle{
+	font-family:ShowWind;
+	font-size:30px;
+	font-weight:bold;
+}
+.fontbig{
+	font-size:18px;
 }
 </style>
 </head>
@@ -222,47 +232,20 @@ div input{
 <div class="inner-block">
     <div class="price-block-main">
 <jsp:useBean id="spacetotal" class="com.space.model.SpaceService" scope="page"/>
-<select id="selectspace">
+<label for="selectspace" class="fontStyle">場地名稱:</label>
+<select id="selectspace" class="fontStyle">
 	<option value="0">請選擇場地</option>
 	<c:forEach var="space" items="${spacetotal.all}">
 		<option value="${space.space_id}">${space.space_name}</option>
 	</c:forEach>
 </select>
 
-
-<!-- <table width="500px"> -->
-<!-- <tr> -->
-<!-- 	<td><div id="dragThis"> -->
-<!-- 			<div hidden>桌號<input type="text" name="table_name" /></div> -->
-<!-- 			<div hidden>人數<input type="text" name="table_maxP" /></div> -->
-<!-- 	    	<div hidden><input type="text" name="table_x" /></div> -->
-<!-- 	        <div hidden><input type="text" name="table_y" /></div> -->
-<!-- 	        <div hidden><input type="text" name="table_size" value="small" /></div> -->
-<!-- 	        <div hidden><input type="button" value="delete" /></div> -->
-<!-- 	</div></td> -->
-<!-- 	<td><div id="dragBigx"> -->
-<!-- 			<div hidden>桌號<input type="text" name="table_name" /></div> -->
-<!-- 			<div hidden>人數<input type="text" name="table_maxP" /></div> -->
-<!-- 	    	<div hidden><input type="text" name="table_x" /></div> -->
-<!-- 	        <div hidden><input type="text" name="table_y" /></div> -->
-<!-- 	        <div hidden><input type="text" name="table_size" value="Bigx" /></div> -->
-<!-- 	        <div hidden><input type="button" value="delete" /></div> -->
-<!-- 	</div></td> -->
-<!-- 	<td><div id="dragBigy"> -->
-<!-- 			<div hidden>桌號<input type="text" name="table_name" /></div> -->
-<!-- 			<div hidden>人數<input type="text" name="table_maxP" /></div> -->
-<!-- 	    	<div hidden><input type="text" name="table_x" /></div> -->
-<!-- 	        <div hidden><input type="text" name="table_y" /></div> -->
-<!-- 	        <div hidden><input type="text" name="table_size" value="Bigy" /></div> -->
-<!-- 	        <div hidden><input type="button" value="delete" /></div> -->
-<!-- 	</div></td> -->
-<!-- </tr> -->
-<!-- </table> -->
-
 	<div id="dropHere" ></div>
-	
-	<button id="submit" type="submit" class="btn btn-secondary ">用此配置為監控畫面</button>
-	<button id="delSpace" type="submit" class="btn btn-secondary ">刪除此配置</button>
+	<div align="right">
+		<button id="submit" type="submit" class="btn btn-info fontStyle">用此配置為監控畫面</button>
+		<button id="delSpace" type="submit" class="btn btn-success fontStyle">刪除此配置</button>
+	</div>
+
 <br/>
 <br/>
 <br/>
