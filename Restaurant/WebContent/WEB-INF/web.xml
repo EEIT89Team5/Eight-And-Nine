@@ -37,9 +37,20 @@
 		<servlet-name>LoginServlet</servlet-name>
 		<servlet-class>com.login.controller.LoginServlet</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>GetProductsForAndroid</display-name>
+		<servlet-name>GetProductsForAndroid</servlet-name>
+		<servlet-class>com.product.controller.GetProductsForAndroid</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
 		<url-pattern>/login/login.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>GetProductsForAndroid</servlet-name>
+		<url-pattern>/GetProductsForAndroid</url-pattern>
 	</servlet-mapping>
 	
 	
