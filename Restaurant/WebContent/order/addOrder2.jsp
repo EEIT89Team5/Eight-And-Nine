@@ -39,16 +39,22 @@ color:white
 <div align="center">
 <!-- <h2>點餐step2</h2> -->
 <img src="../img/ORDERLOGO.png">
-<h3>會員</h3>
+<!-- <h3>會員</h3> -->
+<br>
+<br>
+<br>
 <table>
 	<tr>
-		<td><a href="../member/addMember.jsp" >新增會員</a></td>
-		<td><a href="../memberlogin/memberlogin.jsp" >會員登入</a></td>
-		<td><a href="../memberlogin/memberlogout.jsp" >會員登出</a></td>
+<!-- 		<td><a href="../member/addMember.jsp" >新增會員</a></td> -->
+<a href="../member/addMember.jsp" ><img src="../img/adduser.png"></a>
+<!-- 		<td><a href="../memberlogin/memberlogin.jsp" >會員登入</a></td> -->
+<span><a href="../memberlogin/memberlogin.jsp" ><img src="../img/login1.png"></span></a>
+<!-- 		<td><a href="../memberlogin/memberlogout.jsp" >會員登出</a></td> -->
+<span><a href="../memberlogin/memberlogout.jsp" ><img src="../img/signout.png"></a></span>
 	</tr>
 </table>
 
-<h3>訂單資訊</h3>
+<!-- <h3>訂單資訊</h3> -->
 <table>
 	<tr>
 		<td>桌號:${orderVO.order_table}</td>
@@ -59,8 +65,9 @@ color:white
 		<td>員工:${orderVO.empVO.emp_id}</td>
 	</tr>
 </table>
-
-<h3>單點類別</h3>
+<br>
+<br>
+<br>
 <table>
 	<tr>
 		<c:forEach var="classVO" items="${classSvc.getAllClasses()}">
@@ -68,14 +75,14 @@ color:white
 				<form method="post" action="order.do">
 				<input type="hidden" name="class" value="${classVO.class_id }">
 				<input type="hidden" name="action" value="choose_S_class">
-				<input type="submit" value="${classVO.class_name }">
+				<input type="submit" value="${classVO.class_name }" class="button button-3d-primary button-rounded" style="font-family: ShowWind;font-size:25px;font-weight: bold;">
 				</form>
 			</td>
 		</c:forEach>
 	</tr>
 </table>
 
-<h3>點餐</h3>
+<!-- <h3>點餐</h3> -->
 
 ${classVO.class_name}:
 <table>
@@ -92,7 +99,7 @@ ${classVO.class_name}:
 		<td>${productVO.product_price}元</td>
 		<td>
 			<form METHOD="post" ACTION="order.do">
-			數量:<select size="1" name="number">
+			數量:<select size="1" name="number" style="font-size:20px;font-family: ShowWind;font-weight: bold">
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -104,7 +111,7 @@ ${classVO.class_name}:
 			<input type="hidden" name="product" value="${productVO.product_id}">
 			<input type="hidden" name="price" value="${productVO.product_price}">
 			<input type="hidden" name="action" value="add_S_orderX">
-			<input type="submit" value="加入訂單">
+			<input type="submit" value="加入訂單" class="button button-3d" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:black" >
 			</form>
 		</td>
 	</tr>
@@ -128,5 +135,8 @@ ${classVO.class_name}:
 	</form>
 </c:if>
 </div>
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/buttons.js"></script>
+<link rel="stylesheet" href="../css/buttons.css">
 </body>
 </html>
