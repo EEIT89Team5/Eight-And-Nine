@@ -293,7 +293,7 @@ body,.inner-block{
 	position:absolute;
 }
 #Div1{
-	width: 600px;
+	width: 700px;
 	height:850px;
 	padding:20px;
 	border-radius: 10px
