@@ -35,6 +35,11 @@ font-family:"ShowWind";
 font-size:45px;
 color:white
 }
+img{
+webkit-border-radius: 10px;
+moz-border-radius: 10px;
+border-radius: 10px;
+}
 </style>
 </head>
 <body>
@@ -48,9 +53,9 @@ color:white
 <table>
 	<tr>
 	
-<a href="../member/addMember.jsp" ><img src="../img/adduser.png"></a>
-<span><a href="../memberlogin/memberlogin.jsp" ><img src="../img/login1.png"></span></a>
-<span><a href="../memberlogin/memberlogout.jsp" ><img src="../img/signout.png"></a></span>
+<a href="../member/addMember.jsp" ><img src="../img/adduser.png" title="註冊會員"></a>
+<span><a href="../memberlogin/memberlogin.jsp" ><img src="../img/login1.png" title="登入會員"></span></a>
+<span><a href="../memberlogin/memberlogout.jsp" ><img src="../img/signout.png" title="登出會員"></a></span>
 	</tr>
 </table>
 
@@ -98,7 +103,7 @@ color:white
 
 <!-- <h3>點餐</h3> -->
 <table>
-	<tr>
+	<tr style="text-align: center">
 		<td>圖片</td>
 		<td>菜名</td>
 		<td>價格</td>
