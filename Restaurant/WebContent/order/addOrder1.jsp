@@ -72,8 +72,7 @@ font-weight: bold;"
 						</c:forEach>
 					</select>
 					</td></tr>
-		<tr><td>會員:<input type="text" name="member" style="width:200px;height: 25px;color: black;font-weight: bold;"></td></tr>
-		<tr><td>員工:<select name="employee" style="color: black">
+					<tr><td>員工:<select name="employee" style="color: black">
 						<c:forEach var="empVO" items="${empSvc.getAll() }">
 							<option value="${empVO.emp_id }">${empVO.emp_name }</option>
 						</c:forEach>

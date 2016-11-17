@@ -1,6 +1,5 @@
 package com.rest89.facade;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -15,8 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.product.model.ProductService;
 import com.product.model.ProductVO;
-import com.reserve.model.ReserveService;
-import com.reserve.model.ReserveVO;
 
 @Path("/products")
 @Transactional(isolation = Isolation.READ_COMMITTED, propagation = Propagation.REQUIRED)
