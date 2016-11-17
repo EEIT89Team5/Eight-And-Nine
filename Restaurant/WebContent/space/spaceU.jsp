@@ -130,23 +130,24 @@ $(document).ready(function() {
 		var valuex = $('#selectspace').find("option:selected") ;
 		if(valuex.val() != 0){
 			$.post("spacename.do",{"space_id":valuex.val(),"whatdo":"deleteSpaceX"},function(){
-			});
-			var arrary = $('.show');
-			$.each(arrary,function(index,value){
-				var text = "";
-				var arr = $(this).find('input');
-				$.each(arr,function(idx,va){
-					if(idx==(arr.length-1))
-						text+=$(this).val();
-					else
-						text+=$(this).val()+",";
+				var arrary = $('.show');
+				$.each(arrary,function(index,value){
+					var text = "";
+					var arr = $(this).find('input');
+					$.each(arr,function(idx,va){
+						if(idx==(arr.length-1))
+							text+=$(this).val();
+						else
+							text+=$(this).val()+",";
+					});
+					$.post("spacename.do",{"text":text,"whatdo":"addspaceX","spacename":valuex.text()}
+									,function(){
+						sweetAlert("修改成功!");
+//	 					location.replace("spaceQ.jsp");
+					});
 				});
-				$.post("spacename.do",{"text":text,"whatdo":"addspaceX","spacename":valuex.text()}
-								,function(){
-					sweetAlert("修改成功!");
-// 					location.replace("spaceQ.jsp");
-				});
 			});
+			
 		}else{
 			sweetAlert("請選擇場地名稱!");
 		}
@@ -156,9 +157,6 @@ $(document).ready(function() {
 </script>
 <!--pop up end here-->
 <style>
-/* .sidebar-icon{ */
-/* 	background-color:pink; */
-/* } */
 body,.inner-block{
 	background-color:#F5F6CE;
 }
@@ -211,8 +209,8 @@ div input{
 }
 
 #dropHere {
-    width: 1600px;
-    height: 800px;
+    width: 100%;
+    height: 700px;
     padding: 0.5em;
     border: 3px solid #f90;
     border-radius: 1em;

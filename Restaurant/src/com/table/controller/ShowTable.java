@@ -48,7 +48,7 @@ public class ShowTable extends HttpServlet {
 			request.setAttribute("AllTable", list);
 			request.setAttribute("size", list.size());
 			request.setAttribute("time", new Time(System.currentTimeMillis()));
-			response.setHeader("Refresh", "20");
+//			response.setHeader("Refresh", "20");
 			
 			RequestDispatcher rd = request.getRequestDispatcher("tableStatus.jsp");
 			rd.forward(request, response);

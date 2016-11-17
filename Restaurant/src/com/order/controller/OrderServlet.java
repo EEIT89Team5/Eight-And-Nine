@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
+
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
@@ -24,6 +27,7 @@ import com.order.model.OrderService;
 import com.order.model.OrderVO;
 import com.orderx.model.OrderXService;
 import com.orderx.model.OrderXVO;
+import com.packageformat.model.PackageFormatVO;
 import com.product.model.ProductService;
 import com.product.model.ProductVO;
 import com.table.model.TableService;
@@ -209,6 +213,34 @@ public class OrderServlet extends HttpServlet {
 
 		}
 
+		//選擇套餐
+		if ("choose_P_class".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+
+				HttpSession session = req.getSession();
+
+				Integer pcg_id = new Integer(req.getParameter("classOfPackage"));
+				ProductService productSvc = new ProductService();
+				List<PackageFormatVO> packageFormatVO = productSvc.getDishClassByPackage(pcg_id);
+                session.setAttribute("pcg_id", pcg_id);                
+				session.setAttribute("packageFormatVO", packageFormatVO);
+		        
+       		
+				String url = "/order/addOrderPackage.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, resp);
+
+			} catch (Exception e) {
+				errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/order/addOrder2.jsp");
+				failureView.forward(req, resp);
+			}
+
+		}
+		
 		// 新增菜色至購物車
 		if ("add_S_orderX".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
@@ -280,6 +312,126 @@ public class OrderServlet extends HttpServlet {
 			}
 		}
 
+		
+		//新增套餐菜色至購物車   
+		if ("add_P_orderX".equals(action)) {	
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+			System.out.println("111==================================================");
+
+			try {
+				HttpSession session = req.getSession();
+				System.out.println("222==================================================");
+				
+				
+//				for(int i = 0 ; i < dishOfPackage.length; i++){
+//					   k += new Integer(qtyOfDish[i].trim())  ;  //  Integer bbi = new Integer(qtyOfDish[i].trim());
+//					}
+				System.out.println(req.getParameter("dishClassOfPackage"));       //抓菜色類別
+				
+				
+				String[] dishOfPackage =  req.getParameterValues("dishOfPackage");      //抓菜色ID
+                String[] qtyOfDishS =  req.getParameterValues("qtyOfDish");              //抓菜色數量
+                String[] belongOfPackage =  req.getParameterValues("belongOfPackage");  //抓菜色屬於哪個套餐ID
+                Map map = new HashMap();
+                Integer k = 0;
+                Integer qtyOfDish = 0;
+                Integer limit= new Integer(req.getParameter("limit").trim());
+
+                for(int i = 0 ; i < dishOfPackage.length; i++){		
+				   System.out.println(dishOfPackage[i]);
+				   System.out.println(qtyOfDishS[i]);
+				   System.out.println(belongOfPackage[i]);
+				   
+				   qtyOfDish = new Integer(qtyOfDishS[i]);
+				   map.put(dishOfPackage[i], qtyOfDish);      //
+				   
+				   k += new Integer(qtyOfDishS[i].trim())  ;  //  Integer bbi = new Integer(qtyOfDish[i].trim());
+				}
+				System.out.println("===============================");
+				System.out.println("菜色總數:"+ k);
+				System.out.println("AAAAA===============================");
+				System.out.println("限制數量:"+limit);
+				
+				if(k > limit){
+					System.out.println("bbbbb===============================");
+				}
+				System.out.println("我是MAP的數量"+map.size());
+				
+//				Set set = map.keySet();                                  //以下六行為抓全部
+//				Iterator it = set.iterator();                            //值
+//				while(it.hasNext()){
+//					Object myKey = it.next();
+//					System.out.println("我的鑰匙"+myKey+"="+map.get(myKey));
+//				}
+				
+//				for (Object key : map.keySet()) {                          //抓全部
+//			            System.out.println("鑰鑰:"+key + " : " + map.get(key));    
+//			    }
+				
+//				System.out.println("我選擇的菜色數量為:"+map.get("10580"));      //抓單一值
+				
+				System.out.println("========================================================");
+
+
+				ProductService productSvc = new ProductService();//查詢Product並丟productVO至購物車
+//				ProductVO productVO = null;
+				
+				boolean match = false;
+				ProductVO productVO = null;
+				List<OrderXVO> orderList = null;
+				for (Object key : map.keySet()) {                          //抓全部
+					int product_id = new Integer((String)key);             //key要先轉字串才能轉int
+					System.out.println("++++++++++++++++++++++++++++++++");
+				    productVO = productSvc.findByPrimaryKey(product_id);  
+				    Integer orderX_num = (Integer) map.get(key);
+				    
+					orderList = (List<OrderXVO>) session.getAttribute("orderList");
+					                                              		
+					System.out.println("購物車數量:"+orderList.size());
+					
+			        //以下判斷productVO是否已存在在購物車明細中	
+					for (int i = 0; i < orderList.size(); i++) {
+						//存在增加原有明細orderX_num
+						if ((orderList.get(i).getProductVO().getProduct_id()).equals(product_id)) {
+							Integer number = orderList.get(i).getOrderX_num();
+							orderList.get(i).setOrderX_num(number + orderX_num);
+							match = true;
+						}
+					}
+					//不存在直接加入購物車
+					if (!match  && orderX_num>0) {             
+						OrderXVO orderXVO = new OrderXVO();
+						orderXVO.setProductVO(productVO);
+						orderXVO.setOrderX_num(orderX_num);
+						orderList.add(orderXVO);
+					}
+		         }
+				System.out.println("購物車數量:"+orderList.size());
+			
+//
+//				session.setAttribute("orderList", orderList);//session存入新orderList
+//
+//				OrderXService orderXSvc = new OrderXService();
+//
+//				OrderVO orderVO = (OrderVO) session.getAttribute("orderVO");
+//				orderVO.setOrder_price(orderXSvc.getTotalPrice(orderList));//查詢orderVO最新價格
+//				session.setAttribute("orderVO",orderVO);//session存入新orderVO
+				
+				String url = "/order/addOrderPackage.jsp";//至addOrder2繼續購物
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, resp);
+
+			} catch (Exception e) {
+				System.out.println(e);
+				errorMsgs.add(e.getMessage());
+				System.out.println("error!!!!!error!!!!================================");
+				RequestDispatcher failureView = req.getRequestDispatcher("/order/addOrderPackage.jsp");
+				failureView.forward(req, resp);
+			}
+		}
+		
+		
 		// 修改明細數量
 		if ("alter_S_orderX".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();

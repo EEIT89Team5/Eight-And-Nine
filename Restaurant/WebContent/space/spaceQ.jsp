@@ -164,8 +164,8 @@ div input{
 
 
 #dropHere {
-    width: 1600px;
-    height: 800px;
+    width: 100%;
+    height: 700px;
     padding: 0.5em;
     border: 3px solid #f90;
     border-radius: 1em;

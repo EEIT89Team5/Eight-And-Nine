@@ -31,6 +31,8 @@ h2{
 color:white
 }
 h3{
+font-family:"ShowWind";
+font-size:45px;
 color:white
 }
 </style>
@@ -45,11 +47,9 @@ color:white
 <br>
 <table>
 	<tr>
-<!-- 		<td><a href="../member/addMember.jsp" >新增會員</a></td> -->
+	
 <a href="../member/addMember.jsp" ><img src="../img/adduser.png"></a>
-<!-- 		<td><a href="../memberlogin/memberlogin.jsp" >會員登入</a></td> -->
 <span><a href="../memberlogin/memberlogin.jsp" ><img src="../img/login1.png"></span></a>
-<!-- 		<td><a href="../memberlogin/memberlogout.jsp" >會員登出</a></td> -->
 <span><a href="../memberlogin/memberlogout.jsp" ><img src="../img/signout.png"></a></span>
 	</tr>
 </table>
@@ -65,9 +65,23 @@ color:white
 		<td>員工:${orderVO.empVO.emp_id}</td>
 	</tr>
 </table>
+
 <br>
 <br>
 <br>
+
+<h3>套餐</h3>
+	<table>
+		<tr>		
+			<td>
+				<form method="post" action="addOrderPackage.jsp">					
+					<input type="submit" value="套餐" class="button button-3d-action button-pill" style="font-family: ShowWind;font-size:25px;font-weight: bold;" >
+				</form>
+			</td>			
+		</tr>
+	</table>
+
+
 <table>
 	<tr>
 		<c:forEach var="classVO" items="${classSvc.getAllClasses()}">
@@ -83,8 +97,6 @@ color:white
 </table>
 
 <!-- <h3>點餐</h3> -->
-
-${classVO.class_name}:
 <table>
 	<tr>
 		<td>圖片</td>
