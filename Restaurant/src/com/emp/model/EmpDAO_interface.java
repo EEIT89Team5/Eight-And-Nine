@@ -8,5 +8,5 @@ public interface EmpDAO_interface {
 	     public void delete(Integer empno);
 	     public EmpVO findByPrimaryKey(Integer empno);
 	     public List<EmpVO> getAll();
-	     public EmpVO getEmail(String emp_email);
+		 public EmpVO getEmail(String emp_email);
 }

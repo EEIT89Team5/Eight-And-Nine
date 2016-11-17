@@ -53,6 +53,14 @@
 		<url-pattern>/GetProductsForAndroid</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>MemberLoginServlet</servlet-name>
+		<servlet-class>com.memberlogin.controller.MemberLoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberLoginServlet</servlet-name>
+		<url-pattern>/memberlogin/memberlogin.do</url-pattern>
+	</servlet-mapping>
 	
 
 </web-app>

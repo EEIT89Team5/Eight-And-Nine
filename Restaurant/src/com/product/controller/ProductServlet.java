@@ -62,7 +62,8 @@ public class ProductServlet extends HttpServlet {
 			//存放錯誤資訊
 		List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
-
+			Collection<Part> part=req.getParts();
+	    	InputStream is=null;
 			
 			Integer proid = new Integer(req.getParameter("product_id").trim());
 			
@@ -79,6 +80,24 @@ public class ProductServlet extends HttpServlet {
 			
 			String pinIntro=new String(req.getParameter("product_intro"));
 			
+
+			for(Part mypart: part){
+				 
+				if (mypart.getContentType()!=null){
+		  		String picName =  mypart.getName();
+		  		if(picName.equals("FileUp")){
+		  			is=mypart.getInputStream();	   
+   	   }  	   
+   	}
+  }	
+				ByteArrayOutputStream baos=new ByteArrayOutputStream();
+				int length=0;
+				byte[] buffer=new byte[1024];
+				byte[] img=null;
+				while((length=is.read(buffer))!=-1){
+					baos.write(buffer, 0, length);
+					img=baos.toByteArray();
+   }
 			
 	//驗證商品姓名與價格這兩樣自填項目規格是否正確			
 				if (pname == null || pname.trim().length() == 0) {
@@ -98,6 +117,9 @@ public class ProductServlet extends HttpServlet {
 					errorMsgs.add("商品價格請填數字.");
 				}
 			//建立一個VO來存放使用者輸入的資訊
+		try {
+
+				
 				ProductVO proVO = new ProductVO();
 
 						proVO.setProduct_id(proid);
@@ -107,20 +129,31 @@ public class ProductServlet extends HttpServlet {
 						Pdko.setKind_id(pkind);
 						proVO.setProductKindVO(Pdko);
 						DishClassVO Dvo=new DishClassVO();
+						proVO.setProduct_pcg(null);
 						Dvo.setClass_id(pclass);
 						if(pclass!=0){
-							proVO.setDishClassVO(Dvo);
+						proVO.setDishClassVO(Dvo);
+						}
+						proVO.setInMenu(pinMenu);
+						if(pinIntro.length()!=0){
+						proVO.setProduct_intro(pinIntro);
+						}else{
+						proVO.setProduct_intro(null);
 						}
 						
-						proVO.setInMenu(pinMenu);
-						proVO.setProduct_intro(pinIntro);
-			//將proVO給一個外部呼叫代號proVO
-						req.setAttribute("proVO", proVO);	
-
-		try {
-				ProductService productdao= new ProductService();
+			//將proVO給一個外部呼叫代號proVO					
+			ProductService productdao= new ProductService();
+			ProductVO primitive=productdao.findByPrimaryKey(proid);
+			byte [] nowimg=primitive.getProduct_img();	
+			if(img!=null){
+			proVO.setProduct_img(img);
+			}else{
+			proVO.setProduct_img(nowimg);
+			}
+		
 			//將資料送到Service的updatePro再交到DAO進行資料庫的寫入
-	            productdao.updatePro(proVO);	
+	          productdao.updatePro(proVO);	
+	            req.setAttribute("proVO", proVO);
 	        //如果使用者輸入的格式不正確將網頁停留在原頁面
 			if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -140,93 +173,6 @@ public class ProductServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
-	
-	 //將listAllPro點擊新增鈕轉交到update_pro_input_Img.jsp
-    if ("getOne_For_UpdateIMG".equals(action)) { 
-
-		List<String> errorMsgs = new LinkedList<String>();
-			req.setAttribute("errorMsgs", errorMsgs);
-		
-		try {
-			Integer proid = new Integer(req.getParameter("product_id"));
-			
-			ProductService proSvc = new ProductService();
-			ProductVO proVO = proSvc.getOnePro(proid);
-							
-			req.setAttribute("proVO", proVO); 
-			
-			//無錯誤的網頁轉交
-			String url = "/product/update_pro_input_Img.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url);
-			successView.forward(req, res);
-
-			} catch (Exception e) {
-			errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
-			RequestDispatcher failureView = req
-					.getRequestDispatcher("/product/listAllPro.jsp");
-			failureView.forward(req, res);
-			}
-		}
-
-	//將update_pro_input_Img.jsp新增的圖片送到資料庫
-    if ("UpImg".equals(action)) { 
-    	//Servlet3.0功能 可將表單(FORM)的POST格式來的資料文字跟檔案分開處理
-    	Collection<Part> part=req.getParts();
-    	InputStream is=null;
-    		
-    		Integer product_id=new Integer(req.getParameter("product_id"));
-
-        try{
-        	//用迴圈 解讀part 命名為mypart
-        	for(Part mypart: part){
-        	   String fileName=mypart.getName();
-        	   String textValue=req.getParameter(fileName);
-        	   //如果格式屬於文字
-        	if(mypart.getContentType()==null){
-        		if(fileName.equals("product_id")){
-        			product_id=Integer.valueOf(textValue);
-        		}
-        	}
-        		//如果格式屬於圖片
-        	else if (mypart.getContentType()!=null){
-        	   String picName =  mypart.getName();
-        	   if(picName.equals("FileUp")){
-        		//取得InputStream 命名為is
-        	   is=mypart.getInputStream();	   
-    
-        	   }  	   
-        	}
-        }		
-        
-        //創建一個大小與此輸出流的當前大小的一個新分配緩衝區
-        ByteArrayOutputStream baos=new ByteArrayOutputStream();
-        int length=0;
-        byte[] buffer=new byte[1024];
-        byte[] img=null;
-        while((length=is.read(buffer))!=-1){
-        	baos.write(buffer, 0, length);
-        	img=baos.toByteArray();
-        }
-        		//建立一個VO來存放資料
-        ProductVO proVO=new ProductVO();
-        proVO.setProduct_img(img);
-        proVO.setProduct_id(product_id);
-        
-        ProductService productdao= new ProductService();          
-        productdao.updateProimg(proVO);
-       
-        		//成功的網頁轉交
-        String url = "/product/listAllPro.jsp";
-        RequestDispatcher successView = req.getRequestDispatcher(url);
-		successView.forward(req, res);
-        
-        }catch(Exception e){
-        	e.printStackTrace();
-        	  String url = "/product/update_pro_input_Img.jsp";
-              RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
-  			successView.forward(req, res);
-        }
-      }
     
     //listAllPro.jsp的刪除鈕
 	if ("delete".equals(action)) {
@@ -791,7 +737,10 @@ public class ProductServlet extends HttpServlet {
 			Integer proid=new Integer(req.getParameter("product_id"));
 			String pname = req.getParameter("product_name");
 			Integer pprice=new Integer(req.getParameter("product_price"));
-	
+			Integer iiMenu=new Integer(req.getParameter("inMenu"));
+			ProductService pnowImg=new ProductService();
+			ProductVO iimg=pnowImg.findByPrimaryKey(proid);
+			byte [] nowimg=iimg.getProduct_img();
 			try {
 				ProductVO proVO1 = new ProductVO();
 				ProductKindVO Pdko=new ProductKindVO();
@@ -800,6 +749,9 @@ public class ProductServlet extends HttpServlet {
 				proVO1.setProduct_price(pprice);
 				proVO1.setProduct_id(proid);
 				proVO1.setProduct_name(pname);
+				proVO1.setInMenu(iiMenu);
+				proVO1.setProduct_img(nowimg);
+				
 				
 				ProductService productdao= new ProductService(); 
 				productdao.UpdatePackPro(proVO1);
@@ -868,7 +820,9 @@ public class ProductServlet extends HttpServlet {
 				proVO2.setProduct_pcg(proid);
 				
 				List<ProductVO> proVO=productdao.selectPackPro(proVO2);	
-				
+				req.setAttribute("proVO", proVO);
+				req.setAttribute("pid", proid);
+					
 				for(Part mypart: part){
  
 				if (mypart.getContentType()!=null){
@@ -888,16 +842,15 @@ public class ProductServlet extends HttpServlet {
    }
    		//建立一個VO來存放資料
    ProductVO proVO5=new ProductVO();
-   if(img.length>50){
-   proVO5.setProduct_img(img);
+   ProductService productdao2= new ProductService();
    proVO5.setProduct_id(proid);
-   ProductService productdao2= new ProductService();          
-   productdao2.updateProimg(proVO5);
-   }
-
-   
-		req.setAttribute("proVO", proVO);
-	    req.setAttribute("pid", proid);
+  if(img.length>50){
+   proVO5.setProduct_img(img); 
+  }else{
+	  proVO5.setProduct_img(nowimg);     
+  }
+  productdao2.updateProimg(proVO5);
+    
 				
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = req
@@ -931,11 +884,11 @@ public class ProductServlet extends HttpServlet {
 				ProductVO proVO1 = new ProductVO();
 					proVO1.setProduct_name(pname);
 					proVO1.setProduct_price(0);
-					ProductKindVO Pdko=new ProductKindVO();
+				ProductKindVO Pdko=new ProductKindVO();
 					Pdko.setKind_id(3);
 					proVO1.setProductKindVO(Pdko);
 				DishClassVO dcv=new DishClassVO();
-				dcv.setClass_id(pclass);
+					dcv.setClass_id(pclass);
 					proVO1.setDishClassVO(dcv);
 					proVO1.setInMenu(1);
 				ProductVO ppp=new ProductVO();
@@ -946,13 +899,12 @@ public class ProductServlet extends HttpServlet {
 				ProductVO proVO2 = new ProductVO();
 				Pdko.setKind_id(3);
 				proVO2.setProductKindVO(Pdko);
-	
-					proVO2.setProduct_price(0);
-					proVO2.setProduct_pcg(pinpcg);
+				proVO2.setProduct_price(0);
+				proVO2.setProduct_pcg(pinpcg);
 
-			try {
-				ProductService productdao= new ProductService(); 
-	            productdao.addPackPro(proVO1);		        	
+	try {
+			ProductService productdao= new ProductService(); 
+            productdao.addPackPro(proVO1);		        	
 	            
 	  List<ProductVO> proVO=productdao.selectPackPro(proVO2);
 	  

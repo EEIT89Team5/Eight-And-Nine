@@ -24,6 +24,7 @@ import com.member.model.MemberVO;
 import com.orderx.model.OrderXVO;
 import com.product.model.ProductVO;
 
+
 public class OrderDAO implements OrderDAO_interface {
 
 	private HibernateTemplate hibernateTemplate;
@@ -166,6 +167,9 @@ public class OrderDAO implements OrderDAO_interface {
 	@Override
 	public OrderVO findsByTableName(String order_table) {
 		OrderVO orderVO = null;
+		List<OrderVO> list=hibernateTemplate.find("FROM OrderVO WHERE order_table = ? order by order_id desc",order_table);
+		if(list.size()!=0)
+			orderVO=list.get(0);
 		// Session session =
 		// HibernateUtil.getSessionFactory().getCurrentSession();
 		//
@@ -188,6 +192,9 @@ public class OrderDAO implements OrderDAO_interface {
 	@Override
 	public OrderVO getOrderDetailsByTableName(String order_table) {
 		OrderVO orderVO = null;
+		List<OrderVO> list = hibernateTemplate.find("FROM OrderVO WHERE order_table=? and order_paytime is null",order_table);
+		if(list.size()!=0)
+			orderVO=list.get(0);
 		// Session session = HibernateUtil.getSessionFactory().openSession();
 		// try {
 		// session.beginTransaction();
@@ -203,6 +210,26 @@ public class OrderDAO implements OrderDAO_interface {
 		// throw ex;
 		// }
 		return orderVO;
+	}
+	
+	@Override
+	public List<Object[]> getRevenueByMonth(String begin, String end) {
+		List<Object[]> list=null;
+		list=hibernateTemplate.find("select order_date,SUM(order_price) from OrderVO "
+				+ " WHERE order_date between ? and ? group by order_date",new Object[]{Date.valueOf(begin),Date.valueOf(end)});
+//		Session session = HibernateUtil.getSessionFactory().openSession();
+//		try {
+//			session.beginTransaction();
+//			Query query = session.createQuery("select order_date,SUM(order_price) from OrderVO WHERE order_date between ? and ? group by order_date");
+//			query.setParameter(0, Date.valueOf(begin));
+//			query.setParameter(1, Date.valueOf(end));
+//			list = query.list();
+//			session.getTransaction().commit();
+//		} catch (RuntimeException ex) {
+//			session.getTransaction().rollback();
+//			throw ex;
+//		}
+		return list;
 	}
 
 	public static void main(String[] args) {

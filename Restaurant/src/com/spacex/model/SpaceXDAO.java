@@ -21,6 +21,7 @@ public class SpaceXDAO implements SpaceXDAO_interface {
 	
 	@Override
 	public void insert(SpaceXVO spaceXVO) {
+		hibernateTemplate.save(spaceXVO);
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
 //			session.beginTransaction();
@@ -41,6 +42,8 @@ public class SpaceXDAO implements SpaceXDAO_interface {
 
 	@Override
 	public void delete(Integer space_id) {
+		List<SpaceXVO> list = hibernateTemplate.find("from SpaceXVO where space_id=?",space_id);
+		hibernateTemplate.delete(list);
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
 //			session.beginTransaction();
@@ -58,15 +61,7 @@ public class SpaceXDAO implements SpaceXDAO_interface {
 
 	@Override
 	public SpaceXVO findByPrimaryKey(Integer space_id, String table_id) {
-//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//		try {
-//			session.beginTransaction();
-//			
-//			session.getTransaction().commit();
-//		} catch (RuntimeException ex) {
-//			session.getTransaction().rollback();
-//			throw ex;
-//		}
+
 		return null;
 	}
 
@@ -74,8 +69,18 @@ public class SpaceXDAO implements SpaceXDAO_interface {
 	public List<Map<String, String>> getAll() {
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		List<Map<String, String>> list1=new ArrayList<Map<String, String>>();
-//		List<SpaceXVO> listxx=null;
-////		Map<String,String> m1=null;
+		List<SpaceXVO> listxx=null;
+		listxx=hibernateTemplate.find("from SpaceXVO");
+		for(SpaceXVO vo : listxx){
+			Map<String,String> m1 = new HashMap<>();
+			m1.put("space_id",String.valueOf(vo.getSpaceVO().getSpace_id()));
+			m1.put("table_id",vo.getTable_id());
+			m1.put("table_maxP",String.valueOf(vo.getTable_maxP()));
+			m1.put("table_x",String.valueOf(vo.getTable_x()));
+			m1.put("table_y",String.valueOf(vo.getTable_y()));
+			m1.put("table_shape",vo.getTable_shape());
+			list1.add(m1);
+		}
 //		try {
 //			session.beginTransaction();
 //			Query query = session.createQuery("from SpaceXVO");
@@ -88,7 +93,6 @@ public class SpaceXDAO implements SpaceXDAO_interface {
 //				m1.put("table_x",String.valueOf(vo.getTable_x()));
 //				m1.put("table_y",String.valueOf(vo.getTable_y()));
 //				m1.put("table_shape",vo.getTable_shape());
-////				System.out.println(vo.getTable_shape());
 //				list1.add(m1);
 //			}
 //			session.getTransaction().commit();

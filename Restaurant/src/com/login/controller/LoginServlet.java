@@ -30,6 +30,13 @@ public class LoginServlet extends HttpServlet {
 		// 3. 檢查使用者輸入資料
 		// 如果 userId 欄位為空白，放錯誤訊息"帳號欄必須輸入"到 errorMsgMap 之內
 		// 對應的識別字串為 "AccountEmptyError"
+		
+//		String emailRule = "^\\w+\\.*\\w+@(\\w+\\.){1,5}[a-zA-Z]{2,3}$";
+//		
+//		if (!userId.trim().matches(emailRule)) {
+//			errorMsgMap.put("AccountEmptyError","帳號格式錯誤，請輸入您的信箱");
+//		}
+		
 		if (userId == null || userId.trim().length() == 0) {
 			errorMsgMap.put("AccountEmptyError", "帳號欄必須輸入");
 		}
@@ -92,7 +99,7 @@ public class LoginServlet extends HttpServlet {
 
 			} else {
 				// 導向 contextPath + "/index.jsp"
-				response.sendRedirect(contextPath + "/index.jsp");
+				response.sendRedirect(contextPath + "/index_theme.jsp");
 			}
 			return;
 		} else {

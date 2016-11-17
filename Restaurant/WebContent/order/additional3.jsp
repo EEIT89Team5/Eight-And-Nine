@@ -6,10 +6,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>點餐  - addOrder2.jsp</title>
+<style>
+@font-face{
+font-family:"ShowWind";
+src: url("../font/ShowWind.ttc");  
+}
+td{
+font-family:ShowWind;
+font-size:38px;
+color:white;
+}
+h3{
+color:red;
+font-size:45px;
+}
+body{
+background-image: url("../img/0003.png");
+background-size: cover;
+}
+</style>
 </head>
 <body>
-<h2>您已於${time}成功加訂餐點</h2><br/>
-
+<%-- <h2>您已於${time}成功加訂餐點</h2><br/> --%>
+<div align="center">
+<img src="../img/ADDMEALLOGO.png"><br>
 <table>
 	<tbody>
 		<tr><td><h3>訂單資訊</h3></h3></td></tr>
@@ -20,8 +40,6 @@
 		<tr><td>人數:${orderVO.order_numP}人</td></tr>
 		<tr><td>會員:${orderVO.memberVO.member_id}</td></tr>
 		<tr><td>員工:${orderVO.empVO.emp_id}</td></tr>
-		<tr><td>折扣(結帳再說)</td></tr>
-		<tr><td>結帳時間(結帳再說)</td></tr>
 				
 		<tr>
 			<td><h3>訂單明細</h3></td>
@@ -40,8 +58,7 @@
 			</c:forEach>
 	</tbody>
 </table><br/>
-<a href="../index.jsp"> 回首頁 </a>
-
+</div>
 
 </body>
 </html>

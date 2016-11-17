@@ -18,6 +18,7 @@ public class SpaceDAO implements SpaceDAO_interface {
     }
 	@Override
 	public void insert(SpaceVO spaceVO) {
+		hibernateTemplate.save(spaceVO);
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
 //			session.beginTransaction();
@@ -32,26 +33,17 @@ public class SpaceDAO implements SpaceDAO_interface {
 
 	@Override
 	public void update(SpaceVO spaceVO) {
-//		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//		try {
-//			session.beginTransaction();
-//			
-//			session.getTransaction().commit();
-//		} catch (RuntimeException ex) {
-//			session.getTransaction().rollback();
-//			throw ex;
-//		}
 
 	}
 
 	@Override
 	public void delete(Integer space_id) {
+		SpaceVO spacevo = hibernateTemplate.get(SpaceVO.class, space_id);
+		hibernateTemplate.delete(spacevo);
+		
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
 //			session.beginTransaction();
-////			Query query = session.createQuery("delete from SpaceXVO where space_id=?");
-////			query.setParameter(0, space_id);
-////			query.executeUpdate();
 //			SpaceVO spacevo = (SpaceVO)session.get(SpaceVO.class,space_id);
 //			session.delete(spacevo);
 //			session.getTransaction().commit();
@@ -66,6 +58,7 @@ public class SpaceDAO implements SpaceDAO_interface {
 	public SpaceVO findByPrimaryKey(Integer space_id) {
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		SpaceVO spaceVO=null;
+		spaceVO=hibernateTemplate.get(SpaceVO.class, space_id);
 //		try {
 //			session.beginTransaction();
 //			spaceVO = (SpaceVO)session.get(SpaceVO.class, space_id);
@@ -81,6 +74,9 @@ public class SpaceDAO implements SpaceDAO_interface {
 	public SpaceVO findBySpaceName(String space_name) {
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		SpaceVO spacevo=null;
+		List<SpaceVO> vo= hibernateTemplate.find("from SpaceVO where space_name=?",space_name);
+		if(vo.size()!=0)
+			spacevo=vo.get(0);
 //		try {
 //			session.beginTransaction();
 //			Query query = session.createQuery("from SpaceVO where space_name=?");
@@ -100,6 +96,7 @@ public class SpaceDAO implements SpaceDAO_interface {
 	public List<SpaceVO> getAll() {
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		List<SpaceVO> list = null;
+		list=hibernateTemplate.find("from SpaceVO");
 //		try {
 //			session.beginTransaction();
 //			Query query = session.createQuery("from SpaceVO");

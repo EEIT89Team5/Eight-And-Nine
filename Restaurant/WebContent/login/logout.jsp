@@ -13,6 +13,6 @@
 </head>
 <body>
 您已經登出<P/>
-<a href="../index.jsp">回首頁</a>
+<a href="../index_theme.jsp">回首頁</a>
 </body>
 </html>

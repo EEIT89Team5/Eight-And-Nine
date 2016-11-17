@@ -6,7 +6,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 import com.dishclass.model.DishClassDAO_interface;
-import com.order.model.OrderVO;
 
 import java.sql.Date;
 import java.util.*;
@@ -38,17 +37,17 @@ public class EmpDAO implements EmpDAO_interface {
 	}
 
 	@Override
-	public EmpVO getEmail(String emp_email) {
-		List<EmpVO> list = hibernateTemplate.find("FROM EmpVO WHERE emp_email = ? ",emp_email);
-		EmpVO empVO=list.get(0);
-//		if(list.size()!=0)
-//			 empVO=list.get(0);
-		return empVO;
-	}
-
-	@Override
 	public EmpVO findByPrimaryKey(Integer emp_id) {
 		EmpVO empVO = (EmpVO) hibernateTemplate.get(EmpVO.class, emp_id);
+		return empVO;
+	}
+	
+	@Override
+	public EmpVO getEmail(String emp_email) {
+		List<EmpVO> list = hibernateTemplate.find("FROM EmpVO WHERE emp_email = ? ",emp_email);
+		EmpVO empVO=null;
+		if(list.size()!=0)
+			 empVO=list.get(0);
 		return empVO;
 	}
 
@@ -97,38 +96,38 @@ public class EmpDAO implements EmpDAO_interface {
 		// dao.delete(7014);
 
 		// ● 查詢-findByPrimaryKey (多方emp2.hbm.xml必須設為lazy="false")(優!)
-		 EmpVO empVO3 = dao.getEmail("1000@yahoo.com.tw");
-		 System.out.print(empVO3.getEmp_id() + ",");
-		 System.out.print(empVO3.getEmp_name() + ",");
-//		 System.out.print(empVO3.getJob() + ",");
-//		 System.out.print(empVO3.getHiredate() + ",");
-//		 System.out.print(empVO3.getSal() + ",");
-//		 System.out.print(empVO3.getComm() + ",");
-//		 // 注意以下三行的寫法 (優!)
-//		 System.out.print(empVO3.getDeptVO().getDeptno() + ",");
-//		 System.out.print(empVO3.getDeptVO().getDname() + ",");
-//		 System.out.print(empVO3.getDeptVO().getLoc());
-//		 System.out.println("\n---------------------");
+		// EmpVO empVO3 = dao.findByPrimaryKey(7001);
+		// System.out.print(empVO3.getEmpno() + ",");
+		// System.out.print(empVO3.getEname() + ",");
+		// System.out.print(empVO3.getJob() + ",");
+		// System.out.print(empVO3.getHiredate() + ",");
+		// System.out.print(empVO3.getSal() + ",");
+		// System.out.print(empVO3.getComm() + ",");
+		// // 注意以下三行的寫法 (優!)
+		// System.out.print(empVO3.getDeptVO().getDeptno() + ",");
+		// System.out.print(empVO3.getDeptVO().getDname() + ",");
+		// System.out.print(empVO3.getDeptVO().getLoc());
+		// System.out.println("\n---------------------");
 
 		// ● 查詢-getAll (多方emp2.hbm.xml必須設為lazy="false")(優!)
-//		List<EmpVO> list = dao.getAll();
-//		for (EmpVO aEmp : list) {
-//			System.out.print(aEmp.getEmp_id() + ",");
-//			System.out.print(aEmp.getEmp_name() + ",");
-//			System.out.print(aEmp.getEmp_gender() + ",");
-//			System.out.print(aEmp.getEmp_title() + ",");
-//			System.out.print(aEmp.getEmp_fulltime() + ",");
-//			System.out.print(aEmp.getEmp_salary() + ",");
-//			System.out.print(aEmp.getEmp_birthday() + ",");
-//			System.out.print(aEmp.getEmp_idnumber() + ",");
-//			System.out.print(aEmp.getEmp_phone() + ",");
-//			System.out.print(aEmp.getEmp_addr() + ",");
-//			System.out.print(aEmp.getEmp_hiredate() + ",");
-//			System.out.print(aEmp.getEmp_email() + ",");
-//			System.out.print(aEmp.getEmp_password() + ",");
-//			System.out.println(aEmp.getEmp_status() + ",");
-//
-//		}
+		List<EmpVO> list = dao.getAll();
+		for (EmpVO aEmp : list) {
+			System.out.print(aEmp.getEmp_id() + ",");
+			System.out.print(aEmp.getEmp_name() + ",");
+			System.out.print(aEmp.getEmp_gender() + ",");
+			System.out.print(aEmp.getEmp_title() + ",");
+			System.out.print(aEmp.getEmp_fulltime() + ",");
+			System.out.print(aEmp.getEmp_salary() + ",");
+			System.out.print(aEmp.getEmp_birthday() + ",");
+			System.out.print(aEmp.getEmp_idnumber() + ",");
+			System.out.print(aEmp.getEmp_phone() + ",");
+			System.out.print(aEmp.getEmp_addr() + ",");
+			System.out.print(aEmp.getEmp_hiredate() + ",");
+			System.out.print(aEmp.getEmp_email() + ",");
+			System.out.print(aEmp.getEmp_password() + ",");
+			System.out.println(aEmp.getEmp_status() + ",");
+
+		}
 		
 
 	}

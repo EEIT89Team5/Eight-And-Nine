@@ -15,57 +15,15 @@ public class EmpService {
 		dao =(EmpDAO_interface) context.getBean("empDAO");
 	}
 
-	public EmpVO addEmp(String emp_name, String emp_gender,String emp_title,String emp_fulltime, 
-			Integer emp_salary,java.sql.Date emp_birthday,String emp_idnumber,String emp_phone,
-			String emp_addr,java.sql.Date emp_hiredate,String emp_email,String emp_password,
-			String emp_status) {
-
-		EmpVO empVO = new EmpVO();
-
-		empVO.setEmp_name(emp_name);
-		empVO.setEmp_gender(emp_gender);
-		empVO.setEmp_title(emp_title);
-		empVO.setEmp_fulltime(emp_fulltime);
-		empVO.setEmp_salary(emp_salary);
-		empVO.setEmp_birthday(emp_birthday);
-		empVO.setEmp_idnumber(emp_idnumber);
-		empVO.setEmp_phone(emp_phone);
-		empVO.setEmp_addr(emp_addr);
-		empVO.setEmp_hiredate(emp_hiredate);
-		empVO.setEmp_email(emp_email);
-		empVO.setEmp_password(emp_password);
-		empVO.setEmp_status(emp_status);
-		
+	public EmpVO addEmp(EmpVO empVO) {
 		dao.insert(empVO);
-
 		return empVO;
 	}
 
-	public EmpVO updateEmp(Integer emp_id,String emp_name, String emp_gender,String emp_title,String emp_fulltime, 
-			Integer emp_salary,java.sql.Date emp_birthday,String emp_idnumber,String emp_phone,
-			String emp_addr,java.sql.Date emp_hiredate,String emp_email,String emp_password,
-			String emp_status) {
-
-		EmpVO empVO = new EmpVO();
-
-		empVO.setEmp_id(emp_id);
-		empVO.setEmp_name(emp_name);
-		empVO.setEmp_gender(emp_gender);
-		empVO.setEmp_title(emp_title);
-		empVO.setEmp_fulltime(emp_fulltime);
-		empVO.setEmp_salary(emp_salary);
-		empVO.setEmp_birthday(emp_birthday);
-		empVO.setEmp_idnumber(emp_idnumber);
-		empVO.setEmp_phone(emp_phone);
-		empVO.setEmp_addr(emp_addr);
-		empVO.setEmp_hiredate(emp_hiredate);
-		empVO.setEmp_email(emp_email);
-		empVO.setEmp_password(emp_password);
-		empVO.setEmp_status(emp_status);
-		
+	public EmpVO updateEmp(EmpVO empVO) {
 		dao.update(empVO);
 
-		return dao.findByPrimaryKey(emp_id);
+		return empVO;
 	}
 
 	public void deleteEmp(Integer emp_id) {
@@ -79,8 +37,9 @@ public class EmpService {
 	public List<EmpVO> getAll() {
 		return dao.getAll();
 	}
-	public EmpVO checkIDPassword(String emp_email, String emp_password) {
 	
+	public EmpVO checkIDPassword(String emp_email, String emp_password) {
+		
 		return dao.getEmail(emp_email);
 	}
 }

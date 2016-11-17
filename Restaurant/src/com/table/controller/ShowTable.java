@@ -124,8 +124,9 @@ public class ShowTable extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.removeAttribute("errorMsgs");
 			String table_name=request.getParameter("table_name");
+//			System.out.println("------------------------"+table_name);
 			OrderVO ordervo= dao_ot.getOrderDetailsByTableName(table_name);
-
+//			System.out.println("------------------------"+ordervo.getOrder_table());
 			if(ordervo==null){
 				session.setAttribute("errorMsgs"," "+table_name+"沒有訂單可以結帳");
 				response.sendRedirect("formatTable.do?table=index");

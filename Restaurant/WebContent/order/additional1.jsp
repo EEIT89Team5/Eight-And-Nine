@@ -14,10 +14,44 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>加點</title>
+<style>
+@font-face{
+font-family:"ShowWind";
+src: url("../font/ShowWind.ttc");  
+}
+#block {
+    	height: 300px; /*高度*/ 
+     	width: 800px;  /*寬度*/ 
+    	 background-color: black;
+     	position: absolute; 
+      	top:50%; 
+      	left:50%;
+      	
+     	margin:0px auto;
+     	background-color: rgba(0,0,0,0);
+		margin-top: -150px;
+		margin-left:-400px
+}
+.font1{
+font-family:ShowWind;
+color:white;
+font-size:30px
+}
+td{
+font-family:ShowWind;
+color:white;
+font-size:30px
+}
+
+</style>
 </head>
-<body>
-<h3>選擇加訂桌位(當天尚未結帳之桌位)</h3>
-<table>
+<body background="../img/light2.png" style="background-size: cover;">
+<div align="center" id="block">
+
+
+<h3 class="font1">選擇加訂桌位(當天尚未結帳之桌位)</h3>
+<br>
+<table width="750px">
 <tr>
 <td>訂單編號</td>
 <td>當日未結帳桌位</td>
@@ -31,7 +65,7 @@
 	<td>${orderVO.order_price }</td>
 	<td>
 		<form method="post" action="order.do" >
-			<input type="submit" value="加訂">
+			<input type="submit" value="加訂" class="btn btn-default" style="font-family:ShowWind;font-size:18px;font-weight:bold;">
 			<input type="hidden" name="action" value="addition1"/>
 			<input type="hidden" name="order_id" value="${orderVO.order_id }"/>
 		</form>
@@ -42,9 +76,7 @@
 
 </table>
 
-<table>
-
-</table>
-
+<link rel="stylesheet" href="../css/bootstrap.css">
+</div>
 </body>
 </html>

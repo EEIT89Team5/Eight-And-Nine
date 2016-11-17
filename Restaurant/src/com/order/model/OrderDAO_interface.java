@@ -29,5 +29,7 @@ public interface OrderDAO_interface {
 	public OrderVO findsByTableName(String order_table);
 	
 	public OrderVO getOrderDetailsByTableName(String order_table);
+	
+	public List<Object[]> getRevenueByMonth(String begin, String end);
 
 }

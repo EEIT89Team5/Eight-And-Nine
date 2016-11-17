@@ -16,12 +16,23 @@
 <body>
 <h2>點餐step2</h2>
 
+<h3>會員</h3>
+<table>
+	<tr>
+		<td><a href="../member/addMember.jsp" >新增會員</a></td>
+		<td><a href="../memberlogin/memberlogin.jsp" >會員登入</a></td>
+		<td><a href="../memberlogin/memberlogout.jsp" >會員登出</a></td>
+	</tr>
+</table>
+
 <h3>訂單資訊</h3>
 <table>
 	<tr>
 		<td>桌號:${orderVO.order_table}</td>
 		<td>人數:${orderVO.order_numP}人</td>
-		<td>會員:${orderVO.memberVO.member_id}</td>	
+		<td>會員: 
+			<c:if test="${! empty MemberLoginOK }">${MemberLoginOK.member_name}</c:if>
+		</td>	
 		<td>員工:${orderVO.empVO.emp_id}</td>
 	</tr>
 </table>

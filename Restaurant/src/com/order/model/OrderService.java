@@ -126,4 +126,22 @@ public class OrderService {
 		return dao.getOrderDetailsByTableName(order_table);
 	}
 	
+	public Integer[] getRevenueByMonth(String year, String month, String date) {
+		if(month.length()<2) month="0"+month;
+		if(date.length()<2) date="0"+date;
+		String dd = year+"-"+month;
+		List<Object[]> list = dao.getRevenueByMonth(dd+"-01", dd+"-"+date);
+		Integer[] array = new Integer[Integer.valueOf(date)];
+		if(list.size()!=0){
+			for(int i=0;i<array.length;i++){
+				array[i]=0;;
+			}
+			for(Object[] oo : list){
+				Integer xx = Integer.valueOf(String.valueOf(oo[0]).substring(8, 10));
+				array[xx-1]+=Integer.valueOf(oo[1].toString());
+			}		
+		}
+		return array;
+	}
+	
 }

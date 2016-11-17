@@ -13,7 +13,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+@WebServlet("/emp/AccountCheck")
 public class AccountCheck extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -32,20 +32,20 @@ public class AccountCheck extends HttpServlet {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		String url = "jdbc:sqlserver://localhost:1433;DatabaseName=Rest89";
-		String query = "select count(*) from employee where emp_name=?";
-		String name = request.getParameter("name");
+		String query = "select count(*) from Employee where emp_email=?";
+		String email = request.getParameter("email");
 		try {
 			DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
 			conn = DriverManager.getConnection(url, "sa", "P@ssw0rd");
 			stmt = conn.prepareStatement(query);
-			stmt.setString(1, name);
+			stmt.setString(1, email);
 
 			rs = stmt.executeQuery();
-			String strMsg = "姓名不存在";
+			String strMsg = "信箱不存在";
 
 			rs.next();
 			if (rs.getInt(1) >= 1) {
-				strMsg = "姓名已存在";
+				strMsg = "信箱已存在";
 			}
 
 			out.write(strMsg);
