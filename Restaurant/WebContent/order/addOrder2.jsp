@@ -60,6 +60,18 @@ color:white
 	</tr>
 </table>
 
+<h3>套餐</h3>
+	<table>
+		<tr>		
+			<td>
+				<form method="post" action="addOrderPackage.jsp">					
+					<input type="submit" value="套餐">
+				</form>
+			</td>			
+		</tr>
+	</table>
+
+
 <h3>單點類別</h3>
 <table>
 	<tr>

@@ -96,7 +96,7 @@ public class ProductDAO implements ProductDAO_interface {
 	@Override
 	public List<ProductVO> getAllPackages() {
 		List<ProductVO> productVOs = new LinkedList<ProductVO>();
-		hibernateTemplate.find("FROM ProductVO WHERE product_kind=2 AND inMenu=1 ");
+		productVOs= hibernateTemplate.find("FROM ProductVO WHERE product_kind=2 AND inMenu=1 ");
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
 //			session.beginTransaction();
@@ -111,23 +111,47 @@ public class ProductDAO implements ProductDAO_interface {
 	}
 
 	@Override
-	public List<ProductVO> getDishesByPackage(Integer pcg_id) {
-		List<ProductVO> productVOs = new LinkedList<ProductVO>();
-		productVOs=hibernateTemplate.find("FROM ProductVO WHERE product_pcg=?", pcg_id);
+	public List<DishClassVO> getDishesByPackage(Integer product_pcg) {
+		List<DishClassVO> dishClassVOs = new LinkedList<DishClassVO>();
+		dishClassVOs = hibernateTemplate.find("select distinct dishClassVO FROM ProductVO WHERE product_pcg=? order by class_id ", product_pcg);
+		// Session session =
+		// HibernateUtil.getSessionFactory().getCurrentSession();
+		// try {
+		// session.beginTransaction();
+		// Query query = session.createQuery("FROM ProductVO WHERE
+		// product_pcg=?");
+		// query.setInteger(0, pcg_id);
+		// productVOs = query.list();
+		// session.getTransaction().commit();
+		// } catch (RuntimeException e) {
+		// session.getTransaction().rollback();
+		// throw e;
+		// }
+		return dishClassVOs;
+	}
+
+	@Override //(測試)
+	public List<PackageFormatVO> getDishClassByPackage(Integer pcg_id) {
+		List<PackageFormatVO> packageFormatVOs = new LinkedList<PackageFormatVO>();
+		packageFormatVOs = hibernateTemplate.find("FROM PackageFormatVO WHERE pcg_id =? order by class_id ", pcg_id);
+		
+		
 //		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 //		try {
-//			session.beginTransaction();
-//			Query query = session.createQuery("FROM ProductVO WHERE product_pcg=?");
+//			session.beginTransaction(); // dishClassVO.class_name product_pcg
+//			Query query = session.createQuery("FROM PackageFormatVO WHERE pcg_id =? order by class_id ");
 //			query.setInteger(0, pcg_id);
-//			productVOs = query.list();
+//			packageFormatVOs = query.list();
+//			System.out.println(query.list());
+//
 //			session.getTransaction().commit();
 //		} catch (RuntimeException e) {
 //			session.getTransaction().rollback();
 //			throw e;
 //		}
-		return productVOs;
+		return packageFormatVOs;
 	}
-
+	
 	@Override
 	public List<ProductVO> getDishesByPackageAndClass(Integer pcg_id, Integer class_id) {
 		List<ProductVO> productVOs = new LinkedList<ProductVO>();
