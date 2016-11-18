@@ -38,6 +38,10 @@
 		<servlet-class>com.login.controller.LoginServlet</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>forgetServlet</servlet-name>
+		<servlet-class>com.login.controller.ForgetServlet</servlet-class>
+	</servlet>
+	<servlet>
 		<description>
 		</description>
 		<display-name>GetProductsForAndroid</display-name>
@@ -47,6 +51,10 @@
 	<servlet-mapping>
 		<servlet-name>LoginServlet</servlet-name>
 		<url-pattern>/login/login.do</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>forgetServlet</servlet-name>
+		<url-pattern>/login/forget.do</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>GetProductsForAndroid</servlet-name>

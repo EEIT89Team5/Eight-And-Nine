@@ -25,7 +25,7 @@ height: 80px;
     	height: 300px; /*高度*/ 
      	width: 700px;  /*寬度*/ 
      	position: absolute; 
-      	top:50%; 
+      	top:35%; 
       	left:50%;
       	
      	margin:0px auto;
@@ -35,9 +35,10 @@ height: 80px;
 </style>
 </head>
 <body>
+<div align="center" id="block">
 <div align="center"><img src="../img/welcomelogin.png"></div>
 	<div align="center"><font style="color:#31aada;font-size:45px;font-family:ShowWind;font-weight: bold;">員工登入系統</font></div>
-<div align="center" id="block">
+
 <Form Action="login.do" method="POST">
     <Table>
          <TR>
@@ -53,8 +54,10 @@ height: 80px;
              
 <!--          </TR> -->        
         <TR>
-            <TD align="center"><input type="submit" value="提交" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px"> </TD>
-            </TR>
+            <TD align="center"><input type="submit" value="確認" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px"> 
+            					<a href="forgetpassword.jsp"><input type="button" value="忘記密碼" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px;"></a></TD>
+        </TR>
+        
          </Table>        
          
 </Form>
