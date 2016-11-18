@@ -60,7 +60,7 @@ public class ForgetServlet extends HttpServlet {
     
 		  final String username = "8and9Seventeen"; //信箱帳號
 		  final String password = "eightandnine";	//信箱密碼
-		  String body="<h2>歡迎註冊8+9餐廳管理系統</h2><br><br>"+"您的帳號是:"+email+"<br>"+"您的密碼是:"+newpassword+"<br><br><font color='red'>請盡速更換密碼來提高安全性</font>";
+		  String body="<h2>歡迎使用8+9餐廳管理系統</h2><br><br>"+"您的帳號是:"+email+"<br>"+"您的新密碼是:"+newpassword+"<br><br><font color='red'><H3>請盡速更換密碼來提高安全性</H3></font>";
 		  
 		  Session session = Session.getDefaultInstance(props, new Authenticator(){
 		      protected PasswordAuthentication getPasswordAuthentication() {
@@ -76,7 +76,7 @@ public class ForgetServlet extends HttpServlet {
 
 		  InternetAddress.parse(email,false));
 		  
-		  msg.setSubject("帳號驗證信");
+		  msg.setSubject("忘記密碼");
 
 		  msg.setText(body);
 		  msg.setContent(body, "text/html;charset = UTF-8");

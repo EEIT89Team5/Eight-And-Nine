@@ -122,7 +122,7 @@ height: 80px;
 		<table>   
 		<TR><td><input type="text" id="emp_email" name="emp_email" placeholder="請輸入信箱" style="color:black;font-size:25px"></td></TR>	
 		<TR><td align="center"><input type="submit" value="確認" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px"></td></TR>
-		<font style="color:red;font-size:28px;font-family:ShowWind">我們將會寄送新的密碼給您</font>
+		<font style="color:red;font-size:35px;font-family:ShowWind;font-weight: bold;">我們將會把新的密碼寄到您的信箱</font>
 		</table>
 		</Form>
 		</div>
@@ -162,7 +162,10 @@ height: 80px;
 <br/>
 <br/>
 <br/>
-
+<br/>
+<br/>
+<br/>
+<br/>
 
 
 </div>
