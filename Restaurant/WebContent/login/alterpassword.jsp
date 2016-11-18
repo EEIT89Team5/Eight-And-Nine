@@ -52,17 +52,17 @@ font-family:"ShowWind";
 font-size:35px;
 height: 80px;
 }
-#block {
-    	height: 300px; /*高度*/ 
-     	width: 700px;  /*寬度*/ 
-     	position: absolute; 
-      	top:35%; 
-      	left:50%;
+/* #block { */
+/*     	height: 300px; /*高度*/  */
+/*      	width: 700px;  /*寬度*/  */
+/*      	position: absolute;  */
+/*       	top:35%;  */
+/*       	left:50%; */
       	
-     	margin:0px auto;
-		margin-top: -150px;
-		margin-left:-350px
-}
+/*      	margin:0px auto; */
+/* 		margin-top: -150px; */
+/* 		margin-left:-350px */
+/* } */
 </style>
 </head>
 <body>	
@@ -112,73 +112,34 @@ height: 80px;
 <!--inner block start here-->
 <div class="inner-block">
     <div class="price-block-main">
-<div align="center" id="block">
-<div align="center"><img src="../img/welcomelogin.png"></div>
-	<div align="center"><font style="color:#31aada;font-size:45px;font-family:ShowWind;font-weight: bold;">員工登入系統</font></div>
-<br>
-<Form Action="login.do" method="POST">
-    <Table>
-         <TR>
-             <TD align="CENTER">帳號：<input	type="text" name="userId" size="25" class="form-control" style="font-size:30px;font-weight: bold;"></TD>
-             <TD><small><Font color='red' size="-1">${ErrorMsgKey.AccountEmptyError}</Font></small></TD>
-         </TR>
-         <TR>
-             <TD align="CENTER">密碼：<input	type="password" name="pswd"  size="25" class="form-control" style="font-size:30px"></TD>
-             <TD><small><Font color='red'  size="-1">${ErrorMsgKey.PasswordEmptyError}</Font></small></TD>
-         </TR>            
-<!--          <TR> -->
-<%--              <TD align="CENTER" colspan='3'><Font color='red' size="-1">${ErrorMsgKey.LoginError}&nbsp;</Font></TD> --%>
-             
-<!--          </TR> -->        
-        <TR>
-            <TD align="center"><input type="submit" value="確認" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px"> 
-            </TD>
-        </TR>
-        	
-        	<TD align="center"><a href="forgetpassword.jsp"><input type="button" value="忘記密碼" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px;"></a>
-        	<a href="alterpassword.jsp" ><input type="button" value="修改密碼" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px;"></a>
-        	</TD>
-        
-         </Table>        
-         
-</Form>
-</div>
+		<div align="center">
+		<div align="center"><img src="../img/midify.png"></div>
+		<br>
+		<br>
+			<div align="center"><div align="center"><img src="../img/passwordmidify.png"></div></div>
+		<br>
+		<br>
+		<Form Action="forget.do" method="POST" id="alertform">
+		<div align="center">
+		<table style="width: 900px;">   
+		<TR><td width="180px"></td><td align="right"><input type="text" id="emp_email" name="emp_email" placeholder="請輸入信箱" style="color:black;font-size:25px"></td><TD id="ema" style="font-size:23px;font-weight: bold;width:330px"></TD></TR>
+		<TR><td width="180px"></td><td align="right"><input type="password" id="emp_oldpassword" name="emp_oldpassword" placeholder="請輸入原密碼" style="color:black;font-size:25px"></td><TD id="ops" style="font-size:23px;font-weight: bold;width:330px"></TD></TR>
+		<TR><td width="180px"></td><td align="right"><input type="password" id="emp_newpassword" name="emp_newpassword" placeholder="請輸入想修改的密碼" style="color:black;font-size:25px"></td><TD id="npas" style="font-size:23px;font-weight: bold;width:330px"></TD></TR>	
+		<TR><td width="180px"></td><td align="right"><input type="password" id="emp_newpassword2" name="emp_newpassword2" placeholder="請再次輸入想修改的密碼" style="color:black;font-size:25px"></td><TD id="npas2" style="font-size:23px;font-weight: bold;width:330px"></TD></TR>	
+		<TR><td colspan="3" align="center"><input type="button" id="allbutton" value="確認" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px"></td><td></td></TR>
+		</table>
+		</div>
+		<font style="color:red;font-size:35px;font-family:ShowWind;font-weight: bold;">我們也將會把您更新的密碼寄到您的信箱</font>
+		</Form>
+		</div>
+		<script src="../js/buttons.js"></script>
+		<link rel="stylesheet" href="../css/buttons.css">
 <br/>
 <br/>
 <br/>
 <br/>
 <br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<script src="../js/buttons.js"></script>
-<link rel="stylesheet" href="../css/buttons.css">
+
 
 
 </div>
@@ -274,6 +235,106 @@ $(".sidebar-icon").click(function() {
   }               
   toggle = !toggle;
 });
+
+var count=null;
+
+$("#emp_email").blur(function(){
+	var ee=$("#emp_email").val()
+	count=0;
+	$.get("AccountCheck",{email:ee},function(data){
+		
+		if(data=="信箱不存在"||ee.trim()==""||ee==null){
+			$("#ema").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>無此信箱註冊資訊</font></td>")
+			$("#emp_email").focus();
+			count++;
+		}else{
+			$("#ema").html("<img src='../icon/oo.png' /><td><font style='color:#3db39e'>正確！密碼將會寄到此信箱中</font></td>")	
+		}
+		
+	})
+})
+	$("#emp_oldpassword").blur(function(){
+			var oldpas=$("#emp_oldpassword").val();
+		if(oldpas=null||oldpas.trim()==""){
+			$("#ops").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>請勿空白</font></td>")
+			$("#emp_oldpassword").focus();
+		count++;
+		}else{
+			$("#ops").html("<img src='../icon/oo.png' /><td><font style='color:#3db39e'>正確</font></td>")
+		}
+	})
+
+	$("#emp_newpassword").blur(function(){
+		var newpassword=$("#emp_newpassword").val();
+		var newpassword2=$("#emp_newpassword2").val();
+		if(newpassword=null||newpassword.trim()==""){
+			$("#npas").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>請勿空白</font></td>")
+		count++;
+		}else{
+			$("#npas").html("<img src='../icon/oo.png' /><td><font style='color:#3db39e'>正確</font></td>")
+			$("#emp_newpassword2").focus();
+		}
+	})
+		
+		
+	$("#emp_newpassword2").blur(function(){
+		count=0;
+		var newpassword=$("#emp_newpassword").val();
+		var newpassword2=$("#emp_newpassword2").val();
+		
+		if(newpassword=null||newpassword.trim()==""){
+			$("#npas2").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>請勿空白</font></td>")
+		count++;
+		}
+		 if(newpassword!=newpassword2){
+			$("#npas2").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>密碼輸入不一致</font></td>")
+		count++;
+		}else{
+			$("#npas2").html("<img src='../icon/oo.png' /><td><font style='color:#3db39e'>密碼輸入一致</font></td>")
+		}
+	})
+	
+$("#allbutton").click(function(){
+	var eemail=$("#emp_email").val();
+	var oldpass=$("#emp_oldpassword").val();
+	var newpass=$("#emp_newpassword").val();
+	var newpass2=$("#emp_newpassword2").val();
+	count=0;
+	
+	if(eemail=null||eemail.trim()==""){
+		$("#ema").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>請勿空白</font></td>");
+		count++
+	}
+	if(oldpass=null||oldpass.trim()==""){
+		$("#ops").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>請勿空白</font></td>");
+		count++
+	}
+	if(newpass=null||newpass.trim()==""){
+		$("#npas").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>請勿空白</font></td>");
+		count++
+	}
+	if(newpass2=null||newpass2.trim()==""){
+		$("#npas2").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>請勿空白</font></td>");
+		count++
+	}
+	//未完成 先睡
+	console.log(newpass)
+	console.log(newpass)
+	if(newpass2!=newpass){
+		$("#npas2").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>密碼輸入不一致</font></td>")
+		$("#npas").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>密碼輸入不一致</font></td>")
+	count++;
+	console.log(count)
+	}
+	console.log(count)
+	if(count==0){
+		$("#alertform").submit();
+	}
+	
+	
+})
+
+
 </script>
 <!--scrolling js-->
 		<script src="../js/jquery.nicescroll.js"></script>
