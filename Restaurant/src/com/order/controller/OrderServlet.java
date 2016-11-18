@@ -21,7 +21,6 @@ import javax.servlet.http.HttpSession;
 
 import com.dishclass.model.DishClassService;
 import com.dishclass.model.DishClassVO;
-import com.emp.model.EmpService;
 import com.emp.model.EmpVO;
 import com.member.model.MemberVO;
 import com.order.model.OrderService;
@@ -114,16 +113,24 @@ public class OrderServlet extends HttpServlet {
 				TableVO tableVO = tableSvc.getOneTable(table);
 				System.out.println(tableVO);
 				Integer people = tableVO.getTable_numP();// 人數
-				
+				String test = req.getParameter("member").trim();
+				Integer member = null;
+				if (test != "") {
+					member = new Integer(req.getParameter("member").trim());// 會員
+				}
 				Integer employee = new Integer(req.getParameter("employee").trim());// 員工
 
 				OrderVO orderVO = new OrderVO();// set訂單orderVO
 
 				orderVO.setOrder_table(table);
 				orderVO.setOrder_numP(people);
-				
-				EmpService empSvc=new EmpService();
-				EmpVO empVO = empSvc.getOneEmp(employee);
+				if (test != "") {
+					MemberVO memberVO = new MemberVO();
+					memberVO.setMember_id(member);
+					orderVO.setMemberVO(memberVO);
+				}
+				EmpVO empVO = new EmpVO();
+				empVO.setEmp_id(employee);
 				orderVO.setEmpVO(empVO);
 
 				if (!errorMsgs.isEmpty()) {
@@ -594,11 +601,6 @@ public class OrderServlet extends HttpServlet {
 				// Integer totalP = orderXSvc.getTotalPrice(orderList);
 
 				OrderVO orderVO = (OrderVO) session.getAttribute("orderVO");// 從session取出orderVO
-				
-				MemberVO memberVO=(MemberVO) session.getAttribute("MemberLoginOK");
-				if(memberVO!=null){
-					orderVO.setMemberVO(memberVO);
-				}
 				orderVO.setOrder_date(new Date(currentTime));// 把現在時間訂單時間
 				// orderVO.setOrder_price(totalP);
 				OrderService orderSvc = new OrderService();
