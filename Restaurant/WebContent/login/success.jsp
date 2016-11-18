@@ -17,7 +17,7 @@ background-size: cover;
 }
 #block {
     	height: 300px; /*高度*/ 
-     	width: 700px;  /*寬度*/ 
+     	width: 800px;  /*寬度*/ 
      	position: absolute; 
       	top:50%; 
       	left:50%;
@@ -33,9 +33,13 @@ src: url("../font/ShowWind.ttc");
 </style>
 </head>
 <body>
-<div align="center">
-<div id="block"><img src="../img/logout.png"></div>
-</div>
 <div align="center"><a href="../index_theme.jsp" style="text-decoration:none;"><font style="color:white;font-family:ShowWind;font-size:50px;font-weight: bold;">回首頁</font></a></div>
+<div align="center">
+<div id="block">
+<img src="../img/success.png">
+<div align="center"><font style="color:red;font-family:ShowWind;font-size:60px;font-weight: bold;">新密碼已經寄到您的信箱囉！</font></div>
+</div>
+</div>
+
 </body>
 </html>
