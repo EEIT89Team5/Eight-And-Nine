@@ -97,9 +97,10 @@ public class ReserveServlet extends HttpServlet {
 			session.removeAttribute("updateReserveVO");
 			session.removeAttribute("ReserveVOdate");
 			session.removeAttribute("ReserveVOtime");			
-			response.sendRedirect("reserveQ.jsp");
+//			response.sendRedirect("reserveQ.jsp");
+			response.sendRedirect("ReserveServlet.do?doWhat=selects&months="+date.substring(5, 7)+"&days="+date.substring(8, 10));
 		}
-		
+	//-------------------------------------------------------------------------	
 		if("selects".equals(doWhat)){
 			String months = request.getParameter("months");
 			String days = request.getParameter("days");
@@ -130,7 +131,8 @@ public class ReserveServlet extends HttpServlet {
 			String res_phone = request.getParameter("res_phone");
 			Timestamp res_time = Timestamp.valueOf(time);
 			rdao.delete(res_time, res_phone);
-			response.sendRedirect("reserveQ.jsp");
+//			response.sendRedirect("reserveQ.jsp");
+			response.sendRedirect("ReserveServlet.do?doWhat=selects&months="+time.substring(5, 7)+"&days="+time.substring(8, 10));
 		}
 	}
 
