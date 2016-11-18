@@ -67,7 +67,7 @@ border-radius: 10px;
 		<td>會員: 
 			<c:if test="${! empty MemberLoginOK }">${MemberLoginOK.member_name}</c:if>
 		</td>	
-		<td>員工:${orderVO.empVO.emp_name}</td>
+		<td>員工:${orderVO.empVO.emp_id}</td>
 	</tr>
 </table>
 

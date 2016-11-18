@@ -38,8 +38,8 @@ color:white;
 		<tr><td>日期:${orderVO.order_date}</td></tr>
 		<tr><td>總價:${orderVO.order_price}</td></tr>
 		<tr><td>人數:${orderVO.order_numP}人</td></tr>
-		<tr><td>會員:<c:if test="${! empty MemberLoginOK }">${MemberLoginOK.member_name}</c:if></td></tr>
-		<tr><td>員工:${orderVO.empVO.emp_name}</td></tr>
+		<tr><td>會員:${orderVO.memberVO.member_id}</td></tr>
+		<tr><td>員工:${orderVO.empVO.emp_id}</td></tr>
 		<tr><td>折扣(結帳再說)</td></tr>
 		<tr><td>結帳時間(結帳再說)</td></tr>
 				
