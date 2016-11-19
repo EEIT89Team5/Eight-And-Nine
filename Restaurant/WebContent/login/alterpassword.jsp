@@ -275,6 +275,12 @@ $("#emp_email").blur(function(){
 		}else{
 			$("#npas").html("<td></td>")
 		}
+		 if(newpassword!=newpassword2){
+			 $("#npas2").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>密碼輸入不一致</font></td>")
+				count++;
+		}else{
+			 $("#npas2").html("<img src='../icon/oo.png' /><td><font style='color:#3db39e'>密碼輸入一致</font></td>")
+		}
 	})
 		
 		
