@@ -9,9 +9,35 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>訂單資料 - listAllOrder.jsp</title>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
+<style>
+body{
+background-image: url("../img/0003.png");
+background-size: cover;
+}
+@font-face{
+font-family:"ShowWind";
+src: url("../font/ShowWind.ttc");  
+}
+td{
+font-family:"ShowWind";
+color:white;
+font-size:25px;
+text-align:center;
+width: 130px;
+font-weight:bold
+}
+th{
+font-family:"ShowWind";
+color:yellow;
+font-size:30px;
+text-align:center;
+}
+</style>
 </head>
 <body>
-
+<div align="center">
+<img src="../img/ORDERLOGO.png"><br><br>
+<img src="../img/select.png">
 <h2>訂單</h2><br/>
 <c:if test="${not empty errorMsgs}">
 	<font color='red'>請修正以下錯誤:
@@ -22,7 +48,7 @@
 	</ul>
 	</font>
 </c:if>
-<table border='1'>
+<table class="table" id="orderlist">
 	<thead>
 		<tr>
 			<th>ID</th>
@@ -61,13 +87,30 @@
 				<form METHOD="post" action="order.do">
 					<input type="hidden" name="orderno" value="${orderVO.order_id}">
 					<input type="hidden" name="action" value="get_one_for_display">
-					<input type="submit" value="明細">
+					<input type="submit" value="明細" class="button button-pill" style="font-family:ShowWind;font-size:20px;font-weight: bold;">
 				</form>
 			</td>
 			</tr>
 		</c:forEach>
 	</tbody>
 </table>
-<a href="../index.jsp"> 回首頁 </a>
+<br>
+<br>
+<br>
+<br>
+<a href="../index.jsp" class="button button-pill button-highlight" style="font-family:ShowWind;font-size:25px;font-weight:bold"> 回首頁 </a>
+</div>
+<script src="../js/jquery-3.1.1.min.js"></script>
+<link rel="stylesheet" href="../css/buttons.css">
+<script>
+$(document).ready(function() {
+
+	$.each($('#orderlist tbody tr'),function(){
+		var x = $(this).find('td:eq(12)');
+		x.text(x.text().substring(0,19));
+	});
+	
+});
+</script>
 </body>
 </html>
