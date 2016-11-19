@@ -2,9 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
+<c:remove var="LoginOK"/>
+<%
+  session.invalidate();
+%>
 <html>
 <head>
-<title>登錄</title>
+<title>登出</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -46,17 +50,11 @@ body,.inner-block{
 #menu span{
 	position:absolute;
 }
-td{
-color:white;
-font-family:"ShowWind";
-font-size:35px;
-height: 80px;
-}
 #block {
     	height: 300px; /*高度*/ 
-     	width: 700px;  /*寬度*/ 
+     	width: 800px;  /*寬度*/ 
      	position: absolute; 
-      	top:35%; 
+      	top:50%; 
       	left:50%;
       	
      	margin:0px auto;
@@ -112,23 +110,13 @@ height: 80px;
 <!--inner block start here-->
 <div class="inner-block">
     <div class="price-block-main">
-		<div align="center" id="block">
-		<div align="center"><img src="../img/I FORGET.png"></div>
-			<div align="center"><div align="center"><img src="../img/passwordkey.png"></div></div>
-		<br>
-		<br>
-		<br>
-		<Form Action="forget.do" method="POST"> 
-		<table>   
-		<TR><td><input type="text" id="emp_email" name="emp_email" placeholder="請輸入信箱" style="color:black;font-size:25px"></td></TR>	
-		<input type="hidden" name="forget" value="iforget">
-		<TR><td align="center"><input type="submit" value="確認" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px"></td></TR>
-		<font style="color:red;font-size:35px;font-family:ShowWind;font-weight: bold;">我們將會把新的密碼寄到您的信箱</font>
-		</table>
-		</Form>
+		<div align="center"><a href="../index_theme.jsp" style="text-decoration:none;"><font style="color:white;font-family:ShowWind;font-size:50px;font-weight: bold;">回首頁</font></a></div>
+		<div align="center">
+		<div id="block">
+		<img src="../img/error.png">
+		<div align="center"><font style="color:red;font-family:ShowWind;font-size:60px;font-weight: bold;">您的原密碼輸入錯誤囉！</font></div>
 		</div>
-		<script src="../js/buttons.js"></script>
-		<link rel="stylesheet" href="../css/buttons.css">
+		</div>
 <br/>
 <br/>
 <br/>
@@ -164,9 +152,7 @@ height: 80px;
 <br/>
 <br/>
 <br/>
-<br/>
-<br/>
-<br/>
+
 
 
 </div>

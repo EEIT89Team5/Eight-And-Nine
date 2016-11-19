@@ -125,7 +125,8 @@ height: 80px;
 		<TR><td width="180px"></td><td align="right"><input type="text" id="emp_email" name="emp_email" placeholder="請輸入信箱" style="color:black;font-size:25px"></td><TD id="ema" style="font-size:23px;font-weight: bold;width:330px"></TD></TR>
 		<TR><td width="180px"></td><td align="right"><input type="password" id="emp_oldpassword" name="emp_oldpassword" placeholder="請輸入原密碼" style="color:black;font-size:25px"></td><TD id="ops" style="font-size:23px;font-weight: bold;width:330px"></TD></TR>
 		<TR><td width="180px"></td><td align="right"><input type="password" id="emp_newpassword" name="emp_newpassword" placeholder="請輸入想修改的密碼" style="color:black;font-size:25px"></td><TD id="npas" style="font-size:23px;font-weight: bold;width:330px"></TD></TR>	
-		<TR><td width="180px"></td><td align="right"><input type="password" id="emp_newpassword2" name="emp_newpassword2" placeholder="請再次輸入想修改的密碼" style="color:black;font-size:25px"></td><TD id="npas2" style="font-size:23px;font-weight: bold;width:330px"></TD></TR>	
+		<TR><td width="180px"></td><td align="right"><input type="password" id="emp_newpassword2" name="emp_newpassword2" placeholder="請再次輸入想修改的密碼" style="color:black;font-size:25px"></td><TD id="npas2" style="font-size:23px;font-weight: bold;width:330px"></TD></TR>
+		<input type="hidden" name="forget" value="alertpas">
 		<TR><td colspan="3" align="center"><input type="button" id="allbutton" value="確認" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px"></td><td></td></TR>
 		</table>
 		</div>
@@ -255,51 +256,53 @@ $("#emp_email").blur(function(){
 })
 	$("#emp_oldpassword").blur(function(){
 			var oldpas=$("#emp_oldpassword").val();
-		if(oldpas=null||oldpas.trim()==""){
+		if(oldpas.trim()==""){
 			$("#ops").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>請勿空白</font></td>")
 			$("#emp_oldpassword").focus();
 		count++;
 		}else{
-			$("#ops").html("<img src='../icon/oo.png' /><td><font style='color:#3db39e'>正確</font></td>")
+			$("#ops").html("<td></td>")
 		}
 	})
 
 	$("#emp_newpassword").blur(function(){
 		var newpassword=$("#emp_newpassword").val();
 		var newpassword2=$("#emp_newpassword2").val();
-		if(newpassword=null||newpassword.trim()==""){
+
+		if(newpassword.trim()==""){
 			$("#npas").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>請勿空白</font></td>")
 		count++;
 		}else{
-			$("#npas").html("<img src='../icon/oo.png' /><td><font style='color:#3db39e'>正確</font></td>")
-			$("#emp_newpassword2").focus();
+			$("#npas").html("<td></td>")
 		}
 	})
 		
 		
 	$("#emp_newpassword2").blur(function(){
 		count=0;
-		var newpassword=$("#emp_newpassword").val();
-		var newpassword2=$("#emp_newpassword2").val();
-		
-		if(newpassword=null||newpassword.trim()==""){
+		var newpassword3=$("#emp_newpassword").val();
+		var newpassword4=$("#emp_newpassword2").val();
+		if(newpassword4.trim()==""){
 			$("#npas2").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>請勿空白</font></td>")
 		count++;
-		}
-		 if(newpassword!=newpassword2){
-			$("#npas2").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>密碼輸入不一致</font></td>")
-		count++;
 		}else{
-			$("#npas2").html("<img src='../icon/oo.png' /><td><font style='color:#3db39e'>密碼輸入一致</font></td>")
+			$("#npas2").html("<td></td>")
+		}
+
+		 if(newpassword3!=newpassword4){
+			 $("#npas2").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>密碼輸入不一致</font></td>")
+				count++;
+		}else{
+			 $("#npas2").html("<img src='../icon/oo.png' /><td><font style='color:#3db39e'>密碼輸入一致</font></td>")
 		}
 	})
 	
 $("#allbutton").click(function(){
 	var eemail=$("#emp_email").val();
 	var oldpass=$("#emp_oldpassword").val();
-	var newpass=$("#emp_newpassword").val();
-	var newpass2=$("#emp_newpassword2").val();
 	count=0;
+	var newpass3=$("#emp_newpassword").val();
+	var newpass4=$("#emp_newpassword2").val();
 	
 	if(eemail=null||eemail.trim()==""){
 		$("#ema").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>請勿空白</font></td>");
@@ -309,22 +312,19 @@ $("#allbutton").click(function(){
 		$("#ops").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>請勿空白</font></td>");
 		count++
 	}
-	if(newpass=null||newpass.trim()==""){
+	if(newpass3=null||newpass3.trim()==""){
 		$("#npas").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>請勿空白</font></td>");
 		count++
 	}
-	if(newpass2=null||newpass2.trim()==""){
+	if(newpass4=null||newpass4.trim()==""){
 		$("#npas2").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>請勿空白</font></td>");
 		count++
 	}
-	//未完成 先睡
-	console.log(newpass)
-	console.log(newpass)
-	if(newpass2!=newpass){
+
+	if(newpass3!=newpass4){		
 		$("#npas2").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>密碼輸入不一致</font></td>")
 		$("#npas").html("<img src='../icon/xx.png' /><td><font style='color:#e2574c'>密碼輸入不一致</font></td>")
 	count++;
-	console.log(count)
 	}
 	console.log(count)
 	if(count==0){
