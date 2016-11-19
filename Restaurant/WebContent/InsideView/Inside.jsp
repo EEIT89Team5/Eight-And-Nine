@@ -5,6 +5,7 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 
 <%
+
 OrderXService svc = new OrderXService();
 java.sql.Date d=new java.sql.Date(System.currentTimeMillis());
 java.sql.Date d2=java.sql.Date.valueOf("2016-10-10");
@@ -199,4 +200,6 @@ $(function(){
 })
 
 </script>
+
+
 </html>

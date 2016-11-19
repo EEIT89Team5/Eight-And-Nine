@@ -91,7 +91,7 @@ $(document).ready(function() {
 <!--pop up end here-->
 <style>
 body,.inner-block{
-	background-color:#F5F6CE;
+	background-color:black;
 }
 .clerfix{
 	border-style:solid;
@@ -103,10 +103,18 @@ body,.inner-block{
 	position:absolute;
 }
 form{
-	border:3px double #7e85c4;
+	/*border:3px double #7e85c4;
 	border-radius:20px;
 	width:500px;
+ 	margin: 0px auto;*/
+ 	border-radius:20px;
+	width:700px; 
+	height:600px;
  	margin: 0px auto;
+ 	font-family:ShowWind;
+	font-size:40px;
+	font-weight:bold;
+	text-align:center;
 	}
 fieldset {
 /* 	margin: 0px auto; */
@@ -115,24 +123,34 @@ fieldset {
 /*     border-radius:20px; */
 	}
 legend {
- 	text-align:center; 
-	font-size:30px;
+	color:white;
+	text-align:center;
+	font-size:50px;
 	font-weight:bold;
 	}
 .stl {
-    width:150px;
-    float:left;
+    width:300px;
+/*     float:left; */
     text-align:right; 
-	font-size:20px;
-/*     padding-right:10px;  */
+	font-size:50px;
     }
+ .stl label{
+ 	font-size:50px;
+ }  
 .std {
-	width:500px;
-	height:50px;
-/* 	margin:16px 100px; */
-/* 	border-bottom:1px solid #d0cccc; */
+	text-align:left;
+	height:60px;
 	padding-bottom:16px;
+	color:white;
+	font-size:50px;
 	}
+.std input,.std select{
+	font-size: 30px;
+	color:black;
+}
+.labelsize{
+	font-size: 40px;
+}
 </style>
 </head>
 <body>	
@@ -213,8 +231,8 @@ legend {
 	        </div>
 	        <div class="std">
 	            <label class="stl" for="man">性別 :</label>
-	            	<input type="radio" id="man" name="res_gender" value="先生" checked="checked"><label for="man">先生</label>
-	            	<input type="radio" id="woman" name="res_gender" value="小姐"><label for="woman">小姐</label>
+	            	<input type="radio" id="man" name="res_gender" value="先生" checked="checked"><label class="labelsize" for="man">先生</label>
+	            	<input type="radio" id="woman" name="res_gender" value="小姐"><label class="labelsize" for="woman">小姐</label>
 	            <br/>
 	        </div>
 	        <div class="std">
@@ -234,7 +252,8 @@ legend {
 	            <input type="text" class="form-control" id="res_remark" name="res_remark" value="${updateReserveVO.res_remark}"/>
 	            <br/>
 	        </div>
-	        <div class="std">
+	        <br />
+	        <div class="std" style="text-align: center;">
 	            <input type="button" id="submitx" value="送出" />
 	            <input type="reset" value="清除" />
 	        </div>

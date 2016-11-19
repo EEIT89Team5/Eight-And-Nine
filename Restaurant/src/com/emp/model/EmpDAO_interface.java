@@ -9,4 +9,5 @@ public interface EmpDAO_interface {
 	     public EmpVO findByPrimaryKey(Integer empno);
 	     public List<EmpVO> getAll();
 		 public EmpVO getEmail(String emp_email);
+		 public void Updatepassword(EmpVO empVO);
 }

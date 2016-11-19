@@ -51,6 +51,12 @@ public class EmpDAO implements EmpDAO_interface {
 		return empVO;
 	}
 
+	
+	@Override
+	public void Updatepassword(EmpVO empVO) {
+		hibernateTemplate.saveOrUpdate(empVO);
+	}
+
 	@Override
 	public List<EmpVO> getAll() {
 		List<EmpVO> list = null;

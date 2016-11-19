@@ -133,5 +133,6 @@ websocket.onmessage = function processMessage(message){
 	</c:forEach>
 </table>
 </div>
+
 </body>
 </html>

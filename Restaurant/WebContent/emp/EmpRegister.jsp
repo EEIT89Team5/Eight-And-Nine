@@ -205,9 +205,10 @@ $(document).ready(function() {
 		format: 'yyyy-mm-dd',
 		todayBtn: "linked"		
 	});
-	
+
+	var count=null;
 $("#allbutton").click(function(){
-	var count=0;
+	count=0;
 	
 	var name=$("input[name='emp_name']").val()
 	var fulltime=$("input[name='emp_hiredate']").val()
@@ -251,12 +252,20 @@ $("#allbutton").click(function(){
 		$("#ema").html("<img src='../icon/xx.png' /><span style='color:#e2574c;font-size:18px'>信箱欄不能空白</span>")
 		count++;
 	}
-	console.log(count)
-	if(count==0){
-		$("#allbutton").parent().parent().submit();
-		$("#ress").attr("hidden", "hidden")
-		$("#butt").html("<img src='../icon/load.gif' />")
-	}
+	var ee=$("#EmpEmail").val()
+	
+	$.get("AccountCheck",{email:ee},function(data){
+		
+		if(data=="信箱已存在"||ee.trim()==""||ee==null){
+			$("#ema").html("<img src='../icon/xx.png' /><span style='color:#e2574c;font-size:18px'>此信箱不可使用</span>")
+			count++;
+		}
+		if(count==0){
+			$("#allbutton").parent().parent().submit();
+			$("#ress").attr("hidden", "hidden")
+			$("#butt").html("<img src='../icon/load.gif' />")
+		}
+		})	
 	})
 	
 	$("#EmpEmail").blur(function(){

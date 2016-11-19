@@ -6,10 +6,8 @@
 <%@ page import="com.dishclass.model.*"%>
 <%@ page import="com.product.model.*"%>
 <%@ page import="java.util.*"%>
-<jsp:useBean id="productSvc" scope="page"
-	class="com.product.model.ProductService" />
-<jsp:useBean id="classSvc" scope="page"
-	class="com.dishclass.model.DishClassService" />
+<jsp:useBean id="productSvc" scope="page" class="com.product.model.ProductService" />
+<jsp:useBean id="classSvc" scope="page" class="com.dishclass.model.DishClassService" />
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -85,9 +83,9 @@
        <form METHOD="post" ACTION="order.do" id="formOfDish" name="formOfDish">
 		   <c:forEach var="packageFormatVO" items="${packageFormatVO}">			                         
 	          <c:if test="${packageFormatVO.getClass_number() != '0'}">       <!-- 把套餐內沒有的菜色類別不顯示   個人獨享餐沒有沙拉、湯品、甜點。-->
-				<div ><h3 class="headOfH3">${packageFormatVO.getDishClassVO().getClass_name()} </h3> 
+				<div ><h3 class="headOfH3">${packageFormatVO.getDishClassVO().getClass_name()} <span name="showMoreOrShort${packageFormatVO.getDishClassVO().getClass_id()}"></span></h3> 
 					<h3>(可選 <span id="limitOfDish" name="limitOfDish${packageFormatVO.getDishClassVO().getClass_id()}" value="${packageFormatVO.getClass_number()}">${packageFormatVO.getClass_number()}</span>樣)</h3></div> 
-<!-- 					                               name= 值+EL 這樣可以讓每次跑出來的name有所區隔-->
+<!-- 					                           name= 值+EL 這樣可以讓每次跑出來的name有所區隔-->
 <%-- 原本				<form METHOD="post" ACTION="order.do" id="formOfDish${packageFormatVO.getDishClassVO().getClass_id()}" name="formOfDish"> --%>
 				  <c:forEach var="productVO" items="${productSvc.getDishesByPackageAndClass(pcg_id ,packageFormatVO.getDishClassVO().getClass_id())}">
      		        
@@ -179,21 +177,27 @@
                      } 
 console.log("====================================================");
                    
-        	         var  $headOfH3 =   $("span[name='limitOfDish"+i+"']").parent().parent().find(".headOfH3");        	   
+        	         var  $headOfH3 =   $("span[name='limitOfDish"+i+"']").parent().parent().find(".headOfH3");  
+        	         var  $showMoreOrShort =  $("span[name='showMoreOrShort" +i+ "']");     //用i準確抓showMoreOrShort位置
         	         if($headOfH3.text() != ""){
-        	           if(total > $limitOfDishS.text()){
-        	    	      console.log(i+$headOfH3.text()+"---------515151515");
-
-        	    	      $headOfH3.empty().html($headOfH3.html() + "超過"+(total-$limitOfDishS.text())+"樣").css("color","red");
-        	    	      alertWord += $headOfH3.text() + "超過"+(total-$limitOfDishS.text())+"樣" +"\n" ;
+        	           if(total > $limitOfDishS.text()){        	    	     
+        	    	      $showMoreOrShort.empty();                                         //將showMoreOrShort清空
+        	    	      $showMoreOrShort.text("超過"+(total-$limitOfDishS.text())+"樣")     //顯示新的showMoreOrShort資訊
+        	    	      $headOfH3.css("color","red");                                     //改變headOfH3顏色
+//         	    	      $headOfH3.empty().html($headOfH3.html() + "超過"+(total-$limitOfDishS.text())+"樣").css("color","red");
+        	    	      alertWord += $headOfH3.text() +"\n" ;
         	    	      flag=flag;
         	           }else if(total < $limitOfDishS.text()){
-        	        	  wordOfHeadOfH3  = $headOfH3.html();
-        	           	  $headOfH3.html(wordOfHeadOfH3 +"不足"+($limitOfDishS.text()-total)+"樣").css("color","red");
-        	        	  alertWord += $headOfH3.text() + "不足"+($limitOfDishS.text()-total)+"樣" +"\n" ;
+        	        	  $showMoreOrShort.empty();
+        	        	  $showMoreOrShort.text("不足"+($limitOfDishS.text()-total)+"樣")
+        	           	  $headOfH3.css("color","red");
+        	        	  alertWord += $headOfH3.text()  +"\n" ;
         	        	  flag=flag;
         	        	  wordOfHeadOfH3 = "";
         	           }else if(total == $limitOfDishS.text()){
+        	        	  $showMoreOrShort.empty();
+        	        	  $headOfH3.css("color","black");
+>>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git
         	    	      console.log("剛剛好");  
         	    	      flag=flag+1;
         	           }else{

@@ -17,6 +17,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="../js/jquery.magnific-popup.js" type="text/javascript"></script>
  <script>
 $(document).ready(function() {
+	
+	$.each($('#todayList tr'),function(){
+		var x = $(this).find('td:eq(0)');
+		x.text(x.text().substring(0,19));
+	});
+	
 	$('.popup-with-zoom-anim').magnificPopup({
 		type: 'inline',
 		fixedContentPos: false,
@@ -52,10 +58,10 @@ $(document).ready(function() {
 	});
 	
 	
-	$('table tr').hover(function(){
-		$(this).css("background-color","lightblue");
+	$('#todayList tr').hover(function(){
+		$(this).css("background-color","blue");
 	},function(){
-		$(this).css("background-color","white");
+		$(this).css("background-color","black");
 	});
 	
 		
@@ -88,10 +94,10 @@ $(document).ready(function() {
 	
 	$('#showbtn').click(function(){
 		$('td form').removeAttr("hidden");
-		$(this).attr("disabled","disabled");
+		$(this).attr("hidden","hidden");
 	});
 	
-	$('td input[type="button"]').click(function(){
+	$('#todayList td input[type="button"]').click(function(){
 		if($(this).val()=="修改"){
 			$(this).parent().attr("action","ReserveServlet.do?doWhat=update").submit();
 		}
@@ -105,7 +111,7 @@ $(document).ready(function() {
 <!--pop up end here-->
 <style>
 body,.inner-block{
-	background-color:#F5F6CE;
+	background-color:black;
 }
 .clerfix{
 	border-style:solid;
@@ -116,16 +122,32 @@ body,.inner-block{
 #menu span{
 	position:absolute;
 }
+#main{
+	text-align:center;
+	margin-left:20px;
+	font-family:ShowWind;
+	font-weight:bold;
+	color:white;
+	font-size:30px;
+}
 #todayList{
-	margin:20px 0px;
-	border:2px solid gray;
+/* 	border:2px solid gray; */
 	text-align:center;
 	border-collapse:collapse;
-	width:750px;
-/* 	border-radius:20px; */
+ 	width:100%; 
+	font-size: 35px;
 }
-tr {
-	height:30px;
+#main input,#main select,#main button{
+	color:black;
+}
+#main input,#main button{
+	font-size:22px;
+}
+th {
+ 	text-align: center; 
+}
+td{
+	padding:0 10px;
 } 
 </style>
 </head>
@@ -177,62 +199,73 @@ tr {
 <div class="inner-block">
     <div class="price-block-main">
 <jsp:useBean id="reserveBean" class="com.reserve.model.ReserveService"></jsp:useBean>
-	<form id="selectReserve" action="ReserveServlet.do?doWhat=selects" method="post">
-		<select name="months">
-			<option value="0">選擇月份</option>
-			<c:forEach var="month" begin="1" end="12">
-				<option value="${month}">${month}月</option>
-			</c:forEach>
-		</select>
-		<select name="days">
-			<option value="0">選擇日期</option>
-		</select>
-		<input type="button" id="btn_select" value="查詢" />
-	</form>
 	
-	<button id="showbtn">修改預約表</button>
-	
-	<table id="todayList">
-		<tr><th>預約的時間</th><th>名稱</th><th>手機</th><th>人數</th><th>特殊需求</th><th></th></tr>
-		<c:if test="${test != 'xxx'}">
-			<c:forEach var="reserveVO" items="${reserveBean.today}">
-				<tr>
-				<td width="200px">${reserveVO.res_time}</td>
-				<td width="80px">${reserveVO.res_name}${reserveVO.res_gender}</td>
-				<td width="100px">${reserveVO.res_phone}</td>
-				<td width="50px">${reserveVO.res_numP}人</td>
-				<td width="200px">${reserveVO.res_remark}</td>
-				<td>
-					<form hidden action="" method="post">
-						<input hidden type="text" name="res_time" value="${reserveVO.res_time}" />
-						<input hidden type="text" name="res_phone" value="${reserveVO.res_phone}"/>
-						<input type="button" value="修改" /> &nbsp;
-						<input type="button" value="刪除" />
-					</form>
-				</td>
-			</tr>
-		</c:forEach>
-		</c:if>
-		<c:if test="${test == 'xxx'}">
-			<c:forEach var="reserveVO" items="${resVO}">
+	<div id="main">
+		<table style="width:100%">
 			<tr>
-				<td width="200px">${reserveVO.res_time}</td>
-				<td width="80px">${reserveVO.res_name}${reserveVO.res_gender}</td>
-				<td width="100px">${reserveVO.res_phone}</td>
-				<td width="50px">${reserveVO.res_numP}人</td>
-				<td width="200px">${reserveVO.res_remark}</td>
-				<td>
-					<form hidden action="" method="post">
-						<input hidden type="text" name="res_time" value="${reserveVO.res_time}" />
-						<input hidden type="text" name="res_phone" value="${reserveVO.res_phone}"/>
-						<input type="button" value="修改" /> &nbsp;
-						<input type="button" value="刪除" />
-					</form>
-				</td>
+			<td align="left">	
+				<form id="selectReserve" action="ReserveServlet.do?doWhat=selects" method="post">
+					選擇時間:
+					<select name="months">
+						<option value="0">選擇月份</option>
+						<c:forEach var="month" begin="1" end="12">
+							<option value="${month}">${month}月</option>
+						</c:forEach>
+					</select>
+					<select name="days">
+						<option value="0">選擇日期</option>
+					</select>
+					<input type="button" id="btn_select" value="查詢" />
+				</form>
+			</td>
+			<td align="right">
+				<button id="showbtn">修改預約表</button>
+			</td>
 			</tr>
-		</c:forEach>
-		</c:if>
-	</table>
+		</table>
+		<br />
+		<table id="todayList">
+			<tr><th>預約的時間</th><th>名稱</th><th>手機</th><th>人數</th><th>特殊需求</th><th width="200px"></th></tr>
+			<c:if test="${test != 'xxx'}">
+				<c:forEach var="reserveVO" items="${reserveBean.today}">
+					<tr>
+					<td >${reserveVO.res_time}</td>
+					<td >${reserveVO.res_name}${reserveVO.res_gender}</td>
+					<td >${reserveVO.res_phone}</td>
+					<td >${reserveVO.res_numP}人</td>
+					<td >${reserveVO.res_remark}</td>
+					<td>
+						<form hidden action="" method="post">
+							<input hidden type="text" name="res_time" value="${reserveVO.res_time}" />
+							<input hidden type="text" name="res_phone" value="${reserveVO.res_phone}"/>
+							<input type="button" value="修改" />
+							<input type="button" value="刪除" />
+						</form>
+					</td>
+				</tr>
+			</c:forEach>
+			</c:if>
+			<c:if test="${test == 'xxx'}">
+				<c:forEach var="reserveVO" items="${resVO}">
+				<tr>
+					<td >${reserveVO.res_time}</td>
+					<td >${reserveVO.res_name}${reserveVO.res_gender}</td>
+					<td >${reserveVO.res_phone}</td>
+					<td >${reserveVO.res_numP}人</td>
+					<td >${reserveVO.res_remark}</td>
+					<td>
+						<form hidden action="" method="post">
+							<input hidden type="text" name="res_time" value="${reserveVO.res_time}" />
+							<input hidden type="text" name="res_phone" value="${reserveVO.res_phone}"/>
+							<input type="button" value="修改" />
+							<input type="button" value="刪除" />
+						</form>
+					</td>
+				</tr>
+			</c:forEach>
+			</c:if>
+		</table>
+	</div>
 <br/>
 <br/>
 <br/>

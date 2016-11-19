@@ -38,8 +38,12 @@ public class EmpService {
 		return dao.getAll();
 	}
 	
-	public EmpVO checkIDPassword(String emp_email, String emp_password) {
+	public EmpVO checkIDPassword(String emp_email) {
 		
 		return dao.getEmail(emp_email);
+	}
+	
+	public void Updatepassword(EmpVO empVO) {
+		dao.Updatepassword(empVO);
 	}
 }

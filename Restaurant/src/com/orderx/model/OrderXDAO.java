@@ -12,12 +12,6 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import com.product.model.ProductVO;
 
 public class OrderXDAO implements OrderXDAO_interface {
-	
-	// =====================================================
-//	private static final String GET_ALL_STMT = "FROM OrderXVO where orderVO.order_date =? order by orderX_time";
-//	private static final String FINISHNUM = "select count(orderX_status) from OrderTableX where order_id=? and orderX_status=?";
-//	private static final String IDMAX = "select count(orderX_status) from OrderTableX where order_id=? ";
-	// ======================================================
 
 	private HibernateTemplate hibernateTemplate;
 

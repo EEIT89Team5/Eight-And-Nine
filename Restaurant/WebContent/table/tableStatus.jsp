@@ -52,7 +52,6 @@ $(function() {
 																
 });
 </script>
-
 <!--pop up end here-->
 <style>
 /* 	body{background-color:#000000;} */

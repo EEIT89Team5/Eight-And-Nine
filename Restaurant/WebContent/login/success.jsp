@@ -2,9 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
+<c:remove var="LoginOK"/>
+<%
+  session.invalidate();
+%>
 <html>
 <head>
-<title>權限不足</title>
+<title>登出</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -48,7 +52,7 @@ body,.inner-block{
 }
 #block {
     	height: 300px; /*高度*/ 
-     	width: 700px;  /*寬度*/ 
+     	width: 800px;  /*寬度*/ 
      	position: absolute; 
       	top:50%; 
       	left:50%;
@@ -106,9 +110,14 @@ body,.inner-block{
 <!--inner block start here-->
 <div class="inner-block">
     <div class="price-block-main">
+		<div align="center"><a href="../index_theme.jsp" style="text-decoration:none;"><font style="color:white;font-family:ShowWind;font-size:50px;font-weight: bold;">回首頁</font></a></div>
+		<div align="center">
 		<div id="block">
-		<a href="../index.jsp"><img src="../img/warning.png"></a>
+		<img src="../img/success.png">
+		<div align="center"><font style="color:red;font-family:ShowWind;font-size:60px;font-weight: bold;">新密碼已經寄到您的信箱囉！</font></div>
 		</div>
+		</div>
+<br/>
 <br/>
 <br/>
 <br/>
@@ -247,4 +256,3 @@ $(".sidebar-icon").click(function() {
 <!-- mother grid end here-->
 </body>
 </html>
->>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git

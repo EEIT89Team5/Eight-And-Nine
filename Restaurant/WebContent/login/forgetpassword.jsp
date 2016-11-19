@@ -4,7 +4,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>權限不足</title>
+<title>登錄</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -46,11 +46,17 @@ body,.inner-block{
 #menu span{
 	position:absolute;
 }
+td{
+color:white;
+font-family:"ShowWind";
+font-size:35px;
+height: 80px;
+}
 #block {
     	height: 300px; /*高度*/ 
      	width: 700px;  /*寬度*/ 
      	position: absolute; 
-      	top:50%; 
+      	top:35%; 
       	left:50%;
       	
      	margin:0px auto;
@@ -106,9 +112,22 @@ body,.inner-block{
 <!--inner block start here-->
 <div class="inner-block">
     <div class="price-block-main">
-		<div id="block">
-		<a href="../index.jsp"><img src="../img/warning.png"></a>
+		<div align="center" id="block">
+		<div align="center"><img src="../img/I FORGET.png"></div>
+			<div align="center"><div align="center"><img src="../img/passwordkey.png"></div></div>
+		<br>
+		<br>
+		<br>
+		<Form Action="forget.do" method="POST"> 
+		<table>   
+		<TR><td><input type="text" id="emp_email" name="emp_email" placeholder="請輸入信箱" style="color:black;font-size:25px"></td></TR>	
+		<TR><td align="center"><input type="submit" value="確認" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px"></td></TR>
+		<font style="color:red;font-size:35px;font-family:ShowWind;font-weight: bold;">我們將會把新的密碼寄到您的信箱</font>
+		</table>
+		</Form>
 		</div>
+		<script src="../js/buttons.js"></script>
+		<link rel="stylesheet" href="../css/buttons.css">
 <br/>
 <br/>
 <br/>
@@ -143,7 +162,10 @@ body,.inner-block{
 <br/>
 <br/>
 <br/>
-
+<br/>
+<br/>
+<br/>
+<br/>
 
 
 </div>
@@ -247,4 +269,3 @@ $(".sidebar-icon").click(function() {
 <!-- mother grid end here-->
 </body>
 </html>
->>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git
