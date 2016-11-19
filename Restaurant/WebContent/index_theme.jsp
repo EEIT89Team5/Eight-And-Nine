@@ -32,11 +32,10 @@ $(document).ready(function() {
 </script>
 <!--pop up end here-->
 <style>
-/* .sidebar-icon{ */
-/* 	background-color:pink; */
-/* } */
-body,.inner-block{
-/* background:black; */
+body{
+  background:black; 
+}
+.inner-block{
  	background-image: url("img/45.jpg"); 
 	background-size: 100% 100%;
 }
@@ -50,9 +49,9 @@ body,.inner-block{
 	position:absolute;
 }
 #welcomelogo{
-/* 	width:500px;  */
-/* 	height:600px; */
-	margin-left: 50px;
+ 	width:80%;  
+ 	height:70%; 
+	margin-left: 20px;
 	margin-top: -30px;
 }
 
@@ -106,15 +105,12 @@ body,.inner-block{
 <!--inner block start here-->
 <div class="inner-block">
     <div class="price-block-main">
-<!--     <div id="imgs"> -->
-<!-- <img width="400" height="500" alt="首頁" src="img/真小人.png"> -->
-<!-- <img  alt="首頁" src="img/01.png"> -->
-<img id="welcomelogo" style="width:100%;height: 100%" alt="首頁" src="img/01.png">
-<!-- <img  alt="首頁" src="img/03.png"> -->
-<!-- <img  alt="首頁" src="img/04.png"> -->
-<!-- <img  alt="首頁" src="img/05.png"> -->
-<!-- </div> -->
 
+	<img id="welcomelogo" style="width:100%;height: 100%" alt="首頁" src="img/01.png">
+
+
+<br />
+<br />
 <br />
 <br />
 <br />
