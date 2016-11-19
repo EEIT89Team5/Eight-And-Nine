@@ -102,11 +102,20 @@ public class DiscountServlet extends HttpServlet{
 				/***************************2.開始查詢資料****************************************/
 				DiscountService discSvc = new DiscountService();
 				DiscountVO discountVO = discSvc.getOneDisc(disc_id);
-								
+				String Disv=discountVO.getDisc_value().toString();
+				if(Disv.length()==3){
+				Integer Disvv=new Integer(Disv.substring(2,3));
+				req.setAttribute("Disv", Disvv);
+				}else{
+				Integer Disvv=new Integer(Disv.substring(2,4));
+				req.setAttribute("Disv", Disvv);
+				}
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
+
 				req.setAttribute("discountVO", discountVO);         // 資料庫取出的empVO物件,存入req
 				String url = "/discount/discount_U_I.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
+
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理**********************************/

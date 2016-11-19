@@ -58,6 +58,17 @@ div[align="center"]{
 div[align="center"] input{
 	color:black;
 }
+font-face{
+font-family:"ShowWind";
+src:url("../font/ShowWind.ttc")
+}
+td{
+font-family:"ShowWind";
+font-size:30px;
+width: 200px;
+height: 90px;
+font-weight:bold
+}
 </style>
 </head>
 <body>	
@@ -109,8 +120,12 @@ div[align="center"] input{
     <div class="price-block-main">
     
 		<div align='center'>
-			
-		<h3>折扣修改:</h3>
+<img src="../img/discountlogo.png"><br>
+<img src="../img/UPDATE.png">
+<br>
+<br>
+<br>
+<br>
 		<%-- 錯誤表列 --%>
 		<c:if test="${not empty errorMsgs}">
 			<font color='red'>請修正以下錯誤:
@@ -123,18 +138,18 @@ div[align="center"] input{
 		</c:if>
 		
 		<FORM METHOD="post" ACTION="disc.do" name="form1">
-		<table border="0">
+		<table border="0" id="discount">
 			<tr>
 				<td>折扣編號:
-				<td><%=discountVO.getDisc_id()%></td>
+				<td><font style="color:red;font-size:35px"><%=discountVO.getDisc_id()%></font></td>
 			</tr>
 			<tr>
 				<td>折扣名稱:</td>
-				<td><input type="TEXT" name="disc_name" size="45" value="<%=discountVO.getDisc_name()%>" /></td>
+				<td><input type="TEXT" name="disc_name" size="45" value="<%=discountVO.getDisc_name()%>" style="width: 250px" /></td>
 			</tr>
 			<tr>
 				<td>折扣:</td>
-				<td><input type="TEXT" name="disc_value" size="45"	value="<%=discountVO.getDisc_value()%>" /></td>
+				<td><input type="TEXT" name="disc_value" size="45"	value="${Disv}" style="width: 60px" maxlength="2"/></td>
 			</tr>
 			
 		
@@ -142,7 +157,7 @@ div[align="center"] input{
 		<br>
 		<input type="hidden" name="action" value="update">
 		<input type="hidden" name="disc_id" value="<%=discountVO.getDisc_id()%>">
-		<input type="submit" value="送出修改"></FORM>
+		<input type="submit" value="修改" class="btn btn-warning" style="font-family:ShowWind;font-size:30px;color:white"></FORM>
 		</div>
 <br/>
 <br/>
@@ -265,6 +280,7 @@ $(".sidebar-icon").click(function() {
   }               
   toggle = !toggle;
 });
+
 </script>
 <!--scrolling js-->
 		<script src="../js/jquery.nicescroll.js"></script>
