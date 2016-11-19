@@ -3,7 +3,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.orderx.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
-
+<%-- 此頁練習採用 EL 的寫法取值 --%>
 <%
 
 OrderXService svc = new OrderXService();
@@ -15,6 +15,7 @@ java.sql.Date d2=java.sql.Date.valueOf("2016-10-10");
     List<OrderXVO> list = svc.getAll(d);
 
   
+
     pageContext.setAttribute("list",list);
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">

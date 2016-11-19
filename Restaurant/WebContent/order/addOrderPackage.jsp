@@ -35,6 +35,7 @@
 
 <h3>訂單資訊</h3>
 <table>
+515555
 	<tr>
 		<td>桌號:${orderVO.order_table}</td>
 		<td>人數:${orderVO.order_numP}人</td>
