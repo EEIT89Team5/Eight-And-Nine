@@ -74,6 +74,7 @@ width: 2000px;
 </style>
 <head>
 <title>內場資訊 </title>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body style="background-color:black">
 		<h3  align="center" style="font-family:ShowWind ;font-size: 50px;color: white">內場資訊 </h3>

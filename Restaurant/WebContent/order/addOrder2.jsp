@@ -41,6 +41,7 @@ moz-border-radius: 10px;
 border-radius: 10px;
 }
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>
 <div align="center">

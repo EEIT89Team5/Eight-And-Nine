@@ -73,6 +73,7 @@ background:black;
 text-align: center;
 }
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body id="bbody">	
 <div class="page-container sidebar-collapsed">	

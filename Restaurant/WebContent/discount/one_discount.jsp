@@ -56,15 +56,19 @@ src: url("../font/ShowWind.ttc")
 }
 td{
 font-family:"ShowWind";
-font-size:30px
+font-size:40px;
+height: 150px;
+font-weight:bold;
 }
 
 th{
 font-family:"ShowWind";
-font-size:35px;
-text-align:center
+font-size:45px;
+text-align:center;
+font-weight:bold;
 }
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>	
 <div class="page-container sidebar-collapsed">	
@@ -123,7 +127,7 @@ text-align:center
 <br>
 <br>
 		
-		<table class="table" style="width:600px" id="discount">
+		<table style="width:600px" id="discount">
 			<tr>
 				<th>折扣編號</th>
 				<th>折扣名稱</th>
@@ -131,7 +135,7 @@ text-align:center
 				
 			</tr>
 			<tr align='center' valign='middle'>
-				<td>${discountVO.disc_id}</td>
+				<td style="color:red">${discountVO.disc_id}</td>
 				<td>${discountVO.disc_name}</td>
 		        <td>${discountVO.disc_value}折</td>
 		       	

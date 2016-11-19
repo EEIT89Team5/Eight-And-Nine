@@ -112,6 +112,7 @@ moz-border-radius: 10px;
 border-radius: 10px;
 }
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>	
 <div class="page-container sidebar-collapsed">	
@@ -164,7 +165,7 @@ border-radius: 10px;
 		
 		<img src="../img/prologo.png"><br>
 		<a href="../index.jsp"><img src="../img/TOTAL.png"></a><br>
-
+<br>
 		<table align="center" class="table" style="width: 1200px">
 			<tr>
 				<th>商品編號</th>
