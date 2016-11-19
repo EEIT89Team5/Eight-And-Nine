@@ -149,7 +149,7 @@ font-weight:bold
 			</tr>
 			<tr>
 				<td>折扣:</td>
-				<td><input type="TEXT" name="disc_value" size="45"	value="${Disv}" style="width: 60px" maxlength="2"/></td>
+				<td><input type="TEXT" name="disc_value" size="45"	value="${Disv}" style="width: 60px" maxlength="2"/>折</td>
 			</tr>
 			
 		

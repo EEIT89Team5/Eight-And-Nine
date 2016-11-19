@@ -50,7 +50,20 @@ body,.inner-block{
 div[align="center"]{
 	color:white;
 }
+@font-face{
+font-family:"ShowWind";
+src: url("../font/ShowWind.ttc")
+}
+td{
+font-family:"ShowWind";
+font-size:30px
+}
 
+th{
+font-family:"ShowWind";
+font-size:35px;
+text-align:center
+}
 </style>
 </head>
 <body>	
@@ -102,9 +115,15 @@ div[align="center"]{
     <div class="price-block-main">
     
 		<div align="center">
-		<h3>折扣資料</h3>
+<img src="../img/discountlogo.png"><br>
+<img src="../img/select.png">
+<br>
+<br>
+<br>
+<br>
+<br>
 		
-		<table border='1' bordercolor='#AAAAAA' width='600'>
+		<table class="table" style="width:600px" id="discount">
 			<tr>
 				<th>折扣編號</th>
 				<th>折扣名稱</th>
@@ -114,7 +133,7 @@ div[align="center"]{
 			<tr align='center' valign='middle'>
 				<td>${discountVO.disc_id}</td>
 				<td>${discountVO.disc_name}</td>
-		        <td>${discountVO.disc_value}</td>
+		        <td>${discountVO.disc_value}折</td>
 		       	
 			 </tr>
 		</table>
@@ -246,6 +265,13 @@ $(".sidebar-icon").click(function() {
   }               
   toggle = !toggle;
 });
+
+$(document).ready(function() {
+	$.each($('#discount tr'),function(){
+		var x = $(this).find('td:eq(2)');
+		x.text(x.text().substring(2,5));
+	});
+})
 </script>
 <!--scrolling js-->
 		<script src="../js/jquery.nicescroll.js"></script>
