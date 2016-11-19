@@ -13,11 +13,7 @@ import com.product.model.ProductVO;
 
 public class OrderXDAO implements OrderXDAO_interface {
 	
-	// =====================================================
-	private static final String GET_ALL_STMT = "FROM OrderXVO where orderVO.order_date =? order by orderX_time";
-	private static final String FINISHNUM = "select count(orderX_status) from OrderTableX where order_id=? and orderX_status=?";
-	private static final String IDMAX = "select count(orderX_status) from OrderTableX where order_id=? ";
-	// ======================================================
+
 
 	private HibernateTemplate hibernateTemplate;
 
@@ -145,6 +141,7 @@ public class OrderXDAO implements OrderXDAO_interface {
 	// ===============================================
 	@Override
 	public void update(OrderXVO orderXVO) {
+		hibernateTemplate.saveOrUpdate(orderXVO);
 		// Session session =
 		// HibernateUtil.getSessionFactory().getCurrentSession();
 		// try {
@@ -163,6 +160,8 @@ public class OrderXDAO implements OrderXDAO_interface {
 	@Override
 	public List<OrderXVO> getAll(Date d2) {
 		List<OrderXVO> list = null;
+		list = hibernateTemplate.find("FROM OrderXVO where orderVO.order_date =? order by orderVO.order_id",d2);
+		
 		// Session session =
 		// HibernateUtil.getSessionFactory().getCurrentSession();
 		// try {
@@ -181,9 +180,18 @@ public class OrderXDAO implements OrderXDAO_interface {
 	@Override
 	public Integer FINISHNUM(OrderXVO orderXVO) {
 		List<Integer> list = null;
-		List<Integer> list2 = null;
+		List<Long> list2 = null;
 		Integer num2 = null;
+		list2 = hibernateTemplate.find(" select count(*) from OrderXVO where orderVO.order_id=? and orderX_status=?",
+				new Object[]{orderXVO.getOrderVO().getOrder_id(),orderXVO.getOrderX_status()}
+				);
+		num2=list2.get(0).intValue();
+//		System.out.println("num2="+num2);
+//		for(Integer a:list2){
+//			num2=a;
+//		}
 
+		
 		// Session session =
 		// HibernateUtil.getSessionFactory().getCurrentSession();
 		// try {
@@ -205,9 +213,14 @@ public class OrderXDAO implements OrderXDAO_interface {
 	@Override
 	public Integer IDMAX(OrderXVO orderXVO) {
 		List<Integer> list = null;
-		List<Integer> list2 = null;
+		List<Long> list2 = null;
 		Integer num = null;
-
+		list2 = hibernateTemplate.find("select count(orderX_status) from OrderXVO where orderVO.order_id=? ",
+				orderXVO.getOrderVO().getOrder_id()
+				);
+		num=list2.get(0).intValue();
+//		System.out.println("num="+num);
+//		num = hibernateTemplate.find("select count(orderX_status) from OrderTableX where order_id=?",orderXVO.getOrderVO().getOrder_id());
 		// Session session =
 		// HibernateUtil.getSessionFactory().getCurrentSession();
 		// try {
