@@ -36,6 +36,8 @@ $(document).ready(function() {
 <style>
 body,.inner-block{
 	background-color:black;
+	background-image: url("../img/0003.png");
+	background-size: cover;
 }
 .clerfix{
 	border-style:solid;
