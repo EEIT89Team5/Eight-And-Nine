@@ -31,7 +31,7 @@ public class EmpFacade {
 	}
 
 	@GET
-	@Path("/loginmail/{emp_email}")
+	@Path("/loginEmail/{emp_email}")
 	@Produces({ MediaType.APPLICATION_JSON })
 	public EmpVO loginCheck(@PathParam("emp_email") String emp_email) {
 		EmpVO empVO = null;
