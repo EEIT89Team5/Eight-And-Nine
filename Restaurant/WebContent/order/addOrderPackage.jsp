@@ -90,6 +90,7 @@ font-weight: bold
   </table>
   <br>
   <br>
+ <form METHOD="post" ACTION="order.do" id="formOfDish" name="formOfDish">
   <c:if test="${packageFormatVO != null}">  <!--如果套餐資訊為Null 就不顯示 點餐&選擇套數 -->
 	<h3 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">點餐</h3>
 	     <font>請選擇套數:</font>
@@ -106,7 +107,6 @@ font-weight: bold
 			     <option value="10">10</option>
 		     </select>
    
-       <form METHOD="post" ACTION="order.do" id="formOfDish" name="formOfDish">
 		   <c:forEach var="packageFormatVO" items="${packageFormatVO}">			                         
 	          <c:if test="${packageFormatVO.getClass_number() != '0'}">       <!-- 把套餐內沒有的菜色類別不顯示   個人獨享餐沒有沙拉、湯品、甜點。-->
 				<div ><h3 class="headOfH3"><font style="color:red">${packageFormatVO.getDishClassVO().getClass_name()}</font><span name="showMoreOrShort${packageFormatVO.getDishClassVO().getClass_id()}"></span></h3>
@@ -117,7 +117,7 @@ font-weight: bold
      		        
 	               <font style="font-size:28px;"> ${productVO.getProduct_name()}</font>
 						<select name="qtyOfDish" class="myClass${packageFormatVO.getDishClassVO().getClass_id()}" style="font-family:ShowWind;font-size:20px;font-weight:bold">	 						
-							 <option value="0" selected>0</opt可選 4樣)ion>
+							 <option value="0" selected>0</option>
 							 <option value="1" >1</option>
 							 <option value="2">2</option>
 							 <option value="3">3</option>
@@ -188,11 +188,12 @@ font-weight: bold
            		          		 
         		 var total = 0; 
         		 for(var i = 10 ; i < 70 ; i=i+10){
-        		   var $limitOfDishS = $("span[name='limitOfDish"+i+"']");	 
+        		   var $limitOfDishS = $("span[name='limitOfDish"+i+"']");	        //這裡是為了測試"尋找限制數量"
         		    //jquery陣列的變數宣告要加上$        		  
 //         		   console.log($limitOfDishS.text());
 //         		   var $selects =  $limitOfDishS.parent().parent().find(".myClass"+i);  原本1114  17:07
 //         		   console.log($selects.text());   原本1114  17:07
+                  console.log("我是限制數量-----:"+$limitOfDishS.text());
         		 } 	       
         	//	 }   原本1114  17:07
            	     var flag =0;
@@ -208,7 +209,7 @@ font-weight: bold
                 	    total += parseInt($options.val());
                      } 
 console.log("====================================================");
-                   
+                     var $limitOfDishS = $("span[name='limitOfDish"+i+"']");	          //抓取限制數量
         	         var  $headOfH3 =   $("span[name='limitOfDish"+i+"']").parent().parent().find(".headOfH3");  
         	         var  $showMoreOrShort =  $("span[name='showMoreOrShort" +i+ "']");     //用i準確抓showMoreOrShort位置
         	         if($headOfH3.text() != ""){
@@ -234,7 +235,7 @@ console.log("====================================================");
         	           }else{
         	        	  console.log("????");
         	           }
-         	         console.log("我是總額:"+total);
+         	         console.log(i+"我是總額:"+total);
         	         $selects = [];
         	         total = 0;
 
@@ -282,7 +283,7 @@ console.log("====================================================");
         	 
 
         	 $('#qtyOfPackage').change(function(){  
-                 var qtyOfPackage = $('#qtyOfPackage').val();                   // 套餐數量選擇
+                 var qtyOfPackage = $('#qtyOfPackage').val();                              // 套餐數量選擇
         		 for( var i = 0; i< $("span[name*='limitOfDish']").length; i++){        	//	$("span[name='limitOfDish']") 為陣列
              		 var limitOfDish = $("span[name*='limitOfDish']:eq("+i+")").attr("value");   //找 屬性為value的值    當作初始值用。 
             		 $("span[name*='limitOfDish']:eq("+i+")").text(limitOfDish*qtyOfPackage);    //改變畫面的text   (初始數 * 選擇數量)
