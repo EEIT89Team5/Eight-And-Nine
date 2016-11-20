@@ -21,6 +21,10 @@ background-size: cover;
 font-family:"ShowWind";
 src: url("../font/ShowWind.ttc");  
 }
+@font-face{
+font-family:"BoldFace";
+src: url("../font/BoldFace.ttc");  
+}
 td{
 font-family:"ShowWind";
 color:white;
@@ -30,11 +34,7 @@ padding: 10px
 h2{
 color:white
 }
-h3{
-font-family:"ShowWind";
-font-size:45px;
-color:white
-}
+
 img{
 webkit-border-radius: 10px;
 moz-border-radius: 10px;
@@ -53,7 +53,6 @@ border-radius: 10px;
 <br>
 <table>
 	<tr>
-	
 <a href="../member/addMember.jsp" ><img src="../img/adduser.png" title="註冊會員"></a>
 <span><a href="../memberlogin/memberlogin.jsp" ><img src="../img/login.png" title="登入會員"></span></a>
 <span><a href="../memberlogin/memberlogout.jsp" ><img src="../img/signout.png" title="登出會員"></a></span>
@@ -76,7 +75,8 @@ border-radius: 10px;
 <br>
 <br>
 
-<h3>套餐</h3>
+<img src="../img/PACKAGE.png">
+
 	<table>
 		<tr>		
 			<td>
@@ -86,7 +86,7 @@ border-radius: 10px;
 			</td>			
 		</tr>
 	</table>
-
+<br>
 
 <table>
 	<tr>
