@@ -8,6 +8,8 @@ import org.hibernate.Query;
 import org.hibernate.classic.Session;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
+import com.emp.model.EmpVO;
+
 
 public class MemberDAO implements MemberDAO_interface {
 
@@ -78,6 +80,14 @@ public class MemberDAO implements MemberDAO_interface {
 		List<MemberVO> memberVOs = new LinkedList<MemberVO>();
 		memberVOs = hibernateTemplate.find("FROM MemberVO");
 		return memberVOs;
+	}
+	@Override
+	public MemberVO getEmail(String mememail) {
+		List<MemberVO> list = hibernateTemplate.find("FROM MemberVO WHERE member_email = ? ",mememail);
+		MemberVO memVO=null;
+		if(list.size()!=0)
+			memVO=list.get(0);
+		return memVO;
 	}
 
 	public static void main(String[] args) {

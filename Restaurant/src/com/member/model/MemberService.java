@@ -7,6 +7,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.emp.model.EmpDAO_interface;
+import com.emp.model.EmpVO;
 
 public class MemberService {
 	
@@ -71,6 +72,11 @@ public class MemberService {
 	public MemberVO checkPhonePassword(String member_phone) {
 		
 		return dao.getPhone(member_phone);
+	}
+	
+	public MemberVO checkIDPassword(String mememail) {
+		
+		return dao.getEmail(mememail);
 	}
 	
 	public static void main(String[] args) {
