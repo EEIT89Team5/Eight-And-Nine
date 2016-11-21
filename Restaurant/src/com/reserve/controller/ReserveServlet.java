@@ -49,7 +49,8 @@ public class ReserveServlet extends HttpServlet {
 				return;
 			}
 			rdao.insert(date, time, res_name, res_gender, res_phone, res_numP, res_remark);
-			response.sendRedirect("../index.jsp");
+//			response.sendRedirect("reserveQ.jsp");
+			response.sendRedirect("ReserveServlet.do?doWhat=selects&months="+date.substring(5, 7)+"&days="+date.substring(8, 10));
 		}
 		
 //--------------------修改預約資料(從DB找到資料丟到修改的頁面)----------------------------------

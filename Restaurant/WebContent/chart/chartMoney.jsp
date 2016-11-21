@@ -17,7 +17,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="../js/jquery.magnific-popup.js" type="text/javascript"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
- <script>
+<script>
 $(document).ready(function() {
 	$('.popup-with-zoom-anim').magnificPopup({
 		type: 'inline',
@@ -140,6 +140,12 @@ body,.inner-block{
  small{ 
  	font-family: "ShowWind"; 
  	font-size: 40px; 
+ 	font-weight: bold; 
+  	color:black; 
+ }
+ .inner-block select{
+ 	font-family: "ShowWind"; 
+	font-size: 30px;  
  	font-weight: bold; 
   	color:black; 
  }
