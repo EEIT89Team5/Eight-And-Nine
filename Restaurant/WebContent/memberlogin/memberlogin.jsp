@@ -83,7 +83,7 @@ height: 50px;
 $("#forgetlogin").click(function(){
 	var dd=$("#userId").val();
 	$.post("memberlogin.do",{"action":"forgetlogin","userId":dd},function(){
-		swal("密碼已經寄至您的信件囉~啾咪^.<")
+		swal("密碼已經寄至您的信件囉~你這沒記性的小BITCH")
 	});
 	
 })
