@@ -12,8 +12,6 @@ import org.springframework.orm.hibernate3.HibernateTemplate;
 import com.product.model.ProductVO;
 
 public class OrderXDAO implements OrderXDAO_interface {
-	
-
 
 	private HibernateTemplate hibernateTemplate;
 
@@ -220,7 +218,7 @@ public class OrderXDAO implements OrderXDAO_interface {
 				);
 		num=list2.get(0).intValue();
 //		System.out.println("num="+num);
-//		num = hibernateTemplate.find("select count(orderX_status) from OrderTableX where order_id=?",orderXVO.getOrderVO().getOrder_id());
+
 		// Session session =
 		// HibernateUtil.getSessionFactory().getCurrentSession();
 		// try {
@@ -237,7 +235,6 @@ public class OrderXDAO implements OrderXDAO_interface {
 		// }
 		return num;
 	}
-	
 	 private static final String PCG_CHART="select productVO.product_name,SUM(orderX_num) from OrderXVO  "
 	+ " WHERE orderVO.order_date between ? And ? "
 	+ "and productVO.productKindVO.kind_id=2 group by productVO.product_name";

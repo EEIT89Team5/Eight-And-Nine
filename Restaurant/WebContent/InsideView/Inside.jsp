@@ -3,8 +3,6 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.orderx.model.*"%>
 
-
-<%-- 此頁練習採用 EL 的寫法取值 --%>
 <%
 
 OrderXService svc = new OrderXService();
@@ -203,9 +201,5 @@ $(function(){
 })
 
 </script>
-
-
-
-
 
 </html>

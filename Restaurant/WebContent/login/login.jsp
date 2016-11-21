@@ -282,4 +282,5 @@ $(".sidebar-icon").click(function() {
 		<script src="../js/bootstrap.js"> </script>
 <!-- mother grid end here-->
 </body>
+>>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git
 </html>

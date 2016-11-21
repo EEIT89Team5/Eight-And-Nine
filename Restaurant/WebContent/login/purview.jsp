@@ -248,3 +248,4 @@ $(".sidebar-icon").click(function() {
 <!-- mother grid end here-->
 </body>
 </html>
+>>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git

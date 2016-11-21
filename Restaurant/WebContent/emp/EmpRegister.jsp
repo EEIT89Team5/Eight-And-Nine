@@ -205,6 +205,7 @@ $(document).ready(function() {
 		format: 'yyyy-mm-dd',
 		todayBtn: "linked"		
 	});
+
 	var count=null;
 $("#allbutton").click(function(){
 	count=0;
