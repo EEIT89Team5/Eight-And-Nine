@@ -44,13 +44,12 @@ $(document).ready(function() {
 	});
 	
 	$("tr").mouseover(over).mouseout(out);
-		
 	
-		function over() {
-			$(this).css('background-color','rgba(100,100,100,0.4)');
-		}
-		function out() {
-			$(this).css('background-color','black');
+	function over() {
+		$(this).css('background-color','rgba(100,100,100,0.4)');
+	}
+	function out() {
+		$(this).css('background-color','black');
 	}
 																
 });
@@ -315,7 +314,7 @@ width:100%;
 		        </li>
 		        <li><a><i class="fa fa-free-code-camp"></i><span>內場狀態</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		         	 <ul id="menu-academico-sub" >
-			            <li><a href="../InsideView/Inside.jsp">內場</a></li>
+			            <li><a href="Inside.jsp">內場</a></li>
 			         	<li><a href="../Outsideview/Outside.jsp">出餐口</a></li>
 		             </ul>
 		        </li>
