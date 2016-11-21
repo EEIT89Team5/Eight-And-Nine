@@ -50,6 +50,7 @@ height: 30px;
 font-weight: bold;"
 }
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>
 <div align="center" id="block">

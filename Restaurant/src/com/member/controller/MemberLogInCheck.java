@@ -16,7 +16,7 @@ import com.member.model.MemberService;
 import com.member.model.MemberVO;
 
 @WebServlet("/memberAccountCheck")
-public class MemberAccountCheck extends HttpServlet {
+public class MemberLogInCheck extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

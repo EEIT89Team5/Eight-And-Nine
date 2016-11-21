@@ -2,8 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.orderx.model.*"%>
-<%-- 此頁練習採用 EL 的寫法取值 --%>
-<%-- 此頁練習採用 EL 的寫法取值 --%>
+
 <%
 
 OrderXService svc = new OrderXService();
@@ -73,6 +72,7 @@ width: 2000px;
 </style>
 <head>
 <title>內場資訊 </title>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body style="background-color:black">
 		<h3  align="center" style="font-family:ShowWind ;font-size: 50px;color: white">內場資訊 </h3>
@@ -203,4 +203,10 @@ $(function(){
 </script>
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git
 </html>

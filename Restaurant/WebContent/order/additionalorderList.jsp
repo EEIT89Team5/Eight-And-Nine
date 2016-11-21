@@ -25,6 +25,7 @@ body{
 background-image: url("../img/0003.png");
 }
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>
  <div align="center">

@@ -125,6 +125,7 @@ font-size:25px;
 color:white;
 }
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>	
 <div class="page-container sidebar-collapsed">	

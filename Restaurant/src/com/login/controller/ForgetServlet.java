@@ -28,6 +28,89 @@ public class ForgetServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String forget=request.getParameter("forget");
+		
+		if ("alertpas".equals(forget)) { 
+			String empemail=request.getParameter("emp_email");
+			String empopass=request.getParameter("emp_oldpassword");
+			String empnpass=request.getParameter("emp_newpassword");
+			
+			
+			EmpVO empVO=new EmpVO();
+			EmpVO empVO2=new EmpVO();
+			
+			EmpService forgetmaill=new EmpService();
+			empVO=forgetmaill.checkIDPassword(empemail);
+			
+			if(!empVO.getEmp_password().equals(empopass)){
+			response.sendRedirect("error.jsp");
+			}
+			
+			if(empVO.getEmp_password().equals(empopass)){
+			empVO2.setEmp_id(empVO.getEmp_id());
+			empVO2.setEmp_name(empVO.getEmp_name());
+			empVO2.setEmp_gender(empVO.getEmp_gender());
+			empVO2.setEmp_title(empVO.getEmp_title());
+			empVO2.setEmp_fulltime(empVO.getEmp_fulltime());
+			empVO2.setEmp_salary(empVO.getEmp_salary());
+			empVO2.setEmp_birthday(empVO.getEmp_birthday());
+			empVO2.setEmp_idnumber(empVO.getEmp_idnumber());
+			empVO2.setEmp_phone(empVO.getEmp_phone());
+			empVO2.setEmp_addr(empVO.getEmp_addr());
+			empVO2.setEmp_hiredate(empVO.getEmp_hiredate());
+			empVO2.setEmp_email(empemail);
+			empVO2.setEmp_password(empnpass);
+			empVO2.setEmp_status(empVO.getEmp_status());
+			forgetmaill.Updatepassword(empVO2);
+			 Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
+			  final String SSL_FACTORY = "javax.net.ssl.SSLSocketFactory";
+
+			  Properties props = System.getProperties();
+			  props.setProperty("mail.smtp.host", "smtp.gmail.com");
+			  props.setProperty("mail.smtp.socketFactory.class", SSL_FACTORY);
+			  props.setProperty("mail.smtp.socketFactory.fallback", "false");
+			  props.setProperty("mail.smtp.port", "465");
+			  props.setProperty("mail.smtp.socketFactory.port", "465");
+			  props.put("mail.smtp.auth", "true");
+	    
+			  final String username = "8and9Seventeen"; //信箱帳號
+			  final String password = "eightandnine";	//信箱密碼
+			 
+			  String body="<h2>歡迎使用8+9餐廳管理系統</h2><br><br>"+"您的帳號是:"+empemail+"<br>"+"您的新密碼是:"+empnpass;
+			  
+			  Session session = Session.getDefaultInstance(props, new Authenticator(){
+			      protected PasswordAuthentication getPasswordAuthentication() {
+			          return new PasswordAuthentication(username, password);
+			      }}); 
+			    
+			  try{
+
+			  Message msg = new MimeMessage(session);
+			  
+			  msg.setFrom(new InternetAddress(username + "@gmail.com","8+9餐廳管理系統"));
+			  msg.setRecipients(Message.RecipientType.TO, 
+
+			  InternetAddress.parse(empemail,false));
+			  
+			  msg.setSubject("修改密碼");
+
+			  msg.setText(body);
+			  msg.setContent(body, "text/html;charset = UTF-8");
+			  msg.setSentDate(new Date());
+			  Transport.send(msg);
+			  
+			  System.out.println("信件已寄出");
+			}
+			catch (UnsupportedEncodingException | MessagingException e){
+				e.printStackTrace();
+			};	
+			response.sendRedirect("success.jsp");
+			}
+		}
+		
+		
+		
+		if ("iforget".equals(forget)) { 
 		String email = request.getParameter("emp_email");
 		EmpVO empVO=new EmpVO();
 		EmpVO empVO2=new EmpVO();
@@ -106,5 +189,6 @@ public class ForgetServlet extends HttpServlet {
 		forgetmaill.Updatepassword(empVO2);
 		
 		response.sendRedirect("success.jsp");
+		}
 	}
 }

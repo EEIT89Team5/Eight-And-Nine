@@ -55,6 +55,8 @@ $(document).ready(function() {
 <style>
 body,.inner-block{
 	background-color:black;
+	background-image: url("../img/0003.png");
+	background-size: cover;
 }
 .clerfix{
 	border-style:solid;
@@ -87,6 +89,7 @@ tr{
 	height: 50px
 }
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body id="bbody">	
 <div class="page-container sidebar-collapsed">	

@@ -157,6 +157,7 @@ background:#333;
 }
 ::-webkit-input-placeholder { font-family:"ShowWind";font-size: 20px;font-weight:bold}
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body background="../img/13.png" style="background-size: cover;">	
 <div class="page-container sidebar-collapsed">	

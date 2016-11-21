@@ -58,7 +58,15 @@ div[align="center"]{
 div[align="center"] input{
 	color:black;
 }
+td{
+font-family:"ShowWind";
+font-size:30px;
+width: 200px;
+height: 90px;
+font-weight:bold
+}
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>	
 <div class="page-container sidebar-collapsed">	
@@ -109,7 +117,12 @@ div[align="center"] input{
     <div class="price-block-main">
 <div align='center'>
 
-<h3>新增折扣:</h3>
+<img src="../img/discountlogo.png">
+<br>
+<br>
+<br>
+<br>
+<br>
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font color='red'>請修正以下錯誤:
@@ -127,7 +140,7 @@ div[align="center"] input{
 	<tr>
 		<td>折扣名稱:</td>
 		<td><input type="TEXT" name="disc_name" size="45" 
-			value="<%= (discountVO==null)? "" : discountVO.getDisc_name()%>" /></td>
+			value="<%= (discountVO==null)? "" : discountVO.getDisc_name()%>" style="width:250px"/></td>
 	</tr>
 	<tr>
 		<td>折扣:</td>
@@ -138,8 +151,9 @@ div[align="center"] input{
 
 </table>
 <br>
+<br>
 <input type="hidden" name="action" value="insert">
-<input type="submit" value="送出新增"></FORM>
+<input type="submit" value="新增" class="btn btn-warning" style="font-family:ShowWind;font-size:30px;color:white"></FORM>
 </div>
 <br/>
 <br/>

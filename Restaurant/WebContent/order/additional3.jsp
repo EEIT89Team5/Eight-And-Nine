@@ -25,6 +25,7 @@ background-image: url("../img/0003.png");
 background-size: cover;
 }
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>
 <%-- <h2>您已於${time}成功加訂餐點</h2><br/> --%>

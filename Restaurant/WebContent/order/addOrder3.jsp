@@ -25,6 +25,7 @@ font-family:ShowWind;
 color:white;
 }
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>
 <div align="center">

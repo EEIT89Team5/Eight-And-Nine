@@ -64,6 +64,7 @@ height: 80px;
 		margin-left:-350px
 }
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>	
 <div class="page-container sidebar-collapsed">	

@@ -1,30 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page import="com.product.model.ProductVO"%>
-<%@ page import="com.product.model.*"%>
-<%@ page import="java.util.*"%>
 <!DOCTYPE HTML>
-<html>
+<c:remove var="LoginOK"/>
 <%
-	ProductVO proVO = (ProductVO) request.getAttribute("proVO");
-
-	ProductService proSvc = new ProductService();
-	List<ProductVO> getAppetizer = proSvc.getOneClass(10,0);
-	pageContext.setAttribute("getAppetizer", getAppetizer);
-	List<ProductVO> getSalad = proSvc.getOneClass(20,0);
-	pageContext.setAttribute("getSalad", getSalad);
-	List<ProductVO> getSoup = proSvc.getOneClass(30,0);
-	pageContext.setAttribute("getSoup", getSoup);
-	List<ProductVO> getMain = proSvc.getOneClass(40,0);
-	pageContext.setAttribute("getMain", getMain);
-	List<ProductVO> getDessert = proSvc.getOneClass(50,0);
-	pageContext.setAttribute("getDessert", getDessert);
-	List<ProductVO> getDrink = proSvc.getOneClass(60,0);
-	pageContext.setAttribute("getDrink", getDrink);
+  session.invalidate();
 %>
+<html>
 <head>
-<title>下架菜色</title>
+<title>登出</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -48,25 +32,15 @@ $(document).ready(function() {
 		removalDelay: 300,
 		mainClass: 'my-mfp-zoom-in'
 	});
-	
-	$('input[name="product_id"]').click(function() {
-
-		$('div[align="center"] div').attr("hidden", "hidden");
-		var aa = $(this).val();
-		var bb = "#" + aa;
-
-		$(bb).removeAttr("hidden");
-	});
 																
 });
 </script>
 <!--pop up end here-->
 <style>
-body,.inner-block{ 
- 	background-color:black;
-	background-image: url("../img/0003.png");
+body,.inner-block{
+	background-image: url("../img/Loginbackground.jpg");
 	background-size: cover;
-} 
+}
 .clerfix{
 	border-style:solid;
 }
@@ -76,42 +50,21 @@ body,.inner-block{
 #menu span{
 	position:absolute;
 }
-th{
-font-family: ShowWind;
-font-size:25px;
-font-weight:bold;
-color:white;
-background-color:rgba(0,0,0,0);
-text-align: center
-}
-td{
-font-family: ShowWind;
-font-size:35px;
-color:white;
-background-color:rgba(0,0,0,0);
-text-align: center;
-}
-#bbody{
-background: #333;
-}
-@font-face {  
-  font-family: "ShowWind";  
-  src: url("../font/ShowWind.ttc");  
-}
-font{
-font-family: ShowWind;
-color:white;
-font-size:30px
-}
-img{
-webkit-border-radius: 10px;
-moz-border-radius: 10px;
-border-radius: 10px;
+#block {
+    	height: 300px; /*高度*/ 
+     	width: 800px;  /*寬度*/ 
+     	position: absolute; 
+      	top:50%; 
+      	left:50%;
+      	
+     	margin:0px auto;
+		margin-top: -150px;
+		margin-left:-350px
 }
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
-<body id="bbody">	
+<body>
 <div class="page-container sidebar-collapsed">	
    <div class="left-content">
 	   <div class="mother-grid-inner">
@@ -158,207 +111,50 @@ border-radius: 10px;
 <!--inner block start here-->
 <div class="inner-block">
     <div class="price-block-main">
-	<div align="center">
-		<img src="../img/prologo.png"><br>
-		<a href="../index.jsp"><img src="../img/OFFLINE.png"></a>
+		<div align="center"><a href="../index_theme.jsp" style="text-decoration:none;"><font style="color:white;font-family:ShowWind;font-size:50px;font-weight: bold;">回首頁</font></a></div>
+		<div align="center">
+		<div id="block">
+		<img src="../img/error.png">
+		<div align="center"><font style="color:red;font-family:ShowWind;font-size:60px;font-weight: bold;">您的原密碼輸入錯誤囉！</font></div>
+		</div>
+		</div>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
-<br>
-<br>
-		<input type="radio" name="product_id" value="Appetizer"><font>前菜</font>
-		<input type="radio" name="product_id" value="Salad"><font>沙拉</font>
-		<input type="radio" name="product_id" value="Soup"><font>湯品</font>
-		<input type="radio" name="product_id" value="Main"><font>主菜</font>
-		<input type="radio" name="product_id" value="Dessert"><font>甜點</font>
-		<input type="radio" name="product_id" value="Drink" ><font>飲料</font>
-	<br>
-	<br>
-				<div id="Appetizer" hidden>
-	<table align="center" class="table" style="width: 1400px">
-	
 
-		
-	<tr>
-				<th>商品編號</th>
-				<th>商品名稱</th>
-				<th>售價</th>
-				<th>商品類別</th>
-				<th>商品圖片</th>
-				<th>上架</th>
-
-	</tr>
-	
-				<c:forEach var="getAppetizer" items="${getAppetizer}">
-	<tr>	
-						<td>${getAppetizer.product_id}</td>
-						<td>${getAppetizer.product_name}</td>
-						<td>${getAppetizer.product_price}</td>
-						<td>${getAppetizer.dishClassVO.class_name}</td>
-						<td><img width="300" height="200" src="${pageContext.servletContext.contextPath}/getImage?id=${getAppetizer.product_id}"></td>
-						<td><c:if test="${getAppetizer.inMenu==1}">上架中</c:if><c:if test="${getAppetizer.inMenu==0}">下架中</c:if></td>
-	</tr>			
-				</c:forEach>
-				</table>
-			</div>
-		
-	<div id="Salad" hidden>
-		<table align="center" class="table " style="width: 1400px">
-	<tr>
-				<th>商品編號</th>
-				<th>商品名稱</th>
-				<th>售價</th>
-				<th>商品類別</th>
-				<th>商品圖片</th>
-				<th>上架</th>
-
-	</tr>
-	
-				<c:forEach var="getSalad" items="${getSalad}">
-	<tr>	
-						<td>${getSalad.product_id}</td>
-						<td>${getSalad.product_name}</td>
-						<td>${getSalad.product_price}</td>
-						<td>${getSalad.dishClassVO.class_name}</td>
-						<td><img width="300" height="200" src="${pageContext.servletContext.contextPath}/getImage?id=${getSalad.product_id}"></td>
-						<td><c:if test="${getSalad.inMenu==1}">上架中</c:if><c:if test="${getSalad.inMenu==0}">下架中</c:if></td>
-	</tr>			
-				</c:forEach>
-				</table>
-	</div>	
-		
-	<div hidden id="Soup">
-		<table align="center" class="table " style="width: 1400px">
-
-			<tr>
-				<th>商品編號</th>
-				<th>商品名稱</th>
-				<th>售價</th>
-				<th>商品類別</th>
-				<th>商品圖片</th>
-				<th>上架</th>
-
-	</tr>
-	
-				<c:forEach var="getSoup" items="${getSoup}">
-	<tr>	
-						<td>${getSoup.product_id}</td>
-						<td>${getSoup.product_name}</td>
-						<td>${getSoup.product_price}</td>
-						<td>${getSoup.dishClassVO.class_name}</td>
-						<td><img width="300" height="200" src="${pageContext.servletContext.contextPath}/getImage?id=${getSoup.product_id}"></td>
-						<td><c:if test="${getSoup.inMenu==1}">上架中</c:if><c:if test="${getSoup.inMenu==0}">下架中</c:if></td>
-	</tr>			
-				</c:forEach>
-
-		</table>
-	</div>
-		
-	
-		
-	<div hidden id="Main">
-		<table align="center" class="table " style="width: 1400px">
-
-			<tr>
-				<th>商品編號</th>
-				<th>商品名稱</th>
-				<th>售價</th>
-				<th>商品類別</th>
-				<th>商品圖片</th>
-				<th>上架</th>
-
-	</tr>
-	
-				<c:forEach var="getMain" items="${getMain}">
-	<tr>	
-						<td>${getMain.product_id}</td>
-						<td>${getMain.product_name}</td>
-						<td>${getMain.product_price}</td>
-						<td>${getMain.dishClassVO.class_name}</td>
-						<td><img width="300" height="200" src="${pageContext.servletContext.contextPath}/getImage?id=${getMain.product_id}"></td>
-						<td><c:if test="${getMain.inMenu==1}">上架中</c:if><c:if test="${getMain.inMenu==0}">下架中</c:if></td>
-	</tr>			
-				</c:forEach>
-
-		</table>
-	</div>
-		
-		
-		
-	<div hidden id="Dessert">
-		<table align="center" class="table " style="width: 1400px">
-
-			<tr>
-				<th>商品編號</th>
-				<th>商品名稱</th>
-				<th>售價</th>
-				<th>商品類別</th>
-				<th>商品圖片</th>
-				<th>上架</th>
-
-	</tr>
-	
-				<c:forEach var="getDessert" items="${getDessert}">
-	<tr>	
-						<td>${getDessert.product_id}</td>
-						<td>${getDessert.product_name}</td>
-						<td>${getDessert.product_price}</td>
-						<td>${getDessert.dishClassVO.class_name}</td>
-						<td><img width="300" height="200" src="${pageContext.servletContext.contextPath}/getImage?id=${getDessert.product_id}"></td>
-						<td><c:if test="${getDessert.inMenu==1}">上架中</c:if><c:if test="${getDessert.inMenu==0}">下架中</c:if></td>
-	</tr>			
-				</c:forEach>
-
-		</table>
-	</div>
-		
-		
-		
-	<div hidden id="Drink">
-		<table align="center" class="table " style="width: 1400px">
-
-			<tr>
-				<th>商品編號</th>
-				<th>商品名稱</th>
-				<th>售價</th>
-				<th>商品類別</th>
-				<th>商品圖片</th>
-				<th>上架</th>
-
-	</tr>
-	
-				<c:forEach var="getDrink" items="${getDrink}">
-	<tr>	
-						<td>${getDrink.product_id}</td>
-						<td>${getDrink.product_name}</td>
-						<td>${getDrink.product_price}</td>
-						<td>${getDrink.dishClassVO.class_name}</td>
-						<td><img width="300" height="200" src="${pageContext.servletContext.contextPath}/getImage?id=${getDrink.product_id}"></td>
-						<td><c:if test="${getDrink.inMenu==1}">上架中</c:if><c:if test="${getDrink.inMenu==0}">下架中</c:if></td>
-	</tr>			
-				</c:forEach>
-
-		</table>
-	</div>	
-
-<br>
-	</div>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 
 </div>
 </div>
@@ -402,10 +198,10 @@ border-radius: 10px;
 		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		          <ul id="menu-academico-sub" >
-			          <li><a href="listAllPro.jsp">菜色查詢</a></li>
-			          <li><a href="select_online_page.jsp">上架產品查詢</a></li>
-			          <li><a href="select_offline_page.jsp">下架產品查詢</a></li>
-			          <li><a href="addSinglePro.jsp">新增菜色</a></li>
+			          <li><a href="../product/listAllPro.jsp">菜色查詢</a></li>
+			          <li><a href="../product/select_online_page.jsp">上架產品查詢</a></li>
+			          <li><a href="../product/select_offline_page.jsp">下架產品查詢</a></li>
+			          <li><a href="../product/addSinglePro.jsp">新增菜色</a></li>
 			          <li><a href="../Package/AddPack.jsp">新增套餐</a></li>
 			          <li><a href="../Package/UpdatePro.jsp">套餐查詢修改</a></li>           
 		          </ul>

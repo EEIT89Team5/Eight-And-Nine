@@ -15,7 +15,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="../js/jquery-3.1.1.min.js"></script> 
 <link href="../css/font-awesome.css" rel="stylesheet"> 
 <script src="../js/jquery.magnific-popup.js" type="text/javascript"></script>
- <script>
+<link rel="stylesheet" type="text/css" href="../js/sweetalert.css">
+<script language="JavaScript" src="../js/sweetalert.min.js"></script>
+<script>
 $(document).ready(function() {
 	
 	$.each($('#todayList tr'),function(){
@@ -86,7 +88,8 @@ $(document).ready(function() {
 	$('#btn_select').click(function(){
 		var check = $('select[name="months"]').val();
 		if(check=="0"){
-			alert("請選擇月份");
+// 			alert("請選擇月份");
+		sweetAlert("請選擇月份");
 		}else{
 			$(this).parent().submit();
 		}
@@ -150,6 +153,7 @@ td{
 	padding:0 10px;
 } 
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>	
 <div class="page-container sidebar-collapsed">	

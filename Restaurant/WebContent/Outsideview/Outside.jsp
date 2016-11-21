@@ -69,6 +69,7 @@ websocket.onmessage = function processMessage(message){
 </script>
 <head>
 <title>出餐口資訊 </title>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body  background="../Outsideview/images/bg.jpg" style="background-size: cover">
 		<h3  align="center" style="font-family:ShowWind ;font-size: 50px;">出餐口資訊 </h3>
@@ -134,5 +135,10 @@ websocket.onmessage = function processMessage(message){
 </table>
 </div>
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git
 </body>
 </html>

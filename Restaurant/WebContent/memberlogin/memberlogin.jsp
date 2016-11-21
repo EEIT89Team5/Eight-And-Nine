@@ -6,34 +6,67 @@
 	pageEncoding="UTF-8"%>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>登錄</title>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
+<style>
+body{
+	background-image: url("../img/Loginbackground.jpg");
+	background-size: cover;
+}
+@font-face{
+font-family:"ShowWind";
+src:url("../font/ShowWind.ttc");
+}
+td{
+color:white;
+font-family:"ShowWind";
+font-size:35px;
+height: 50px;
+}
+
+</style>
 </head>
 <body>
-<CENTER>  
+<div align="center">
+<div align="center"><img src="../img/welcomelogin.png"></div>
+<div align="center"><font style="color:#31aada;font-size:45px;font-family:ShowWind;font-weight: bold;">會員登入系統</font></div>
+<br>
+<br>
+<br>
+<br>
+<br>
 <Form Action="memberlogin.do" method="POST">
-    <Table width='600' >
+    <Table>
          <TR><TH colspan='2'>
-            <H1>會員登入</H1> 
+<!--             <H1>會員登入</H1>  -->
          </TH><TH></TH></TR>
          <TR>
-             <TD align="CENTER">帳號：<input	type="text" name="userId" size="20"></TD>
-             <TD width='120'><small><Font color='red' size="-1">${ErrorMsgKey.AccountEmptyError}</Font></small></TD>
-         </TR>
+             <TD align="CENTER">帳號：</TD><TD><input	type="text" name="userId" style="width: 250px"></TD>
+        </TR>
+        <TR>
+             <TD width='150' colspan='2'><small><Font color='red' size="6">${ErrorMsgKey.AccountEmptyError}</Font></small></TD>
+        </TR>
          <TR>
-             <TD align="CENTER">密碼：<input	type="password" name="pswd"  size="20"></TD>
-             <TD width='120'><small><Font color='red'  size="-1">${ErrorMsgKey.PasswordEmptyError}</Font></small></TD>
+             <TD align="CENTER">密碼：</TD><TD><input	type="password" name="pswd"  size="20" style="width: 250px"></TD>
+         </TR>
+         <TR>    
+             <TD width='150' colspan='2'><small><Font color='red'  size="6">${ErrorMsgKey.PasswordEmptyError}</Font></small></TD>
          </TR>            
          <TR>
-             <TD align="CENTER" colspan='3'><Font color='red' size="-1">${ErrorMsgKey.LoginError}&nbsp;</Font></TD>
+             <TD align="CENTER" colspan='2'><Font color='red' size="-1">${ErrorMsgKey.LoginError}&nbsp;</Font></TD>
              
          </TR>
             
         <TR>
-            <TD colspan="2" align="center">      <input type="submit" value="提交"> </TD>
+           <td></td> <TD align="left">  <input type="submit" value="確認" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px;"> </TD>
             </TR>
          </Table>        
          
 </Form>
-</CENTER>
+</div>
+<script src="../js/jquery-3.1.1.min.js"></script> 
+<script src="../js/buttons.js"></script>
+<link rel="stylesheet" href="../css/buttons.css">
+<link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 </body>
 
 </html>

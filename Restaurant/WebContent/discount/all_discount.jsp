@@ -22,6 +22,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="../js/jquery-3.1.1.min.js"></script> 
 <link href="../css/font-awesome.css" rel="stylesheet"> 
 <script src="../js/jquery.magnific-popup.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="../js/sweetalert.css">
+<script language="JavaScript" src="../js/sweetalert.min.js"></script>
  <script>
 $(document).ready(function() {
 	$('.popup-with-zoom-anim').magnificPopup({
@@ -60,7 +62,33 @@ div[align="center"]{
 div[align="center"] input{
 	color:black;
 }
+@font-face{
+font-family:"ShowWind";
+src: url("../font/ShowWind.ttc");
+}
+td{
+font-family:"ShowWind";
+font-size:25px;
+font-weight:bold;
+}
+th{
+font-family:"ShowWind";
+font-size:35px;
+font-weight:bold;
+text-align:center;
+}
+b{
+font-family:"ShowWind";
+font-size:25px;
+font-weight:bold;
+}
+select{
+color:black;
+font-family:"ShowWind";
+font-size:25px;
+}
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>	
 <div class="page-container sidebar-collapsed">	
@@ -110,7 +138,6 @@ div[align="center"] input{
 <div class="inner-block">
     <div class="price-block-main">
 <div align="center">
-<h3>所有折扣項目</h3>
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font color='red'>請修正以下錯誤:
@@ -122,7 +149,12 @@ div[align="center"] input{
 	</font>
 </c:if>
   <jsp:useBean id="dsicSvc" scope="page" class="com.discount.model.DiscountService" />
-   
+ <img src="../img/discountlogo.png"><br>
+ <img src="../img/select.png">
+ <br>
+ <br>
+ <br>
+ <table>
   <li>
      <FORM METHOD="post" ACTION="disc.do" >
        <b>選擇折扣編號:</b>
@@ -131,11 +163,11 @@ div[align="center"] input{
           <option value="${discountVO.disc_id}">${discountVO.disc_id}
          </c:forEach>   
        </select>
-       <input type="submit" value="送出">
+       <input type="submit" value="送出" class="btn btn-success" style="font-family:ShowWind;font-size:20px;color:white">
        <input type="hidden" name="action" value="getOne_For_Display">
     </FORM>
   </li>
-  
+  <br>
   <li>
      <FORM METHOD="post" ACTION="disc.do" >
        <b>選擇折扣名稱:</b>
@@ -144,14 +176,14 @@ div[align="center"] input{
           <option value="${discountVO.disc_id}">${discountVO.disc_name}
          </c:forEach>   
        </select>
-       <input type="submit" value="送出">
+       <input type="submit" value="送出" class="btn btn-success" style="font-family:ShowWind;font-size:20px;color:white">
        <input type="hidden" name="action" value="getOne_For_Display">
      </FORM>
   </li>
 </ul>
-
-
-<table border='1' bordercolor='#AAAAAA' width='600' >
+</table>
+<br>
+<table class="table" style="width:800px" id="discount">
 	<tr>
 		<th>折扣編號</th>
 		<th>折扣名稱</th>
@@ -160,29 +192,29 @@ div[align="center"] input{
 		<th>刪除</th>
 
 	</tr>
-	<%@ include file="page1.file" %> 
+	<%@ include file="../page1.file" %> 
 	<c:forEach var="discVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		<tr align='center' valign='middle'>
 			<td>${discVO.disc_id}</td>
 			<td>${discVO.disc_name}</td>
-			<td>${discVO.disc_value}</td>
+			<td>${discVO.disc_value}折</td>
 
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/discount/disc.do">
-			     <input type="submit" value="修改">
+			     <input type="submit" value="修改" class="btn btn-primary" style="font-family:ShowWind;font-size:25px;color:white">
 			     <input type="hidden" name="disc_id" value="${discVO.disc_id}">
 			     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
 			</td>
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/discount/disc.do">
-			    <input type="submit" value="刪除">
+			    <input type="button" name="delete" value="刪除" class="btn btn-danger" style="font-family:ShowWind;font-size:25px;color:white">
 			    <input type="hidden" name="disc_id" value="${discVO.disc_id}">
-			    <input type="hidden" name="action"value="delete"></FORM>
+			    <input type="hidden" name="action" value="delete"></FORM>
 			</td>
 		</tr>
 	</c:forEach>
 </table>
-<%@ include file="page2.file" %>
+<%@ include file="../page2.file" %>
 </div>
 <br/>
 <br/>
@@ -300,7 +332,37 @@ $(".sidebar-icon").click(function() {
       		$("#menu span").css({"position":"relative"}); }, 400);
   }               
   toggle = !toggle;
+   
 });
+
+$(document).ready(function() {
+	$.each($('#discount tr'),function(){
+		var x = $(this).find('td:eq(2)');
+		x.text(x.text().substring(2,5));
+	});
+	var del=null;
+	$("input[name='delete']").click(function(){
+		del=$(this);
+		sweetAlert({
+			  title: "此事當真?",
+			  text: "您確定要將此筆資料刪除嗎?",
+			  type: "warning",
+			  showCancelButton: true,
+			  confirmButtonColor: "#DD6B55",
+			  confirmButtonText: "刪除此筆資料",
+			  cancelButtonText: "放棄刪除",
+			  closeOnConfirm: false,
+			  closeOnCancel: false
+			},
+			function(isConfirm){
+			  if (isConfirm) {
+				  del.parent().submit();
+			  } else {
+				 sweetAlert("已取消", "您已取消刪除此筆資料", "error");
+			  }
+			});
+	})
+})
 </script>
 <!--scrolling js-->
 		<script src="../js/jquery.nicescroll.js"></script>

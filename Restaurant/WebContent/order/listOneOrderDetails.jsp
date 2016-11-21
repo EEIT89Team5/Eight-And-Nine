@@ -9,11 +9,37 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>單筆訂單明細資料 - listOneOrderDetails.jsp</title>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
+<style>
+body{
+background-image: url("../img/0003.png");
+background-size: cover;
+}
+@font-face{
+font-family:"ShowWind";
+src: url("../font/ShowWind.ttc");  
+}
+th{
+font-family:"ShowWind";
+color:yellow;
+font-size:30px;
+text-align:center;
+width:150px
+}
+td{
+font-family:"ShowWind";
+color:white;
+font-size:25px;
+text-align:center;
+font-weight:bold;
+}
+</style>
 </head>
 <body>
-
-<h2>訂單${orderno}明細</h2><br/>
-
+<div align="center">
+<%-- <h2>訂單${orderno}明細</h2><br/> --%>
+<img src="../img/ORDERLOGO.png"><br><br>
+<img src="../img/Detail.png"><br><br><br><br><br>
 <table>
 	<thead>
 		<tr>
@@ -40,6 +66,13 @@
 	</tbody>
 
 </table>
-<a href="../index.jsp"> 回首頁 </a>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a href="../index.jsp" class="button button-pill button-highlight" style="font-family:ShowWind;font-size:25px;font-weight:bold"> 回首頁 </a>
+</div>
+<link rel="stylesheet" href="../css/buttons.css">
 </body>
 </html>

@@ -9,18 +9,46 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>查詢所有會員</title>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
+<style>
+body{
+background-image:url("../img/memberbackground2.png");
+background-size:cover;
+}
+@font-face{
+font-family:"ShowWind";
+src:url("../font/ShowWind.ttc");
+}
+td{
+font-family:"ShowWind";
+color:white;
+font-size:28px;
+font-weight:bold;
+text-align:center
+}
+tr th{
+font-family:"ShowWind";
+color:yellow;
+font-size:35px;
+font-weight:bold;
+text-align: center;
+}
+</style>
 </head>
 <body>
-<table>
-	<tr>
-		<td>編號</td>
-		<td>姓名</td>
-		<td>性別</td>
-		<td>email</td>
-		<td>密碼</td>
-		<td>手機</td>
-		<td>註冊日</td>
-	</tr>
+<div align="center">
+<img src="../img/member2.png"><br><br><br><br>
+<table class="table" style="width: 1400px">
+<tr>
+		<th>編號</th>
+		<th>姓名</th>
+		<th>性別</th>
+		<th>email</th>
+		<th>密碼</th>
+		<th>手機</th>
+		<th>註冊日</th>
+		<th>修改資料</th>
+</tr>
 	<c:forEach var="memberVO" items="${memberSvc.getAllMember()}" >
 		<tr>
 			<td>${memberVO.member_id }</td>
@@ -35,12 +63,14 @@
 				<form action="member.do" method="post">
 					<input type="hidden" name="member_id" value="${memberVO.member_id }"/> 
 					<input type="hidden" name="action" value="update_member1"/>
-					<input type="submit" value="修改資料">
+					<input type="submit" value="修改" class="button button-pill" style="font-family:ShowWind;font-size:28px;font-weight: bold">
 				</form>
 			</td>
 		</tr>
 	</c:forEach>
 </table>
-
+<link rel="stylesheet" href="../css/buttons.css">
+<link rel="stylesheet" href="../css/bootstrap.css">
+</div>
 </body>
 </html>

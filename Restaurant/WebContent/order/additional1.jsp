@@ -44,6 +44,7 @@ font-size:30px
 }
 
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body background="../img/light2.png" style="background-size: cover;">
 <div align="center" id="block">

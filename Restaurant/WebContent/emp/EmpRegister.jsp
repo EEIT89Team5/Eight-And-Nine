@@ -329,6 +329,7 @@ font-weight:bold;
 
 ::-webkit-input-placeholder { font-family:"ShowWind";font-size: 18px;font-weight:bold}
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>	
 <div class="page-container sidebar-collapsed">	

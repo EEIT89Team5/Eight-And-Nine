@@ -213,6 +213,7 @@ body,.inner-block{
 /*  }  */
  
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>	
 

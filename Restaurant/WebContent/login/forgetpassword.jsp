@@ -64,6 +64,7 @@ height: 80px;
 		margin-left:-350px
 }
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>	
 <div class="page-container sidebar-collapsed">	
@@ -121,6 +122,7 @@ height: 80px;
 		<Form Action="forget.do" method="POST"> 
 		<table>   
 		<TR><td><input type="text" id="emp_email" name="emp_email" placeholder="請輸入信箱" style="color:black;font-size:25px"></td></TR>	
+		<input type="hidden" name="forget" value="iforget">
 		<TR><td align="center"><input type="submit" value="確認" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px"></td></TR>
 		<font style="color:red;font-size:35px;font-family:ShowWind;font-weight: bold;">我們將會把新的密碼寄到您的信箱</font>
 		</table>
