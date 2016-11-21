@@ -37,7 +37,7 @@ height: 50px;
 </style>
 </head>
 <body>
-	<div align="center"><a href="../index.jsp" style="text-decoration:none;"><font style="color:white;font-family:ShowWind;font-size:50px;font-weight: bold;">回首頁</font></a></div>
+	<div align="center"><a href="memberlogin.jsp" style="text-decoration:none;"><font style="color:white;font-family:ShowWind;font-size:50px;font-weight: bold;">回首頁</font></a></div>
 <div align="center">
 	<div id="block">
 <img src="../img/success.png">

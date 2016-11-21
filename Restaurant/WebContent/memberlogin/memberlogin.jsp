@@ -52,7 +52,7 @@ height: 50px;
              <TD width='150' colspan='2'><small><Font color='red'  size="6">${ErrorMsgKey.PasswordEmptyError}</Font></small></TD>
          </TR>            
          <TR>
-             <TD align="CENTER" colspan='2'><Font color='red' size="-1">${ErrorMsgKey.LoginError}&nbsp;</Font></TD>
+             <TD align="CENTER" colspan='2'><Font color='red' size="6">${ErrorMsgKey.LoginError}&nbsp;</Font></TD>
              
          </TR>
             
