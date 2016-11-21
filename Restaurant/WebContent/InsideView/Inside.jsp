@@ -202,11 +202,4 @@ $(function(){
 
 </script>
 
-
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git
 </html>

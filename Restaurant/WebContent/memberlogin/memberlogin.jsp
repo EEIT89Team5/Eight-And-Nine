@@ -40,13 +40,13 @@ height: 50px;
 <!--             <H1>會員登入</H1>  -->
          </TH><TH></TH></TR>
          <TR>
-             <TD align="CENTER">帳號：</TD><TD><input	type="text" name="userId" style="width: 250px"></TD>
+             <TD align="CENTER">帳號：</TD><TD><input	type="text" name="userId" id="userId" style="width: 300px;color:black"></TD>
         </TR>
         <TR>
-             <TD width='150' colspan='2'><small><Font color='red' size="6">${ErrorMsgKey.AccountEmptyError}</Font></small></TD>
+             <TD width='150' colspan='2'><small><Font color='red' size="6" >${ErrorMsgKey.AccountEmptyError}</Font></small></TD>
         </TR>
          <TR>
-             <TD align="CENTER">密碼：</TD><TD><input	type="password" name="pswd"  size="20" style="width: 250px"></TD>
+             <TD align="CENTER">密碼：</TD><TD><input	type="password" name="pswd"  size="20" style="width: 300px;color:black"></TD>
          </TR>
          <TR>    
              <TD width='150' colspan='2'><small><Font color='red'  size="6">${ErrorMsgKey.PasswordEmptyError}</Font></small></TD>
@@ -57,16 +57,38 @@ height: 50px;
          </TR>
             
         <TR>
-           <td></td> <TD align="left">  <input type="submit" value="確認" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px;"> </TD>
-            </TR>
+       		 <input type="hidden" name="action" value="memberlogin">
+           <td></td> <TD align="center">  <input type="submit" value="確認" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px;"> </TD>
+         </TR>
+         </Form>
+         <TR>
+         <td></td>
+         <td>
+            <input id="forgetlogin" type="button" value="忘記密碼" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px;">      
+        	<a href="alterpassword.jsp" ><input type="button" value="修改密碼" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px;"></a>	
+        	</td>
+       
+         </TR>
          </Table>        
          
-</Form>
+
 </div>
 <script src="../js/jquery-3.1.1.min.js"></script> 
 <script src="../js/buttons.js"></script>
 <link rel="stylesheet" href="../css/buttons.css">
 <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+<link rel="stylesheet" type="text/css" href="../js/sweetalert.css">
+<script language="JavaScript" src="../js/sweetalert.min.js"></script>
+<script>
+$("#forgetlogin").click(function(){
+	var dd=$("#userId").val();
+	$.post("memberlogin.do",{"action":"forgetlogin","userId":dd},function(){
+		swal("密碼已經寄至您的信件囉~啾咪^.<")
+	});
+	
+})
+
+</script>
 </body>
 
 </html>

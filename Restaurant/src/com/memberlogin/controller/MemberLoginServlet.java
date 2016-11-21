@@ -17,6 +17,9 @@ public class MemberLoginServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String action=request.getParameter("action");
+		
+		if("memberlogin".equals(action)){
 		HttpSession session = request.getSession();
 		// 準備存放錯誤訊息的 Map<String, String> 物件 : errorMsgMap
 		Map<String, String> errorMsgMap = new HashMap<String, String>();
@@ -57,7 +60,7 @@ public class MemberLoginServlet extends HttpServlet {
 		MemberService ls = new MemberService();
 		// 呼叫 ls物件的 checkIDPassword()，要記得傳入userid與password兩個參數
 		// 同時將傳回值放入MemberBean型別的變數mb之內。
-		MemberVO mb = ls.checkPhonePassword(userId, password);
+		MemberVO mb = ls.checkPhonePassword(userId);
 //		EmpVO mc = ls.checkTitle(userId, password);
 		// 如果變數mb的值不等於 null,表示資料庫含有userId搭配password的紀錄
 		
@@ -101,6 +104,17 @@ public class MemberLoginServlet extends HttpServlet {
 					.getRequestDispatcher("/memberlogin/memberlogin.jsp");
 			rd.forward(request, response);
 			return;
+		}
+		}
+		
+		
+		if("forgetlogin".equals(action)){
+			String userId=request.getParameter("userId");
+			MemberService memberSvc=new MemberService();
+			MemberVO memberVO=new MemberVO();
+			memberVO=memberSvc.checkPhonePassword(userId);
+			System.out.println(memberVO.getMember_email());
+			System.out.println(memberVO.getMember_password());
 		}
 	}
 }

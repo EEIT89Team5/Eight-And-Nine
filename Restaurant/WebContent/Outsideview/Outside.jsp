@@ -135,10 +135,5 @@ websocket.onmessage = function processMessage(message){
 </table>
 </div>
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git
 </body>
 </html>
