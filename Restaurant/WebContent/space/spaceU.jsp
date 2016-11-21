@@ -231,19 +231,23 @@ body,.inner-block{
 	width: 50px;
     height: 50px;
     border: 3px solid #ccc;
-    background-color: #ccc;
+/*     background-color: #ccc; */
+	background-image:url("../icon/wood.png");
+
 }
 #dragBigx{
 	width: 100px;
     height: 50px;
     border: 3px solid #ccc;
-    background-color: #ccc;
+/*     background-color: #ccc; */
+	background-image:url("../icon/wood.png");
 }
 #dragBigy{
 	width: 50px;
     height: 100px;
     border: 3px solid #ccc;
-	background-color: #ccc;
+/* 	background-color: #ccc; */
+	background-image:url("../icon/wood2.png");
 }
 div input{
 	width: 60px;
