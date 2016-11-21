@@ -26,13 +26,28 @@ height: 50px;
 </style>
 </head>
 <body>
+
 	<div align="center"><a href="../index.jsp" style="text-decoration:none;"><font style="color:white;font-family:ShowWind;font-size:50px;font-weight: bold;">回首頁</font></a></div>
+<br>
+<br>
+<br>
+<br>
 <div align="center">
 	
 <img src="../img/error.png">
+<br>
+<br>
+<br>
+<br>
+<br>
 	<div align="center"><font style="color:red;font-family:ShowWind;font-size:60px;font-weight: bold;">您的原密碼輸入錯誤囉！</font></div>
 
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
 </body>
 
 </html>
