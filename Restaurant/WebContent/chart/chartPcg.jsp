@@ -208,10 +208,12 @@ body,.inner-block{
  	font-weight: bold; 
   	color:black; 
  }
-/*  text{ */
-/*  	font-family: "ShowWind"; */
-/*  }  */
- 
+ .inner-block select{
+ 	font-family: "ShowWind"; 
+	font-size: 30px;  
+ 	font-weight: bold; 
+  	color:black; 
+ }
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>

@@ -126,31 +126,64 @@ $(document).ready(function() {
 	});
 	
 	
+	var error="";
 	$('#updatexx').click(function(){
-		var valuex = $('#selectspace').find("option:selected") ;
-		if(valuex.val() != 0){
-			$.post("spacename.do",{"space_id":valuex.val(),"whatdo":"deleteSpaceX"},function(){
-				var arrary = $('.show');
-				$.each(arrary,function(index,value){
-					var text = "";
-					var arr = $(this).find('input');
-					$.each(arr,function(idx,va){
-						if(idx==(arr.length-1))
-							text+=$(this).val();
-						else
-							text+=$(this).val()+",";
-					});
-					$.post("spacename.do",{"text":text,"whatdo":"addspaceX","spacename":valuex.text()}
-									,function(){
-						sweetAlert("修改成功!");
-//	 					location.replace("spaceQ.jsp");
-					});
-				});
-			});
-			
-		}else{
-			sweetAlert("請選擇場地名稱!");
+		error="";
+		var arr = $('.show');
+		var tnamearr= arr.find("input:eq(0)");
+		var tpeoplearr= arr.find("input:eq(1)");
+		var xxx=[];
+		for(var i=0;i<tnamearr.length;i++){
+			xxx.push(tnamearr[i].value);
+			if(tnamearr[i].value.trim()==""){
+				error+="桌位不可為空白";
+				break;
+			}
+			if(tpeoplearr[i].value.trim()==""){
+				error+="人數不可為空白";
+				break;
+			}
+			if(isNaN(tpeoplearr[i].value)){
+				error+="人數請輸入數字";
+				break;
+			}
 		}
+		for(var i=0;i<xxx.length;i++){
+			var tindex = xxx.indexOf(xxx[i]);
+			if(tindex!=i){
+				error+="桌位名稱不可重複";
+				break;
+			}
+		}
+		if(error==""){
+	 		var valuex = $('#selectspace').find("option:selected");
+	 		var arrary = $('.show');
+	 		if(valuex.val() != 0){
+	 			$.post("spacename.do",{"space_id":valuex.val(),"whatdo":"deleteSpaceX"},function(){
+	 				$.each(arrary,function(index,value){
+	 					var text = "";
+	 					var arr = $(this).find('input');
+	 					$.each(arr,function(idx,va){
+	 						if(idx==(arr.length-1))
+	 							text+=$(this).val();
+	 						else
+	 							text+=$(this).val()+",";
+	 					});
+	 					$.post("spacename.do",{"text":text,"whatdo":"addspaceX","spacename":valuex.text()}
+	 									,function(){
+	 						sweetAlert("修改成功!");
+	//	 					location.replace("spaceQ.jsp");
+	 					});
+	 				});
+	 			});
+				
+	 		}else{
+	 			sweetAlert("請選擇場地名稱!");
+	 		}
+		}else{
+			sweetAlert(error);
+		}
+
 	});
 																
 });
@@ -198,19 +231,23 @@ body,.inner-block{
 	width: 50px;
     height: 50px;
     border: 3px solid #ccc;
-    background-color: #ccc;
+/*     background-color: #ccc; */
+	background-image:url("../icon/wood.png");
+
 }
 #dragBigx{
 	width: 100px;
     height: 50px;
     border: 3px solid #ccc;
-    background-color: #ccc;
+/*     background-color: #ccc; */
+	background-image:url("../icon/wood.png");
 }
 #dragBigy{
 	width: 50px;
     height: 100px;
     border: 3px solid #ccc;
-	background-color: #ccc;
+/* 	background-color: #ccc; */
+	background-image:url("../icon/wood2.png");
 }
 div input{
 	width: 60px;
