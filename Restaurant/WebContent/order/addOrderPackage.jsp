@@ -141,7 +141,7 @@ font-weight: bold
 <!-- 原本 				 </form> -->
                </c:if>    
 			</c:forEach><br/><br> 
-	       <input type="submit" value="送出" name="btn" id="btn555" class="button button-pill button-primary" style="font-family:ShowWind;font-size:25px;font-weight:bold">
+	       <input type="submit" value="加入訂單" name="btn" id="btn555" class="button button-pill button-primary" style="font-family:ShowWind;font-size:25px;font-weight:bold">
 	     </form>
 		 <br/>
 		 <br/>
@@ -173,6 +173,8 @@ font-weight: bold
 	</c:if>
 	</c:if>
 	</div>
+<script src="../js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../js/sweetalert.css">
 <script src="../js/buttons.js"></script>
 <link rel="stylesheet" href="../css/buttons.css">
 <link rel="stylesheet" href="../css/bootstrap.css">
@@ -248,7 +250,7 @@ console.log("====================================================");
         		  return true ;
         	  }else{
         	      console.log("失敗"+flag);
-        	      alert(alertWord);
+        	      swal(alertWord);
         	      return false;
         	  }
 //    11/14: 	 var i = 1
