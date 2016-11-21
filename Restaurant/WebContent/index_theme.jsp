@@ -33,11 +33,11 @@ $(document).ready(function() {
 <!--pop up end here-->
 <style>
 body{
-  background:black; 
+  background:black;
 }
 .inner-block{
- 	background-image: url("img/45.jpg"); 
-	background-size: 100% 100%;
+  	background-image: url("img/background.jpg");  
+	background-size:cover;
 }
 .clerfix{
 	border-style:solid;
@@ -107,7 +107,7 @@ body{
 <div class="inner-block">
     <div class="price-block-main">
 
-	<img id="welcomelogo" style="width:100%;height: 100%" alt="首頁" src="img/01.png">
+<!-- 	<img id="welcomelogo" style="width:100%;height: 100%" alt="首頁" src="img/01.png"> -->
 
 
 <br />
@@ -115,7 +115,37 @@ body{
 <br />
 <br />
 <br />
-
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
 
 
 </div>
