@@ -40,13 +40,13 @@ height: 50px;
 <!--             <H1>會員登入</H1>  -->
          </TH><TH></TH></TR>
          <TR>
-             <TD align="CENTER">帳號：</TD><TD><input	type="text" name="userId" id="userId" style="width: 300px;color:black"></TD>
+             <TD align="CENTER">帳號：</TD><TD align="center"><input	type="text" name="userId" id="userId" style="width: 300px;color:black"></TD>
         </TR>
         <TR>
              <TD width='150' colspan='2'><small><Font color='red' size="6" >${ErrorMsgKey.AccountEmptyError}</Font></small></TD>
         </TR>
          <TR>
-             <TD align="CENTER">密碼：</TD><TD><input	type="password" name="pswd"  size="20" style="width: 300px;color:black"></TD>
+             <TD align="CENTER">密碼：</TD><TD align="center"><input	type="password" name="pswd"  size="20" style="width: 300px;color:black"></TD>
          </TR>
          <TR>    
              <TD width='150' colspan='2'><small><Font color='red'  size="6">${ErrorMsgKey.PasswordEmptyError}</Font></small></TD>
@@ -64,13 +64,11 @@ height: 50px;
          <TR>
          <td></td>
          <td>
-            <input id="forgetlogin" type="button" value="忘記密碼" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px;">      
-        	<a href="alterpassword.jsp" ><input type="button" value="修改密碼" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px;"></a>	
+            <input id="forgetlogin" type="button" value="忘記密碼" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px;">  
+        	<a href="alertmember.jsp" ><input type="button" value="修改密碼" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px;"></a>	
         	</td>
-       
          </TR>
-         </Table>        
-         
+         </Table>
 
 </div>
 <script src="../js/jquery-3.1.1.min.js"></script> 
@@ -81,10 +79,39 @@ height: 50px;
 <script language="JavaScript" src="../js/sweetalert.min.js"></script>
 <script>
 $("#forgetlogin").click(function(){
-	var dd=$("#userId").val();
-	$.post("memberlogin.do",{"action":"forgetlogin","userId":dd},function(){
-		swal("密碼已經寄至您的信件囉~你這沒記性的小BITCH")
-	});
+// 	var dd=$("#userId").val();
+// 	if(dd!=""){	
+	
+// 	$.post("memberlogin.do",{"action":"forgetlogin","userId":dd},function(){
+// 		swal("密碼已經寄至您的信件囉~你這沒記性的小BITCH")
+		
+// 	});
+// 	}
+
+	swal({
+		  title: "忘記密碼囉 !",
+		  text: "請輸入您的電話:",
+		  type: "input",
+		  showCancelButton: true,
+		  closeOnConfirm: false,
+		  animation: "slide-from-top",
+		  inputPlaceholder: "密碼將會寄至您的註冊信箱中"
+		},
+		function(inputValue){
+			
+		  if (inputValue === false) return false;
+		  
+		  if (inputValue === "") {
+		    swal.showInputError("You need to write something!");
+		    return false
+		  }
+		  
+		  $.post("memberlogin.do",{"action":"forgetlogin","userId":inputValue},function(){
+		 		swal("密碼已經寄至您的信件囉~你這沒記性的小BITCH")
+				
+		 	});
+		});
+	
 	
 })
 

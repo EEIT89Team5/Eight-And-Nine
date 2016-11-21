@@ -75,7 +75,7 @@ public class LoginServlet extends HttpServlet {
 				response.sendRedirect(contextPath + target);
 
 			} else {
-				response.sendRedirect(contextPath + "/index_theme.jsp");
+				response.sendRedirect(contextPath + "/index.jsp");
 			}
 			return;
 		} else {

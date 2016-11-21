@@ -114,7 +114,7 @@ body,.inner-block{
 		<div align="center">
 		<div id="block"><img src="../img/logout.png"></div>
 		</div>
-		<div align="center"><a href="../index_theme.jsp" style="text-decoration:none;"><font style="color:white;font-family:ShowWind;font-size:50px;font-weight: bold;">回首頁</font></a></div>
+		<div align="center"><a href="../index.jsp" style="text-decoration:none;"><font style="color:white;font-family:ShowWind;font-size:50px;font-weight: bold;">回首頁</font></a></div>
 
 <br/>
 <br/>
