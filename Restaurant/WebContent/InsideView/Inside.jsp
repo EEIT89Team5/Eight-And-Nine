@@ -3,8 +3,6 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.orderx.model.*"%>
 
-
-<%-- 此頁練習採用 EL 的寫法取值 --%>
 <%
 
 OrderXService svc = new OrderXService();
@@ -205,7 +203,10 @@ $(function(){
 </script>
 
 
+<<<<<<< HEAD
+=======
 
 
 
+>>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git
 </html>

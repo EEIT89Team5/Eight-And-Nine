@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
-
 <%@ page import="com.orderx.model.*"%>
 
 <%
@@ -136,7 +135,10 @@ websocket.onmessage = function processMessage(message){
 </table>
 </div>
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git
 </body>
 </html>
