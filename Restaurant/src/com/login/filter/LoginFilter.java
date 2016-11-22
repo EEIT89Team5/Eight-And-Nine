@@ -13,7 +13,15 @@ import com.emp.model.EmpVO;
 		urlPatterns = { "/*" },
 		initParams = { 
 				@WebInitParam(name = "mustLogin1", value = "/discount/*") ,
-				@WebInitParam(name = "mustLogin2", value = "/emp/*") 
+				@WebInitParam(name = "mustLogin2", value = "/emp/*") ,
+				@WebInitParam(name = "mustLogin3", value = "/chart/*") ,
+				@WebInitParam(name = "mustLogin4", value = "/space/*") ,
+				@WebInitParam(name = "mustLogin5", value = "/InsideView/*") ,
+				@WebInitParam(name = "mustLogin6", value = "/Outsideview/*") ,
+				@WebInitParam(name = "mustLogin7", value = "/Package/*") ,
+				@WebInitParam(name = "mustLogin8", value = "/product/*") ,
+				@WebInitParam(name = "mustLogin9", value = "/reserve/*") ,
+				@WebInitParam(name = "mustLogin10", value = "/table/*") 	
 		}
 		)
 public class LoginFilter implements Filter {

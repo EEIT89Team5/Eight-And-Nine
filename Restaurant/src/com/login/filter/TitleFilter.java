@@ -12,8 +12,12 @@ import com.emp.model.EmpVO;
 @WebFilter(
 		urlPatterns = { "/*" },
 		initParams = { 
-				@WebInitParam(name = "mustLogin", value = "/discount/*") 
-						
+				@WebInitParam(name = "mustLogin1", value = "/discount/*") ,
+				@WebInitParam(name = "mustLogin2", value = "/emp/*") ,
+				@WebInitParam(name = "mustLogin3", value = "/chart/*") ,
+				@WebInitParam(name = "mustLogin4", value = "/space/*") ,
+				@WebInitParam(name = "mustLogin7", value = "/Package/*") ,
+				@WebInitParam(name = "mustLogin8", value = "/product/*") 	
 		}
 		)
 public class TitleFilter implements Filter {

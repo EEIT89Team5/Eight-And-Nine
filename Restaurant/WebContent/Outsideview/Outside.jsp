@@ -83,7 +83,7 @@ body{
   src: url("../font/BoldFace.ttc"); 
 }
 th{
-font-family:"ShowWinde";
+font-family:"ShowWind";
 text-align: center;
 font-weight:bolder;
 font-size: 40px;
@@ -208,6 +208,9 @@ table{
 		</c:if>
 	</c:forEach>
 </table>
+
+</div>
+
 </div>
 <br/>
 <br/>
@@ -340,5 +343,6 @@ $(".sidebar-icon").click(function() {
 		<script src="../js/scripts.js"></script>
 		<script src="../js/bootstrap.js"> </script>
 <!-- mother grid end here-->
+
 </body>
 </html>
