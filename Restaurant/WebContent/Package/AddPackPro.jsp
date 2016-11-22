@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+	<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.product.model.*"%>
@@ -101,8 +101,9 @@ $(document).ready(function() {
 <style>
 body,.inner-block{
 	background-color:black;
-	background-image: url("../img/0003.png");
+	background: #000 url(../img/0003.png) center center fixed no-repeat;
 	background-size: cover;
+	moz-background-size: cover;
 }
 .clerfix{
 	border-style:solid;
@@ -171,8 +172,8 @@ text-align: center
 											<div class="profile_img">	
 <!-- 												<span class="prfil-img"><img src="images/p1.png" alt=""> </span>  -->
 												<div class="user-name">
-													<p>顯示是經理還是員工</p>
-													<p>顯示姓名</p>
+													<p><c:if test="${! empty LoginOK }">${LoginOK.emp_title}</c:if></p>
+													<p><c:if test="${! empty LoginOK }">${LoginOK.emp_name}</c:if></p>
 												</div>
 												<i class="fa fa-angle-down lnr"></i>
 												<i class="fa fa-angle-up lnr"></i>
@@ -180,8 +181,8 @@ text-align: center
 											</div>	
 										</a>
 										<ul class="dropdown-menu drp-mnu">
-											<li> <a href="#"><i class="fa fa-sign-in"></i> Logout</a> </li>
-											<li> <a href="#"><i class="fa fa-sign-out"></i> Login</a> </li>
+											<li> <a href="../login/login.jsp"><i class="fa fa-sign-in"></i> Login</a> </li>
+											<li> <a href="../login/logout.jsp"><i class="fa fa-sign-out"></i> Logout</a> </li>
 										</ul>
 									</li>
 								</ul>

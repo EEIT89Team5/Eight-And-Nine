@@ -43,8 +43,9 @@ $(document).ready(function() {
 <style>
 body,.inner-block{
 	background-color:black;
-	background-image: url("../img/0003.png");
+	background: #000 url(../img/0003.png) center center fixed no-repeat;
 	background-size: cover;
+	moz-background-size: cover;
 }
 .clerfix{
 	border-style:solid;
@@ -110,8 +111,8 @@ background-color:rgba(0,0,0,0);
 											<div class="profile_img">	
 <!-- 												<span class="prfil-img"><img src="images/p1.png" alt=""> </span>  -->
 												<div class="user-name">
-													<p>顯示是經理還是員工</p>
-													<p>顯示姓名</p>
+													<p><c:if test="${! empty LoginOK }">${LoginOK.emp_title}</c:if></p>
+													<p><c:if test="${! empty LoginOK }">${LoginOK.emp_name}</c:if></p>
 												</div>
 												<i class="fa fa-angle-down lnr"></i>
 												<i class="fa fa-angle-up lnr"></i>

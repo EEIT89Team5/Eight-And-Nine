@@ -242,8 +242,8 @@ body,.inner-block{
 											<div class="profile_img">	
 <!-- 												<span class="prfil-img"><img src="images/p1.png" alt=""> </span>  -->
 												<div class="user-name">
-													<p>經理是誰是誰</p>
-													<p>哩西向</p>
+													<p><c:if test="${! empty LoginOK }">${LoginOK.emp_title}</c:if></p>
+													<p><c:if test="${! empty LoginOK }">${LoginOK.emp_name}</c:if></p>
 												</div>
 												<i class="fa fa-angle-down lnr"></i>
 												<i class="fa fa-angle-up lnr"></i>
@@ -251,8 +251,8 @@ body,.inner-block{
 											</div>	
 										</a>
 										<ul class="dropdown-menu drp-mnu">
-											<li> <a href="#"><i class="fa fa-sign-in"></i> Logout</a> </li>
-											<li> <a href="#"><i class="fa fa-sign-out"></i> Login</a> </li>
+											<li> <a href="#"><i class="fa fa-sign-in"></i> Login</a> </li>
+											<li> <a href="#"><i class="fa fa-sign-out"></i> Logout</a> </li>
 										</ul>
 									</li>
 								</ul>

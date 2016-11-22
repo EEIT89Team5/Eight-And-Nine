@@ -55,8 +55,9 @@ $(document).ready(function() {
 <style>
 body,.inner-block{
 	background-color:black;
-	background-image: url("../img/0003.png");
+	background: #000 url(../img/0003.png) center center fixed no-repeat;
 	background-size: cover;
+	moz-background-size: cover;
 }
 .clerfix{
 	border-style:solid;
@@ -115,8 +116,8 @@ tr{
 											<div class="profile_img">	
 <!-- 												<span class="prfil-img"><img src="images/p1.png" alt=""> </span>  -->
 												<div class="user-name">
-													<p>顯示是經理還是員工</p>
-													<p>顯示姓名</p>
+													<p><c:if test="${! empty LoginOK }">${LoginOK.emp_title}</c:if></p>
+													<p><c:if test="${! empty LoginOK }">${LoginOK.emp_name}</c:if></p>
 												</div>
 												<i class="fa fa-angle-down lnr"></i>
 												<i class="fa fa-angle-up lnr"></i>
@@ -142,6 +143,8 @@ tr{
 
 <img src="../img/emplogo.png"><br>
 <a href="all_emp.jsp"><img src="../img/UPDATE.png"></a>
+<br>
+<br>
 
 <%-- 錯誤表列 --%>
 <br>
@@ -157,7 +160,7 @@ tr{
 
 <FORM METHOD="post" ACTION="emp.do" name="form1">
 <c:set var="empp" value="${empVO}"></c:set>
-<div id="Div1" align="left" style="border: 1px red solid;background:rgba(0,0,0,0.5);">
+<div id="Div1" align="left" style="background:rgba(0,0,0,0.5);">
 <table border="0" >
 	<tr>
 		<td style="color:white;">員工編號:</td>

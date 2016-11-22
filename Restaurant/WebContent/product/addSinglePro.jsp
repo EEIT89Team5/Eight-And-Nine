@@ -105,8 +105,9 @@ $(document).ready(function() {
 <!--pop up end here-->
 <style>
 body,.inner-block{
-	background-image: url("../img/13.png"); 
-	background-size: 100% 100%;
+		background-image: url("../img/13.png");
+	background-size: cover;
+	moz-background-size: cover;
 }
 .clerfix{
 	border-style:solid;
@@ -183,8 +184,8 @@ background:#333;
 											<div class="profile_img">	
 <!-- 												<span class="prfil-img"><img src="images/p1.png" alt=""> </span>  -->
 												<div class="user-name">
-													<p>顯示是經理還是員工</p>
-													<p>顯示姓名</p>
+													<p><c:if test="${! empty LoginOK }">${LoginOK.emp_title}</c:if></p>
+													<p><c:if test="${! empty LoginOK }">${LoginOK.emp_name}</c:if></p>
 												</div>
 												<i class="fa fa-angle-down lnr"></i>
 												<i class="fa fa-angle-up lnr"></i>
@@ -192,8 +193,8 @@ background:#333;
 											</div>	
 										</a>
 										<ul class="dropdown-menu drp-mnu">
-											<li> <a href="#"><i class="fa fa-sign-in"></i> Logout</a> </li>
-											<li> <a href="#"><i class="fa fa-sign-out"></i> Login</a> </li>
+											<li> <a href="../login/login.jsp"><i class="fa fa-sign-in"></i> Login</a> </li>
+											<li> <a href="../login/logout.jsp"><i class="fa fa-sign-out"></i> Logout</a> </li>
 										</ul>
 									</li>
 								</ul>
@@ -208,7 +209,7 @@ background:#333;
     <div class="price-block-main">
     
     <div align="center">
-	<div id="Div1" align="left" style="border: 1px red solid;background:rgba(0,0,0,0.7);">
+	<div id="Div1" align="left" style="border: 3px orange solid;background:rgba(0,0,0,0.7);">
               <br />
          <legend style="font-size: 40px;font-family:ShowWind;color: white;font-weight:bold">新增餐點</legend>
          

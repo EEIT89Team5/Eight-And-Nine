@@ -38,6 +38,7 @@ body{
 .inner-block{
   	background-image: url("img/background.jpg");  
 	background-size:cover;
+	
 }
 .clerfix{
 	border-style:solid;
