@@ -31,7 +31,7 @@ public class MemberLogInCheck extends HttpServlet {
 		System.out.println(member_phone+","+member_password);
 		MemberService memberSvc=new MemberService();
 		
-		MemberVO memberVO=memberSvc.checkPhonePassword(member_phone,member_password);
+		MemberVO memberVO=memberSvc.checkPhonePassword(member_phone);
 		System.out.println(memberVO);
 		if(memberVO==null){
 			

@@ -780,10 +780,13 @@ ul.dropdown-menu {
     font-size: 1.6em;
 }
 .profile_details ul li ul.dropdown-menu.drp-mnu {
-    padding: 1em;
-    min-width: 190px;
-    top: 122%;
-    left:0%;
+/*     padding: 1em; */
+/*     min-width: 190px; */
+/*     top: 150%; */
+/*     left:0%; */
+	position:fixed;
+	top:100px;
+	left:85%
 }
 ul.dropdown-menu.drp-mnu li {
     list-style-type: none;

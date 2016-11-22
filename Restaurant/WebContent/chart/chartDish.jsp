@@ -17,6 +17,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="../js/jquery.magnific-popup.js" type="text/javascript"></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="../js/sweetalert.min.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/sweetalert.css">
 <link rel="stylesheet" href="../css/bootstrap-datepicker3.min.css">
 <script src="../js/bootstrap-datepicker.min.js"></script>
  <script>
@@ -112,7 +114,7 @@ $(document).ready(function() {
 			    });
 			})
 		}
-		else alert("nononononononon----------")
+		else swal("請選擇日期和菜色類別");
 	});
 						
 	$(document).on('click','#container g tspan',function(){
@@ -188,9 +190,6 @@ $(document).ready(function() {
 </script>
 <!--pop up end here-->
 <style>
-/* .sidebar-icon{ */
-/* 	background-color:pink; */
-/* } */
 body,.inner-block{
 	background-color:black;
 }
@@ -220,6 +219,19 @@ small{
  	font-size: 40px; 
  	font-weight: bold; 
   	color:black; 
+}
+.inner-block input{
+	font-family: "ShowWind"; 
+ 	font-size: 23px; 
+ 	font-weight: bold; 
+  	color:black; 
+}
+#dishClass{
+	font-family: "ShowWind"; 
+ 	font-size: 23px; 
+ 	font-weight: bold; 
+  	color:black; 
+  	height: 38px;
 }
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
@@ -273,8 +285,9 @@ small{
     <div class="price-block-main">
 
 	    <input type="text" id="beginDate" name="beginDate" readonly="readonly" placeholder="請選擇開始日期">
-	    <span style="color:white;font-size:20px;">to</span>
+	    <span style="color:white;font-size:25px;">to</span>
 	    <input type="text" id="endDate" name="endDate" readonly="readonly" placeholder="請選擇結束日期">
+		&nbsp;&nbsp;&nbsp;
 		<select id="dishClass" placeholder="選擇查詢範圍">
 			<option value="0">請選擇菜色類別</option>
 			<option value="10">前菜</option>
@@ -342,7 +355,8 @@ small{
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		          <ul id="menu-academico-sub" >
 			          <li><a href="../product/listAllPro.jsp">菜色查詢</a></li>
-			          <li><a href="../product/one_select_page.jsp">單一菜色查詢</a></li>
+			          <li><a href="../product/select_online_page.jsp">上架產品查詢</a></li>
+			          <li><a href="../product/select_offline_page.jsp">下架產品查詢</a></li>
 			          <li><a href="../product/addSinglePro.jsp">新增菜色</a></li>
 			          <li><a href="../Package/AddPack.jsp">新增套餐</a></li>
 			          <li><a href="../Package/UpdatePro.jsp">套餐查詢修改</a></li>           

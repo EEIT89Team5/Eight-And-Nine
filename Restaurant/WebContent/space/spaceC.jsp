@@ -109,25 +109,57 @@ $(document).ready(function() {
 	        }
 	    });
 	
+	var error="";
 	$('#submitx').click(function(){
-		if($('#dropHere').html()!=""){
-			var arrary = $('.showx');
-			$.each(arrary,function(index,value){
-				var text = "";
-				var arr = $(this).find('input');
-				$.each(arr,function(idx,va){
-					if(idx==(arr.length-1))
-						text+=$(this).val();
-					else
-						text+=$(this).val()+",";
+		error="";
+		var arr = $('.showx');
+		var tnamearr= arr.find("input:eq(0)");
+		var tpeoplearr= arr.find("input:eq(1)");
+		var xxx=[];
+		for(var i=0;i<tnamearr.length;i++){
+			xxx.push(tnamearr[i].value);
+			if(tnamearr[i].value.trim()==""){
+				error+="桌位不可為空白";
+				break;
+			}
+			if(tpeoplearr[i].value.trim()==""){
+				error+="人數不可為空白";
+				break;
+			}
+			if(isNaN(tpeoplearr[i].value)){
+				error+="人數請輸入數字";
+				break;
+			}
+		}
+		for(var i=0;i<xxx.length;i++){
+			var tindex = xxx.indexOf(xxx[i]);
+			if(tindex!=i){
+				error+="桌位名稱不可重複";
+				break;
+			}
+		}
+		if(error==""){
+			if($('#dropHere').html()!=""){
+				var arrary = $('.showx');
+				$.each(arrary,function(index,value){
+					var text = "";
+					var arr = $(this).find('input');
+					$.each(arr,function(idx,va){
+						if(idx==(arr.length-1))
+							text+=$(this).val();
+						else
+							text+=$(this).val()+",";
+					});
+					$.post("spacename.do",{"text":text,"whatdo":"addspaceX","spacename":$('#space_name').text().substring(5)}
+									,function(){
+						location.replace("spaceQ.jsp");
+					});
 				});
-				$.post("spacename.do",{"text":text,"whatdo":"addspaceX","spacename":$('#space_name').text().substring(5)}
-								,function(){
-					location.replace("spaceQ.jsp");
-				});
-			});
+			}else{
+				sweetAlert("請新增桌子");
+			}
 		}else{
-			sweetAlert("請新增桌子");
+			sweetAlert(error);
 		}
 	});
 	
@@ -195,19 +227,22 @@ body,.inner-block{
 	width: 50px;
     height: 50px;
     border: 3px solid #ccc;
-    background-color: #ccc;
+/*     background-color: #ccc; */
+	background-image:url("../icon/wood.png");
 }
 #dragBigx{
 	width: 100px;
     height: 50px;
     border: 3px solid #ccc;
-    background-color: #ccc;
+/*     background-color: #ccc; */
+    background-image:url("../icon/wood.png");
 }
 #dragBigy{
 	width: 50px;
     height: 100px;
     border: 3px solid #ccc;
-    background-color: #ccc;
+/*     background-color: #ccc; */
+	background-image:url("../icon/wood2.png");
 }
 div input{
 	width: 60px;
