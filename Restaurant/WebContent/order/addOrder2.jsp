@@ -53,9 +53,9 @@ border-radius: 10px;
 <br>
 <table>
 	<tr>
-<a href="../member/addMember.jsp" ><img src="../img/adduser.png" title="註冊會員"></a>
-<span><a href="../memberlogin/memberlogin.jsp" ><img src="../img/login.png" title="登入會員"></span></a>
-<span><a href="../memberlogin/memberlogout.jsp" ><img src="../img/signout.png" title="登出會員"></a></span>
+<td style="width: 90px"><a href="../member/addMember.jsp" ><img src="../img/adduser.png" title="註冊會員"></a></td>
+<span><td><a href="../memberlogin/memberlogin.jsp" ><img src="../img/login.png" title="登入會員"></td></span></a>
+<span><td><a href="../memberlogin/memberlogout.jsp" ><img src="../img/signout.png" title="登出會員"></a></td></span>
 	</tr>
 </table>
 
