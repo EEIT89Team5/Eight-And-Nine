@@ -55,15 +55,15 @@ font-weight: bold;"
 <body>
 <div align="center" id="block">
 <h2 style="color:red">請輸入桌號狀況</h2><br/>
-<c:if test="${not empty errorMsgs}">
-	<font color='red'>請修正以下錯誤:
-	<ul>
-		<c:forEach var="message" items="${errorMsgs}">
-			<li>${message}</li>
-		</c:forEach>
-	</ul>
-	</font>
-</c:if>
+<%-- <c:if test="${not empty errorMsgs}"> --%>
+<!-- 	<font color='red' style="font-family:ShowWind;font-size:25px">請修正以下錯誤: -->
+<!-- 	<ul> -->
+<%-- 		<c:forEach var="message" items="${errorMsgs}"> --%>
+<%-- 			<li>${message}</li> --%>
+<%-- 		</c:forEach> --%>
+<!-- 	</ul> -->
+<!-- 	</font> -->
+<%-- </c:if> --%>
 <form METHOD="post" ACTION="order.do" >
 <table>
 	<tbody>

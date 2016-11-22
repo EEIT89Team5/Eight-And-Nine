@@ -14,8 +14,12 @@
 <title>點餐  - addOrder2.jsp</title>
 <style>
 body{
-background-image: url("../img/0003.png");
-background-size: cover;
+margin:0;
+padding:0;
+background: #000 url(../img/0003.png) center center fixed no-repeat;
+moz-background-size: cover;
+/* background-image: url("../img/0003.png"); */
+background-size:cover;
 }
 @font-face{
 font-family:"ShowWind";
@@ -138,42 +142,44 @@ border-radius: 10px;
 </table>
 
 
-<c:if test="${not empty orderList}">
+<%-- <c:if test="${not empty orderList}"> --%>
 	<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車小計</h2>
 	<table id="pay">
 
-<%-- 		<tr><td>菜色數量:${orderQ}</td></tr> --%>
-<%-- 		<tr><td>主菜數量:${mainQ}</td></tr> --%>
-<%-- 		<tr><td>套餐數量:${pcgQ}</td></tr> --%>
-<%-- 		<tr><td>總金額:${orderP}</td></tr> --%>
+		<tr><td>菜色數量:${orderQ}</td></tr>
+		<tr><td>主菜數量:${mainQ}</td></tr>
+		<tr><td>套餐數量:${pcgQ}</td></tr>
+		<tr><td>總金額:${orderP}</td></tr>
 	</table><br>
 	<form METHOD="post" ACTION="order.do" name="form1">
 		<input type="hidden" name="action" value="check_orderList">
 		<input type="submit" value="查看購物車" class="button button-pill button-primary" style="font-family:ShowWind;font-size:25px;font-weight:bold">
 	</form>
-</c:if>
+<%-- </c:if> --%>
 </div>
 <script src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/buttons.js"></script>
 <link rel="stylesheet" href="../css/buttons.css">
 <script>
+
 $("input[name='joinus']").click(function(){
+// 	$("#pay").html("")
 	var price=$(this).prev().val()
 	var product=$(this).prev().prev().val()
 	var number=$(this).prev().prev().prev().val()
 	
 $.getJSON("order.do",{"action":"add_S_orderX","product":product,"price":price,"number":number},function(data){
 		
-		$("#pay").html("<tr><td>"+data+"</td></tr>")
+$("#pay").html("<tr><td>菜色數量:"+data[0]+"</td></tr><tr><td>主菜數量:"+data[2]+"</td></tr><tr><td>套餐數量:"+data[3]+"</td></tr><tr><td>總金額:"+data[1]+"</td></tr>")
 	
 	
 	});
 	
 
 })
-
-
-
 </script>
+
+
+
 </body>
 </html>
