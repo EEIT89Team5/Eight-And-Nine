@@ -150,7 +150,7 @@ font-weight: bold
     <a href="addOrder2.jsp" class="button button-pill button-highlight" style="font-family:ShowWind;font-size:25px;font-weight:bold">回點餐</a>
 
 	<c:if test="${not empty orderList}">
-		<h3>購物車小計</h3>
+		<h3 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車小計</h3>
 		<table>
 			<%
 				OrderXService orderXSvc = new OrderXService();
@@ -169,7 +169,7 @@ font-weight: bold
 		<br>
 		<form METHOD="post" ACTION="order.do" name="form1">
 			<input type="hidden" name="action" value="check_orderList"> <input
-				type="submit" value="查看購物車">
+				type="submit" value="查看購物車" class="button button-pill button-primary" style="font-family:ShowWind;font-size:25px;font-weight:bold">
 		</form>
 	</c:if>
 	</c:if>
@@ -233,7 +233,6 @@ console.log("====================================================");
         	           }else if(total == $limitOfDishS.text()){
         	        	  $showMoreOrShort.empty();
         	        	  $headOfH3.css("color","black");
->>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git
         	    	      console.log("剛剛好");  
         	    	      flag=flag+1;
         	           }else{

@@ -102,7 +102,7 @@ border-radius: 10px;
 	</tr>
 </table>
 
-<!-- <h3>點餐</h3> -->
+<h3>點餐</h3>
 <table>
 	<tr style="text-align: center">
 		<td>圖片</td>
@@ -139,7 +139,7 @@ border-radius: 10px;
 
 
 <c:if test="${not empty orderList}">
-	<h3>購物車小計</h3>
+	<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車小計</h2>
 	<table>
 
 		<tr><td>菜色數量:${orderQ}</td></tr>
@@ -149,7 +149,7 @@ border-radius: 10px;
 	</table><br>
 	<form METHOD="post" ACTION="order.do" name="form1">
 		<input type="hidden" name="action" value="check_orderList">
-		<input type="submit" value="查看購物車">
+		<input type="submit" value="查看購物車" class="button button-pill button-primary" style="font-family:ShowWind;font-size:25px;font-weight:bold">
 	</form>
 </c:if>
 </div>
