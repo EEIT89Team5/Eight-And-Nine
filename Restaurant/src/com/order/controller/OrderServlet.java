@@ -1,6 +1,7 @@
 package com.order.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -18,6 +19,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.xml.ws.Response;
+
+import org.json.JSONArray;
 
 import com.dishclass.model.DishClassService;
 import com.dishclass.model.DishClassVO;
@@ -268,7 +272,8 @@ public class OrderServlet extends HttpServlet {
 					orderList.add(orderXVO);
 				}
 				session.setAttribute("orderList", orderList);// session存入新orderList
-
+				
+				
 				if (productVO.getProductKindVO().getKind_id() == 2) {// 若新增套餐修改pcgQ
 					Integer pcgQ = (Integer) session.getAttribute("pcgQ");
 					pcgQ = pcgQ + orderX_num;
@@ -293,9 +298,21 @@ public class OrderServlet extends HttpServlet {
 				orderVO.setOrder_price(orderP);// 查詢orderVO最新價格
 				session.setAttribute("orderVO", orderVO);// session存入新orderVO
 
-				String url = "/order/addOrder2.jsp";// 至addOrder2繼續購物
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, resp);
+//				String url = "/order/addOrder2.jsp";// 至addOrder2繼續購物
+//				RequestDispatcher successView = req.getRequestDispatcher(url);
+//				successView.forward(req, resp);
+				
+				resp.setHeader("content-type", "text/html;charset=UTF-8");
+				resp.setCharacterEncoding("UTF-8");
+				PrintWriter out = resp.getWriter();
+				JSONArray json = new JSONArray();
+				json.put(orderQ);
+				json.put(orderP);
+				json.put(session.getAttribute("mainQ"));
+				json.put(session.getAttribute("pcgQ"));
+//				json.put(orderVO);
+				out.print(json);
+				
 
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());

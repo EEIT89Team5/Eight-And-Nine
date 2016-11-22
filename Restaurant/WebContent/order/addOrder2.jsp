@@ -102,7 +102,7 @@ border-radius: 10px;
 	</tr>
 </table>
 
-<h3>點餐</h3>
+<!-- <h3>點餐</h3> -->
 <table>
 	<tr style="text-align: center">
 		<td>圖片</td>
@@ -116,7 +116,7 @@ border-radius: 10px;
 		<td>${productVO.product_name}</td>
 		<td>${productVO.product_price}元</td>
 		<td>
-			<form METHOD="post" ACTION="order.do">
+<!-- 			<form METHOD="post" ACTION="order.do"> -->
 			數量:<select size="1" name="number" style="font-size:20px;font-family: ShowWind;font-weight: bold">
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -128,9 +128,9 @@ border-radius: 10px;
 				</select>
 			<input type="hidden" name="product" value="${productVO.product_id}">
 			<input type="hidden" name="price" value="${productVO.product_price}">
-			<input type="hidden" name="action" value="add_S_orderX">
-			<input type="submit" value="加入訂單" class="button button-3d" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:black" >
-			</form>
+<!-- 			<input type="hidden" name="action" value="add_S_orderX"> -->
+			<input type="button" name="joinus" value="加入訂單" class="button button-3d" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:black" >
+<!-- 			</form> -->
 		</td>
 	</tr>
 </c:forEach>	
@@ -140,12 +140,12 @@ border-radius: 10px;
 
 <c:if test="${not empty orderList}">
 	<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車小計</h2>
-	<table>
+	<table id="pay">
 
-		<tr><td>菜色數量:${orderQ}</td></tr>
-		<tr><td>主菜數量:${mainQ}</td></tr>
-		<tr><td>套餐數量:${pcgQ}</td></tr>
-		<tr><td>總金額:${orderP}</td></tr>
+<%-- 		<tr><td>菜色數量:${orderQ}</td></tr> --%>
+<%-- 		<tr><td>主菜數量:${mainQ}</td></tr> --%>
+<%-- 		<tr><td>套餐數量:${pcgQ}</td></tr> --%>
+<%-- 		<tr><td>總金額:${orderP}</td></tr> --%>
 	</table><br>
 	<form METHOD="post" ACTION="order.do" name="form1">
 		<input type="hidden" name="action" value="check_orderList">
@@ -156,5 +156,24 @@ border-radius: 10px;
 <script src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/buttons.js"></script>
 <link rel="stylesheet" href="../css/buttons.css">
+<script>
+$("input[name='joinus']").click(function(){
+	var price=$(this).prev().val()
+	var product=$(this).prev().prev().val()
+	var number=$(this).prev().prev().prev().val()
+	
+$.getJSON("order.do",{"action":"add_S_orderX","product":product,"price":price,"number":number},function(data){
+		
+		$("#pay").html("<tr><td>"+data+"</td></tr>")
+	
+	
+	});
+	
+
+})
+
+
+
+</script>
 </body>
 </html>
