@@ -26,6 +26,7 @@ java.sql.Date d2=java.sql.Date.valueOf("2016-10-10");
   src: url("../font/BoldFace.ttc"); 
 }
 th{
+font-family:"ShowWind";
 text-align: center;
 font-weight:bolder;
 font-size: 40px;
@@ -134,11 +135,5 @@ websocket.onmessage = function processMessage(message){
 	</c:forEach>
 </table>
 </div>
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git
 </body>
 </html>

@@ -71,12 +71,39 @@ width: 2000px;
 }
 </style>
 <head>
-<title>內場資訊 </title>
+<title>內場資訊</title>
+
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
+
 <body style="background-color:black">
-		<h3  align="center" style="font-family:ShowWind ;font-size: 50px;color: white">內場資訊 </h3>
+<table align="center">
+<tr><br>
+<td rowspan="2"><font  align="center" style="font-family:ShowWind ;font-size: 50px;color: white">內場資訊</font></td>
+<td></td>
+<td><div style="background-color: orange;width: 30px;height: 30px"></div></td>
+<td><font style="color: white">製作中</font></td>
+</tr>
+<tr>
+<td style="width: 30px;height: 30px"></td>
+<td><div style="background-color: white;width: 30px;height: 30px"></div></td>
+
+<td><font style="color: white">未製作</font></td>
+</tr>
+
+
+
+
+<!-- <tr> -->
+<!-- 	<td><font  align="center" style="font-family:ShowWind ;font-size: 50px;color: white">內場資訊 </font></td> -->
+<!-- <td><div style="background-color: orange;width: 30px;height: 30px"></div></td> -->
+<!-- <td><font style="color: white">製作中</font></td> -->
+<!-- <td><div style="background-color: white;width: 30px;height: 30px"></div></td> -->
+<!-- <td><font style="color: white">未製作</font></td> -->
+<!-- </tr> -->
 </table>
+
+
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -111,8 +138,8 @@ width: 2000px;
 <%--  			<td><div>${orderX.productVO.product_name}</div> --%>
 	
  			<c:choose>  <%--第一筆菜色類別的位置 --%>
- 				<c:when test="${orderX.productVO.dishClassVO.class_id==10}"><td><c:if test="${orderX.orderX_status!='待出餐'&&orderX.orderX_status!='出餐完成'}"><input type="submit" style="${(orderX.orderX_status=='製作中')?'background-color:orange':''}" onclick="sendMessage();" id="messageText" class="button2" value="${orderX.productVO.product_name}">_x${orderX.orderX_num}<br>${orderX.orderX_status}</c:if></c:when>
- 				<c:when test="${orderX.productVO.dishClassVO.class_id==20}"><td></td><td><c:if test="${orderX.orderX_status!='待出餐'&&orderX.orderX_status!='出餐完成'}"><input type="submit" style="${(orderX.orderX_status=='製作中')?'background-color:orange':''}" onclick="sendMessage();" id="messageText" class="button2" value="${orderX.productVO.product_name}">_x${orderX.orderX_num}<br>${orderX.orderX_status}</c:if></c:when>
+ 				<c:when test="${orderX.productVO.dishClassVO.class_id==10}"><td><c:if test="${orderX.orderX_status!='待出餐'&&orderX.orderX_status!='出餐完成'}"><input type="submit" style="${(orderX.orderX_status=='製作中')?'background-color:orange':''}" onclick="sendMessage();" id="messageText" class="button2" value="${orderX.productVO.product_name}">_x${orderX.orderX_num}<br></c:if></c:when>
+ 				<c:when test="${orderX.productVO.dishClassVO.class_id==20}"><td></td><td><c:if test="${orderX.orderX_status!='待出餐'&&orderX.orderX_status!='出餐完成'}"><input type="submit" style="${(orderX.orderX_status=='製作中')?'background-color:orange':''}" onclick="sendMessage();" id="messageText" class="button2" value="${orderX.productVO.product_name}">_x${orderX.orderX_num}<br></c:if></c:when>
  				<c:when test="${orderX.productVO.dishClassVO.class_id==30}"><td></td><td></td><td><c:if test="${orderX.orderX_status!='待出餐'&&orderX.orderX_status!='出餐完成'}"><input type="submit" style="${(orderX.orderX_status=='製作中')?'background-color:orange':''}" onclick="sendMessage();" id="messageText" class="button2" value="${orderX.productVO.product_name}">_x${orderX.orderX_num}<br></c:if></c:when>
  				<c:when test="${orderX.productVO.dishClassVO.class_id==40}"><td></td><td></td><td></td><td><c:if test="${orderX.orderX_status!='待出餐'&&orderX.orderX_status!='出餐完成'}"><input type="submit" style="${(orderX.orderX_status=='製作中')?'background-color:orange':''}" onclick="sendMessage();" id="messageText" class="button2" value="${orderX.productVO.product_name}">_x${orderX.orderX_num}<br></c:if></c:when>
  				<c:when test="${orderX.productVO.dishClassVO.class_id==50}"><td></td><td></td><td></td><td></td><td><c:if test="${orderX.orderX_status!='待出餐'&&orderX.orderX_status!='出餐完成'}"><input type="submit" style="${(orderX.orderX_status=='製作中')?'background-color:orange':''}" onclick="sendMessage();" id="messageText" class="button2" value="${orderX.productVO.product_name}">_x${orderX.orderX_num}<br></c:if></c:when>
@@ -202,11 +229,4 @@ $(function(){
 
 </script>
 
-
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git
 </html>
