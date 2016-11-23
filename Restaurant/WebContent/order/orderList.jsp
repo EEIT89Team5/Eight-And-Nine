@@ -40,7 +40,7 @@ width:250px
 td{
 font-family:"ShowWind";
 color:white;
-font-size:25px;
+font-size:30px;
 text-align:center;
 font-weight:bold;
 height: 50px;
@@ -48,7 +48,7 @@ width:150px
 }
 .alldish{
 font-size:40px;
-color:yellow
+color:pink
 }
 </style>
 </head>
@@ -171,10 +171,10 @@ color:yellow
 		
 		
 <tr style="height: 50px"></tr>
-		<tr><td class="alldish">菜色數量:${orderQ}</td></tr>
-		<tr><td class="alldish">主菜數量:${mainQ}</td></tr>
-		<tr><td class="alldish">套餐數量:${pcgQ}</td></tr>
-		<tr><td class="alldish">總金額:${orderP}</td></tr>
+		<tr><td class="alldish">菜色數量:</td><td>${orderQ}</td></tr>
+		<tr><td class="alldish">主菜數量:</td><td>${mainQ}</td></tr>
+		<tr><td class="alldish">套餐數量:</td><td>${pcgQ}</td></tr>
+		<tr><td class="alldish">總金額:</td><td>${orderP}</td></tr>
 		
 	</table>
 	<br>

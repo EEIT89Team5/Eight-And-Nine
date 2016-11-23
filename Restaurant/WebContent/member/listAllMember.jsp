@@ -38,8 +38,10 @@ text-align: center;
 <body>
 <div align="center">
 <img src="../img/member2.png"><br><br><br><br>
-<table class="table" style="width: 1400px">
+<table class=tablesorter" id="orderlist" style="width: 1400px">
+<thead>
 <tr>
+	
 		<th>編號</th>
 		<th>姓名</th>
 		<th>性別</th>
@@ -48,9 +50,13 @@ text-align: center;
 		<th>手機</th>
 		<th>註冊日</th>
 		<th>修改資料</th>
+		
 </tr>
-	<c:forEach var="memberVO" items="${memberSvc.getAllMember()}" >
-		<tr>
+</thead>
+	
+<tbody>
+<c:forEach var="memberVO" items="${memberSvc.getAllMember()}" >
+<tr>
 			<td>${memberVO.member_id }</td>
 			<td>${memberVO.member_name }</td>
 			<td>${memberVO.member_gender }</td>
@@ -67,10 +73,21 @@ text-align: center;
 				</form>
 			</td>
 		</tr>
-	</c:forEach>
+</c:forEach>
+</tbody>
+
 </table>
 <link rel="stylesheet" href="../css/buttons.css">
 <link rel="stylesheet" href="../css/bootstrap.css">
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/jquery.tablesorter.js"></script>
 </div>
+<script>
+$(function(){
+
+	$("#orderlist").tablesorter({widgets: ['zebra']});
+
+})
+</script>
 </body>
 </html>

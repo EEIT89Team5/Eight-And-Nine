@@ -843,9 +843,19 @@ public class OrderServlet extends HttpServlet {
 
 				session.setAttribute("orderList", orderList);
 
-				String url = "/order/additional2.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url);
-				successView.forward(req, resp);
+//				String url = "/order/additional2.jsp";
+//				RequestDispatcher successView = req.getRequestDispatcher(url);
+//				successView.forward(req, resp);
+				resp.setHeader("content-type", "text/html;charset=UTF-8");
+				resp.setCharacterEncoding("UTF-8");
+				PrintWriter out=resp.getWriter();
+				JSONArray json=new JSONArray();
+				json.put(orderQ);
+				json.put(session.getAttribute("mainQ"));
+				json.put(session.getAttribute("pcgQ"));
+				json.put(orderP);
+				out.print(json);
+				System.out.println(json);
 
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
