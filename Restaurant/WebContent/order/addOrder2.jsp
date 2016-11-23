@@ -14,8 +14,12 @@
 <title>點餐  - addOrder2.jsp</title>
 <style>
 body{
-background-image: url("../img/0003.png");
-background-size: cover;
+margin:0;
+padding:0;
+background: #000 url(../img/0003.png) center center fixed no-repeat;
+moz-background-size: cover;
+/* background-image: url("../img/0003.png"); */
+background-size:cover;
 }
 @font-face{
 font-family:"ShowWind";
@@ -53,9 +57,9 @@ border-radius: 10px;
 <br>
 <table>
 	<tr>
-<a href="../member/addMember.jsp" ><img src="../img/adduser.png" title="註冊會員"></a>
-<span><a href="../memberlogin/memberlogin.jsp" ><img src="../img/login.png" title="登入會員"></span></a>
-<span><a href="../memberlogin/memberlogout.jsp" ><img src="../img/signout.png" title="登出會員"></a></span>
+<td style="width: 90px"><a href="../member/addMember.jsp" ><img src="../img/adduser.png" title="註冊會員"></a></td>
+<span><td><a href="../memberlogin/memberlogin.jsp" ><img src="../img/login.png" title="登入會員"></td></span></a>
+<span><td><a href="../memberlogin/memberlogout.jsp" ><img src="../img/signout.png" title="登出會員"></a></td></span>
 	</tr>
 </table>
 
@@ -102,7 +106,7 @@ border-radius: 10px;
 	</tr>
 </table>
 
-<h3>點餐</h3>
+<!-- <h3>點餐</h3> -->
 <table>
 	<tr style="text-align: center">
 		<td>圖片</td>
@@ -112,11 +116,11 @@ border-radius: 10px;
 	</tr>
 <c:forEach var="productVO" items="${productList}">
 	<tr>
-		<td><img alt="${productVO.product_id}" src="${pageContext.servletContext.contextPath}/getImage?id=${productVO.product_id}" height="200"></td>
+		<td><img alt="${productVO.product_id}" width="247.81" src="${pageContext.servletContext.contextPath}/getImage?id=${productVO.product_id}" height="200"></td>
 		<td>${productVO.product_name}</td>
 		<td>${productVO.product_price}元</td>
 		<td>
-			<form METHOD="post" ACTION="order.do">
+<!-- 			<form METHOD="post" ACTION="order.do"> -->
 			數量:<select size="1" name="number" style="font-size:20px;font-family: ShowWind;font-weight: bold">
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -128,9 +132,9 @@ border-radius: 10px;
 				</select>
 			<input type="hidden" name="product" value="${productVO.product_id}">
 			<input type="hidden" name="price" value="${productVO.product_price}">
-			<input type="hidden" name="action" value="add_S_orderX">
-			<input type="submit" value="加入訂單" class="button button-3d" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:black" >
-			</form>
+<!-- 			<input type="hidden" name="action" value="add_S_orderX"> -->
+			<input type="button" name="joinus" value="加入訂單" class="button button-3d" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:black" >
+<!-- 			</form> -->
 		</td>
 	</tr>
 </c:forEach>	
@@ -138,9 +142,9 @@ border-radius: 10px;
 </table>
 
 
-<c:if test="${not empty orderList}">
+<%-- <c:if test="${not empty orderList}"> --%>
 	<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車小計</h2>
-	<table>
+	<table id="pay">
 
 		<tr><td>菜色數量:${orderQ}</td></tr>
 		<tr><td>主菜數量:${mainQ}</td></tr>
@@ -151,10 +155,31 @@ border-radius: 10px;
 		<input type="hidden" name="action" value="check_orderList">
 		<input type="submit" value="查看購物車" class="button button-pill button-primary" style="font-family:ShowWind;font-size:25px;font-weight:bold">
 	</form>
-</c:if>
+<%-- </c:if> --%>
 </div>
 <script src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/buttons.js"></script>
 <link rel="stylesheet" href="../css/buttons.css">
+<script>
+
+$("input[name='joinus']").click(function(){
+// 	$("#pay").html("")
+	var price=$(this).prev().val()
+	var product=$(this).prev().prev().val()
+	var number=$(this).prev().prev().prev().val()
+	
+$.getJSON("order.do",{"action":"add_S_orderX","product":product,"price":price,"number":number},function(data){
+		
+$("#pay").html("<tr><td>菜色數量:"+data[0]+"</td></tr><tr><td>主菜數量:"+data[2]+"</td></tr><tr><td>套餐數量:"+data[3]+"</td></tr><tr><td>總金額:"+data[1]+"</td></tr>")
+	
+	
+	});
+	
+
+})
+</script>
+
+
+
 </body>
 </html>

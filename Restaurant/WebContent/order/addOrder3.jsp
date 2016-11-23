@@ -15,10 +15,22 @@ background-size: cover;
 font-family:"ShowWind";
 src: url("../font/ShowWind.ttc");  
 }
-td{
+#Information td{
 font-family:ShowWind;
 color:white;
-font-size:40px
+font-size:40px;
+width: 250px; 
+height: 50px;
+text-align: center;
+font-weight: bold
+}
+#Details td{
+font-family:ShowWind;
+color:white;
+font-size:40px; 
+height: 50px;
+text-align: center;
+font-weight: bold
 }
 h2{
 font-family:ShowWind;
@@ -31,21 +43,23 @@ color:white;
 <div align="center">
 <!-- <h2>訂單已成功送出</h2><br/> -->
 <img src="../img/thanksorder.png">
-<table>
+<table id="Information">
 	<tbody>
-		<tr><td><h3>訂單資訊</h3></h3></td></tr>
-		<tr><td>編號:${orderVO.order_id}</td></tr>		
-		<tr><td>桌號:${orderVO.order_table}</td></tr>
-		<tr><td>日期:${orderVO.order_date}</td></tr>
-		<tr><td>總價:${orderVO.order_price}</td></tr>
-		<tr><td>人數:${orderVO.order_numP}人</td></tr>
-		<tr><td>會員:<c:if test="${! empty MemberLoginOK }">${MemberLoginOK.member_name}</c:if></td></tr>
-		<tr><td>員工:${orderVO.empVO.emp_name}</td></tr>
-		<tr><td>折扣(結帳再說)</td></tr>
-		<tr><td>結帳時間(結帳再說)</td></tr>
-				
+		<tr><td colspan="3" style="text-align: center;color:pink"><h3>訂單資訊</h3></h3></td></tr>
+		<tr><td>編號:</td><td>${orderVO.order_id}</td><td></td></tr>		
+		<tr><td>桌號:</td><td style="color:red">${orderVO.order_table}</td><td></td></tr>
+		<tr><td>日期:</td><td>${orderVO.order_date}</td><td></td></tr>
+		<tr><td>總價:</td><td>${orderVO.order_price}</td><td></td></tr>
+		<tr><td>人數:</td><td>${orderVO.order_numP}人</td><td></td></tr>
+		<tr><td>會員:</td><td><c:if test="${! empty MemberLoginOK }">${MemberLoginOK.member_name}</c:if></td></tr>
+		<tr><td>員工:</td><td>${orderVO.empVO.emp_name}</td><td></td></tr>
+<!-- 		<tr><td>折扣(結帳再說)</td></tr> -->
+<!-- 		<tr><td>結帳時間(結帳再說)</td></tr> -->
+			</tbody>
+</table>
+<table id="Details">				
 		<tr>
-			<td><h3>訂單明細</h3></td>
+			<td colspan="3" style="color:pink"><h3>訂單明細</h3></td>
 		</tr>
 		<tr>
 			<td>商品編號</td>
@@ -59,8 +73,8 @@ color:white;
 					<td>${orderXVO.orderX_num}</td>
 				</tr>
 			</c:forEach>
-	</tbody>
-</table><br/>
+</table>
+<br/>
 </div>
 </body>
 </html>

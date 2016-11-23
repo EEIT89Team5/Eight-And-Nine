@@ -107,7 +107,7 @@ $("#forgetlogin").click(function(){
 		  }
 		  
 		  $.post("memberlogin.do",{"action":"forgetlogin","userId":inputValue},function(){
-		 		swal("密碼已經寄至您的信件囉~你這沒記性的小BITCH")
+		 		swal("密碼已經寄至您的信件囉~")
 				
 		 	});
 		});

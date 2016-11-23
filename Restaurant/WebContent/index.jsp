@@ -38,6 +38,7 @@ body{
 .inner-block{
   	background-image: url("img/background.jpg");  
 	background-size:cover;
+	
 }
 .clerfix{
 	border-style:solid;
@@ -53,6 +54,10 @@ body{
  	height:70%; 
 	margin-left: 20px;
 	margin-top: -30px;
+}
+@font-face{
+font-family:"ShowWind";
+src: url("font/ShowWind.ttc");
 }
 
 </style>
@@ -108,7 +113,6 @@ body{
     <div class="price-block-main">
 
 <!-- 	<img id="welcomelogo" style="width:100%;height: 100%" alt="首頁" src="img/01.png"> -->
-
 
 <br />
 <br />

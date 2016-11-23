@@ -130,12 +130,14 @@ public class OrderXDAO implements OrderXDAO_interface {
 		    List<OrderXVO> list = dao.getAll(d2);
 		    
 		for (OrderXVO orderXVOs : list) {
-			System.out.println("-------------");
-			System.out.println("order_id" + orderXVOs.getOrderVO().getOrder_id());
-			System.out.println("product_id" + orderXVOs.getProductVO().getProduct_id());
-			System.out.println("orderX_time" + orderXVOs.getOrderX_time());
-			System.out.println("orderX_num" + orderXVOs.getOrderX_num());
-			System.out.println("orderX_status" + orderXVOs.getOrderX_status());
+			System.out.println(orderXVOs);
+			System.out.println("orderXVOs.getOrderVO()="+orderXVOs.getOrderVO());
+			System.out.println("orderXVOs.getOrderVO().getOrder_id()="+orderXVOs.getOrderVO().getOrder_id() );
+//			System.out.println("order_id" + orderXVOs.getOrderVO().getOrder_id());
+//			System.out.println("product_id" + orderXVOs.getProductVO().getProduct_id());
+//			System.out.println("orderX_time" + orderXVOs.getOrderX_time());
+//			System.out.println("orderX_num" + orderXVOs.getOrderX_num());
+//			System.out.println("orderX_status" + orderXVOs.getOrderX_status());
 		}
 	}
 

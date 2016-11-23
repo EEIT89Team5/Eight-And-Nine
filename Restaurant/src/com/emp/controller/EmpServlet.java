@@ -240,8 +240,8 @@ public class EmpServlet extends HttpServlet {
 				  Message msg = new MimeMessage(session);
 				  
 				  msg.setFrom(new InternetAddress(username + "@gmail.com","8+9餐廳管理系統"));
-				  msg.setRecipients(Message.RecipientType.TO, 
-
+				  msg.setHeader("Content-Type", "text/plain; charset=UTF-8");
+				  msg.setRecipients(Message.RecipientType.TO,  
 				  InternetAddress.parse(emp_email,false));
 				  
 				  msg.setSubject("帳號驗證信");

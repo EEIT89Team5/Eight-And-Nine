@@ -156,6 +156,7 @@ public class MemberLoginServlet extends HttpServlet {
 			  Message msg = new MimeMessage(session);
 			  
 			  msg.setFrom(new InternetAddress(username + "@gmail.com","8+9美食餐廳"));
+			  msg.setContent(body, "text/html;charset = UTF-8");
 			  msg.setRecipients(Message.RecipientType.TO, 
 
 			  InternetAddress.parse(memberVO.getMember_email(),false));
@@ -229,6 +230,7 @@ public class MemberLoginServlet extends HttpServlet {
 			  Message msg = new MimeMessage(session);
 			  
 			  msg.setFrom(new InternetAddress(username + "@gmail.com","8+9美食餐廳"));
+			  msg.setContent(body, "text/html;charset = UTF-8");
 			  msg.setRecipients(Message.RecipientType.TO, 
 
 			  InternetAddress.parse(mememail,false));

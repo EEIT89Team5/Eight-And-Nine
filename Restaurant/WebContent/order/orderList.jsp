@@ -4,6 +4,11 @@
 <%@ page import="com.orderx.model.*"%>
 <%@ page import="java.util.*"%>
 
+<jsp:useBean id="productSvc" scope="page" class="com.product.model.ProductService" />
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
 <% OrderXService orderXSvc=new OrderXService();
 	List<OrderXVO> orderList=(List<OrderXVO>)session.getAttribute("orderList");
 	%>
@@ -15,8 +20,11 @@
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 <style>
 body{
-background-image: url("../img/0003.png");
-background-size: cover;
+margin:0;
+padding:0;
+background: #000 url(../img/0003.png) center center fixed no-repeat;
+moz-background-size: cover;
+background-size:cover;
 }
 @font-face{
 font-family:"ShowWind";
@@ -38,6 +46,10 @@ font-weight:bold;
 height: 50px;
 width:150px
 }
+.alldish{
+font-size:40px;
+color:yellow
+}
 </style>
 </head>
 <body>
@@ -49,41 +61,120 @@ width:150px
 		<tr>
 			<th>商品編號</th>
 			<th>商品名稱</th>
-			<th>數量</th>
-			<th>價格</th>
+			<th>餐點類別</th>
+			<th style="width: 80px">數量</th>
+			<th style="width: 200px">價格</th>
 		</tr>
 
 		<c:forEach var="orderXVO" items="${orderList}" varStatus="index">
+		   <c:if test="${orderXVO.productVO.productKindVO.kind_name != '套餐菜色' }">
 			<tr>
 				<td>${orderXVO.productVO.product_id}</td>
 				<td>${orderXVO.productVO.product_name}</td>
 				<td>${orderXVO.productVO.productKindVO.kind_name}</td>
-				<td>${orderXVO.orderX_num}</td>
-				<td>${orderXVO.productVO.product_price}</td>
-				<td>
+				<td style="width: 80px">${orderXVO.orderX_num}</td>
+				<td style="width:200px">${orderXVO.productVO.product_price}</td>
+				
 					<form method="post" ACTION="order.do" >
+					<td>
+					<input type="text" maxlength="3" name="altNumber" style="width:50px;height: 35px;font-family:ShowWind;font-size:25px;font-weight: bold;">
+					</td>
+					<td>
 						<input type="hidden" name="alt" value="${index.count}">
 						<input type="hidden" name="action" value="alter_S_orderX">
-						<input type="submit" value="修改">
-						<input type="type" name="altNumber">
+						<input type="submit" value="修改" class="button button-3d" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:black;">
+					</td>
 					</form>
-				</td>
-				<td>
+					
+					
+					
 					<form method="post" ACTION="order.do" >
+					<td>
 						<input type="hidden" name="del" value="${index.count}">
 						<input type="hidden" name="action" value="delete_S_orderX">
-						<input type="submit" value="刪除">
+						<input type="submit" value="刪除" class="button button-3d-royal button-rounded" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:white">
+					</td>
 					</form>
-				</td>
+					
 			</tr>
 
-			
+		  </c:if>
 		</c:forEach>
+		
+		<tr><td></td><td></td><td></td><td></td><td></td>
+		</tr> 		
+		 <c:forEach var="mapForPackageIdAndQty" items="${mapForPackageIdAndQty}">               
+           <tr><td>--------------------</td><td>--------------------</td><td>-------------------</td><td>------------</td><td>----------------</td>
+		    </tr> 
+            <tr>
+            	<td>${productSvc.findByPrimaryKey(mapForPackageIdAndQty.key).product_name}</td>    <!-- 變數productSvc 為第七行的 jsp:useBean 創造 -->
+            	<td></td>
+                <td></td>
+                <td>${mapForPackageIdAndQty.value}</td>
+                <td>${productSvc.findByPrimaryKey(mapForPackageIdAndQty.key).product_price * (mapForPackageIdAndQty.value)}</td>
+                <td>
+				  <form method="post" ACTION="order.do" >
+					  <input type="hidden" name="del" value="${index.count}">
+					  <input type="hidden" name="action" value="delete_S_orderX">
+				      <input type="submit" value="刪除" class="button button-3d-royal button-rounded" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:white">
+				 </form>
+				</td>			    	
+            </tr>
+            <tr><td>--------------------</td><td>--------------------</td><td>-------------------</td><td>------------</td><td>----------------</td>
+		    </tr>
+		      
+         <c:forEach var="orderXVO" items="${orderList}"  >	
+           <c:forEach var="numXXX"  begin="10" end="60" step="10">
+	         <c:if test="${mapForPackageIdAndQty.key == orderXVO.productVO.product_pcg}">      	   
+<%-- 		       <c:if test="${orderXVO.productVO.productKindVO.kind_name == '套餐菜色' }">       <!-- 在此設定套餐菜色的顯示，以及""不可""修改和刪除   -->                                      --%>
+<%--                  <c:forEach var="vv" items="${productSvc.packageformat(mapForPackageIdAndQty.key)}"> --%>
+                  
+<%--                   <c:out value="${numXXX}"/> --%>
+                  <c:if test="${orderXVO.productVO.dishClassVO.class_id == numXXX}">              
+			        <tr>
+				      <td>${orderXVO.productVO.product_id}</td>
+				      <td>${orderXVO.productVO.product_name}</td>
+				      <td>${orderXVO.productVO.dishClassVO.class_id}</td>
+				      <td>${orderXVO.orderX_num}</td>
+				      <td>${orderXVO.productVO.product_price}</td>
+				  
+				      <td></td>
+				      <td></td>
+			        </tr>	
+			       </c:if>
+<%-- 			   	</c:forEach>		       --%>
+                
 
-		<tr><td>菜色數量:${orderQ}</td></tr>
-		<tr><td>主菜數量:${mainQ}</td></tr>
-		<tr><td>套餐數量:${pcgQ}</td></tr>
-		<tr><td>總金額:${orderP}</td></tr>
+<%--                 <c:out value="${productSvc.packageformat(mapForPackageIdAndQty.key)}"/> --%>
+<%--                 <c:forEach var="vv" items="${productSvc.packageformat(mapForPackageIdAndQty.key)}"> --%>
+<%--                   <c:if test="${orderXVO.productVO.dishClassVO.class_id == vv.dishClassVO.class_id }">               --%>
+<!-- 			        <tr> -->
+<%-- 				      <td>${orderXVO.productVO.product_id}</td> --%>
+<%-- 				      <td>${orderXVO.productVO.product_name}</td> --%>
+<%-- 				      <td>${orderXVO.productVO.dishClassVO.class_id}</td> --%>
+<%-- 				      <td>${orderXVO.orderX_num}</td> --%>
+<%-- 				      <td>${orderXVO.productVO.product_price}</td> --%>
+				  
+<!-- 				      <td></td> -->
+<!-- 				      <td></td> -->
+<!-- 			        </tr>	 -->
+<%-- 			       </c:if> --%>
+<%-- 			   	 </c:forEach>		       --%>
+<%-- 			   </c:if>   --%>
+            </c:if>  
+             </c:forEach>                   
+		 </c:forEach>
+		    <tr>
+               <td></td><td></td><td></td> <td></td>                             
+             </tr>	
+        </c:forEach>  	  
+		
+		
+<tr style="height: 50px"></tr>
+		<tr><td class="alldish">菜色數量:${orderQ}</td></tr>
+		<tr><td class="alldish">主菜數量:${mainQ}</td></tr>
+		<tr><td class="alldish">套餐數量:${pcgQ}</td></tr>
+		<tr><td class="alldish">總金額:${orderP}</td></tr>
 		
 	</table>
 	<br>
