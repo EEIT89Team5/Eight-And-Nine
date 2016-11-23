@@ -112,6 +112,8 @@ color:yellow
                 <td></td>
                 <td>${mapForPackageIdAndQty.value}</td>
                 <td>${productSvc.findByPrimaryKey(mapForPackageIdAndQty.key).product_price * (mapForPackageIdAndQty.value)}</td>
+                <td></td>
+                <td></td>
                 <td>
 				  <form method="post" ACTION="order.do" >
 					  <input type="hidden" name="del" value="${index.count}">
