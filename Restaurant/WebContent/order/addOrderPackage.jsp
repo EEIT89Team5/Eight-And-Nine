@@ -61,7 +61,6 @@ font-weight: bold
 <br>
 <br>
 <table>
-515555
 	<tr>
 		<td>桌號:${orderVO.order_table}</td>
 		<td>人數:${orderVO.order_numP}人</td>
@@ -79,7 +78,9 @@ font-weight: bold
 				<td>
 				  <div>
 					<form method="post" action="order.do">
+					    <input type="hidden" name="nameOfPackage" value="${pruductVO.product_name}">
 						<input type="hidden" name="classOfPackage" value="${pruductVO.product_id}">
+						<input type="hidden" name="priceOfPackage" value="${pruductVO.product_price}">
 						<input type="hidden" name="action" value="choose_P_class">
 						<input type="submit" value="${pruductVO.product_name}" class="button button-3d-primary button-rounded" style="font-family: ShowWind;font-size:25px;font-weight: bold;">				   
 					</form>
@@ -151,25 +152,17 @@ font-weight: bold
 
 	<c:if test="${not empty orderList}">
 		<h3 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車小計</h3>
-		<table>
-			<%
-				OrderXService orderXSvc = new OrderXService();
-				List<OrderXVO> orderList = (List<OrderXVO>) session.getAttribute("orderList");
-			%>
-			<tr>
-				<td>單點主菜數量:<%=orderXSvc.getDishQuantity(1, 40, orderList)%></td>
-			</tr>
-			<tr>
-				<td>套餐數量:<%=orderXSvc.getPackageQuantity(orderList)%></td>
-			</tr>
-			<tr>
-				<td>總金額:${orderVO.order_price}</td>
-			</tr>
+		<table style="width: 600px">
+
+		 <tr><td>菜色數量:${orderQ}</td></tr>
+		 <tr><td>主菜數量:${mainQ}</td></tr>
+		 <tr><td>套餐數量:${pcgQ}</td></tr>
+		 <tr><td>總金額:${orderP}</td></tr>
 		</table>
 		<br>
 		<form METHOD="post" ACTION="order.do" name="form1">
 			<input type="hidden" name="action" value="check_orderList"> <input
-				type="submit" value="查看購物車" class="button button-pill button-primary" style="font-family:ShowWind;font-size:25px;font-weight:bold">
+			  type="submit" value="查看購物車" class="button button-pill button-primary" style="font-family:ShowWind;font-size:25px;font-weight:bold">
 		</form>
 	</c:if>
 	</c:if>
