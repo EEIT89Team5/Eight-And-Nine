@@ -163,7 +163,7 @@ public class OrderXDAO implements OrderXDAO_interface {
 	@Override
 	public List<OrderXVO> getAll(Date d2) {
 		List<OrderXVO> list = null;
-		list = hibernateTemplate.find("FROM OrderXVO where orderVO.order_date =? order by orderVO.order_id,productVO.dishClassVO.class_id",d2);
+		list = hibernateTemplate.find("FROM OrderXVO where orderVO.order_date =? and productVO.productKindVO.kind_id !=2   order by orderVO.order_id,productVO.dishClassVO.class_id",d2);
 		
 		// Session session =
 		// HibernateUtil.getSessionFactory().getCurrentSession();
