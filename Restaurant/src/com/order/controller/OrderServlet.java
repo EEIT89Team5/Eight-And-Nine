@@ -368,6 +368,8 @@ public class OrderServlet extends HttpServlet {
  
                 System.out.println("套餐名稱-----"+nameOfPackage+ "數量:"+qtyOfPackage);
 
+                map.put(pcg_id, qtyOfPackage);  //把套餐id和數量丟進map  然後下面再丟進orderlist裡
+       
                 if(mapForPackageIdAndQty.containsKey(pcg_id)){                           //判斷map裡有沒有該套餐
                     int qty_of_package =  mapForPackageIdAndQty.get(pcg_id);            //該套餐被點了幾次
                     
@@ -458,7 +460,10 @@ public class OrderServlet extends HttpServlet {
 		         }
 				System.out.println("購物車數量:"+orderList.size());
 			
-				
+				OrderVO orderVO = (OrderVO) session.getAttribute("orderVO");
+				orderVO.setOrder_price(orderP);// 查詢orderVO最新價格
+				session.setAttribute("orderVO", orderVO);// session存入新orderVO
+
 				session.setAttribute("pcgQ", pcgQ);                                   //將套餐數量存回session
 				session.setAttribute("orderP", orderP);  
 //				session.setAttribute("orderList", orderList);//session存入新orderList
