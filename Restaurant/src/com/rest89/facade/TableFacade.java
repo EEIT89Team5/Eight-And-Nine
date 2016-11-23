@@ -35,7 +35,9 @@ public class TableFacade {
 	@Produces({ MediaType.APPLICATION_JSON })
 	public TableVO getOneTable(@PathParam("table_name") String table_name) {
 		TableVO tableVO=null;
+		System.out.println(table_name);
 		tableVO = tableSvc.getOneTable(table_name);
+		System.out.println(tableVO);
 		return tableVO;
 	}
 
