@@ -155,6 +155,9 @@ public class OrderServlet extends HttpServlet {
 				Integer orderP = 0;
 				session.setAttribute("orderP", orderP);
 
+				Map<String, Integer> mapForPackageIdAndQty = new HashMap<String, Integer>();
+				session.setAttribute("mapForPackageIdAndQty", mapForPackageIdAndQty);
+
 				DishClassService classSvc = new DishClassService();
 				DishClassVO classVO = classSvc.getOneClass(10);
 				session.setAttribute("classVO", classVO);// session存入菜色類型classVO(各種forward後可以回到先前狀態)
@@ -220,11 +223,15 @@ public class OrderServlet extends HttpServlet {
 				HttpSession session = req.getSession();
 
 				Integer pcg_id = new Integer(req.getParameter("classOfPackage"));
+				String nameOfPackage = new String(req.getParameter("nameOfPackage"));
+				Integer priceOfPackage = new Integer(req.getParameter("priceOfPackage"));
 				ProductService productSvc = new ProductService();
 				List<PackageFormatVO> packageFormatVO = productSvc.getDishClassByPackage(pcg_id);
-                session.setAttribute("pcg_id", pcg_id);                
+                
+				session.setAttribute("pcg_id", pcg_id);                
 				session.setAttribute("packageFormatVO", packageFormatVO);
-		        
+				session.setAttribute("priceOfPackage", priceOfPackage);
+				session.setAttribute("nameOfPackage", nameOfPackage);	
        		
 				String url = "/order/addOrderPackage.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
@@ -344,28 +351,60 @@ public class OrderServlet extends HttpServlet {
                 String[] qtyOfDishS =  req.getParameterValues("qtyOfDish");              //抓菜色數量
                 String[] belongOfPackage =  req.getParameterValues("belongOfPackage");  //抓菜色屬於哪個套餐ID
                 Map map = new HashMap();
-                Integer k = 0;
+                Map<String, Integer> mapForPackageIdAndQty = (Map<String, Integer>) session.getAttribute("mapForPackageIdAndQty");
+                
                 Integer qtyOfDish = 0;
-                Integer limit= new Integer(req.getParameter("limit").trim());
+                Integer limit= new Integer(req.getParameter("limit").trim()); 
+                Integer pcgQ =(Integer) session.getAttribute("pcgQ");                       //取得session裡已存在套餐的數量
+                Integer orderP =(Integer) session.getAttribute("orderP");                       //取得session裡已存在的金額
+                Integer priceOfPackage =(Integer) session.getAttribute("priceOfPackage");   //取得session裡已存在的選擇套餐金額
+                Integer qtyOfPackage = new Integer(req.getParameter("qtyOfPackage").trim()); //抓客人此次選擇了幾套套餐               
 
+                orderP += qtyOfPackage * priceOfPackage ;
+                pcgQ += qtyOfPackage; 
+                
+                String nameOfPackage = (String) session.getAttribute("nameOfPackage");             
+                String pcg_id = session.getAttribute("pcg_id").toString();
+ 
+                System.out.println("套餐名稱-----"+nameOfPackage+ "數量:"+qtyOfPackage);
+
+                if(mapForPackageIdAndQty.containsKey(pcg_id)){                           //判斷map裡有沒有該套餐
+                    int qty_of_package =  mapForPackageIdAndQty.get(pcg_id);            //該套餐被點了幾次
+                    
+                    System.out.println("原有數量::"+qty_of_package+"------------");
+                    System.out.println("本次數量::"+qtyOfPackage+"------------");
+                    qtyOfPackage = qtyOfPackage + qty_of_package;
+                    mapForPackageIdAndQty.put(pcg_id, qtyOfPackage);
+                    System.out.println("我是加總:"+qtyOfPackage);                   
+                    qtyOfPackage = 0;
+                    System.out.println(qtyOfPackage+"媽我再這11111------------"); 
+                    System.out.println("10570:"+mapForPackageIdAndQty.get("10570"));
+                    System.out.println("10700:"+mapForPackageIdAndQty.get("10700"));
+                    System.out.println("11070:"+mapForPackageIdAndQty.get("11070"));
+                    System.out.println("11430:"+mapForPackageIdAndQty.get("11430"));
+                 }else{
+                    mapForPackageIdAndQty.put(pcg_id, qtyOfPackage);
+                    System.out.println("第一次點此套餐");
+//                    System.out.println(pcg_id+"媽我再這3333--------------");
+//                    System.out.println(mapForPackageIdAndQty.get(pcg_id)+"媽我再這444444------------");
+                    System.out.println("10570:"+mapForPackageIdAndQty.get("10570"));
+                    System.out.println("10700:"+mapForPackageIdAndQty.get("10700"));
+                    System.out.println("11070:"+mapForPackageIdAndQty.get("11070"));
+                    System.out.println("11430:"+mapForPackageIdAndQty.get("11430"));
+                };
+                session.setAttribute("mapForPackageIdAndQty", mapForPackageIdAndQty);  //把map存入session
+                 
                 for(int i = 0 ; i < dishOfPackage.length; i++){		
-				   System.out.println(dishOfPackage[i]);
-				   System.out.println(qtyOfDishS[i]);
-				   System.out.println(belongOfPackage[i]);
+//				   System.out.println(dishOfPackage[i]);
+//				   System.out.println(qtyOfDishS[i]);
+//				   System.out.println(belongOfPackage[i]);
 				   
 				   qtyOfDish = new Integer(qtyOfDishS[i]);
-				   map.put(dishOfPackage[i], qtyOfDish);      //
-				   
-				   k += new Integer(qtyOfDishS[i].trim())  ;  //  Integer bbi = new Integer(qtyOfDish[i].trim());
+				   map.put(dishOfPackage[i], qtyOfDish);      //				   				   
 				}
-				System.out.println("===============================");
-				System.out.println("菜色總數:"+ k);
-				System.out.println("AAAAA===============================");
-				System.out.println("限制數量:"+limit);
-				
-				if(k > limit){
-					System.out.println("bbbbb===============================");
-				}
+                			
+                System.out.println(qtyOfPackage+"===============================");
+			
 				System.out.println("我是MAP的數量"+map.size());
 				
 //				Set set = map.keySet();                                  //以下六行為抓全部
@@ -419,7 +458,9 @@ public class OrderServlet extends HttpServlet {
 		         }
 				System.out.println("購物車數量:"+orderList.size());
 			
-//
+				
+				session.setAttribute("pcgQ", pcgQ);                                   //將套餐數量存回session
+				session.setAttribute("orderP", orderP);  
 //				session.setAttribute("orderList", orderList);//session存入新orderList
 //
 //				OrderXService orderXSvc = new OrderXService();
