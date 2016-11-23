@@ -67,6 +67,7 @@ color:yellow
 		</tr>
 
 		<c:forEach var="orderXVO" items="${orderList}" varStatus="index">
+		   <c:if test="${orderXVO.productVO.productKindVO.kind_name != '套餐菜色' }">
 			<tr>
 				<td>${orderXVO.productVO.product_id}</td>
 				<td>${orderXVO.productVO.product_name}</td>
@@ -94,7 +95,7 @@ color:yellow
 				</td>
 			</tr>
 
-			
+		  </c:if>
 		</c:forEach>
 		
 		<tr><td></td><td></td><td></td><td></td><td></td>
