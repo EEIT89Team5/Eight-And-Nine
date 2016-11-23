@@ -46,7 +46,7 @@ text-align: center;
 		<th>姓名</th>
 		<th>性別</th>
 		<th>email</th>
-		<th>密碼</th>
+<!-- 		<th>密碼</th> -->
 		<th>手機</th>
 		<th>註冊日</th>
 		<th>修改資料</th>
@@ -61,7 +61,7 @@ text-align: center;
 			<td>${memberVO.member_name }</td>
 			<td>${memberVO.member_gender }</td>
 			<td>${memberVO.member_email }</td>
-			<td>${memberVO.member_password }</td>
+<%-- 			<td>${memberVO.member_password }</td> --%>
 			<td>${memberVO.member_phone }</td>	
 			
 			<td>${memberVO.member_register }</td>

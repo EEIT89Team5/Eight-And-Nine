@@ -33,6 +33,7 @@ background-size: cover;
 moz-background-size: cover;
 }
 </style>
+<link rel="Shortcut Icon" type="image/png" href="icon/pagelogo.png" />
 </head>
 
 <body>
