@@ -23,6 +23,19 @@ $(document).ready(function() {
 	$('#total').html(Math.round(unfinishmoney));
 	$('#pricex').val(Math.round(unfinishmoney));
 	
+// 	$('#discounts').click(function(){
+	var disV = $("#discounts").find('option');
+	
+	$.each(disV,function(i,v){
+	var array = $(this).html().split(",");
+		if(array[1]!=null){
+			$(this).html(array[0]+","+array[1].substring(2,5)+"折")	
+		}else{
+			$(this).html(array[0])	
+		}
+	})
+// 	disV.html(array[0]+","+array[1].substring(2,5)+'折')
+// 	})
 	
 	$('#discounts').change(function(){
 		var dis = $(this).find('option:selected');
@@ -30,7 +43,8 @@ $(document).ready(function() {
 			var array = dis.html().split(",");
 			$('#dis_name').html(array[0]);
 			$('#dis_val').html(array[1]);
-			var newTotal = Math.round(total*array[1]);
+			var discountline=array[1].length
+			var newTotal = Math.round(total*("0."+array[1].substring(0,discountline-1)));
 			$('#total').html(newTotal);
 			$('#pricex').val(newTotal);
 			$('#discountx').val(dis.val());
@@ -84,6 +98,16 @@ body,.inner-block{
 }
 #outerdiv input,#outerdiv select{
 	color:black;
+}
+th{
+text-align: center;
+color:yellow
+}
+td{
+text-align: center;
+}
+#dis_val,#total{
+color:yellow;
 }
 /* #maindiv{ */
 /* 	width:500px; */
@@ -182,7 +206,7 @@ body,.inner-block{
 			</div>
 			<hr />
 				<table width="680px" >
-				<tr><td>品名</td><td>價格</td><td>數量</td></tr>
+				<th>品名</th><th>價格</th><th>數量</th>
 
 				<c:forEach var="orderx" items="${bills.orderXs}">
 					<tr>
@@ -194,17 +218,19 @@ body,.inner-block{
 				</c:forEach>
 				</table>
 				<hr />
+				
 				<input type="text" hidden id="origincount" value="${count}">
 				<c:if test="${bills.memberVO.member_name != null}">
-					<div id="discoutdiv" width="500px"><span id="dis_name">會員</span> &nbsp;&nbsp;<span id="dis_val">0.9</span></div>
+					<div id="discoutdiv" width="500px" align="center"><span id="dis_name">會員</span> &nbsp;&nbsp;<span id="dis_val">9 &nbsp;折</span></div>
 					<c:set var="count" value="${count * 0.9}" />
 				</c:if>
 				<c:if test="${bills.memberVO.member_name == null}">
 					<div id="discoutdiv" hidden width="500px"><span id="dis_name"></span> &nbsp;&nbsp;<span id="dis_val"></span></div>
 				</c:if>
-				<div width="500px"><span>總金額:</span>&nbsp;&nbsp;<span id="total">${count}</span></div>
+				<div width="500px" align="center"><span>總金額:</span>&nbsp;&nbsp;<span id="total">${count}</span></div>
 
 		</div>
+		<div align="center">
 		<form action="formatTable.do">
 			<input type="text" hidden name="table" value="money" />
 			<input type="text" hidden name="order_table" value="${bills.order_table}" />
@@ -213,7 +239,7 @@ body,.inner-block{
 			<input id="discountx" type="text" hidden name="order_discount" value="${discountid}" />
 			<input type="submit" value="確定明細"/>
 		</form>
-		
+		</div>
 	</div>
 	
 	

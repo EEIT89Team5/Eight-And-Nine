@@ -55,6 +55,10 @@ body{
 	margin-left: 20px;
 	margin-top: -30px;
 }
+@font-face{
+font-family:"ShowWind";
+src: url("font/ShowWind.ttc");
+}
 
 </style>
 <link rel="Shortcut Icon" type="image/png" href="icon/pagelogo.png" />
@@ -109,7 +113,6 @@ body{
     <div class="price-block-main">
 
 <!-- 	<img id="welcomelogo" style="width:100%;height: 100%" alt="首頁" src="img/01.png"> -->
-
 
 <br />
 <br />
