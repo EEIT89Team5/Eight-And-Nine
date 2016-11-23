@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 
 
@@ -118,14 +120,15 @@ public class OrderXDAO implements OrderXDAO_interface {
 
 	public static void main(String args[]) {
 
-		OrderXDAO orderXDAO = new OrderXDAO();
-
-		// orderXDAO.delete(1, 10040);
-
-		// orderXDAO.insert(orderXVO1);
-
-		List<OrderXVO> list = orderXDAO.getAll();
-
+		ApplicationContext context = new ClassPathXmlApplicationContext("model-config-DriverManagerDataSource.xml");
+		OrderXDAO_interface dao = (OrderXDAO_interface) context.getBean("orderxDAO");
+		
+	
+//		java.sql.Date d=new java.sql.Date(System.currentTimeMillis());
+		java.sql.Date d2=java.sql.Date.valueOf("2016-10-10");
+	
+		    List<OrderXVO> list = dao.getAll(d2);
+		    
 		for (OrderXVO orderXVOs : list) {
 			System.out.println("-------------");
 			System.out.println("order_id" + orderXVOs.getOrderVO().getOrder_id());
@@ -158,7 +161,7 @@ public class OrderXDAO implements OrderXDAO_interface {
 	@Override
 	public List<OrderXVO> getAll(Date d2) {
 		List<OrderXVO> list = null;
-		list = hibernateTemplate.find("FROM OrderXVO where orderVO.order_date =? order by orderVO.order_id",d2);
+		list = hibernateTemplate.find("FROM OrderXVO where orderVO.order_date =? order by orderVO.order_id,productVO.dishClassVO.class_id",d2);
 		
 		// Session session =
 		// HibernateUtil.getSessionFactory().getCurrentSession();
