@@ -285,12 +285,10 @@ public class OrderServlet extends HttpServlet {
 					Integer pcgQ = (Integer) session.getAttribute("pcgQ");
 					pcgQ = pcgQ + orderX_num;
 					session.setAttribute("pcgQ", pcgQ);
-				} else if (productVO.getProductKindVO().getKind_id() == 1) {// 若新增單點主菜修改mainQ
-					if (productVO.getDishClassVO().getClass_id() == 40) {
+				} else if (productVO.getDishClassVO().getClass_id() == 40) {// 若新增單點主菜修改mainQ
 						Integer mainQ = (Integer) session.getAttribute("mainQ");
 						mainQ = mainQ + orderX_num;
 						session.setAttribute("mainQ", mainQ);
-					}
 				}
 
 				Integer orderQ = (Integer) session.getAttribute("orderQ");// 修改orderQ
@@ -368,6 +366,8 @@ public class OrderServlet extends HttpServlet {
  
                 System.out.println("套餐名稱-----"+nameOfPackage+ "數量:"+qtyOfPackage);
 
+                map.put(pcg_id, qtyOfPackage);  //把套餐id和數量丟進map  然後下面再丟進orderlist裡
+       
                 if(mapForPackageIdAndQty.containsKey(pcg_id)){                           //判斷map裡有沒有該套餐
                     int qty_of_package =  mapForPackageIdAndQty.get(pcg_id);            //該套餐被點了幾次
                     
@@ -456,9 +456,13 @@ public class OrderServlet extends HttpServlet {
 						orderList.add(orderXVO);
 					}
 		         }
+								
 				System.out.println("購物車數量:"+orderList.size());
 			
-				
+				OrderVO orderVO = (OrderVO) session.getAttribute("orderVO");
+				orderVO.setOrder_price(orderP);// 查詢orderVO最新價格
+				session.setAttribute("orderVO", orderVO);// session存入新orderVO
+
 				session.setAttribute("pcgQ", pcgQ);                                   //將套餐數量存回session
 				session.setAttribute("orderP", orderP);  
 //				session.setAttribute("orderList", orderList);//session存入新orderList
@@ -509,12 +513,12 @@ public class OrderServlet extends HttpServlet {
 					Integer pcgQ = (Integer) session.getAttribute("pcgQ");
 					pcgQ = pcgQ - oldQ + altNumber;
 					session.setAttribute("pcgQ", pcgQ);
-				} else if (productVO.getProductKindVO().getKind_id() == 1) {// 若修改單點主菜修改mainQ
-					if (productVO.getDishClassVO().getClass_id() == 40) {
+				} else if (productVO.getDishClassVO().getClass_id() == 40) {// 若修改單點主菜修改mainQ
+					
 						Integer mainQ = (Integer) session.getAttribute("mainQ");
 						mainQ = mainQ - oldQ + altNumber;
 						session.setAttribute("mainQ", mainQ);
-					}
+					
 				}
 
 				Integer orderQ = (Integer) session.getAttribute("orderQ");
@@ -571,12 +575,12 @@ public class OrderServlet extends HttpServlet {
 					Integer pcgQ = (Integer) session.getAttribute("pcgQ");
 					pcgQ = pcgQ - oldQ;
 					session.setAttribute("pcgQ", pcgQ);
-				} else if (productVO.getProductKindVO().getKind_id() == 1) {// 若修改單點主菜修改mainQ
-					if (productVO.getDishClassVO().getClass_id() == 40) {
+				} else if (productVO.getDishClassVO().getClass_id() == 40) {// 若修改單點主菜修改mainQ
+					
 						Integer mainQ = (Integer) session.getAttribute("mainQ");
 						mainQ = mainQ - oldQ;
 						session.setAttribute("mainQ", mainQ);
-					}
+					
 				}
 
 				Integer orderQ = (Integer) session.getAttribute("orderQ");
@@ -596,7 +600,7 @@ public class OrderServlet extends HttpServlet {
 				OrderXService orderXSvc = new OrderXService();
 
 				OrderVO orderVO = (OrderVO) session.getAttribute("orderVO");
-				orderVO.setOrder_price(orderXSvc.getTotalPrice(orderList));// 查詢orderVO最新價格
+				orderVO.setOrder_price(orderP);// 查詢orderVO最新價格
 				session.setAttribute("orderVO", orderVO);// session存入最新orderVO
 
 				String url = "/order/orderList.jsp";
@@ -608,9 +612,71 @@ public class OrderServlet extends HttpServlet {
 				RequestDispatcher failureView = req.getRequestDispatcher("/order/orderList.jsp");
 				failureView.forward(req, resp);
 			}
-
 		}
 
+		
+		// 刪除明細
+		if ("delete_P_orderX".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+
+				HttpSession session = req.getSession();
+
+				List<OrderXVO> orderList = (List<OrderXVO>) session.getAttribute("orderList");
+
+				Integer del = new Integer(req.getParameter("del").trim());// 取得要刪除orderList裡物件的位置
+
+				OrderXVO deleteOrderXVO = orderList.get(del - 1);
+				Integer productId = deleteOrderXVO.getProductVO().getProduct_id();
+				Integer oldQ = deleteOrderXVO.getOrderX_num();
+
+				ProductService productSvc = new ProductService();
+				ProductVO productVO = productSvc.findByPrimaryKey(productId);
+
+				if (productVO.getProductKindVO().getKind_id() == 2) {// 若修改套餐修改pcgQ
+					Integer pcgQ = (Integer) session.getAttribute("pcgQ");
+					pcgQ = pcgQ - oldQ;
+					session.setAttribute("pcgQ", pcgQ);
+				} else if (productVO.getDishClassVO().getClass_id() == 40) {// 若修改單點主菜修改mainQ
+							
+						Integer mainQ = (Integer) session.getAttribute("mainQ");
+						mainQ = mainQ - oldQ;
+						session.setAttribute("mainQ", mainQ);
+							
+				}
+
+				Integer orderQ = (Integer) session.getAttribute("orderQ");
+				Integer orderP = (Integer) session.getAttribute("orderP");
+				session.setAttribute("orderQ", orderQ);
+				session.setAttribute("orderP", orderP);
+				orderQ = orderQ - deleteOrderXVO.getOrderX_num();
+				orderP = orderP - (deleteOrderXVO.getOrderX_num()) * (deleteOrderXVO.getProductVO().getProduct_price());
+
+				orderList.remove(deleteOrderXVO);// 刪除
+
+				session.setAttribute("orderQ", orderQ);
+				session.setAttribute("orderP", orderP);
+
+				session.setAttribute("orderList", orderList);// session存入最新orderList
+
+				OrderXService orderXSvc = new OrderXService();
+				OrderVO orderVO = (OrderVO) session.getAttribute("orderVO");
+				orderVO.setOrder_price(orderP);// 查詢orderVO最新價格
+				session.setAttribute("orderVO", orderVO);// session存入最新orderVO
+
+				String url = "/order/orderList.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url);
+				successView.forward(req, resp);
+
+			} catch (Exception e) {
+			    errorMsgs.add(e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/order/orderList.jsp");
+				failureView.forward(req, resp);
+			}
+		}
+		
 		// 查看購物車
 		if ("check_orderList".equals(action)) {
 
@@ -825,12 +891,12 @@ public class OrderServlet extends HttpServlet {
 					Integer pcgQ = (Integer) session.getAttribute("pcgQ");
 					pcgQ = pcgQ + orderX_num;
 					session.setAttribute("pcgQ", pcgQ);
-				} else if (productVO.getProductKindVO().getKind_id() == 1) {// 若新增單點主菜修改mainQ
-					if (productVO.getDishClassVO().getClass_id() == 40) {
+				} else if (productVO.getDishClassVO().getClass_id() == 40) {// 若新增單點主菜修改mainQ
+					
 						Integer mainQ = (Integer) session.getAttribute("mainQ");
 						mainQ = mainQ + orderX_num;
 						session.setAttribute("mainQ", mainQ);
-					}
+					
 				}
 
 				Integer orderQ = (Integer) session.getAttribute("orderQ");// 修改orderQ
@@ -889,12 +955,12 @@ public class OrderServlet extends HttpServlet {
 					Integer pcgQ = (Integer) session.getAttribute("pcgQ");
 					pcgQ = pcgQ - oldQ + altNumber;
 					session.setAttribute("pcgQ", pcgQ);
-				} else if (productVO.getProductKindVO().getKind_id() == 1) {// 若修改單點主菜修改mainQ
-					if (productVO.getDishClassVO().getClass_id() == 40) {
+				} else if (productVO.getDishClassVO().getClass_id() == 40) {// 若修改單點主菜修改mainQ
+					
 						Integer mainQ = (Integer) session.getAttribute("mainQ");
 						mainQ = mainQ - oldQ + altNumber;
 						session.setAttribute("mainQ", mainQ);
-					}
+					
 				}
 				
 				Integer orderQ = (Integer) session.getAttribute("orderQ");
@@ -944,12 +1010,10 @@ public class OrderServlet extends HttpServlet {
 					Integer pcgQ = (Integer) session.getAttribute("pcgQ");
 					pcgQ = pcgQ - oldQ;
 					session.setAttribute("pcgQ", pcgQ);
-				} else if (productVO.getProductKindVO().getKind_id() == 1) {// 若修改單點主菜修改mainQ
-					if (productVO.getDishClassVO().getClass_id() == 40) {
+				} else if (productVO.getDishClassVO().getClass_id() == 40) {// 若修改單點主菜修改mainQ
 						Integer mainQ = (Integer) session.getAttribute("mainQ");
 						mainQ = mainQ - oldQ;
 						session.setAttribute("mainQ", mainQ);
-					}
 				}
 
 				

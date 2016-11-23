@@ -67,7 +67,7 @@ color:pink
 		</tr>
 
 		<c:forEach var="orderXVO" items="${orderList}" varStatus="index">
-		   <c:if test="${orderXVO.productVO.productKindVO.kind_name != '套餐菜色' }">
+		   <c:if test="${orderXVO.productVO.productKindVO.kind_name == '單點菜色' }">
 			<tr>
 				<td>${orderXVO.productVO.product_id}</td>
 				<td>${orderXVO.productVO.product_name}</td>
@@ -112,10 +112,12 @@ color:pink
                 <td></td>
                 <td>${mapForPackageIdAndQty.value}</td>
                 <td>${productSvc.findByPrimaryKey(mapForPackageIdAndQty.key).product_price * (mapForPackageIdAndQty.value)}</td>
+                <td></td>
+                <td></td>
                 <td>
 				  <form method="post" ACTION="order.do" >
 					  <input type="hidden" name="del" value="${index.count}">
-					  <input type="hidden" name="action" value="delete_S_orderX">
+					  <input type="hidden" name="action" value="delete_P_orderX">
 				      <input type="submit" value="刪除" class="button button-3d-royal button-rounded" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:white">
 				 </form>
 				</td>			    	

@@ -120,41 +120,6 @@ width:100%;
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 
 </head>
-
-
-<body style="background-color:black">
-<table align="center">
-<tr><br>
-<td rowspan="2"><font  align="center" style="font-family:ShowWind ;font-size: 50px;color: white">內場資訊</font></td>
-<td></td>
-<td><div style="background-color: orange;width: 30px;height: 30px"></div></td>
-<td><font style="color: white">製作中</font></td>
-</tr>
-<tr>
-<td style="width: 30px;height: 30px"></td>
-<td><div style="background-color: white;width: 30px;height: 30px"></div></td>
-
-<br>
-<br>
-<br>
-<br>
-<td><font style="color: white">未製作</font></td>
-</tr>
-
-
-
-
-<!-- <tr> -->
-<!-- 	<td><font  align="center" style="font-family:ShowWind ;font-size: 50px;color: white">內場資訊 </font></td> -->
-<!-- <td><div style="background-color: orange;width: 30px;height: 30px"></div></td> -->
-<!-- <td><font style="color: white">製作中</font></td> -->
-<!-- <td><div style="background-color: white;width: 30px;height: 30px"></div></td> -->
-<!-- <td><font style="color: white">未製作</font></td> -->
-<!-- </tr> -->
-</table>
-
-
-
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font color='red'>請修正以下錯誤:
@@ -165,7 +130,6 @@ width:100%;
 	</ul>
 	</font>
 </c:if>
-
 <body>	
 <div class="page-container sidebar-collapsed">	
    <div class="left-content">
@@ -214,7 +178,24 @@ width:100%;
 <div class="inner-block">
     <div class="price-block-main">
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
-<h3  align="center" style="font-family:ShowWinde ;font-size: 50px;color: white">內場資訊 </h3>
+<!-- <h3  align="center" style="font-family:ShowWinde ;font-size: 50px;color: white">內場資訊 </h3> -->
+
+<!-- <body style="background-color:black"> -->
+<table align="center">
+<tr>
+<td rowspan="2"><font  align="center" style="font-family:ShowWind ;font-size: 50px;color: white">內場資訊</font></td>
+<td></td>
+<td><div style="background-color: orange;width: 30px;height: 30px"></div></td>
+<td width="20px"></td>
+<td><font style="color: white">製作中</font></td>
+</tr>
+<tr>
+<td style="width: 30px;height: 30px"></td>
+<td><div style="background-color: white;width: 30px;height: 30px"></div></td>
+<td width="20px"></td>
+<td><font style="color: white">未製作</font></td>
+</tr>
+</table>
 
 <div id='divdiv'>
 <table  class="table table-hover" >
