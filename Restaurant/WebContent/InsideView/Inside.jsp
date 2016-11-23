@@ -12,7 +12,7 @@ java.sql.Date d2=java.sql.Date.valueOf("2016-10-10");
     
 //  	List<KitchenVO> list = dao.getAll(d2);//指定當日
     
-    List<OrderXVO> list = svc.getAll(d2);
+    List<OrderXVO> list = svc.getAll(d);
     pageContext.setAttribute("list",list);
 %>
 <!DOCTYPE HTML>

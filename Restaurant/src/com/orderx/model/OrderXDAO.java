@@ -139,6 +139,7 @@ public class OrderXDAO implements OrderXDAO_interface {
 //			System.out.println("orderX_num" + orderXVOs.getOrderX_num());
 //			System.out.println("orderX_status" + orderXVOs.getOrderX_status());
 		}
+		
 	}
 
 	// ===============================================
@@ -218,7 +219,7 @@ public class OrderXDAO implements OrderXDAO_interface {
 		List<Integer> list = null;
 		List<Long> list2 = null;
 		Integer num = null;
-		list2 = hibernateTemplate.find("select count(orderX_status) from OrderXVO where orderVO.order_id=? ",
+		list2 = hibernateTemplate.find("select count(orderX_status) from OrderXVO where orderVO.order_id=? and productVO.dishClassVO.class_id !=2  ",
 				orderXVO.getOrderVO().getOrder_id()
 				);
 		num=list2.get(0).intValue();
