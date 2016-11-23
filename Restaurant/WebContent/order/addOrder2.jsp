@@ -116,7 +116,7 @@ border-radius: 10px;
 	</tr>
 <c:forEach var="productVO" items="${productList}">
 	<tr>
-		<td><img alt="${productVO.product_id}" src="${pageContext.servletContext.contextPath}/getImage?id=${productVO.product_id}" height="200"></td>
+		<td><img alt="${productVO.product_id}" width="247.81" src="${pageContext.servletContext.contextPath}/getImage?id=${productVO.product_id}" height="200"></td>
 		<td>${productVO.product_name}</td>
 		<td>${productVO.product_price}元</td>
 		<td>

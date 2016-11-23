@@ -230,6 +230,7 @@ color:yellow;
 				<div width="500px" align="center"><span>總金額:</span>&nbsp;&nbsp;<span id="total">${count}</span></div>
 
 		</div>
+		<br>
 		<div align="center">
 		<form action="formatTable.do">
 			<input type="text" hidden name="table" value="money" />
