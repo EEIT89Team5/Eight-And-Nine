@@ -88,6 +88,7 @@ public class ForgetServlet extends HttpServlet {
 			  Message msg = new MimeMessage(session);
 			  
 			  msg.setFrom(new InternetAddress(username + "@gmail.com","8+9餐廳管理系統"));
+			  msg.setContent(body, "text/html;charset = UTF-8");
 			  msg.setRecipients(Message.RecipientType.TO, 
 
 			  InternetAddress.parse(empemail,false));
@@ -155,6 +156,7 @@ public class ForgetServlet extends HttpServlet {
 		  Message msg = new MimeMessage(session);
 		  
 		  msg.setFrom(new InternetAddress(username + "@gmail.com","8+9餐廳管理系統"));
+		  msg.setContent(body, "text/html;charset = UTF-8");
 		  msg.setRecipients(Message.RecipientType.TO, 
 
 		  InternetAddress.parse(email,false));

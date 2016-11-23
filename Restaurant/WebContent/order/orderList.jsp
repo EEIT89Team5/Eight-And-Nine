@@ -83,16 +83,19 @@ color:yellow
 						<input type="hidden" name="alt" value="${index.count}">
 						<input type="hidden" name="action" value="alter_S_orderX">
 						<input type="submit" value="修改" class="button button-3d" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:black;">
-						</td>
+					</td>
 					</form>
-				
-				<td>
+					
+					
+					
 					<form method="post" ACTION="order.do" >
+					<td>
 						<input type="hidden" name="del" value="${index.count}">
 						<input type="hidden" name="action" value="delete_S_orderX">
 						<input type="submit" value="刪除" class="button button-3d-royal button-rounded" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:white">
+					</td>
 					</form>
-				</td>
+					
 			</tr>
 
 		  </c:if>
