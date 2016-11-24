@@ -75,27 +75,29 @@ color:pink
 				<td style="width: 80px">${orderXVO.orderX_num}</td>
 				<td style="width:200px">${orderXVO.productVO.product_price}</td>
 				
+					
+					<td>
 					<form method="post" ACTION="order.do" >
-					<td>
 					<input type="text" maxlength="3" name="altNumber" style="width:50px;height: 35px;font-family:ShowWind;font-size:25px;font-weight: bold;">
-					</td>
-					<td>
+
 						<input type="hidden" name="alt" value="${index.count}">
 						<input type="hidden" name="action" value="alter_S_orderX">
 						<input type="submit" value="修改" class="button button-3d" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:black;">
-					</td>
+					
 					</form>
+					</td>
 					
 					
 					
+					<td style="vertical-align: bottom">
 					<form method="post" ACTION="order.do" >
-					<td>
+					
 						<input type="hidden" name="del" value="${index.count}">
 						<input type="hidden" name="action" value="delete_S_orderX">
-						<input type="submit" value="刪除" class="button button-3d-royal button-rounded" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:white">
-					</td>
-					</form>
+						<input type="button" name="delbutton" value="刪除" class="button button-3d-royal button-rounded" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:white">
 					
+					</form>
+					</td>
 			</tr>
 
 		  </c:if>
@@ -118,7 +120,7 @@ color:pink
 				  <form method="post" ACTION="order.do" >
 					  <input type="hidden" name="del" value="${index.count}">
 					  <input type="hidden" name="action" value="delete_P_orderX">
-				      <input type="submit" value="刪除" class="button button-3d-royal button-rounded" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:white">
+				      <input type="button" value="刪除" class="button button-3d-royal button-rounded" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:white">
 				 </form>
 				</td>			    	
             </tr>
@@ -194,5 +196,37 @@ color:pink
 	</form>
 </div>
 <link rel="stylesheet" href="../css/buttons.css">
+<link rel="stylesheet" type="text/css" href="../js/sweetalert.css">
+<script language="JavaScript" src="../js/sweetalert.min.js"></script>
+<script language="JavaScript" src="../js/jquery-3.1.1.min.js"></script>
+<script>
+
+var del=null;
+
+$("input[name='delbutton']").click(function(){
+
+	del=$(this);
+	sweetAlert({
+		  title: "此事當真?",
+		  text: "您確定要將此筆資料刪除嗎?",
+		  type: "warning",
+		  showCancelButton: true,
+		  confirmButtonColor: "#DD6B55",
+		  confirmButtonText: "刪除此筆資料",
+		  cancelButtonText: "放棄刪除",
+		  closeOnConfirm: false,
+		  closeOnCancel: false
+		},
+		function(isConfirm){
+		  if (isConfirm) {
+			  del.parent().submit();
+		  } else {
+			 sweetAlert("已取消", "您已取消刪除此筆資料", "error");
+		  }
+		});
+})
+
+</script>
+
 </body>
 </html>

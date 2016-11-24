@@ -33,6 +33,7 @@ background-size: cover;
 moz-background-size: cover;
 }
 </style>
+
 </head>
 
 <body>

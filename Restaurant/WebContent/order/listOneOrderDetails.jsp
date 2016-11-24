@@ -71,7 +71,7 @@ font-weight:bold;
 <br>
 <br>
 <br>
-<a href="../index.jsp" class="button button-pill button-highlight" style="font-family:ShowWind;font-size:25px;font-weight:bold"> 回首頁 </a>
+<a href="index22.jsp" class="button button-pill button-highlight" style="font-family:ShowWind;font-size:25px;font-weight:bold"> 回首頁 </a>
 </div>
 <link rel="stylesheet" href="../css/buttons.css">
 <script src="../js/jquery-3.1.1.min.js"></script>
