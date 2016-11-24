@@ -93,7 +93,7 @@ th{
 <br>
 <br>
 <br>
-<a href="../index.jsp" class="button button-pill button-highlight" style="font-family:ShowWind;font-size:25px;font-weight:bold"> 回首頁 </a>
+<a href="../index22.jsp" class="button button-pill button-highlight" style="font-family:ShowWind;font-size:25px;font-weight:bold"> 回首頁 </a>
 </div>
 <script src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/jquery.tablesorter.js"></script>
