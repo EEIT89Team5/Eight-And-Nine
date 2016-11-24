@@ -111,9 +111,11 @@ public class ProductDAO implements ProductDAO_interface {
 	}
 
 	@Override
-	public List<DishClassVO> getDishesByPackage(Integer product_pcg) {
-		List<DishClassVO> dishClassVOs = new LinkedList<DishClassVO>();
-		dishClassVOs = hibernateTemplate.find("select distinct dishClassVO FROM ProductVO WHERE product_pcg=? order by class_id ", product_pcg);
+	public List<ProductVO> getDishesByOnePackage(Integer product_pcg) {
+		List<ProductVO> productVOs = new LinkedList<ProductVO>();
+//		productVOs = hibernateTemplate.find("select distinct dishClassVO FROM ProductVO WHERE product_pcg=? order by class_id ", product_pcg);
+		productVOs = hibernateTemplate.find("FROM ProductVO WHERE product_pcg=? order by product_id ", product_pcg);
+		
 		// Session session =
 		// HibernateUtil.getSessionFactory().getCurrentSession();
 		// try {
@@ -127,7 +129,7 @@ public class ProductDAO implements ProductDAO_interface {
 		// session.getTransaction().rollback();
 		// throw e;
 		// }
-		return dishClassVOs;
+		return productVOs;
 	}
 
 	@Override //(測試)
