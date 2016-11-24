@@ -30,7 +30,12 @@ webkit-border-radius: 10px;
 moz-border-radius: 10px;
 border-radius: 10px;
 }
-
+#shop{
+ position:fixed;
+ right: 1%;
+ top: 15%;
+ z-index: 100%;
+}
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
@@ -68,7 +73,7 @@ border-radius: 10px;
 
 <h3 style="color:white;font-family:ShowWind;font-size: 35px;color: red">點餐</h3>
 
-<table class="table table-striped" style="width: 1400px">
+<table class="table table-striped" style="width: 1000px">
 	<tr>
 		<td style="font-size:35px">圖片</td>
 		<td style="font-size:35px">菜名</td>
@@ -101,14 +106,16 @@ border-radius: 10px;
 </c:forEach>	
 
 </table>
+</div>
 
+	<div id="shop">
 <%-- <c:if test="${not empty orderList}"> --%>
-	<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車小計</h2>
-	<table style="width: 600px" id="pay">
+	<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車</h2>
+	<table id="pay">
 
-		<tr><td>菜色數量:${orderQ}</td></tr>
-		<tr><td>主菜數量:${mainQ}</td></tr>
-		<tr><td>套餐數量:${pcgQ}</td></tr>
+		<tr><td>菜色數:${orderQ}</td></tr>
+		<tr><td>主菜數:${mainQ}</td></tr>
+		<tr><td>套餐數:${pcgQ}</td></tr>
 		<tr><td>總金額:${orderP}</td></tr>
 	</table><br>
 	<form METHOD="post" ACTION="order.do" name="form1">
@@ -116,7 +123,8 @@ border-radius: 10px;
 		<input type="submit" value="查看購物車" class="btn btn-success" style="font-family:ShowWind;font-size:28px">
 	</form>
 <%-- </c:if> --%>
-</div>
+	</div>
+
 <script src="../js/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet" href="../css/bootstrap.css">
 <script>
@@ -130,7 +138,7 @@ $("input[name='joinus']").click(function(){
 	$.getJSON("order.do",{'number':number,'product':id,"price":price,"action":"add_add_S_orderX"},function(data){
 		console.log(data)
 
-	$("#pay").html("<tr><td>菜色數量:"+data[0]+"</td></tr><tr><td>主菜數量:"+data[2]+"</td></tr><tr><td>套餐數量:"+data[3]+"</td></tr><tr><td>總金額:"+data[1]+"</td></tr>")
+	$("#pay").html("<tr><td>菜色數:"+data[0]+"</td></tr><tr><td>主菜數:"+data[2]+"</td></tr><tr><td>套餐數:"+data[3]+"</td></tr><tr><td>總金額:"+data[1]+"</td></tr>")
 			
 	
 	})
