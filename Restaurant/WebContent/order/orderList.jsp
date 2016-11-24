@@ -22,7 +22,7 @@
 body{
 margin:0;
 padding:0;
-background: #000 url(../img/0003.png) center center fixed no-repeat;
+background: #000 url(../img/0003.jpg) center center fixed no-repeat;
 moz-background-size: cover;
 background-size:cover;
 }

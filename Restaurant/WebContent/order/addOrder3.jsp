@@ -8,7 +8,7 @@
 <title>點餐  - addOrder2.jsp</title>
 <style>
 body{
-background-image: url("../img/0003.png");
+background-image: url("../img/0003.jpg");
 background-size: cover;
 }
 @font-face{

@@ -103,7 +103,7 @@ $(document).ready(function() {
 <!--pop up end here-->
 <style>
 body,.inner-block{
-	background-image: url("../img/14.png");
+	background-image: url("../img/14.jpg");
 	background-size: cover;
 	moz-background-size: cover;
 }

@@ -289,7 +289,7 @@ $("#allbutton").click(function(){
 <!--pop up end here-->
 <style>
 body,.inner-block{
-	background-image: url("../img/12.png"); 
+	background-image: url("../img/12.jpg"); 
 /* 	background-size: 100% 100%; */
 	background-size: cover;
 	moz-background-size: cover;

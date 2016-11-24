@@ -8,7 +8,7 @@
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 <style>
 body{
-background-image:url("../img/memberbackground.png");
+background-image:url("../img/memberbackground.jpg");
 background-size:cover;
 }
 @font-face{

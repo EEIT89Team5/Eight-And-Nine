@@ -16,9 +16,9 @@
 body{
 margin:0;
 padding:0;
-background: #000 url(../img/0003.png) center center fixed no-repeat;
+background: #000 url(../img/0003.jpg) center center fixed no-repeat;
 moz-background-size: cover;
-/* background-image: url("../img/0003.png"); */
+/* background-image: url("../img/0003.jpg"); */
 background-size:cover;
 }
 @font-face{

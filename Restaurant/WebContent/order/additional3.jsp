@@ -21,7 +21,7 @@ color:red;
 font-size:45px;
 }
 body{
-background-image: url("../img/0003.png");
+background-image: url("../img/0003.jpg");
 background-size: cover;
 }
 </style>
