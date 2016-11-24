@@ -27,10 +27,11 @@ width: 130px;
 font-weight:bold
 }
 th{
-font-family:"ShowWind";
-color:yellow;
-font-size:30px;
-text-align:center;
+ font-family:"ShowWind"; 
+ color:yellow; 
+ font-size:30px; 
+ text-align:center; 
+
 }
 </style>
 </head>
@@ -48,7 +49,7 @@ text-align:center;
 	</ul>
 	</font>
 </c:if>
-<table class="table" id="orderlist">
+<table class=tablesorter id="orderlist">
 	<thead>
 		<tr>
 			<th>ID</th>
@@ -56,12 +57,9 @@ text-align:center;
 			<th>日期</th>
 			<th>總金額</th>
 			<th>人數</th>
-			<th>會員編號</th>
 			<th>會員名稱</th>
-			<th>員工</th>
 			<th>姓名</th>
-			<th>折扣</th>
-			<th>名稱</th>
+			<th>折扣名稱</th>
 			<th>數值</th>
 			<th>結帳時刻</th>
 			<th></th>
@@ -75,14 +73,11 @@ text-align:center;
 			<td>${orderVO.order_date}</td>
 			<td>${orderVO.order_price}</td>
 			<td>${orderVO.order_numP}</td>
-			<td>${orderVO.memberVO.member_id}</td>
 			<td>${orderVO.memberVO.member_name}</td>
-			<td>${orderVO.empVO.emp_id}</td>
 			<td>${orderVO.empVO.emp_name}</td>
-			<td>${orderVO.discountVO.disc_id}</td>
 			<td>${orderVO.discountVO.disc_name}</td>
-			<td>${orderVO.discountVO.disc_value}</td>
-			<td>${orderVO.order_paytime}</td>
+			<td name="dv">${orderVO.discountVO.disc_value}</td>
+			<td name="time">${orderVO.order_paytime}</td>
 			<td>
 				<form METHOD="post" action="order.do">
 					<input type="hidden" name="orderno" value="${orderVO.order_id}">
@@ -98,10 +93,12 @@ text-align:center;
 <br>
 <br>
 <br>
-<a href="../index.jsp" class="button button-pill button-highlight" style="font-family:ShowWind;font-size:25px;font-weight:bold"> 回首頁 </a>
+<a href="../index22.jsp" class="button button-pill button-highlight" style="font-family:ShowWind;font-size:25px;font-weight:bold"> 回首頁 </a>
 </div>
 <script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/jquery.tablesorter.js"></script>
 <link rel="stylesheet" href="../css/buttons.css">
+
 <script>
 $(document).ready(function() {
 
@@ -109,6 +106,20 @@ $(document).ready(function() {
 		var x = $(this).find('td:eq(12)');
 		x.text(x.text().substring(0,19));
 	});
+	
+	$("#orderlist").tablesorter({widgets: ['zebra']});
+	
+	var disV = $("td[name='dv']")
+	$.each(disV,function(){
+		if($(this).text()!=""){
+		$(this).html($(this).text().substring(2,5)+'折');
+		}
+	})
+	
+	var timeV=$("td[name='time']")
+	$.each(timeV,function(){
+		$(this).html($(this).text().substring(0,16));
+	})
 	
 });
 </script>

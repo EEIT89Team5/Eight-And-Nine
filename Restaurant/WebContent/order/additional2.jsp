@@ -81,7 +81,7 @@ border-radius: 10px;
 		<td>${productVO.product_name}</td>
 		<td>${productVO.product_price}元</td>
 		<td>
-			<form METHOD="post" ACTION="order.do">
+<!-- 			<form METHOD="post" ACTION="order.do"> -->
 			數量:<select size="1" name="number" style="font-family:ShowWind;font-size: 30px;color:black">
 					<option value="1">1</option>
 					<option value="2">2</option>
@@ -93,18 +93,18 @@ border-radius: 10px;
 				</select>
 			<input type="hidden" name="product" value="${productVO.product_id}">
 			<input type="hidden" name="price" value="${productVO.product_price}">
-			<input type="hidden" name="action" value="add_add_S_orderX">
-			<input type="submit" value="加入訂單" class="btn btn-warning" style="font-family:ShowWind;font-size:28px">
-			</form>
+<!-- 			<input type="hidden" name="action" value="add_add_S_orderX"> -->
+			<input type="button" name="joinus" value="加入訂單" class="btn btn-warning" style="font-family:ShowWind;font-size:28px">
+<!-- 			</form> -->
 		</td>
 	</tr>
 </c:forEach>	
 
 </table>
 
-<c:if test="${not empty orderList}">
-	<h3>購物車小計</h3>
-	<table style="width: 600px">
+<%-- <c:if test="${not empty orderList}"> --%>
+	<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車小計</h2>
+	<table style="width: 600px" id="pay">
 
 		<tr><td>菜色數量:${orderQ}</td></tr>
 		<tr><td>主菜數量:${mainQ}</td></tr>
@@ -115,9 +115,28 @@ border-radius: 10px;
 		<input type="hidden" name="action" value="add_check_orderList">
 		<input type="submit" value="查看購物車" class="btn btn-success" style="font-family:ShowWind;font-size:28px">
 	</form>
-</c:if>
+<%-- </c:if> --%>
 </div>
 <script src="../js/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet" href="../css/bootstrap.css">
+<script>
+$("input[name='joinus']").click(function(){
+	
+	var id=$(this).parent().children("input[name='product']").val();
+	var price=$(this).parent().children("input[name='price']").val();
+	var number=$(this).parent().children("select[name='number']").val();
+	
+	console.log(number)
+	$.getJSON("order.do",{'number':number,'product':id,"price":price,"action":"add_add_S_orderX"},function(data){
+		console.log(data)
+
+	$("#pay").html("<tr><td>菜色數量:"+data[0]+"</td></tr><tr><td>主菜數量:"+data[2]+"</td></tr><tr><td>套餐數量:"+data[3]+"</td></tr><tr><td>總金額:"+data[1]+"</td></tr>")
+			
+	
+	})
+	
+	
+})
+</script>
 </body>
 </html>

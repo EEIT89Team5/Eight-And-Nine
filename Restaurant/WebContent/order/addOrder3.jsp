@@ -32,10 +32,12 @@ height: 50px;
 text-align: center;
 font-weight: bold
 }
-h2{
+td h3{
 font-family:ShowWind;
-color:white;
+font-size:60px;
+font-weight: bold
 }
+
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
@@ -45,7 +47,7 @@ color:white;
 <img src="../img/thanksorder.png">
 <table id="Information">
 	<tbody>
-		<tr><td colspan="3" style="text-align: center;color:pink"><h3>訂單資訊</h3></h3></td></tr>
+		<tr><td colspan="3" style="text-align: center;color:pink;"><h3>訂單資訊</h3></h3></td></tr>
 		<tr><td>編號:</td><td>${orderVO.order_id}</td><td></td></tr>		
 		<tr><td>桌號:</td><td style="color:red">${orderVO.order_table}</td><td></td></tr>
 		<tr><td>日期:</td><td>${orderVO.order_date}</td><td></td></tr>
@@ -57,9 +59,11 @@ color:white;
 <!-- 		<tr><td>結帳時間(結帳再說)</td></tr> -->
 			</tbody>
 </table>
-<table id="Details">				
+<br>
+<br>
+<table id="Details" style="width: 900px">				
 		<tr>
-			<td colspan="3" style="color:pink"><h3>訂單明細</h3></td>
+			<td colspan="3" style="color:pink;"><h3>訂單明細</h3></td>
 		</tr>
 		<tr>
 			<td>商品編號</td>
@@ -76,5 +80,6 @@ color:white;
 </table>
 <br/>
 </div>
+<link rel="stylesheet" href="../css/bootstrap.css">
 </body>
 </html>

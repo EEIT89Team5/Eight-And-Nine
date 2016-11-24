@@ -44,6 +44,13 @@ webkit-border-radius: 10px;
 moz-border-radius: 10px;
 border-radius: 10px;
 }
+ #dwd{ 
+ position: fixed; 
+  right:1%;
+ z-index:1000;
+ top:200px; 
+ /* z-index: auto; */ 
+ } 
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
@@ -140,15 +147,15 @@ border-radius: 10px;
 </c:forEach>	
 
 </table>
-
-
+</div>
+<div id="dwd">
 <%-- <c:if test="${not empty orderList}"> --%>
 	<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車小計</h2>
 	<table id="pay">
 
-		<tr><td>菜色數量:${orderQ}</td></tr>
-		<tr><td>主菜數量:${mainQ}</td></tr>
-		<tr><td>套餐數量:${pcgQ}</td></tr>
+		<tr><td>菜色數:${orderQ}</td></tr>
+		<tr><td>主菜數:${mainQ}</td></tr>
+		<tr><td>套餐數:${pcgQ}</td></tr>
 		<tr><td>總金額:${orderP}</td></tr>
 	</table><br>
 	<form METHOD="post" ACTION="order.do" name="form1">

@@ -40,7 +40,7 @@ font-weight:bold;
 <%-- <h2>訂單${orderno}明細</h2><br/> --%>
 <img src="../img/ORDERLOGO.png"><br><br>
 <img src="../img/Detail.png"><br><br><br><br><br>
-<table>
+<table class=tablesorter id="orderlist">
 	<thead>
 		<tr>
 			<th>商品編號</th>
@@ -57,7 +57,7 @@ font-weight:bold;
 				<td>${orderXVO.productVO.product_id}</td>
 				<td>${orderXVO.productVO.product_name}</td>
 				<td>${orderXVO.productVO.product_price}</td>
-				<td>${orderXVO.orderX_time}</td>
+				<td name='time'>${orderXVO.orderX_time}</td>
 				<td>${orderXVO.orderX_num }</td>
 				<td>${orderXVO.orderX_status}</td>
 			</tr>	
@@ -71,8 +71,25 @@ font-weight:bold;
 <br>
 <br>
 <br>
-<a href="../index.jsp" class="button button-pill button-highlight" style="font-family:ShowWind;font-size:25px;font-weight:bold"> 回首頁 </a>
+<a href="../index22.jsp" class="button button-pill button-highlight" style="font-family:ShowWind;font-size:25px;font-weight:bold"> 回首頁 </a>
 </div>
 <link rel="stylesheet" href="../css/buttons.css">
+<script src="../js/jquery-3.1.1.min.js"></script>
+<script src="../js/jquery.tablesorter.js"></script>
+<script>
+$(document).ready(function() {
+
+$("#orderlist").tablesorter({widgets: ['zebra']});
+
+var time=$("td[name='time']")
+
+	$.each(time,function(){
+		$(this).html($(this).text().substring(0,16));
+	})
+	
+
+});
+
+</script>
 </body>
 </html>
