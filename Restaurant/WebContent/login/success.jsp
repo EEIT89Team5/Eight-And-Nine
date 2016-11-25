@@ -111,7 +111,7 @@ body,.inner-block{
 <!--inner block start here-->
 <div class="inner-block">
     <div class="price-block-main">
-		<div align="center"><a href="../index_theme.jsp" style="text-decoration:none;"><font style="color:white;font-family:ShowWind;font-size:50px;font-weight: bold;">回首頁</font></a></div>
+		<div align="center"><a href="../login.jsp" style="text-decoration:none;"><font style="color:white;font-family:ShowWind;font-size:50px;font-weight: bold;">回登入畫面</font></a></div>
 		<div align="center">
 		<div id="block">
 		<img src="../img/success.png">
