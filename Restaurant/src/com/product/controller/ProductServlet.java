@@ -7,6 +7,8 @@ import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 
+import org.json.JSONArray;
+
 import com.dishclass.model.DishClassVO;
 import com.packageformat.model.PackageFormatVO;
 import com.product.model.ProductService;
@@ -907,10 +909,30 @@ public class ProductServlet extends HttpServlet {
             productdao.addPackPro(proVO1);		        	
 	            
 	  List<ProductVO> proVO=productdao.selectPackPro(proVO2);
+	 
 	  
+	  Integer cc=null;
+	  for(ProductVO DD:proVO){
+		  if(DD.getProduct_name().equals(pname)&&DD.getProduct_pcg().equals(pinpcg)){
+			  cc=DD.getProduct_id();
+		  }
+			  
+	  }
 	      req.setAttribute("proVO", proVO);
 	      req.setAttribute("pid", pinpcg);
-				
+	      
+//	    res.setHeader("content-type", "text/html;charset=UTF-8");
+//		res.setCharacterEncoding("UTF-8");
+//		PrintWriter out=res.getWriter();
+//	    JSONArray json=new JSONArray();
+//	    
+//	    json.put(pname);
+//	    json.put(proVO.get(0).getDishClassVO().getClass_name());
+//	    json.put(pinpcg);
+//	    json.put(cc);
+//		out.print(json);
+	      
+	      
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = req
 					.getRequestDispatcher("/Package/UpdatePackPro.jsp");
