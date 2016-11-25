@@ -67,7 +67,7 @@ $(document).ready(function() {
 <style>
  body,.inner-block{ 
 background-color:black;
-	background: #000 url(../img/0003.png) center center fixed no-repeat;
+	background: #000 url(../img/0003.jpg) center center fixed no-repeat;
 	background-size: cover;
 	moz-background-size: cover;
  } 
@@ -86,7 +86,7 @@ background-color:black;
 }
 td{
 font-family: ShowWind;
-font-size:25px;
+font-size:30px;
 color:white;
 background-color:rgba(0,0,0,0);
 text-align: center;
@@ -101,7 +101,7 @@ font-weight:bold;
 /* } */
 th{
 font-family: ShowWind;
-font-size:25px;
+font-size:30px;
 font-weight:bold;
 color:white;
 background-color:rgba(0,0,0,0);
@@ -167,7 +167,7 @@ border-radius: 10px;
 		<img src="../img/prologo.png"><br>
 		<a href="../index.jsp"><img src="../img/TOTAL.png"></a><br>
 <br>
-		<table align="center" class="table" style="width: 1200px">
+		<table align="center" class="table" style="width: 1350px">
 			<tr>
 				<th>商品編號</th>
 				<th>商品名稱</th>

@@ -181,13 +181,13 @@ color:yellow;
 			<select id="discounts" class="fontStyle" >
 				<option value="0">無折扣</option>
 				<c:forEach var="discount" items="${disService.all}">
-					<c:if test='${discount.disc_name =="會員"}'>
-							<c:if test="${bills.memberVO.member_name != null}">
+					<c:if test='${discount.disc_name =="會員折扣"}'>
+							<c:if test="${bills.memberVO.member_name !=null}">
 								<option selected value="${discount.disc_id}">${discount.disc_name},${discount.disc_value}</span></option>
 								<c:set var="discountid" value="${discount.disc_id}" />
 							</c:if>
 					</c:if>
-					<c:if test='${discount.disc_name !="會員"}'>							
+					<c:if test='${discount.disc_name !="會員折扣"}'>							
 						<option value="${discount.disc_id}">${discount.disc_name},${discount.disc_value}</span></option>
 					</c:if>
 				</c:forEach>
@@ -221,7 +221,11 @@ color:yellow;
 				
 				<input type="text" hidden id="origincount" value="${count}">
 				<c:if test="${bills.memberVO.member_name != null}">
+<<<<<<< HEAD
+					<div id="discoutdiv" width="500px"><span id="dis_name">會員折扣</span> &nbsp;&nbsp;<span id="dis_val">0.9</span></div>
+=======
 					<div id="discoutdiv" width="500px" align="center"><span id="dis_name">會員</span> &nbsp;&nbsp;<span id="dis_val">9 &nbsp;折</span></div>
+>>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git
 					<c:set var="count" value="${count * 0.9}" />
 				</c:if>
 				<c:if test="${bills.memberVO.member_name == null}">

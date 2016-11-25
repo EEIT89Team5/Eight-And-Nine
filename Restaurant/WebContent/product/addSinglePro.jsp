@@ -105,7 +105,7 @@ $(document).ready(function() {
 <!--pop up end here-->
 <style>
 body,.inner-block{
-		background-image: url("../img/13.png");
+		background-image: url("../img/13.jpg");
 	background-size: cover;
 	moz-background-size: cover;
 }
@@ -160,7 +160,7 @@ background:#333;
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
-<body background="../img/13.png" style="background-size: cover;">	
+<body>	
 <div class="page-container sidebar-collapsed">	
    <div class="left-content">
 	   <div class="mother-grid-inner">

@@ -42,7 +42,7 @@ body,.inner-block{
 /*  margin:0;  */
 /*  padding:0;  */
 moz-background-size: cover; 
-background-image: url("../img/0003.png");
+background-image: url("../img/0003.jpg");
 background-size: cover;
 }
 .clerfix{

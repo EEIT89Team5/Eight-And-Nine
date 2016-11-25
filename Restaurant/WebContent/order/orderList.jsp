@@ -22,7 +22,7 @@
 body{
 margin:0;
 padding:0;
-background: #000 url(../img/0003.png) center center fixed no-repeat;
+background: #000 url(../img/0003.jpg) center center fixed no-repeat;
 moz-background-size: cover;
 background-size:cover;
 }
@@ -119,8 +119,10 @@ color:pink
                 <td>
 				  <form method="post" ACTION="order.do" >
 					  <input type="hidden" name="del" value="${index.count}">
+					  <input type="hidden" name="packageId" value="${mapForPackageIdAndQty.key}">
+					  <input type="hidden" name="qtyOfPackage" value="${mapForPackageIdAndQty.value}">
 					  <input type="hidden" name="action" value="delete_P_orderX">
-				      <input type="button" value="刪除" class="button button-3d-royal button-rounded" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:white">
+				      <input type="submit" value="刪除" class="button button-3d-royal button-rounded" style="font-family: ShowWind;font-size:20px;font-weight: bold;color:white">
 				 </form>
 				</td>			    	
             </tr>

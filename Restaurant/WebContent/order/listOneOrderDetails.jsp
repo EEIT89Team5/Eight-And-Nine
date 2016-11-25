@@ -12,7 +12,7 @@
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 <style>
 body{
-background-image: url("../img/0003.png");
+background-image: url("../img/0003.jpg");
 background-size: cover;
 }
 @font-face{

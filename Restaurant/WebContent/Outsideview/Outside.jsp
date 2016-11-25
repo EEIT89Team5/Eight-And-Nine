@@ -62,13 +62,13 @@ websocket.onmessage = function processMessage(message){
 </script>
 <!--pop up end here-->
 <style>
-body{
-	background-color:black;
-}
-.inner-block{
-	background-image:url("../Outsideview/images/bg.jpg");
+
+body,.inner-block{
+		background-image: url("../Outsideview/images/bg.jpg");
 	background-size: cover;
+	moz-background-size: cover;
 }
+
 .clerfix{
 	border-style:solid;
 }
@@ -85,15 +85,16 @@ body{
 th{
 font-family:"ShowWind";
 text-align: center;
-font-weight:bolder;
+font-weight:bold;
 font-size: 40px;
 }
 td{
 font-family:"ShowWinde";
 font-weight:bolder;
 font-size: 30px;
- background:rgba(100%,100%,100%,0.6); */
+background:rgba(100%,100%,100%,0.6); 
 }
+
 .button2 {
     background-color: white;
     color: black;
@@ -112,6 +113,7 @@ table{
 
 }
 </style>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>	
 <div class="page-container sidebar-collapsed">	
@@ -134,7 +136,7 @@ table{
 								<ul>
 									<li class="dropdown profile_details_drop">
 										<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-											<div class="profile_img">	
+											<div class="profile_img">
 <!-- 												<span class="prfil-img"><img src="images/p1.png" alt=""> </span>  -->
 												<div class="user-name">
 													<p><c:if test="${! empty LoginOK }">${LoginOK.emp_title}</c:if></p>
@@ -156,6 +158,7 @@ table{
 						</div>
 				     <div class="clearfix"> </div>	
 				</div>
+				
 <!--heder end here-->
 <!--inner block start here-->
 <div class="inner-block">
@@ -244,7 +247,6 @@ table{
 
 
 
-</div>
 </div>
 
 <!--pop-up-grid-->

@@ -17,15 +17,15 @@ font-weight: bold;
 color:white
 }
 #block {
-    	height: 300px; /*高度*/ 
-     	width: 900px;  /*寬度*/ 
+    	height: 50px; /*高度*/ 
+     	width: 800px;  /*寬度*/ 
      	position: absolute; 
-      	top:80%; 
-      	left:55%;
+      	top:68%; 
+      	left:52%;
       	
      	margin:0px auto;
-		margin-top: -150px;
-		margin-left:-450px
+ 		margin-top: -25px; 
+ 		margin-left:-400px 
 }
 body{
 background-image: url("img/outsidebackground.jpg");

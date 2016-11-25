@@ -16,9 +16,9 @@
 body{
 margin:0;
 padding:0;
-background: #000 url(../img/0003.png) center center fixed no-repeat;
+background: #000 url(../img/0003.jpg) center center fixed no-repeat;
 moz-background-size: cover;
-/* background-image: url("../img/0003.png"); */
+/* background-image: url("../img/0003.jpg"); */
 background-size:cover;
 }
 @font-face{
@@ -44,13 +44,14 @@ webkit-border-radius: 10px;
 moz-border-radius: 10px;
 border-radius: 10px;
 }
- #dwd{ 
- position: fixed; 
-  right:1%;
- z-index:1000;
- top:200px; 
+ #shop{ 
+ 	position: fixed; 
+    right:1%;
+    z-index:100%;
+    top:15%; 
  /* z-index: auto; */ 
- } 
+ }
+
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
@@ -148,9 +149,9 @@ border-radius: 10px;
 
 </table>
 </div>
-<div id="dwd">
+<div id="shop">
 <%-- <c:if test="${not empty orderList}"> --%>
-	<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車小計</h2>
+	<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車</h2>
 	<table id="pay">
 
 		<tr><td>菜色數:${orderQ}</td></tr>
@@ -177,7 +178,7 @@ $("input[name='joinus']").click(function(){
 	
 $.getJSON("order.do",{"action":"add_S_orderX","product":product,"price":price,"number":number},function(data){
 		
-$("#pay").html("<tr><td>菜色數量:"+data[0]+"</td></tr><tr><td>主菜數量:"+data[2]+"</td></tr><tr><td>套餐數量:"+data[3]+"</td></tr><tr><td>總金額:"+data[1]+"</td></tr>")
+$("#pay").html("<tr><td>菜色數:"+data[0]+"</td></tr><tr><td>主菜數:"+data[2]+"</td></tr><tr><td>套餐數:"+data[3]+"</td></tr><tr><td>總金額:"+data[1]+"</td></tr>")
 	
 	
 	});

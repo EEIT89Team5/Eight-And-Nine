@@ -76,8 +76,13 @@ font-size:30px
 
 
 </table>
-
+<br>
+<br>
+<br>
+<br>
+<div><a href="../index22.jsp" class="button button-pill button-highlight" style="font-family:ShowWind;font-size:25px;font-weight:bold"> 回首頁 </a></div>
 <link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/buttons.css">
 </div>
 </body>
 </html>

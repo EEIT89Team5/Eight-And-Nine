@@ -31,8 +31,8 @@ public class ProductService {
 		return dao.getDishesByPackageAndClass( pcg_id,  class_id);	
 	}
 	
-	public List<DishClassVO> getDishesByPackage(Integer pcg_id){	
-		return dao.getDishesByPackage( pcg_id);	
+	public List<ProductVO> getDishesByOnePackage(Integer product_pcg){	
+		return dao.getDishesByOnePackage(product_pcg);	
 	}
 	
 	public List<PackageFormatVO> getDishClassByPackage(Integer pcg_id){

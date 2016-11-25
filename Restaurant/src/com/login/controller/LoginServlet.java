@@ -25,7 +25,7 @@ public class LoginServlet extends HttpServlet {
 
 		String userId = request.getParameter("userId");
 		String password = request.getParameter("pswd");
-
+		String requestURI = (String) session.getAttribute("requestURI");
 		
 		if (userId == null || userId.trim().length() == 0) {
 			errorMsgMap.put("AccountEmptyError", "帳號欄必須輸入");
@@ -66,18 +66,25 @@ public class LoginServlet extends HttpServlet {
 
 		if (errorMsgMap.isEmpty()) {
 
-			String contextPath = getServletContext().getContextPath();
-			String target = (String) session.getAttribute("target");
-			if (target != null) {
-
-				session.removeAttribute("target");
-
-				response.sendRedirect(contextPath + target);
-
+			if (requestURI != null) {
+				System.out.println(requestURI);
+				if(requestURI.equals("/Restaurant/table/formatTable.do")){
+					requestURI = (requestURI.length() == 0 ? request
+							.getContextPath() : requestURI);
+					response.sendRedirect(response.encodeRedirectURL(requestURI+"?table=index"));
+					return;
+				}else{
+				requestURI = (requestURI.length() == 0 ? request
+						.getContextPath() : requestURI);
+				response.sendRedirect(response.encodeRedirectURL(requestURI));
+				return;}
 			} else {
-				response.sendRedirect(contextPath + "/index.jsp");
+				response.sendRedirect(response.encodeRedirectURL(request
+						.getContextPath()));
+				return;
 			}
-			return;
+			
+			
 		} else {
 
 			RequestDispatcher rd = request
