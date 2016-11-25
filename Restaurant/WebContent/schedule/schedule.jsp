@@ -69,8 +69,13 @@ $(document).ready(function() {
     		fixedWeekCount:false
     	});
     }
+    
+	$('div[class="fc-bg"] td').css("border","2px solid gray").html('<div style="height:50%;background-color:yellow" name="午班">&nbsp;</div><div style="height:50%;background-color:lightblue" name="晚班">&nbsp;</div>');
+	$('div[class="fc-bg"] td div').attr("data-toggle","modal").attr("data-target","#myModal");
+	$('div[class="fc-bg"] td[class*=" fc-other-month"]').empty().css("background-color","lightgray");
 	
 	var monthDate=$("#calendar h2").text();
+	$("#calendar h2").append(" 班表");
 	$.getJSON("schedule.do",{"action":"getAllByMonth","monthDate":monthDate},function(datass){
 		var divv = $('div[class="fc-bg"]');
 		$.each(datass,function(index,value){
@@ -88,9 +93,6 @@ $(document).ready(function() {
 		})
 	});
 	
-	$('div[class="fc-bg"] td').css("border","2px solid gray").html('<div style="height:50%;background-color:yellow" name="午班">&nbsp;</div><div style="height:50%;background-color:lightblue" name="晚班">&nbsp;</div>');
-	$('div[class="fc-bg"] td div').attr("data-toggle","modal").attr("data-target","#myModal");
-	$('div[class="fc-bg"] td[class*=" fc-other-month"]').empty().css("background-color","lightgray");
 	
 	$('div[class="fc-bg"] td div').click(function(){
 		$('input[name="emps"]').prop("checked",false);
@@ -120,15 +122,13 @@ $(document).ready(function() {
 		$('div[class="fc-bg"] td[class*=" fc-other-month"]').empty().css("background-color","lightgray");
 		
 		var monthDate=$("#calendar h2").text();
+		$("#calendar h2").append(" 班表");
 		$.getJSON("schedule.do",{"action":"getAllByMonth","monthDate":monthDate},function(datass){
 			var divv = $('div[class="fc-bg"]');
 			$.each(datass,function(index,value){
 				var datediv = divv.find('td[data-date="'+datass[index].date+'"]');
 				var timeperioddiv = datediv.find('div[name="'+datass[index].timeperiod+'"]');
 				var array = timeperioddiv.text().split(" ");
-// 				if(array.length%2==0){
-// 					timeperioddiv.append("<br />");
-// 				}
 				if((array.length-1)%2==0){
 					if((array.length-1)==0){
 						timeperioddiv.text("");
@@ -370,13 +370,12 @@ div[name="午班"],div[name="晚班"]{
 			         	<li><a href="../emp/all_emp.jsp">修改</a></li> 
 		             </ul>
 		        </li>
-		        <li><a href="schedule.jsp"><i class="fa fa-calendar"></i><span>班表</span></a></li>
-<!-- 		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a> -->
-<!-- 		         	<ul id="menu-academico-sub" > -->
-<!-- 			            <li><a href="../index.jsp"></a></li> -->
-<!-- 			         	<li><a href="../index.jsp">修改</a></li> -->
-<!-- 		             </ul> -->
-<!-- 		        </li> -->
+		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
+		         	<ul id="menu-academico-sub" >
+			            <li><a href="schedule.jsp">新增班表</a></li>
+			         	<li><a href="eachSchedule.jsp">查詢個人班表</a></li>
+		             </ul>
+		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		          <ul id="menu-academico-sub" >
 			          <li><a href="../product/listAllPro.jsp">菜色查詢</a></li>

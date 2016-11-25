@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.reserve.model.ReserveVO" %>
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix='c' uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>修改預約</title>
+<title>個人班表</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="Shoppy Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
@@ -13,10 +13,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <link href="../css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 <link href="../css/style.css" rel="stylesheet" type="text/css" media="all"/>
 <script src="../js/jquery-3.1.1.min.js"></script> 
-<link href="../css/font-awesome.css" rel="stylesheet"> 
 <script src="../js/jquery.magnific-popup.js" type="text/javascript"></script>
-<link rel="stylesheet" href="../css/bootstrap-datepicker3.min.css">
-<script src="../js/bootstrap-datepicker.min.js"></script>
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script> -->
+<link href="../css/font-awesome.css" rel="stylesheet"> 
+<link rel="stylesheet" href="../css/fullcalendar.css">
+<!-- <script src="../js/event.js"></script> -->
+<script src="../js/moment.min.js"></script>
+<script src="../js/jquery-ui.min.js"></script>
+<script src="../js/fullcalendar.min.js"></script>
+<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
  <script>
 $(document).ready(function() {
 	$('.popup-with-zoom-anim').magnificPopup({
@@ -31,59 +36,56 @@ $(document).ready(function() {
 		mainClass: 'my-mfp-zoom-in'
 	});
 	
-	$.each($('#time option'),function(){
-		if($(this).val()==<%= session.getAttribute("ReserveVOtime") %>)
-			$(this).attr("selected","selected");
+
+   	$('#calendar').fullCalendar({
+   		header: {
+   			left: 'prev,next',
+   			center: 'title',
+   			right: null
+   		},
+   		views:{
+   			month:{
+   				titleFormat:'YYYY-MM'
+   			}
+   		},
+   		fixedWeekCount:false
+   	});
+   	
+	$('div[class="fc-bg"] td').css("border","2px solid gray").html('<div style="height:50%;background-color:yellow" name="午班">&nbsp;</div><div style="height:50%;background-color:lightblue" name="晚班">&nbsp;</div>');
+	$('div[class="fc-bg"] td[class*=" fc-other-month"]').empty().css("background-color","lightgray");
+	
+	var monthDate=$("#calendar h2").text();
+	$("#calendar h2").append(" 個人班表");
+	var empid = $('#empid').val();
+	$.getJSON("schedule.do",{"action":"getOneByEmpID","empid":empid,"monthDate":monthDate},function(datass){
+		var divv = $('div[class="fc-bg"]');
+		$.each(datass,function(index,value){
+			var datediv = divv.find('td[data-date="'+datass[index].date+'"]');
+			var timeperioddiv = datediv.find('div[name="'+datass[index].timeperiod+'"]');
+			timeperioddiv.text(datass[index].name);
+		})
 	});
 	
-	<% ReserveVO reserve = (ReserveVO)session.getAttribute("updateReserveVO"); %>
-	$.each($('input[type="radio"]'),function(){
-		if($(this).val()=="<%= reserve.getRes_gender() %>")
-			$(this).attr("checked","checked");
-	});
 	
-	$('#date').datepicker({
-		autoclose: true,
-		format: 'yyyy-mm-dd',
-	    todayBtn: "linked",
-	    todayHighlight: true
-	});
+<%--按下往下一月和上一月的button會執行的程式碼--%>
 	
-	$('#submitx').click(function(){
-		var count = 0;
-		var date = $('#date');
-		if(date.val()==""){
-			$('#sp1').html("不可為空白");
-			count++;
-		}else
-			$('#sp1').empty();
-		var res_name = $('#res_name');
-		if(res_name.val()==""){
-			$('#sp2').html("不可為空白");
-			count++;
-		}else
-			$('#sp2').empty();
-		var res_phone = $('#res_phone');
-		if(res_phone.val()==""){
-			$('#sp3').html("不可為空白");
-			count++;
-		}else
-			$('#sp3').empty();
-		var res_nump = $('#res_numP');
-		if(res_nump.val()==""){
-			$('#sp4').html("不可為空白");
-			count++;
-		}else{
-			if(isNaN(res_nump.val())){
-				$('#sp4').html("請輸入數字");
-				count++;
-			}else
-				$('#sp4').empty();
-		}
-		if(count==0){
-// 			alert("success");
-			$('#formq').submit();
-		}
+	$('div[class="fc-button-group"] button').click(function(){
+		
+		$('div[class="fc-bg"] td').css("border","2px solid gray").html('<div style="height:50%;background-color:yellow" name="午班">&nbsp;</div><div style="height:50%;background-color:lightblue" name="晚班">&nbsp;</div>');
+		$('div[class="fc-bg"] td[class*=" fc-other-month"]').empty().css("background-color","lightgray");
+		
+		var monthDate=$("#calendar h2").text();
+		$("#calendar h2").append(" 個人班表");
+		var empid = $('#empid').val();
+		$.getJSON("schedule.do",{"action":"getOneByEmpID","empid":empid,"monthDate":monthDate},function(datass){
+			var divv = $('div[class="fc-bg"]');
+			$.each(datass,function(index,value){
+				var datediv = divv.find('td[data-date="'+datass[index].date+'"]');
+				var timeperioddiv = datediv.find('div[name="'+datass[index].timeperiod+'"]');
+				timeperioddiv.text(datass[index].name);
+			})
+		});
+
 	});
 																
 });
@@ -91,7 +93,7 @@ $(document).ready(function() {
 <!--pop up end here-->
 <style>
 body,.inner-block{
-	background-color:black;
+	background-color:#F5F6CE;
 }
 .clerfix{
 	border-style:solid;
@@ -102,57 +104,56 @@ body,.inner-block{
 #menu span{
 	position:absolute;
 }
-form{
-	/*border:3px double #7e85c4;
-	border-radius:20px;
-	width:500px;
- 	margin: 0px auto;*/
- 	border-radius:20px;
-	width:700px; 
-	height:600px;
- 	margin: 0px auto;
- 	font-family:ShowWind;
-	font-size:40px;
-	font-weight:bold;
-	text-align:center;
-	}
-fieldset {
-/* 	margin: 0px auto; */
-/* 	width:700px; */
-/*     border:3px double #7e85c4; */
-/*     border-radius:20px; */
-	}
-legend {
-	color:white;
-	text-align:center;
-	font-size:50px;
-	font-weight:bold;
-	}
-.stl {
-    width:300px;
-/*     float:left; */
-    text-align:right; 
-	font-size:50px;
-    }
- .stl label{
- 	font-size:50px;
- }  
-.std {
-	text-align:left;
-	height:60px;
-	padding-bottom:16px;
-	color:white;
-	font-size:50px;
-	}
-.std input,.std select{
-	font-size: 30px;
-	color:black;
+
+#calendar {
+	width: 1500px;
+	margin: 0 auto;
+	overflow-y: auto;
+	z-index:0;
 }
-.labelsize{
-	font-size: 40px;
+.fixed {
+    z-index: 100;
+}
+	
+.modal{text-align: center; } 
+
+@media screen and (min-width: 768px) { 
+  .modal:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: " ";
+    height: 100%;
+  }
+}
+
+.modal-dialog { 
+   display: inline-block; 
+   text-align: left; 
+   vertical-align: middle; 
+} 
+ 
+span[class="fc-day-number"]{
+ 	font-size: 15px;
+ 	font-weight: bold;
+}
+div[class="fc-bg"] td div{
+	font-family:ShowWind;
+ 	font-size: 25px;
+ 	font-weight: bold;
+}
+div[class="fc-row fc-week fc-widget-content"]{
+	height: 150px;
+}
+div[name="午班"],div[name="晚班"]{ 
+ 	overflow-y: auto; 
+ 	padding: 8px 13px;
+} 
+#calendar h2{
+	font-family:ShowWind;
+ 	font-size: 50px;
+ 	font-weight: bold;
 }
 </style>
-<link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
 <body>	
 <div class="page-container sidebar-collapsed">	
@@ -201,81 +202,11 @@ legend {
 <!--inner block start here-->
 <div class="inner-block">
     <div class="price-block-main">
-<form id="formq" class="form-inline" action="ReserveServlet.do?doWhat=update2" method="post">
-	    <fieldset>
-	        <legend>修改預約資料</legend>
-	        <div class="std">
-	            <label class="stl" for="date">日期 :</label>
-	            <input type="text" class="form-control" id="date" name="date" placeholder="yyyy-mm-dd"
-	            	 	value="${ReserveVOdate}"/><span id="sp1"></span>
-	            <br/>
-	        </div>
-	        <div class="std">
-	            <label class="stl" for="time">時間 :</label>
-<!-- 	            <input type="text" id="time" name="time"  /> -->
-	            <select id="time" name="time" >
-	            	<option value="11">11點</option>
-	            	<option value="12">12點</option>
-	            	<option value="13">13點</option>
-	            	<option value="17">17點</option>
-	            	<option value="18">18點</option>
-	            	<option value="19">19點</option>
-	            	<option value="20">20點</option>
-	            </select>
-	            <br/>
-	        </div>
-	        <div class="std">
-	            <label class="stl" for="res_name">姓氏 :</label>
-	            <input type="text" class="form-control" id="res_name" name="res_name"
-	                    value="${updateReserveVO.res_name}" placeholder="請輸入姓氏" /><span id="sp2"></span>
-	            <br/>
-	        </div>
-	        <div class="std">
-	            <label class="stl" for="man">性別 :</label>
-	            	<input type="radio" id="man" name="res_gender" value="先生" checked="checked"><label class="labelsize" for="man">先生</label>
-	            	<input type="radio" id="woman" name="res_gender" value="小姐"><label class="labelsize" for="woman">小姐</label>
-	            <br/>
-	        </div>
-	        <div class="std">
-	            <label class="stl" for="res_phone">手機 :</label>
-	            <input type="text" class="form-control" id="res_phone" name="res_phone" 
-	            		value="${updateReserveVO.res_phone}" placeholder="請輸入電話號碼" /><span id="sp3"></span>
-	            <br/>
-	        </div>
-	        <div class="std">
-	            <label class="stl" for="res_numP">人數 :</label>
-	            <input type="text" class="form-control" id="res_numP" name="res_numP" 
-	            		value="${updateReserveVO.res_numP}" placeholder="請輸入人數" /><span id="sp4"></span>
-	            <br/>
-	        </div>
-	        <div class="std">
-	            <label class="stl" for="res_remark">特殊需求 :</label>
-	            <input type="text" class="form-control" id="res_remark" name="res_remark" value="${updateReserveVO.res_remark}"/>
-	            <br/>
-	        </div>
-	        <br />
-	        <div class="std" style="text-align: center;">
-	            <input type="button" id="submitx" value="送出" />
-	            <input type="reset" value="清除" />
-	        </div>
-	    </fieldset>
-	</form>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
 
+<div id="calendar"></div>
 
+<input hidden id="prevselmonth" value="${calendar}" />
+<input hidden id="empid" value="${LoginOK.emp_id}" />
 
 </div>
 </div>
@@ -295,8 +226,8 @@ legend {
 		        <li><a href="../table/formatTable.do?table=index"><i class="fa fa-eye"></i><span>監控畫面</span></a></li>
 		        <li id="menu-comunicacao" ><a><i class="fa fa-phone-square"></i><span>預約</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		          <ul id="menu-comunicacao-sub" >
-		          	<li><a href="reserveC.jsp">新增預約</a></li>
-		            <li><a href="reserveQ.jsp">查詢預約</a></li>
+		          	<li><a href="../reserve/reserveC.jsp">新增預約</a></li>
+		            <li><a href="../reserve/reserveQ.jsp">查詢預約</a></li>
 		          </ul>
 		        </li>
 		        <li><a><i class="fa fa-free-code-camp"></i><span>內場狀態</span><span class="fa fa-angle-right" style="float: right"></span></a>
@@ -313,8 +244,8 @@ legend {
 		        </li>
 		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		         	<ul id="menu-academico-sub" >
-			            <li><a href="../schedule/schedule.jsp">新增班表</a></li>
-			         	<li><a href="../schedule/eachSchedule.jsp">查詢個人班表</a></li>
+			            <li><a href="schedule.jsp">新增班表</a></li>
+			         	<li><a href="eachSchedule.jsp">查詢個人班表</a></li>
 		             </ul>
 		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>
