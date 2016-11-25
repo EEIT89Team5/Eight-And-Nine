@@ -63,6 +63,12 @@ public class EmpDAO implements EmpDAO_interface {
 		list = hibernateTemplate.find(GET_ALL_STMT);
 		return list;
 	}
+	
+	public List<EmpVO> getAll2() {
+		List<EmpVO> list = null;
+		list = hibernateTemplate.find("from EmpVO Where emp_status='在職中'");
+		return list;
+	}
 
 	public static void main(String[] args) {
 

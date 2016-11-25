@@ -38,6 +38,7 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 				<value>com/space/model/space.hbm.xml</value>
 				<value>com/spacex/model/spacex.hbm.xml</value>
 				<value>com/table/model/table.hbm.xml</value>
+				<value>com/schedule/model/schedule.hbm.xml</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -99,6 +100,10 @@ http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 	</bean>
 
 	<bean id="tableDAO" class="com.table.model.TableDAO">
+		<property name="hibernateTemplate" ref="hibernateTemplate" />
+	</bean>
+	
+	<bean id="scheduleDAO" class="com.schedule.model.ScheduleDAO">
 		<property name="hibernateTemplate" ref="hibernateTemplate" />
 	</bean>
 

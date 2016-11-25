@@ -43,6 +43,10 @@ public class EmpService {
 		return dao.getEmail(emp_email);
 	}
 	
+	public List<EmpVO> getAll2() {
+		return dao.getAll2();
+	}
+	
 	public void Updatepassword(EmpVO empVO) {
 		dao.Updatepassword(empVO);
 	}
