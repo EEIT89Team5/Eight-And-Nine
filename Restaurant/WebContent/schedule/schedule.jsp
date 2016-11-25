@@ -23,6 +23,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script src="../js/moment.min.js"></script>
 <script src="../js/jquery-ui.min.js"></script>
 <script src="../js/fullcalendar.min.js"></script>
+<script src="../js/locale-all.js"></script>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
  <script>
 $(document).ready(function() {
@@ -41,6 +42,7 @@ $(document).ready(function() {
 	var selectmonth=$('#prevselmonth').val();
     if(selectmonth!=""){
     	$('#calendar').fullCalendar({
+    		locale: 'zh-tw',
     		header: {
     			left: 'prev,next',
     			center: 'title',
@@ -56,6 +58,7 @@ $(document).ready(function() {
     	});
     }else{
     	$('#calendar').fullCalendar({
+    		locale: 'zh-tw',
     		header: {
     			left: 'prev,next',
     			center: 'title',
@@ -63,21 +66,21 @@ $(document).ready(function() {
     		},
     		views:{
     			month:{
-    				titleFormat:'YYYY-MM'
-    			}
+    				titleFormat:'YYYY-MM'		
+    			},
     		},
     		fixedWeekCount:false
     	});
     }
     
-	$('div[class="fc-bg"] td').css("border","2px solid gray").html('<div style="height:50%;background-color:yellow" name="午班">&nbsp;</div><div style="height:50%;background-color:lightblue" name="晚班">&nbsp;</div>');
+	$('div[class="fc-bg"] td').css("border","2px solid gray").html('<div style="height:50%;background:rgba(0,0,0,0.3);color:white" name="午班">&nbsp;</div><div style="height:50%;background:rgba(255,255,255,0.3);color:black" name="晚班">&nbsp;</div>');
 	$('div[class="fc-bg"] td div').attr("data-toggle","modal").attr("data-target","#myModal");
 	$('div[class="fc-bg"] td[class*=" fc-other-month"]').empty().css("background-color","lightgray");
 	
 	var monthDate=$("#calendar h2").text();
 	var dd=monthDate.split('-')
 	
-	$("#calendar h2").html(dd[0]+'年'+dd[1]+'月 班表');
+	$("#calendar h2").html('<font style="color:white">'+dd[0]+'年'+dd[1]+'月 班表</font>');
 	
 	$.getJSON("schedule.do",{"action":"getAllByMonth","monthDate":monthDate},function(datass){
 		var divv = $('div[class="fc-bg"]');
@@ -112,7 +115,12 @@ $(document).ready(function() {
 		});
 		$("#scheduledate").val(($(this).parent('td')).attr("data-date"));
 		$("#timeperiod").val($(this).attr("name"));
-		$('#myModalLabel').html(($(this).parent('td')).attr("data-date")+","+$(this).attr("name"));
+		$('#myModalLabel').html(($(this).parent('td')).attr("data-date")+" "+$(this).attr("name"));
+		var modeltotal=$('#myModalLabel').text();
+		var modelyyymm=modeltotal.split("-");
+		var modeldd=modelyyymm[2].split(" ");
+		$('#myModalLabel').html("<td>"+modelyyymm[0]+"年"+modelyyymm[1]+"月"+modeldd[0]+"日"+" <font>"+modeldd[1]+"</font></td>")
+		
 	});
 	
 	
@@ -120,13 +128,13 @@ $(document).ready(function() {
 <%--按下往下一月和上一月的button會執行的程式碼--%>
 	
 	$('div[class="fc-button-group"] button').click(function(){
-		$('div[class="fc-bg"] td').css("border","2px solid gray").html('<div style="height:50%;background-color:yellow" name="午班">&nbsp;</div><div style="height:50%;background-color:lightblue" name="晚班">&nbsp;</div>');
+		$('div[class="fc-bg"] td').css("border","2px solid gray").html('<div style="height:50%;background:rgba(0,0,0,0.3);color:white" name="午班">&nbsp;</div><div style="height:50%;background:rgba(255,255,255,0.3);color:black" name="晚班">&nbsp;</div>');
 		$('div[class="fc-bg"] td div').attr("data-toggle","modal").attr("data-target","#myModal");
 		$('div[class="fc-bg"] td[class*=" fc-other-month"]').empty().css("background-color","lightgray");
 		
 		monthDate=$("#calendar h2").text();
 		dd=monthDate.split("-")
-		$("#calendar h2").html(dd[0]+'年'+dd[1]+'月 班表');
+		$("#calendar h2").html('<font style="color:white">'+dd[0]+'年'+dd[1]+'月 班表</font>');
 		$.getJSON("schedule.do",{"action":"getAllByMonth","monthDate":monthDate},function(datass){
 			var divv = $('div[class="fc-bg"]');
 			$.each(datass,function(index,value){
@@ -159,24 +167,40 @@ $(document).ready(function() {
 			});
 			$("#scheduledate").val(($(this).parent('td')).attr("data-date"));
 			$("#timeperiod").val($(this).attr("name"));
-			$('#myModalLabel').html(($(this).parent('td')).attr("data-date")+","+$(this).attr("name"));
+			$('#myModalLabel').html(($(this).parent('td')).attr("data-date")+" "+$(this).attr("name"));
+			var modeltotal=$('#myModalLabel').text();
+			var modelyyymm=modeltotal.split("-");
+			var modeldd=modelyyymm[2].split(" ");
+			$('#myModalLabel').html("<td>"+modelyyymm[0]+"年"+modelyyymm[1]+"月"+modeldd[0]+"日"+" <font color:red>"+modeldd[1]+"</font></td>")
 		});
 		
 
 	});
 																
+
+	
 });
 </script>
 <!--pop up end here-->
 <style>
 body,.inner-block{
-	background-color:#F5F6CE;
+/*  	background-color:white;  */
+ 	background-image: url("../img/21.jpg");
 }
 .clerfix{
 	border-style:solid;
 }
+th{
+font-family:ShowWind;
+height: 60px;
+text-align: center;
+font-size:35px;
+font-weight: bold;
+color:white
+}
 .titlebar{
 	background-color:black;
+	background-size: cover;
 }
 #menu span{
 	position:absolute;
@@ -210,13 +234,15 @@ body,.inner-block{
 } 
  
 span[class="fc-day-number"]{
- 	font-size: 15px;
+ 	font-size: 20px;
  	font-weight: bold;
+ 	background-color:rgba(249, 249, 124, 0.8)
 }
 div[class="fc-bg"] td div{
 	font-family:ShowWind;
  	font-size: 25px;
  	font-weight: bold;
+
 }
 div[class="fc-row fc-week fc-widget-content"]{
 	height: 150px;
@@ -230,6 +256,13 @@ div[name="午班"],div[name="晚班"]{
  	font-size: 50px;
  	font-weight: bold;
 }
+td{
+font-family:ShowWind;
+}
+font{
+ color:red
+}
+
 </style>
 </head>
 <body>	
