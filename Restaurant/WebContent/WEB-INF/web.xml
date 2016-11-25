@@ -76,9 +76,20 @@
 		<servlet-name>MemberAccountCheck</servlet-name>
 		<servlet-class>com.member.controller.MemberAccountCheck</servlet-class>
 	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>OrderForAndroid</display-name>
+		<servlet-name>OrderForAndroid</servlet-name>
+		<servlet-class>com.order.controller.OrderForAndroid</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>MemberAccountCheck</servlet-name>
 		<url-pattern>/MemberAccountCheck</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>OrderForAndroid</servlet-name>
+		<url-pattern>/OrderForAndroid</url-pattern>
 	</servlet-mapping>
 	
 
