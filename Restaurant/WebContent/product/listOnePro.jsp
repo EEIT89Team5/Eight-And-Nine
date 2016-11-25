@@ -35,9 +35,9 @@ $(document).ready(function() {
 <style>
 body,.inner-block{
 	background-color:black;
-	background: #000 url(../img/0003.jpg) center center fixed no-repeat;
-	background-size: cover;
-	moz-background-size: cover;
+/* 	background: #000 url(../img/0003.jpg) center center fixed no-repeat; */
+/* 	background-size: cover; */
+/* 	moz-background-size: cover; */
 }
 .clerfix{
 	border-style:solid;
