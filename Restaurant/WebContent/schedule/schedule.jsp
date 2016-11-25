@@ -75,7 +75,10 @@ $(document).ready(function() {
 	$('div[class="fc-bg"] td[class*=" fc-other-month"]').empty().css("background-color","lightgray");
 	
 	var monthDate=$("#calendar h2").text();
-	$("#calendar h2").append(" 班表");
+	var dd=monthDate.split('-')
+	
+	$("#calendar h2").html(dd[0]+'年'+dd[1]+'月 班表');
+	
 	$.getJSON("schedule.do",{"action":"getAllByMonth","monthDate":monthDate},function(datass){
 		var divv = $('div[class="fc-bg"]');
 		$.each(datass,function(index,value){
@@ -121,8 +124,9 @@ $(document).ready(function() {
 		$('div[class="fc-bg"] td div').attr("data-toggle","modal").attr("data-target","#myModal");
 		$('div[class="fc-bg"] td[class*=" fc-other-month"]').empty().css("background-color","lightgray");
 		
-		var monthDate=$("#calendar h2").text();
-		$("#calendar h2").append(" 班表");
+		monthDate=$("#calendar h2").text();
+		dd=monthDate.split("-")
+		$("#calendar h2").html(dd[0]+'年'+dd[1]+'月 班表');
 		$.getJSON("schedule.do",{"action":"getAllByMonth","monthDate":monthDate},function(datass){
 			var divv = $('div[class="fc-bg"]');
 			$.each(datass,function(index,value){

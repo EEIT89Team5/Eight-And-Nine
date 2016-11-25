@@ -55,7 +55,10 @@ $(document).ready(function() {
 	$('div[class="fc-bg"] td[class*=" fc-other-month"]').empty().css("background-color","lightgray");
 	
 	var monthDate=$("#calendar h2").text();
-	$("#calendar h2").append(" 個人班表");
+	var dd=monthDate.split('-')
+	
+	$("#calendar h2").html(dd[0]+'年'+dd[1]+'月 個人班表');
+	
 	var empid = $('#empid').val();
 	$.getJSON("schedule.do",{"action":"getOneByEmpID","empid":empid,"monthDate":monthDate},function(datass){
 		var divv = $('div[class="fc-bg"]');
@@ -75,7 +78,8 @@ $(document).ready(function() {
 		$('div[class="fc-bg"] td[class*=" fc-other-month"]').empty().css("background-color","lightgray");
 		
 		var monthDate=$("#calendar h2").text();
-		$("#calendar h2").append(" 個人班表");
+		var dd=monthDate.split('-')
+		$("#calendar h2").html(dd[0]+'年'+dd[1]+'月 個人班表');
 		var empid = $('#empid').val();
 		$.getJSON("schedule.do",{"action":"getOneByEmpID","empid":empid,"monthDate":monthDate},function(datass){
 			var divv = $('div[class="fc-bg"]');
