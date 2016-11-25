@@ -370,7 +370,7 @@ div[name="午班"],div[name="晚班"]{
 			         	<li><a href="../emp/all_emp.jsp">修改</a></li> 
 		             </ul>
 		        </li>
-		        <li><a href="schedule.jsp"><i class="fa fa-calendar"></i><span>班表</span></a></li>
+		        <li><a href="../schedule/schedule.jsp"><i class="fa fa-calendar"></i><span>班表</span></a></li>
 <!-- 		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a> -->
 <!-- 		         	<ul id="menu-academico-sub" > -->
 <!-- 			            <li><a href="../index.jsp"></a></li> -->
