@@ -10,4 +10,5 @@ public interface EmpDAO_interface {
 	     public List<EmpVO> getAll();
 		 public EmpVO getEmail(String emp_email);
 		 public void Updatepassword(EmpVO empVO);
+		 public List<EmpVO> getAll2();
 }
