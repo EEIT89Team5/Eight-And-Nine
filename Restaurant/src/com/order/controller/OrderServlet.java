@@ -623,52 +623,59 @@ public class OrderServlet extends HttpServlet {
 			try {
 
 				HttpSession session = req.getSession();
-
+                
 				List<OrderXVO> orderList = (List<OrderXVO>) session.getAttribute("orderList");
-
-				Integer del = new Integer(req.getParameter("del").trim());// 取得要刪除orderList裡物件的位置
-
-				OrderXVO deleteOrderXVO = orderList.get(del - 1);
-				Integer productId = deleteOrderXVO.getProductVO().getProduct_id();
-				Integer oldQ = deleteOrderXVO.getOrderX_num();
-
-				ProductService productSvc = new ProductService();
-				ProductVO productVO = productSvc.findByPrimaryKey(productId);
-
-				if (productVO.getProductKindVO().getKind_id() == 2) {// 若修改套餐修改pcgQ
-					Integer pcgQ = (Integer) session.getAttribute("pcgQ");
-					pcgQ = pcgQ - oldQ;
-					session.setAttribute("pcgQ", pcgQ);
-				} else if (productVO.getDishClassVO().getClass_id() == 40) {// 若修改單點主菜修改mainQ
-							
-						Integer mainQ = (Integer) session.getAttribute("mainQ");
-						mainQ = mainQ - oldQ;
-						session.setAttribute("mainQ", mainQ);
-							
-				}
-
-				Integer orderQ = (Integer) session.getAttribute("orderQ");
+				Integer pcgQ = (Integer) session.getAttribute("pcgQ");
 				Integer orderP = (Integer) session.getAttribute("orderP");
-				session.setAttribute("orderQ", orderQ);
-				session.setAttribute("orderP", orderP);
-				orderQ = orderQ - deleteOrderXVO.getOrderX_num();
-				orderP = orderP - (deleteOrderXVO.getOrderX_num()) * (deleteOrderXVO.getProductVO().getProduct_price());
-
-				orderList.remove(deleteOrderXVO);// 刪除
-
-				session.setAttribute("orderQ", orderQ);
-				session.setAttribute("orderP", orderP);
-
-				session.setAttribute("orderList", orderList);// session存入最新orderList
-
-				OrderXService orderXSvc = new OrderXService();
+				
+				String packageId = (req.getParameter("packageId").trim());    
+				Integer packageIdToInt = new Integer(packageId);
+				Integer totalOfPackage = new Integer(req.getParameter("totalOfPackage").trim());
+				Integer qtyOfPackage = new Integer(req.getParameter("qtyOfPackage").trim());				
+				
+				Map<String , Integer> mapForPackageIdAndQty = (Map<String, Integer>) session.getAttribute("mapForPackageIdAndQty");
+				ProductService productSrc = new ProductService();
+				
+				List<ProductVO>  ProductVOs = productSrc.getDishesByOnePackage(packageIdToInt);							
+				ProductVO productVO = new ProductVO();
+				 
+				if(mapForPackageIdAndQty.containsKey(packageId)){    //這裡先刪除map裡的套餐    下面再刪除購物車裡的套餐+菜色
+					System.out.println("我要準備刪除這套餐瞜!!!"+ packageId);
+					System.out.println("我要準備讓套餐數量歸零瞜瞜瞜瞜!!!"+ qtyOfPackage);
+					orderP = orderP- totalOfPackage;
+					pcgQ = pcgQ - qtyOfPackage ;
+					System.out.println("我是刪減後的價錢:"+orderP);
+					System.out.println("我是刪減後的套餐數量:"+pcgQ);
+					mapForPackageIdAndQty.remove(packageId ,qtyOfPackage);
+					
+				}
+				for(int j = 0; j < ProductVOs.size() ; j++){				                   	  
+					for(int i = 0 ; i <orderList.size() ; i++){
+					  if(orderList.get(i).getProductVO().getProduct_id().equals(packageIdToInt)){
+						System.out.println("我要準備刪除瞜"+packageIdToInt);
+						orderList.remove(i);					  
+					  }
+                	  if(ProductVOs.get(j).getProduct_id().equals(orderList.get(i).getProductVO().getProduct_id())){
+                		  System.out.println("我要準備刪除的菜色有誰呢"+ProductVOs.get(j).getProduct_id());
+                		  System.out.println("購物車要刪除的菜色有誰"+orderList.get(i).getProductVO().getProduct_id());
+                		  orderList.remove(i);
+                	  }
+                   }
+				}
 				OrderVO orderVO = (OrderVO) session.getAttribute("orderVO");
 				orderVO.setOrder_price(orderP);// 查詢orderVO最新價格
 				session.setAttribute("orderVO", orderVO);// session存入最新orderVO
 
+				session.setAttribute("pcgQ", pcgQ);
+				session.setAttribute("orderP", orderP);
+				session.setAttribute("mapForPackageIdAndQty", mapForPackageIdAndQty);// session存入最新orderList
+				session.setAttribute("orderList", orderList);
+
+
 				String url = "/order/orderList.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, resp);
+				return;
 
 			} catch (Exception e) {
 			    errorMsgs.add(e.getMessage());
