@@ -221,15 +221,14 @@ color:yellow;
 				
 				<input type="text" hidden id="origincount" value="${count}">
 				<c:if test="${bills.memberVO.member_name != null}">
-<<<<<<< HEAD
-					<div id="discoutdiv" width="500px"><span id="dis_name">會員折扣</span> &nbsp;&nbsp;<span id="dis_val">0.9</span></div>
-=======
-					<div id="discoutdiv" width="500px" align="center"><span id="dis_name">會員</span> &nbsp;&nbsp;<span id="dis_val">9 &nbsp;折</span></div>
->>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git
+<!-- 					<div id="discoutdiv" width="500px"><span id="dis_name">會員折扣</span> &nbsp;&nbsp;<span id="dis_val">0.9</span></div> -->
+
+					<div id="discoutdiv" width="500px" align="center"><span id="dis_name">會員折扣</span> &nbsp;&nbsp;<span id="dis_val">9 &nbsp;折</span></div>
+
 					<c:set var="count" value="${count * 0.9}" />
 				</c:if>
 				<c:if test="${bills.memberVO.member_name == null}">
-					<div id="discoutdiv" hidden width="500px"><span id="dis_name"></span> &nbsp;&nbsp;<span id="dis_val"></span></div>
+					<div id="discoutdiv" hidden width="500px" align="center"><span id="dis_name"></span> &nbsp;&nbsp;<span id="dis_val"></span></div>
 				</c:if>
 				<div width="500px" align="center"><span>總金額:</span>&nbsp;&nbsp;<span id="total">${count}</span></div>
 
@@ -292,8 +291,8 @@ color:yellow;
 		        </li>
 		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		         	<ul id="menu-academico-sub" >
-			            <li><a href="../index.jsp">新增</a></li>
-			         	<li><a href="../index.jsp">修改</a></li>
+			            <li><a href="../schedule/schedule.jsp">新增班表</a></li>
+			         	<li><a href="../schedule/eachSchedule.jsp">查詢個人班表</a></li>
 		             </ul>
 		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>

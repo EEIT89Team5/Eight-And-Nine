@@ -17,7 +17,8 @@ import com.emp.model.EmpVO;
 				@WebInitParam(name = "mustLogin3", value = "/chart/*") ,
 				@WebInitParam(name = "mustLogin4", value = "/space/*") ,
 				@WebInitParam(name = "mustLogin7", value = "/Package/*") ,
-				@WebInitParam(name = "mustLogin8", value = "/product/*") 	
+				@WebInitParam(name = "mustLogin8", value = "/product/*") ,
+				@WebInitParam(name = "mustLogin8", value = "/schedule/schedule.jsp")
 		}
 		)
 public class TitleFilter implements Filter {

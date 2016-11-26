@@ -72,6 +72,29 @@ public class ScheduleServlet extends HttpServlet {
 			out.print(scheduleMap);
 			
 		}
+		
+		if("getOneByEmpID".equals(action)){
+			String date = request.getParameter("monthDate");
+			String empid = request.getParameter("empid");
+			Integer emp_id = Integer.valueOf(empid);
+			List<ScheduleVO> list = scheduleService.getOnes(date, emp_id);
+			
+			JSONArray scheduleMap = new JSONArray();
+			for(ScheduleVO vo : list){
+				JSONObject arrin = new JSONObject();
+				arrin.put("date",vo.getSched_date().toString());
+				arrin.put("timeperiod",vo.getSched_class());
+				arrin.put("name",vo.getEmpVO().getEmp_name());
+				scheduleMap.add(arrin);
+			}
+
+			response.setHeader("Access-Control-Allow-Origin", "*");
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			PrintWriter out = response.getWriter();
+			out.print(scheduleMap);
+			
+		}
 	}
 
 	

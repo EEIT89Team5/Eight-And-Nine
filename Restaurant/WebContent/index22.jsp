@@ -13,15 +13,15 @@ src:url("font/ShowWind.ttc");
 td{
 font-family:"ShowWind";
 font-size:30px;
-font-weight: bold;
+/* font-weight: bold; */
 color:white
 }
 #block {
     	height: 50px; /*高度*/ 
      	width: 800px;  /*寬度*/ 
      	position: absolute; 
-      	top:68%; 
-      	left:52%;
+      	top:70%; 
+      	left:50%;
       	
      	margin:0px auto;
  		margin-top: -25px; 

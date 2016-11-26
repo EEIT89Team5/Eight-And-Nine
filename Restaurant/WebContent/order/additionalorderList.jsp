@@ -23,6 +23,7 @@ color:white
 
 body{
 background-image: url("../img/0003.jpg");
+background-size:cover;
 }
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />

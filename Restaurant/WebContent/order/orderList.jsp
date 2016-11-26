@@ -73,10 +73,10 @@ color:pink
 				<td>${orderXVO.productVO.product_name}</td>
 				<td>${orderXVO.productVO.productKindVO.kind_name}</td>
 				<td style="width: 80px">${orderXVO.orderX_num}</td>
-				<td style="width:200px">${orderXVO.productVO.product_price}</td>
+				<td style="width:200px">${orderXVO.productVO.product_price*orderXVO.orderX_num}</td>
 				
 					
-					<td>
+					<td style="width: 200px">
 					<form method="post" ACTION="order.do" >
 					<input type="text" maxlength="3" name="altNumber" style="width:50px;height: 35px;font-family:ShowWind;font-size:25px;font-weight: bold;">
 
@@ -106,7 +106,7 @@ color:pink
 		<tr><td></td><td></td><td></td><td></td><td></td>
 		</tr> 		
 		 <c:forEach var="mapForPackageIdAndQty" items="${mapForPackageIdAndQty}">               
-           <tr><td>--------------------</td><td>--------------------</td><td>-------------------</td><td>------------</td><td>----------------</td>
+           <tr><td><hr/></td><td><hr/></td><td><hr/></td><td><hr/></td><td><hr/></td>
 		    </tr> 
             <tr>
             	<td>${productSvc.findByPrimaryKey(mapForPackageIdAndQty.key).product_name}</td>    <!-- 變數productSvc 為第七行的 jsp:useBean 創造 -->
@@ -115,10 +115,11 @@ color:pink
                 <td>${mapForPackageIdAndQty.value}</td>
                 <td>${productSvc.findByPrimaryKey(mapForPackageIdAndQty.key).product_price * (mapForPackageIdAndQty.value)}</td>
                 <td></td>
-                <td></td>
+              
                 <td>
 				  <form method="post" ACTION="order.do" >
 					  <input type="hidden" name="del" value="${index.count}">
+					  <input type="hidden" name="totalOfPackage" value="${productSvc.findByPrimaryKey(mapForPackageIdAndQty.key).product_price * (mapForPackageIdAndQty.value)}">
 					  <input type="hidden" name="packageId" value="${mapForPackageIdAndQty.key}">
 					  <input type="hidden" name="qtyOfPackage" value="${mapForPackageIdAndQty.value}">
 					  <input type="hidden" name="action" value="delete_P_orderX">
@@ -126,7 +127,7 @@ color:pink
 				 </form>
 				</td>			    	
             </tr>
-            <tr><td>--------------------</td><td>--------------------</td><td>-------------------</td><td>------------</td><td>----------------</td>
+            <tr><td><hr/></td><td><hr/></td><td><hr/></td><td><hr/></td><td><hr/></td>
 		    </tr>
 		      
          <c:forEach var="orderXVO" items="${orderList}"  >	
