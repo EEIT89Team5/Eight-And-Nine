@@ -132,10 +132,10 @@ font-weight: bold
 				<tr>
 				  <c:forEach var="productVO" items="${productSvc.getDishesByPackageAndClass(pcg_id ,packageFormatVO.getDishClassVO().getClass_id())}" varStatus="status">
      		        <c:if test="${status.index%4==0}"></tr><tr> </c:if>
-     		        <td style="width:250px">
+     		        <td style="width:250px;height:300px;">
      		        <img width="200px" height="150px" src="${pageContext.servletContext.contextPath}/getImage?id=${productVO.product_id}"/><br/>
-	               <font style="font-size:28px;"> ${productVO.getProduct_name()}<br/>
-						數量：</font><select name="qtyOfDish" class="myClass${packageFormatVO.getDishClassVO().getClass_id()}" style="font-family:ShowWind;font-size:20px;font-weight:bold">	 						
+	               <font style="font-size:28px;"><div style="height:40px"> ${productVO.getProduct_name()}</div><br/>
+						數量：</font><select name="qtyOfDish" class="myClass${packageFormatVO.getDishClassVO().getClass_id()}" style="font-family:ShowWind;font-size:20px;font-weight:bold;color: #444444">	 						
 							 <option value="0" selected>0</option>
 							 <option value="1" >1</option>
 							 <option value="2">2</option>
