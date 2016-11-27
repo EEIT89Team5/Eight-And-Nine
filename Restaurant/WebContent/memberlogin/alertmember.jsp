@@ -36,8 +36,8 @@ height: 80px;
 <br>
 <br>
 <div align="center">
-		<div align="center"><img src="../img/midify.png"></div>
-<div align="center"><div align="center"><img src="../img/passwordmidify.png"></div></div>
+		<div align="center"><img src="../img/memberMODIFY.png"></div>
+<!-- <div align="center"><div align="center"><img src="../img/passwordmidify.png"></div></div> -->
 <br>
 <br>
 	

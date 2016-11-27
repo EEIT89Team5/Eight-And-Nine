@@ -44,9 +44,9 @@ $(document).ready(function() {
 <style>
 body,.inner-block{
 	background-color:black;
-	background: #000 url(../img/0003.jpg) center center fixed no-repeat;
-	background-size: cover;
-	moz-background-size: cover;
+/* 	background: #000 url(../img/0003.jpg) center center fixed no-repeat; */
+/* 	background-size: cover; */
+/* 	moz-background-size: cover; */
 }
 .clerfix{
 	border-style:solid;
@@ -150,8 +150,8 @@ font-size:25px;
 	</font>
 </c:if>
   <jsp:useBean id="dsicSvc" scope="page" class="com.discount.model.DiscountService" />
- <img src="../img/discountlogo.png"><br>
- <img src="../img/select.png">
+ <img src="../img/DISCOUNTTOTAL.png"><br>
+<!--  <img src="../img/select.png"> -->
  <br>
  <br>
  <br>
@@ -267,10 +267,10 @@ font-size:25px;
 			         	<li><a href="../emp/all_emp.jsp">修改</a></li> 
 		             </ul>
 		        </li>
-		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
+		       <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		         	<ul id="menu-academico-sub" >
-			            <li><a href="../index.jsp">新增</a></li>
-			         	<li><a href="../index.jsp">修改</a></li>
+			            <li><a href="../schedule/schedule.jsp">新增班表</a></li>
+			         	<li><a href="../schedule/eachSchedule.jsp">查詢個人班表</a></li>
 		             </ul>
 		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>

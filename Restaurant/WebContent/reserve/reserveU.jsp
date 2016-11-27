@@ -108,7 +108,7 @@ form{
 	width:500px;
  	margin: 0px auto;*/
  	border-radius:20px;
-	width:700px; 
+	width:1200px; 
 	height:600px;
  	margin: 0px auto;
  	font-family:ShowWind;
@@ -201,7 +201,9 @@ legend {
 <!--inner block start here-->
 <div class="inner-block">
     <div class="price-block-main">
+    
 <form id="formq" class="form-inline" action="ReserveServlet.do?doWhat=update2" method="post">
+	    <img src="../img/ReserUPDATE.png">
 	    <fieldset>
 	        <legend>修改預約資料</legend>
 	        <div class="std">
@@ -226,7 +228,7 @@ legend {
 	        </div>
 	        <div class="std">
 	            <label class="stl" for="res_name">姓氏 :</label>
-	            <input type="text" class="form-control" id="res_name" name="res_name"
+	            <input type="text" class="form-control" size="1" id="res_name" name="res_name"
 	                    value="${updateReserveVO.res_name}" placeholder="請輸入姓氏" /><span id="sp2"></span>
 	            <br/>
 	        </div>
@@ -238,7 +240,7 @@ legend {
 	        </div>
 	        <div class="std">
 	            <label class="stl" for="res_phone">手機 :</label>
-	            <input type="text" class="form-control" id="res_phone" name="res_phone" 
+	            <input type="text" class="form-control" id="res_phone" maxlength="10" name="res_phone" 
 	            		value="${updateReserveVO.res_phone}" placeholder="請輸入電話號碼" /><span id="sp3"></span>
 	            <br/>
 	        </div>
@@ -313,8 +315,8 @@ legend {
 		        </li>
 		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		         	<ul id="menu-academico-sub" >
-			            <li><a href="../index.jsp">新增</a></li>
-			         	<li><a href="../index.jsp">修改</a></li>
+			            <li><a href="../schedule/schedule.jsp">新增班表</a></li>
+			         	<li><a href="../schedule/eachSchedule.jsp">查詢個人班表</a></li>
 		             </ul>
 		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>

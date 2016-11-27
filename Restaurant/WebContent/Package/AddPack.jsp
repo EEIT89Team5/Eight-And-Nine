@@ -121,10 +121,7 @@ body,.inner-block{
 	padding:20px;
 	border-radius: 10px
 }
-@font-face {  
-  font-family: "BoldFace";  
-  src: url("../font/BoldFace.ttc");  
-}
+
 @font-face {  
   font-family: "ShowWind";  
   src: url("../font/ShowWind.ttc");  
@@ -257,7 +254,7 @@ border-radius: 10px;
 			<div align="center">
 				<input type="hidden" name="product_kind" value="2"> 
 				<input type="hidden" name="action" value="insertPackage"> 
-				<input type="button" value="新增" id="allbutton" class="btn btn-warning" style="font-family:BoldFace;font-size:20px">
+				<input type="button" value="新增" id="allbutton" class="btn btn-warning" style="font-family:ShowWind;font-size:20px">
 			</div>
 		</FORM>
 </div>
@@ -299,12 +296,13 @@ border-radius: 10px;
 			         	<li><a href="../emp/all_emp.jsp">修改</a></li> 
 		             </ul>
 		        </li>
-		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
-		         	<ul id="menu-academico-sub" >
-			            <li><a href="../index.jsp">新增</a></li>
-			         	<li><a href="../index.jsp">修改</a></li>
-		             </ul>
-		        </li>
+		        <li><a href="../schedule/schedule.jsp"><i class="fa fa-calendar"></i><span>班表</span></a></li>
+<!-- 		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a> -->
+<!-- 		         	<ul id="menu-academico-sub" > -->
+<!-- 			            <li><a href="../index.jsp">新增</a></li> -->
+<!-- 			         	<li><a href="../index.jsp">修改</a></li> -->
+<!-- 		             </ul> -->
+<!-- 		        </li> -->
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		          <ul id="menu-academico-sub" >
 			          <li><a href="../product/listAllPro.jsp">菜色查詢</a></li>

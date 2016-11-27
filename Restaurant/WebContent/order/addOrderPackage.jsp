@@ -23,8 +23,8 @@
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 <style>
 body{
-background-image: url("../img/0003.jpg");
-background-size: cover;
+background-image: url("../img/OrderBackground.jpg");
+background-size: cover; 
 }
 @font-face{
 font-family:"ShowWind";
@@ -44,12 +44,19 @@ color:white;
 font-size:40px;
 font-weight: bold
 }
+#shop{
+ position:fixed;
+ right: 0%;
+ top: 15%;
+ z-index: 18%;
+ width:200px;
+}
 </style>
 </head>
-<body>
+<body style="background-color: black">
 <div align="center">
-<img src="../img/ORDERLOGO.png"><br><br>
-<img src="../img/PACKAGE.png"><br><br>
+<!-- <img src="../img/ORDERLOGO.png"><br><br> -->
+<img src="../img/ORDERPACKAGE.png"><br><br>
 <br>
 <table>
 	<tr>
@@ -150,23 +157,26 @@ font-weight: bold
 		 <br/>  
     <a href="addOrder2.jsp" class="button button-pill button-highlight" style="font-family:ShowWind;font-size:25px;font-weight:bold">回點餐</a>
 
-	<c:if test="${not empty orderList}">
-		<h3 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車小計</h3>
-		<table style="width: 600px">
+	</c:if>
+<%-- 	<c:if test="${not empty orderList}"> --%>
+    <div id="shop">
+<!-- 		<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車</h2> -->
+<img src="../icon/shopping.png">
+		<table>
 
-		 <tr><td>菜色數量:${orderQ}</td></tr>
-		 <tr><td>主菜數量:${mainQ}</td></tr>
-		 <tr><td>套餐數量:${pcgQ}</td></tr>
+		 <tr><td>菜色數:${orderQ}</td></tr>
+		 <tr><td>主菜數:${mainQ}</td></tr>
+		 <tr><td>套餐數:${pcgQ}</td></tr>
 		 <tr><td>總金額:${orderP}</td></tr>
-		</table>
-		<br>
+		</table><br>
 		<form METHOD="post" ACTION="order.do" name="form1">
 			<input type="hidden" name="action" value="check_orderList"> <input
 			  type="submit" value="查看購物車" class="button button-pill button-primary" style="font-family:ShowWind;font-size:25px;font-weight:bold">
 		</form>
-	</c:if>
-	</c:if>
+    </div>
 	</div>
+<%-- 	</c:if> --%>
+
 <script src="../js/sweetalert.min.js"></script>
 <link rel="stylesheet" type="text/css" href="../js/sweetalert.css">
 <script src="../js/buttons.js"></script>

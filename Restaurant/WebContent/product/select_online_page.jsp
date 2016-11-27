@@ -160,8 +160,8 @@ border-radius: 10px;
 <div class="inner-block" >
 <div class="price-block-main" >
 <div align="center">
-		<img src="../img/prologo.png"><br>
-		<a href="../index.jsp"><img src="../img/ONLINE.png"></a>
+		<img src="../img/PROONLINE.png"><br>
+<!-- 		<a href="../index.jsp"><img src="../img/ONLINE.png"></a> -->
 
 <br>
 <br>
@@ -400,8 +400,8 @@ border-radius: 10px;
 		        </li>
 		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		         	<ul id="menu-academico-sub" >
-			            <li><a href="../index.jsp">新增</a></li>
-			         	<li><a href="../index.jsp">修改</a></li>
+			            <li><a href="../schedule/schedule.jsp">新增班表</a></li>
+			         	<li><a href="../schedule/eachSchedule.jsp">查詢個人班表</a></li>
 		             </ul>
 		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>

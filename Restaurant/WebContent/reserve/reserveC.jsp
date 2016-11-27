@@ -93,7 +93,7 @@ body,.inner-block{
 form{
 /*  	border:3px double #7e85c4;  */
 	border-radius:20px;
-	width:700px; 
+	width:1200px; 
 	height:600px;
  	margin: 0px auto;
  	font-family:ShowWind;
@@ -141,6 +141,18 @@ legend {
 }
 #imglogo{
 	margin: 0 auto;
+}
+#sp1{
+color:yellow
+}
+#sp2{
+color:yellow
+}
+#sp3{
+color:yellow
+}
+#sp4{
+color:yellow
 }
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
@@ -193,8 +205,9 @@ legend {
 <div class="inner-block">
     <div class="price-block-main">
     <div align="center">
-    	<img id="imglogo" alt="預約" src="../img/Reserlogo.png">
+    	<img id="imglogo" alt="預約" src="../img/NEWReser.png">
 	</div>
+	<br>
 <form id="formx" class="form-inline" action="ReserveServlet.do?doWhat=createOne" method="post">
 	    <fieldset>
 	        <legend>預約資料<span class="again"></span></legend>
@@ -231,7 +244,7 @@ legend {
 	        </div>
 	        <div class="std">
 	            <label class="stl" for="res_phone">手機 :</label>
-	            <input type="text" class="form-control" id="res_phone" name="res_phone" placeholder="請輸入電話號碼" /><span id="sp3"></span>
+	            <input type="text" class="form-control" id="res_phone" name="res_phone" maxlength="10" placeholder="請輸入電話號碼" /><span id="sp3"></span>
 	            <br/>
 	        </div>
 	        <div class="std">
@@ -246,8 +259,8 @@ legend {
 	        </div>
 	        <br />
 	        <div  class="std" style="text-align: center;">
-	            <input  type="button" id="submitx" value="送出" />
-	            <input  type="reset" value="清除" />
+	            <input  type="button" id="submitx" value="送出" class="button button-3d" style="font-family:ShowWind;font-size:30px;font-weight: bold"/>
+	            <input  type="reset" value="清除" class="button button-3d" style="font-family:ShowWind;font-size:30px;font-weight: bold"/>
 	        </div>
 	    </fieldset>
 	</form>
@@ -300,12 +313,14 @@ legend {
 			         	<li><a href="../emp/all_emp.jsp">修改</a></li> 
 		             </ul>
 		        </li>
+
 		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		         	<ul id="menu-academico-sub" >
-			            <li><a href="../index.jsp">新增</a></li>
-			         	<li><a href="../index.jsp">修改</a></li>
+			            <li><a href="../schedule/schedule.jsp">新增班表</a></li>
+			         	<li><a href="../schedule/eachSchedule.jsp">查詢個人班表</a></li>
 		             </ul>
 		        </li>
+
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		          <ul id="menu-academico-sub" >
 			          <li><a href="../product/listAllPro.jsp">菜色查詢</a></li>
@@ -364,6 +379,8 @@ $(".sidebar-icon").click(function() {
 		<script src="../js/jquery.nicescroll.js"></script>
 		<script src="../js/scripts.js"></script>
 		<script src="../js/bootstrap.js"> </script>
+		<script src="../js/buttons.js"></script>
+		<link rel="stylesheet" href="../css/buttons.css">
 <!-- mother grid end here-->
 </body>
 </html>

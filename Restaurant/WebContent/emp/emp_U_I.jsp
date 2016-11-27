@@ -55,9 +55,9 @@ $(document).ready(function() {
 <style>
 body,.inner-block{
 	background-color:black;
-	background: #000 url(../img/0003.jpg) center center fixed no-repeat;
-	background-size: cover;
-	moz-background-size: cover;
+/* 	background: #000 url(../img/0003.jpg) center center fixed no-repeat; */
+/* 	background-size: cover; */
+/* 	moz-background-size: cover; */
 }
 .clerfix{
 	border-style:solid;
@@ -70,7 +70,7 @@ body,.inner-block{
 }
 @font-face{
    font-family: "BoldFace";   
-   src: url("../font/BoldFace.ttc");  
+   src: url("../font/ShowWind.ttc");  
 }
 td{
    	font-family: "BoldFace";   
@@ -87,7 +87,7 @@ background: black;
 	
 }
 tr{
-	height: 50px
+ 	height: 50px 
 }
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
@@ -125,8 +125,8 @@ tr{
 											</div>	
 										</a>
 										<ul class="dropdown-menu drp-mnu">
-											<li> <a href="#"><i class="fa fa-sign-in"></i> Logout</a> </li>
-											<li> <a href="#"><i class="fa fa-sign-out"></i> Login</a> </li>
+											<li> <a href="../login/login.jsp"><i class="fa fa-sign-in"></i> Login</a> </li>
+											<li> <a href="../login/logout.jsp"><i class="fa fa-sign-out"></i> Logout</a> </li>
 										</ul>
 									</li>
 								</ul>
@@ -141,8 +141,8 @@ tr{
     <div class="price-block-main">
 <div align="center">
 
-<img src="../img/emplogo.png"><br>
-<a href="all_emp.jsp"><img src="../img/UPDATE.png"></a>
+<!-- <img src="../img/emplogo.png"><br> -->
+<a href="all_emp.jsp"><img src="../img/UpdateEMP.png"></a>
 <br>
 <br>
 
@@ -172,7 +172,7 @@ tr{
 	</tr>
 	<tr>
 		<td style="color:white;">性別:</td>
-		<td><select name="emp_gender" class="form-control" style="font-size:25px;width: 200px;height: 40px">
+		<td><select name="emp_gender" class="form-control" style="font-size:25px;width: 200px;height: 45px">
 			<option  value="男性" <c:if test="${empp.emp_gender=='男性'}">selected</c:if>>男</option>
 			<option  value="女性" <c:if test="${empp.emp_gender=='女性'}">selected</c:if>>女</option>
 		</select></td>
@@ -180,7 +180,7 @@ tr{
 	</tr>
 	<tr>
 		<td style="color:white;">職位:</td>
-		<td><select name="emp_title" class="form-control" style="font-size:25px;width: 200px;height: 40px" >
+		<td><select name="emp_title" class="form-control" style="font-size:25px;width: 200px;height: 45px" >
 			<option  value="員工" <c:if test="${empp.emp_title=='員工'}">selected</c:if>>員工</option>
 			<option  value="領班" <c:if test="${empp.emp_title=='領班'}">selected</c:if>>領班</option>
 			<option  value="經理" <c:if test="${empp.emp_title=='經理'}">selected</c:if>>經理</option>
@@ -189,7 +189,7 @@ tr{
 	</tr>
 	<tr>
 		<td style="color:white;">正職/工讀:</td>
-		<td><select name="emp_fulltime" class="form-control" style="font-size:25px;width: 200px;height: 40px">
+		<td><select name="emp_fulltime" class="form-control" style="font-size:25px;width: 200px;height: 45px">
 			<option  value="正職" <c:if test="${empp.emp_fulltime=='正職'}">selected</c:if>>正職</option>
 			<option  value="工讀" <c:if test="${empp.emp_fulltime=='工讀'}">selected</c:if>>工讀</option>
 		</select></td>
@@ -215,7 +215,7 @@ tr{
 		<td style="color:white;">狀態:</td>
 
 		<td>
-		<select name="emp_status" class="form-control" style="font-size:25px;width: 200px;height: 40px">	
+		<select name="emp_status" class="form-control" style="font-size:25px;width: 200px;height: 45px">	
 			<option value="在職中" <c:if test="${empp.emp_status=='在職中'}">selected</c:if>>在職中</option>
 			<option value="已離職" <c:if test="${empp.emp_status=='已離職'}">selected</c:if>>已離職</option>
 		</select>
@@ -305,8 +305,8 @@ tr{
 		        </li>
 		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		         	<ul id="menu-academico-sub" >
-			            <li><a href="../index.jsp">新增</a></li>
-			         	<li><a href="../index.jsp">修改</a></li>
+			            <li><a href="../schedule/schedule.jsp">新增班表</a></li>
+			         	<li><a href="../schedule/eachSchedule.jsp">查詢個人班表</a></li>
 		             </ul>
 		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>

@@ -14,12 +14,10 @@
 <title>點餐  - addOrder2.jsp</title>
 <style>
 body{
-margin:0;
-padding:0;
-background: #000 url(../img/0003.jpg) center center fixed no-repeat;
-moz-background-size: cover;
-/* background-image: url("../img/0003.jpg"); */
-background-size:cover;
+/* background-color:black; */
+background-image: url("../img/OrderBackground.jpg");
+background-size: cover;
+
 }
 @font-face{
 font-family:"ShowWind";
@@ -45,6 +43,7 @@ moz-border-radius: 10px;
 border-radius: 10px;
 }
  #shop{ 
+ 	width:200px;
  	position: fixed; 
     right:1%;
     z-index:100%;
@@ -58,7 +57,7 @@ border-radius: 10px;
 <body>
 <div align="center">
 <!-- <h2>點餐step2</h2> -->
-<img src="../img/ORDERLOGO.png">
+<img src="../img/ORDERSINGLE.png">
 <!-- <h3>會員</h3> -->
 <br>
 <br>
@@ -87,17 +86,6 @@ border-radius: 10px;
 <br>
 <br>
 
-<img src="../img/PACKAGE.png">
-
-	<table>
-		<tr>		
-			<td>
-				<form method="post" action="addOrderPackage.jsp">					
-					<input type="submit" value="套餐" class="button button-3d-action button-pill" style="font-family: ShowWind;font-size:25px;font-weight: bold;" >
-				</form>
-			</td>			
-		</tr>
-	</table>
 <br>
 
 <table>
@@ -111,12 +99,17 @@ border-radius: 10px;
 				</form>
 			</td>
 		</c:forEach>
+		<td>
+				<form method="post" action="addOrderPackage.jsp">					
+					<input type="submit" value="套餐" class="button button-3d" style="font-family: ShowWind;font-size:25px;font-weight: bold;" >
+				</form>
+			</td>
 	</tr>
 </table>
 
 <!-- <h3>點餐</h3> -->
 <table>
-	<tr style="text-align: center">
+	<tr style="text-align: center;">
 		<td>圖片</td>
 		<td>菜名</td>
 		<td>價格</td>
@@ -151,7 +144,8 @@ border-radius: 10px;
 </div>
 <div id="shop">
 <%-- <c:if test="${not empty orderList}"> --%>
-	<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車</h2>
+<!-- 	<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車</h2> -->
+	<img src="../icon/shopping.png">
 	<table id="pay">
 
 		<tr><td>菜色數:${orderQ}</td></tr>
@@ -161,7 +155,7 @@ border-radius: 10px;
 	</table><br>
 	<form METHOD="post" ACTION="order.do" name="form1">
 		<input type="hidden" name="action" value="check_orderList">
-		<input type="submit" value="查看購物車" class="button button-pill button-primary" style="font-family:ShowWind;font-size:25px;font-weight:bold">
+		<input type="submit" value="查看" class="button button-pill button-primary" style="font-family:ShowWind;font-size:25px;font-weight:bold">
 	</form>
 <%-- </c:if> --%>
 </div>

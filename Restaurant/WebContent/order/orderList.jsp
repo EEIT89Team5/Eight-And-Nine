@@ -20,11 +20,12 @@
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 <style>
 body{
-margin:0;
-padding:0;
-background: #000 url(../img/0003.jpg) center center fixed no-repeat;
-moz-background-size: cover;
-background-size:cover;
+/* margin:0; */
+/* padding:0; */
+/* background: #000 url(../img/0003.jpg) center center fixed no-repeat; */
+/* moz-background-size: cover; */
+/* background-size:cover; */
+ background-color: black 
 }
 @font-face{
 font-family:"ShowWind";
@@ -40,7 +41,7 @@ width:250px
 td{
 font-family:"ShowWind";
 color:white;
-font-size:30px;
+font-size:28px;
 text-align:center;
 font-weight:bold;
 height: 50px;
@@ -55,8 +56,8 @@ color:pink
 <body>
 <div align="center">
 <!-- 	<h3>訂單明細</h3> -->
-<img src="../img/ORDERLOGO.png"><br><br>
-<img src="../img/Detail.png"><br><br><br><br><br>
+<!-- <img src="../img/ORDERLOGO.png"><br><br> -->
+<img src="../img/ORDERDETAIL.png"><br><br><br><br><br>
 	<table>
 		<tr>
 			<th>商品編號</th>

@@ -13,6 +13,10 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>點餐  - addOrder2.jsp</title>
 <style>
+body{
+background-image: url("../img/OrderBackground.jpg");
+background-size: cover;
+}
 @font-face{
 font-family:"ShowWind";
 src: url("../font/ShowWind.ttc");  
@@ -22,8 +26,8 @@ font-family:ShowWind;
 color:white;
 font-size:28px;
 text-align: center;
-background: black;
-width: 120px
+/* background: black; */
+/* width: 120px; */
 }
 img{
 webkit-border-radius: 10px;
@@ -35,6 +39,7 @@ border-radius: 10px;
  right: 1%;
  top: 15%;
  z-index: 100%;
+ width: 200px
 }
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
@@ -42,10 +47,11 @@ border-radius: 10px;
 <body style="background-color: black">
 <div align="center">
 <!-- <h2 style="color:white;font-family:ShowWind;font-size: 50px">加點餐step2</h2> -->
-<img src="../img/ADDMEALLOGO.png">
+<img src="../img/MOREORDERSINGLE.png">
 <br>
 <br>
-<h3 style="color:white;font-family:ShowWind;font-size: 35px;color: red">訂單資訊</h3>
+<!-- <h3 style="color:white;font-family:ShowWind;font-size: 35px;color: red">訂單資訊</h3> -->
+<br>
 <table style="width: 1000px">
 	<tr>
 		<td>桌號:${orderVO.order_table}</td>
@@ -56,11 +62,12 @@ border-radius: 10px;
 	</tr>
 </table>
 
-<h3 style="color:white;font-family:ShowWind;font-size: 35px;color: red">單點類別</h3>
+<!-- <h3 style="color:white;font-family:ShowWind;font-size: 35px;color: red">單點類別</h3> -->
+<br>
 <table>
 	<tr>
 		<c:forEach var="classVO" items="${classSvc.getAllClasses()}">
-			<td>
+			<td style="width:120px">
 				<form method="post" action="order.do">
 				<input type="hidden" name="class" value="${classVO.class_id }">
 				<input type="hidden" name="action" value="add_choose_S_class">
@@ -71,9 +78,9 @@ border-radius: 10px;
 	</tr>
 </table>
 
-<h3 style="color:white;font-family:ShowWind;font-size: 35px;color: red">點餐</h3>
-
-<table class="table table-striped" style="width: 1000px">
+<!-- <h3 style="color:white;font-family:ShowWind;font-size: 35px;color: red">點餐</h3> -->
+<br>
+<table class="table" style="width: 1000px">
 	<tr>
 		<td style="font-size:35px">圖片</td>
 		<td style="font-size:35px">菜名</td>
@@ -110,7 +117,8 @@ border-radius: 10px;
 
 	<div id="shop">
 <%-- <c:if test="${not empty orderList}"> --%>
-	<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車</h2>
+<!-- 	<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車</h2> -->
+	<img src="../icon/shopping.png">
 	<table id="pay">
 
 		<tr><td>菜色數:${orderQ}</td></tr>
@@ -120,13 +128,15 @@ border-radius: 10px;
 	</table><br>
 	<form METHOD="post" ACTION="order.do" name="form1">
 		<input type="hidden" name="action" value="add_check_orderList">
-		<input type="submit" value="查看購物車" class="btn btn-success" style="font-family:ShowWind;font-size:28px">
+		<input type="submit" value="查看" class="button button-pill button-primary" style="font-family:ShowWind;font-size:25px;font-weight:bold">
 	</form>
 <%-- </c:if> --%>
 	</div>
 
 <script src="../js/jquery-3.1.1.min.js"></script>
 <link rel="stylesheet" href="../css/bootstrap.css">
+<script src="../js/buttons.js"></script>
+<link rel="stylesheet" href="../css/buttons.css">
 <script>
 $("input[name='joinus']").click(function(){
 	
@@ -138,7 +148,7 @@ $("input[name='joinus']").click(function(){
 	$.getJSON("order.do",{'number':number,'product':id,"price":price,"action":"add_add_S_orderX"},function(data){
 		console.log(data)
 
-	$("#pay").html("<tr><td>菜色數:"+data[0]+"</td></tr><tr><td>主菜數:"+data[2]+"</td></tr><tr><td>套餐數:"+data[3]+"</td></tr><tr><td>總金額:"+data[1]+"</td></tr>")
+	$("#pay").html("<tr><td>菜色數:"+data[0]+"</td></tr><tr><td>主菜數:"+data[1]+"</td></tr><tr><td>套餐數:"+data[2]+"</td></tr><tr><td>總金額:"+data[3]+"</td></tr>")
 			
 	
 	})

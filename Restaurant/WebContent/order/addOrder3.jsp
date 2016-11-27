@@ -8,7 +8,7 @@
 <title>點餐  - addOrder2.jsp</title>
 <style>
 body{
-background-image: url("../img/0003.jpg");
+/* background-image: url("../img/0003.jpg"); */
 background-size: cover;
 }
 @font-face{
@@ -41,7 +41,7 @@ font-weight: bold
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
-<body>
+<body style="background-color: black";>
 <div align="center">
 <!-- <h2>訂單已成功送出</h2><br/> -->
 <img src="../img/thanksorder.png">

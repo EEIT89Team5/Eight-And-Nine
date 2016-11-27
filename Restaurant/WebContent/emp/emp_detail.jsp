@@ -51,7 +51,7 @@ background-color:black;
 }
 @font-face{
    font-family: "BoldFace";   
-   src: url("../font/BoldFace.ttc");  
+   src: url("../font/ShowWind.ttc");  
 }
 
 table td{
@@ -106,8 +106,8 @@ background: #333;
 											</div>	
 										</a>
 										<ul class="dropdown-menu drp-mnu">
-											<li> <a href="#"><i class="fa fa-sign-in"></i> Logout</a> </li>
-											<li> <a href="#"><i class="fa fa-sign-out"></i> Login</a> </li>
+											<li> <a href="../login/login.jsp"><i class="fa fa-sign-in"></i> Login</a> </li>
+											<li> <a href="../login/logout.jsp"><i class="fa fa-sign-out"></i> Logout</a> </li>
 										</ul>
 									</li>
 								</ul>
@@ -122,9 +122,9 @@ background: #333;
     <div class="price-block-main">
 <div align="center">
 
-<img src="../img/emplogo.png">
+<a href="all_emp.jsp"><img src="../img/SelectEMP.png"></a>
 <br>
-<a href="all_emp.jsp"><img src="../img/select.png"></a>
+<!-- <a href="all_emp.jsp"><img src="../img/select.png"></a> -->
 <table class="">
 <tr>
 <td>員工編號：</td><td style="color:red">${empVO.emp_id}</td>
@@ -213,8 +213,8 @@ background: #333;
 		        </li>
 		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		         	<ul id="menu-academico-sub" >
-			            <li><a href="../index.jsp">新增</a></li>
-			         	<li><a href="../index.jsp">修改</a></li>
+			            <li><a href="../schedule/schedule.jsp">新增班表</a></li>
+			         	<li><a href="../schedule/eachSchedule.jsp">查詢個人班表</a></li>
 		             </ul>
 		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>

@@ -146,8 +146,11 @@ body,.inner-block{
 <br/>
 <br/>
 <br/>
-
-
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 
 </div>
 </div>
@@ -185,8 +188,8 @@ body,.inner-block{
 		        </li>
 		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		         	<ul id="menu-academico-sub" >
-			            <li><a href="../index.jsp">新增</a></li>
-			         	<li><a href="../index.jsp">修改</a></li>
+			            <li><a href="../schedule/schedule.jsp">新增班表</a></li>
+			         	<li><a href="../schedule/eachSchedule.jsp">查詢個人班表</a></li>
 		             </ul>
 		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>
@@ -250,4 +253,3 @@ $(".sidebar-icon").click(function() {
 <!-- mother grid end here-->
 </body>
 </html>
->>>>>>> branch 'master' of https://github.com/EEIT89Team5/Eight-And-Nine.git

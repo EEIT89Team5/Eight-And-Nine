@@ -12,8 +12,9 @@
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 <style>
 body{
-background-image: url("../img/0003.jpg");
+/* background-image: url("../img/0003.jpg"); */
 background-size: cover;
+background-color: black
 }
 @font-face{
 font-family:"ShowWind";
@@ -38,8 +39,8 @@ font-weight:bold;
 <body>
 <div align="center">
 <%-- <h2>訂單${orderno}明細</h2><br/> --%>
-<img src="../img/ORDERLOGO.png"><br><br>
-<img src="../img/Detail.png"><br><br><br><br><br>
+<!-- <img src="../img/ORDERLOGO.png"><br><br> -->
+<img src="../img/ORDERDETAIL.png"><br><br><br><br><br>
 <table class=tablesorter id="orderlist">
 	<thead>
 		<tr>

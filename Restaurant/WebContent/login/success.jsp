@@ -111,11 +111,13 @@ body,.inner-block{
 <!--inner block start here-->
 <div class="inner-block">
     <div class="price-block-main">
-		<div align="center"><a href="../login.jsp" style="text-decoration:none;"><font style="color:white;font-family:ShowWind;font-size:50px;font-weight: bold;">回登入畫面</font></a></div>
+		<div align="center"><a href="login.jsp" style="text-decoration:none;"><font style="color:white;font-family:ShowWind;font-size:50px;font-weight: bold;">回登入畫面</font></a></div>
 		<div align="center">
 		<div id="block">
-		<img src="../img/success.png">
-		<div align="center"><font style="color:red;font-family:ShowWind;font-size:60px;font-weight: bold;">新密碼已經寄到您的信箱囉！</font></div>
+		<img src="../img/MEMBERmailsent.png">
+		<br>
+		<br>
+		<div align="center"><font style="color:#ff9800;font-family:ShowWind;font-size:60px;font-weight: bold;">新密碼已經寄到您的信箱囉！</font></div>
 		</div>
 		</div>
 <br/>
@@ -192,8 +194,8 @@ body,.inner-block{
 		        </li>
 		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		         	<ul id="menu-academico-sub" >
-			            <li><a href="../index.jsp">新增</a></li>
-			         	<li><a href="../index.jsp">修改</a></li>
+			            <li><a href="../schedule/schedule.jsp">新增班表</a></li>
+			         	<li><a href="../schedule/eachSchedule.jsp">查詢個人班表</a></li>
 		             </ul>
 		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>

@@ -80,17 +80,17 @@ body,.inner-block{
 }
 @font-face {  
   font-family:"ShowWinde";  
-  src: url("../font/BoldFace.ttc"); 
+  src: url("../font/ShowWind.ttc"); 
 }
 th{
-font-family:"ShowWind";
+font-family:"ShowWinde";
 text-align: center;
 font-weight:bold;
 font-size: 40px;
 }
 td{
 font-family:"ShowWinde";
-font-weight:bolder;
+font-weight:bold;
 font-size: 30px;
 background:rgba(100%,100%,100%,0.6); 
 }
@@ -109,8 +109,10 @@ background:rgba(100%,100%,100%,0.6);
  margin:0px auto;
 width: 1300px;
 }
-table{
-
+h3{
+font-family:ShowWinde ;
+font-size: 70px;
+font-weight: bold;"
 }
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
@@ -163,7 +165,8 @@ table{
 <!--inner block start here-->
 <div class="inner-block">
     <div class="price-block-main">
-    <h3  align="center" style="font-family:ShowWinde ;font-size: 70px;font-weight: bold;">出餐口資訊 </h3>
+    <h3  align="center">出餐口資訊 </h3>
+    <br>
 <div id='divdiv'>
 <table class="table table-hover" >
 
@@ -282,8 +285,8 @@ table{
 		        </li>
 		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		         	<ul id="menu-academico-sub" >
-			            <li><a href="../index.jsp">新增</a></li>
-			         	<li><a href="../index.jsp">修改</a></li>
+			            <li><a href="../schedule/schedule.jsp">新增班表</a></li>
+			         	<li><a href="../schedule/eachSchedule.jsp">查詢個人班表</a></li>
 		             </ul>
 		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>

@@ -46,7 +46,6 @@ font-weight: bold;
 select{
 color: black;
 width:180px;
-height: 30px;
 font-weight: bold;"
 }
 </style>

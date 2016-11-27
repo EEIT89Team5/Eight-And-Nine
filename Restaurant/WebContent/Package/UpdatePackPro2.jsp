@@ -66,10 +66,7 @@ body,.inner-block{
 #bbody{
 background: #333;
 }
-@font-face {  
-  font-family: "BoldFace";  
-  src: url("../font/BoldFace.ttc");  
-}
+
 @font-face {  
 font-family: "ShowWind";  
 src: url("../font/ShowWind.ttc");  
@@ -141,8 +138,8 @@ border-radius: 10px;
 <div class="inner-block">
     <div class="price-block-main">
 <div align="center">
-		<img src="../img/packlogo.png"><br>
-		<img src="../img/UPDATE.png"><br>
+<!-- 		<img src="../img/packlogo.png"><br> -->
+		<img src="../img/PACKAGEUPDATE.png"><br>
 		<br>
 	<div align="left" style="width: 300px">
 <FORM METHOD="post" ACTION="pro.do" name="form1" enctype="multipart/form-data">
@@ -216,7 +213,7 @@ border-radius: 10px;
 	<br>
 		<input type="hidden" name="product_id" value="${pid}">
  		<input type="hidden" name="action" value="UpdatePackage">
-		<input type="submit" value="修改" class="btn btn-warning" style="font-family:BoldFace;font-size:20px">
+		<input type="submit" value="修改" class="btn btn-warning" style="font-family:ShowWind;font-size:20px">
 </FORM>
 </div>
 
@@ -266,10 +263,10 @@ border-radius: 10px;
 			         	<li><a href="../emp/all_emp.jsp">修改</a></li> 
 		             </ul>
 		        </li>
-		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
+		       <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		         	<ul id="menu-academico-sub" >
-			            <li><a href="../index.jsp">新增</a></li>
-			         	<li><a href="../index.jsp">修改</a></li>
+			            <li><a href="../schedule/schedule.jsp">新增班表</a></li>
+			         	<li><a href="../schedule/eachSchedule.jsp">查詢個人班表</a></li>
 		             </ul>
 		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>

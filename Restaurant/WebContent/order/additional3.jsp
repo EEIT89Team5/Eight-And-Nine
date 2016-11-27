@@ -17,12 +17,13 @@ font-size:38px;
 color:white;
 }
 h3{
-color:red;
+color:yellow;
 font-size:45px;
 }
 body{
-background-image: url("../img/0003.jpg");
+/* background-image: url("../img/0003.jpg"); */
 background-size: cover;
+background-color: black
 }
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
@@ -30,7 +31,7 @@ background-size: cover;
 <body>
 <%-- <h2>您已於${time}成功加訂餐點</h2><br/> --%>
 <div align="center">
-<img src="../img/ADDMEALLOGO.png"><br>
+<img src="../img/ORDERDETAIL.png"><br>
 <table>
 	<tbody>
 		<tr><td><h3>訂單資訊</h3></h3></td></tr>

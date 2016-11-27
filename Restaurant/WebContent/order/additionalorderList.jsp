@@ -20,23 +20,30 @@ font-family:"ShowWind";
 font-size:28px;
 color:white
 }
-
-body{
-background-image: url("../img/0003.jpg");
+th{
+font-family:"ShowWind";
+color:yellow;
+font-size:30px;
+text-align:center;
+width:250px
+}
+.total{
+font-size:40px;
+color:pink
 }
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
-<body>
+<body style="background-color: black">
  <div align="center">
- <img src="../img/ADDMEALLOGO.png">
-	<h3 style="font-family:ShowWind;color:white;font-weight: bold;font-size:50px">加點訂單明細</h3>
+ <img src="../img/MOREORDERDETAIL.png"><br><br><br>
+<!-- 	<h3 style="font-family:ShowWind;color:white;font-weight: bold;font-size:50px">加點訂單明細</h3> -->
 	<table width="1000px">
 		<tr>
-			<td>商品編號</td>
-			<td>商品名稱</td>
-			<td>數量</td>
-			<td>價格</td>
+			<th>商品編號</th>
+			<th>商品名稱</th>
+			<th>數量</th>
+			<th>價格</th>
 		</tr>
 
 		<c:forEach var="orderXVO" items="${orderList}" varStatus="index">
@@ -64,11 +71,12 @@ background-image: url("../img/0003.jpg");
 
 			
 		</c:forEach>
-
-		<tr><td>菜色數量:${orderQ}</td></tr>
-		<tr><td>主菜數量:${mainQ}</td></tr>
-		<tr><td>套餐數量:${pcgQ}</td></tr>
-		<tr><td>總金額:${orderP}</td></tr>
+	
+<tr></tr>
+		<tr><td class="total">菜色數量:</td><td>${orderQ}</td></tr>
+		<tr><td class="total">主菜數量:</td><td>${mainQ}</td></tr>
+		<tr><td class="total">套餐數量:</td><td>${pcgQ}</td></tr>
+		<tr><td class="total">總金額:</td><td>${orderP}</td></tr>
 	</table><br>
 	<form METHOD="post" ACTION="order.do">
 		<input type="hidden" name="action" value="add_final_order">

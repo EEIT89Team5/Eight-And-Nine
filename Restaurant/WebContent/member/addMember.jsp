@@ -45,6 +45,9 @@ text-align:center;
  <div id="Div1" align="left" style="border: 3px orange solid;">
  <br>
  <br>
+<br>
+ <br>
+  <br>
 <img src="../img/member.png">
 
 <c:if test="${not empty errorMsgs}">

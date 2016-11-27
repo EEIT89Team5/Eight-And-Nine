@@ -114,8 +114,8 @@ height: 80px;
 <div class="inner-block">
     <div class="price-block-main">
 		<div align="center" id="block">
-		<div align="center"><img src="../img/I FORGET.png"></div>
-			<div align="center"><div align="center"><img src="../img/passwordkey.png"></div></div>
+<!-- 		<div align="center"><img src="../img/I FORGET.png"></div> -->
+			<div align="center"><div align="center"><img src="../img/EMPForgetpassword.png"></div></div>
 		<br>
 		<br>
 		<br>
@@ -124,7 +124,7 @@ height: 80px;
 		<TR><td><input type="text" id="emp_email" name="emp_email" placeholder="請輸入信箱" style="color:black;font-size:25px"></td></TR>	
 		<input type="hidden" name="forget" value="iforget">
 		<TR><td align="center"><input type="submit" value="確認" class="button button-3d-primary button-rounded" style="font-family:ShowWind;font-size:30px"></td></TR>
-		<font style="color:red;font-size:35px;font-family:ShowWind;font-weight: bold;">我們將會把新的密碼寄到您的信箱</font>
+		<font style="color:#ff9800;font-size:35px;font-family:ShowWind;font-weight: bold;">我們將會把新的密碼寄到您的信箱</font>
 		</table>
 		</Form>
 		</div>
@@ -206,8 +206,8 @@ height: 80px;
 		        </li>
 		        <li><a><i class="fa fa-calendar"></i><span>班表</span><span class="fa fa-angle-right" style="float: right"></span></a>
 		         	<ul id="menu-academico-sub" >
-			            <li><a href="../index.jsp">新增</a></li>
-			         	<li><a href="../index.jsp">修改</a></li>
+			            <li><a href="../schedule/schedule.jsp">新增班表</a></li>
+			         	<li><a href="../schedule/eachSchedule.jsp">查詢個人班表</a></li>
 		             </ul>
 		        </li>
 		        <li id="menu-academico" ><a><i class="fa fa-cutlery"></i><span>菜單</span><span class="fa fa-angle-right" style="float: right"></span></a>

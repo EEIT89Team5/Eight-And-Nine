@@ -40,8 +40,8 @@ height: 50px;
 	<div align="center"><a href="memberlogin.jsp" style="text-decoration:none;"><font style="color:white;font-family:ShowWind;font-size:50px;font-weight: bold;">回首頁</font></a></div>
 <div align="center">
 	<div id="block">
-<img src="../img/success.png">
-	<div align="center"><font style="color:red;font-family:ShowWind;font-size:60px;font-weight: bold;">新密碼已經寄到您的信箱囉！</font></div>
+<img src="../img/MEMBERUPDATESUCCESS.png"><br>
+	<div align="center"><font style="color:#ff9800;font-family:ShowWind;font-size:60px;font-weight: bold;">新密碼已經寄到您的信箱囉！</font></div>
 	</div>
 </div>
 </body>

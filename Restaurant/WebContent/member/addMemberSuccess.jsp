@@ -45,7 +45,7 @@ text-align:center;
 <br>
 <h2 style="font-family:ShowWind;font-weight: bold;font-size:60px;color:red;text-align: center">貴賓您好</h2>
 <h2 style="font-family:ShowWind;font-weight: bold;font-size:60px;color:red;text-align: center">恭喜您已經成為會員囉</h2>
-<table>
+<table align="center">
 <tr><td>${memberVO.member_id }</td></tr>
 <tr><td>${memberVO.member_name }</td></tr>
 <tr><td>${memberVO.member_gender }</td></tr>

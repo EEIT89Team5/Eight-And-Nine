@@ -27,8 +27,8 @@ height: 50px;
 </head>
 <body>
 <div align="center">
-<div align="center"><img src="../img/welcomelogin.png"></div>
-<div align="center"><font style="color:#31aada;font-size:45px;font-family:ShowWind;font-weight: bold;">會員登入系統</font></div>
+<div align="center"><img src="../img/memberlogin.png"></div>
+<!-- <div align="center"><font style="color:#31aada;font-size:45px;font-family:ShowWind;font-weight: bold;">會員登入系統</font></div> -->
 <br>
 <br>
 <br>
