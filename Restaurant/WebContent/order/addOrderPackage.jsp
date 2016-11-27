@@ -22,10 +22,10 @@
 <title>點餐 - addOrderPackage.jsp</title>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 <style>
-body{
-background-image: url("../img/OrderBackground.jpg");
-background-size: cover; 
-}
+/*  body{  */
+/*  background-image: url("../img/OrderBackground.jpg"); */
+/* background-size: cover;  */
+/*  }  */
 @font-face{
 font-family:"ShowWind";
 src: url("../font/ShowWind.ttc");  
