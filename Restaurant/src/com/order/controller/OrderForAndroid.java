@@ -29,6 +29,8 @@ import com.order.model.OrderVO;
 import com.orderx.model.OrderXVO;
 import com.product.model.ProductService;
 import com.product.model.ProductVO;
+import com.table.model.TableService;
+import com.table.model.TableVO;
 
 @WebServlet("/androidorder")
 public class OrderForAndroid extends HttpServlet {
@@ -94,8 +96,13 @@ public class OrderForAndroid extends HttpServlet {
 			 orderlist.add(orderXVO);
 		 }
 		 
-		 OrderService orderSvc=new OrderService();
-		 orderSvc.addOrderWithNewX(orderVO, orderlist);
+		OrderService orderSvc=new OrderService();
+		orderSvc.addOrderWithNewX(orderVO, orderlist);
+		 
+		TableService tableSvc=new TableService();
+		TableVO tableVO = tableSvc.getOneTable(orderVO.getOrder_table());
+		tableVO.setTable_status("用餐中");
+		tableSvc.update(tableVO);
 
 
 		resp.setContentType("text/html;charset=UTF-8");
