@@ -549,6 +549,15 @@ public class ProductDAO implements ProductDAO_interface {
 //			}
 			return list;
 		}
+		@Override
+		public ProductVO getimgg (String product_name){
+			List<ProductVO> list=null;
+			list=hibernateTemplate.find("from ProductVO where product_kind=3 and product_name=?",product_name);
+			ProductVO getimggg=list.get(0);
+			System.out.println("11111111"+getimggg.getProduct_img());
+			
+			return getimggg;
+		}
 		
 		//------------------------eating!!!--------------
 		@Override
