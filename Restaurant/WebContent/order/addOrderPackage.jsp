@@ -121,17 +121,21 @@ font-weight: bold
 			     <option value="9">9</option>
 			     <option value="10">10</option>
 		     </select>
-   
-		   <c:forEach var="packageFormatVO" items="${packageFormatVO}">			                         
+   <table>
+		   <c:forEach var="packageFormatVO" items="${packageFormatVO}">
+		   		                         
 	          <c:if test="${packageFormatVO.getClass_number() != '0'}">       <!-- 把套餐內沒有的菜色類別不顯示   個人獨享餐沒有沙拉、湯品、甜點。-->
-				<div ><h3 class="headOfH3"><font style="color:red">${packageFormatVO.getDishClassVO().getClass_name()}</font><span name="showMoreOrShort${packageFormatVO.getDishClassVO().getClass_id()}"></span></h3>
-					<font style="font-size:30px;color:yellow">(可選 <span id="limitOfDish" name="limitOfDish${packageFormatVO.getDishClassVO().getClass_id()}" value="${packageFormatVO.getClass_number()}">${packageFormatVO.getClass_number()}</span>樣)</font></div>
+				<tr><td colspan="4"><h3 class="headOfH3"><font style="color:red">${packageFormatVO.getDishClassVO().getClass_name()}</font><span name="showMoreOrShort${packageFormatVO.getDishClassVO().getClass_id()}"></span></h3>
+					<font style="font-size:30px;color:yellow">(可選 <span id="limitOfDish" name="limitOfDish${packageFormatVO.getDishClassVO().getClass_id()}" value="${packageFormatVO.getClass_number()}">${packageFormatVO.getClass_number()}</span>樣)</font></td></tr>
 <!-- 					                           name= 值+EL 這樣可以讓每次跑出來的name有所區隔-->
 <%-- 原本				<form METHOD="post" ACTION="order.do" id="formOfDish${packageFormatVO.getDishClassVO().getClass_id()}" name="formOfDish"> --%>
-				  <c:forEach var="productVO" items="${productSvc.getDishesByPackageAndClass(pcg_id ,packageFormatVO.getDishClassVO().getClass_id())}">
-     		        
-	               <font style="font-size:28px;"> ${productVO.getProduct_name()}</font>
-						<select name="qtyOfDish" class="myClass${packageFormatVO.getDishClassVO().getClass_id()}" style="font-family:ShowWind;font-size:20px;font-weight:bold">	 						
+				<tr>
+				  <c:forEach var="productVO" items="${productSvc.getDishesByPackageAndClass(pcg_id ,packageFormatVO.getDishClassVO().getClass_id())}" varStatus="status">
+     		        <c:if test="${status.index%4==0}"></tr><tr> </c:if>
+     		        <td style="width:250px">
+     		        <img width="200px" height="150px" src="${pageContext.servletContext.contextPath}/getImage?id=${productVO.product_id}"/><br/>
+	               <font style="font-size:28px;"> ${productVO.getProduct_name()}<br/>
+						數量：</font><select name="qtyOfDish" class="myClass${packageFormatVO.getDishClassVO().getClass_id()}" style="font-family:ShowWind;font-size:20px;font-weight:bold">	 						
 							 <option value="0" selected>0</option>
 							 <option value="1" >1</option>
 							 <option value="2">2</option>
@@ -148,14 +152,16 @@ font-weight: bold
 						<input type="hidden" name="action" value="add_P_orderX">
 						<input type="hidden" name="dishOfPackage" value="${productVO.getProduct_id()}">
 						<input type="hidden" name="belongOfPackage" value="${productVO.getProduct_pcg()}">
-					
+					</td>
 				   </c:forEach>
+				   </tr>
 				   <input type="hidden" name="limit" value=" ${packageFormatVO.getClass_number()}">
    			       <input type="hidden" name="dishClassOfPackage" value="${packageFormatVO.getDishClassVO().getClass_id()}">
 <!-- 原本 				   <input type="submit" value="送出" name="btn" id="btn555"> -->
 <!-- 原本 				 </form> -->
                </c:if>    
-			</c:forEach><br/><br> 
+			</c:forEach><br/><br>
+		</table>	 
 	       <input type="submit" value="加入訂單" name="btn" id="btn555" class="button button-pill button-primary" style="font-family:ShowWind;font-size:25px;font-weight:bold">
 	     </form>
 		 <br/>
