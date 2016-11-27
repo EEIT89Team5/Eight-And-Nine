@@ -138,7 +138,7 @@ body,.inner-block{
 	text-align:center;
 	border-collapse:collapse;
  	width:100%; 
-	font-size: 35px;
+	font-size: 25px;
 }
 #main input,#main select,#main button{
 	color:black;
