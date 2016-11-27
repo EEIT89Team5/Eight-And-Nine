@@ -52,6 +52,7 @@ public interface ProductDAO_interface {
 	public ProductVO UpdatePackPro(ProductVO productVO);
 	public List<PackageFormatVO> getFormat(Integer product_id);
 	public void delete (Integer product_id);
+	public ProductVO getimgg (String product_name);
 	
 	//------------------eating的
 	

@@ -126,6 +126,10 @@ public class ProductService {
 		return dao.getClass(product_pcg);
 	}
 	
+	public ProductVO getimgg(String product_name) {
+		return dao.getimgg(product_name);
+	}
+	
 	//-----------------------eating
 	public List<Object> getProductByPackage(String pcgName){
 		return dao.getProductByPackage(pcgName);

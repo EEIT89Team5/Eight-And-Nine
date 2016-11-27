@@ -442,13 +442,17 @@ public class ProductServlet extends HttpServlet {
 			String pname = req.getParameter("product_name");
 			Integer pinpcg=new Integer(req.getParameter("product_pcg"));
 			Integer pclass=new Integer(req.getParameter("product_class"));
-
+			
 			ProductVO proVO = new ProductVO();
-						
+			try {
+				ProductService productdao= new ProductService(); 
+				ProductVO imgg=productdao.getimgg(pname);
+				
 				proVO.setProduct_name(pname);
 				proVO.setProduct_price(0);
 				ProductKindVO Pdko=new ProductKindVO();
 				Pdko.setKind_id(3);
+				proVO.setProduct_img(imgg.getProduct_img().clone());
 				proVO.setProductKindVO(Pdko);
 				
 				DishClassVO dvo=new DishClassVO();
@@ -464,8 +468,8 @@ public class ProductServlet extends HttpServlet {
 				req.setAttribute("proVO", proVO);
 				ProductVO PVO=new ProductVO();
 				req.setAttribute("PVO", PVO);
-		try {
-				ProductService productdao= new ProductService(); 
+		
+				
 	            productdao.addPackPro(proVO);	
 
 				if (!errorMsgs.isEmpty()) {
