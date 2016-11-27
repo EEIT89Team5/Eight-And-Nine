@@ -20,6 +20,7 @@ font-family:"ShowWind";
 font-size:28px;
 color:white
 }
+
 th{
 font-family:"ShowWind";
 color:yellow;

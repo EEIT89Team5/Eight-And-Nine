@@ -242,6 +242,7 @@ div[class="fc-bg"] td div{
 	font-family:ShowWind;
  	font-size: 25px;
  	font-weight: bold;
+
 }
 div[class="fc-row fc-week fc-widget-content"]{
 	height: 150px;

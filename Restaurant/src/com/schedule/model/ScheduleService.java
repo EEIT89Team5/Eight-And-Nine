@@ -31,4 +31,7 @@ public class ScheduleService {
 	public List<ScheduleVO> getAll(String date){
 		return dao.getAll(date);
 	}
+	public List<ScheduleVO> getOnes(String date,Integer emp_id){
+		return dao.getOnes(date, emp_id);
+	}
 }

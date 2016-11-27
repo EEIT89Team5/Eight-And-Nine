@@ -44,6 +44,13 @@ public class ScheduleDAO implements ScheduleDAO_interface{
 		list = hibernateTemplate.find("FROM ScheduleVO where sched_date like'"+date+"%'");
 		return list;
 	}
+	
+	@Override
+	public List<ScheduleVO> getOnes(String date,Integer emp_id){
+		List<ScheduleVO> list = null;
+		list = hibernateTemplate.find("FROM ScheduleVO where empVO.emp_id=? AND sched_date like'"+date+"%'",emp_id);
+		return list;
+	}
 
 	public static void main(String[] args) {
 

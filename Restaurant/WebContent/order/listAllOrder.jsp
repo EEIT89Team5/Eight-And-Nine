@@ -38,11 +38,13 @@ th{
 </head>
 <body>
 <div align="center">
+
 <!-- <img src="../img/ORDERLOGO.png"><br><br> -->
 <img src="../img/ORDERTOTAL	.png">
 <br>
 <br>
 <!-- <h2 style="font-family:ShowWind;font-size:55px;font-weight: bold;color:white">訂單</h2><br/> -->
+
 <c:if test="${not empty errorMsgs}">
 	<font color='red'>請修正以下錯誤:
 	<ul>

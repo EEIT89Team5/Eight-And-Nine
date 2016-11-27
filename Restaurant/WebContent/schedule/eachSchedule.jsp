@@ -167,6 +167,7 @@ font-family:ShowWind;
 font{
  color:red
 }
+
 th{
 font-family:ShowWind;
 height: 60px;
@@ -175,6 +176,7 @@ font-size:35px;
 font-weight: bold;
 color:white
 }
+
 </style>
 </head>
 <body>	

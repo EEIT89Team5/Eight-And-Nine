@@ -49,6 +49,12 @@ font-weight: bold
  right: 0%;
  top: 15%;
  z-index: 18%;
+}
+#shop{
+ position:fixed;
+ right: 0%;
+ top: 15%;
+ z-index: 18%;
  width:200px;
 }
 </style>
@@ -160,8 +166,10 @@ font-weight: bold
 	</c:if>
 <%-- 	<c:if test="${not empty orderList}"> --%>
     <div id="shop">
+
 <!-- 		<h2 style="color:pink;font-family:ShowWind;font-size:60px;font-weight: bold">購物車</h2> -->
 <img src="../icon/shopping.png">
+
 		<table>
 
 		 <tr><td>菜色數:${orderQ}</td></tr>
@@ -175,6 +183,7 @@ font-weight: bold
 		</form>
     </div>
 	</div>
+
 <%-- 	</c:if> --%>
 
 <script src="../js/sweetalert.min.js"></script>
