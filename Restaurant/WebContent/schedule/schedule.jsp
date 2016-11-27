@@ -262,6 +262,16 @@ font-family:ShowWind;
 font{
  color:red
 }
+#empform spam{
+	height: 30px;
+}
+input[name="emps"]{
+	zoom: 150%;
+}
+#empform label{
+	font-size: 24px;
+ 	padding-bottom: 10px; 
+}
 
 </style>
 </head>
@@ -329,10 +339,9 @@ font{
         <h2 class="modal-title text-center" id="myModalLabel" ></h2>
       </div>
       <div class="modal-body">
-      		<br />
 <!-- 			<button id="people" type="button" class="btn btn-warning btn-lg btn-block">入座資訊</button><br /> -->
 			
-			<form id="empform" role="form" action='schedule.do' style="height:100px">
+			<form id="empform" role="form" action='schedule.do' style="height:180px">
 				   <input hidden id="scheduledate" name="scheduledate" value="" />
 				   <input  hidden name="action" value="insertschedule" />
 <!-- 				   <select id="timeperiod" name="timeperiod"> -->
@@ -345,27 +354,20 @@ font{
 <%-- 				   </c:forEach> --%>
 <!-- 				   </select> -->
 					<input hidden id="timeperiod" name="timeperiod" value="" />
-					<c:forEach var="empx" items="${empvo.getAll2()}"> 
+					<c:forEach var="empx" items="${empvo.getAll2()}" varStatus="numcount"> 
 						<span>
 							<input id="${empx.emp_id}" type="checkbox" value="${empx.emp_id}" name="emps" /><label for="${empx.emp_id}">${empx.emp_name}</label>
 				   		</span>
+				   		<c:if test="${numcount.count%5==0}">
+				   			<br />
+				   		</c:if>
 				   </c:forEach>
 					<br />
 					<br />
 			<button type="submit" class="btn btn-primary btn-lg btn-block">確認</button><br /><br />
 			</form>
-			
-<!-- 			<a href="formatTable.do" id="paymoney" class="btn btn-primary btn-lg btn-lg btn-block" role="button">確認</a><br /><br /> -->
-<!-- 			<a href="formatTable.do" id="clear" class="btn btn-danger btn-lg  btn-lg btn-block" role="button">清空</a><br /><br /> -->
-			
-
-<!-- 			<!-- 提供額外視覺上的重量和識別一組按鈕中主要的操作項目 --> 
-<!-- 			<!-- 指出危險或潛在負面作用的行動 --> 
-<!-- 			<button type="button" class="btn btn-danger btn-lg btn-block">清空</button><br /><br /> -->
       </div>
       <div class="modal-footer">
-<!--         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
-<!--         <button type="button" class="btn btn-primary">Save changes</button> -->
       </div>
     </div>
   </div>
