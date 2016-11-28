@@ -33,7 +33,7 @@ src: url("../font/ShowWind.ttc");
 td{
 font-family:"ShowWind";
 color:white;
-font-size:40px;
+font-size:30px;
 text-align:center;
 width: 230px;
 font-weight:bold
@@ -185,7 +185,7 @@ font-weight: bold
 		</table><br>
 		<form METHOD="post" ACTION="order.do" name="form1">
 			<input type="hidden" name="action" value="check_orderList"> <input
-			  type="submit" value="查看購物車" class="button button-pill button-primary" style="font-family:ShowWind;font-size:25px;font-weight:bold">
+			  type="submit" value="查看" class="button button-pill button-primary" style="font-family:ShowWind;font-size:25px;font-weight:bold">
 		</form>
     </div>
 	</div>

@@ -50,7 +50,7 @@ input[type="radio"]{
 <tr><td>會員姓名:</td><td>${memberVO.member_name}</td></tr>
 <tr><td>性別:</td><td><input type="radio" name="m_gender" value="男" <c:if test="${memberVO.member_gender=='男'}">checked</c:if> />男
 			<input type="radio" name="m_gender" value="女"  <c:if test="${memberVO.member_gender=='女'}">checked</c:if>/>女
-			<input type="radio" name="m_gender" value="不填"/>不填</td></tr>
+			</td></tr>
 <tr><td>信箱:</td><td style="color:black"><input type="text" name="m_email" value="${memberVO.member_email}"></td></tr>
 <tr><td>密碼:</td><td style="color:black"><input type="password" name="m_password" value="${memberVO.member_password}"></td></tr>
 <tr><td>再次輸入密碼:</td><td style="color:black"><input type="password" ></td></tr>

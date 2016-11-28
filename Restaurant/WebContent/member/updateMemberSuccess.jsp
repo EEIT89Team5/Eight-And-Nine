@@ -27,7 +27,7 @@ height: 60px
 </head>
 <body>
 <div align="center">
-<img src="../img/member2.png"><br><br><br><br>
+<a href="../index22.jsp"><img src="../img/member2.png"></a><br><br><br><br>
 <h3 style="color:white;font-family:ShowWind;font-size:45px;font-weight:bold">修改<font style="color:red;">${memberVO.member_name}</font>資料成功</h3>
 <br>
 <br>
