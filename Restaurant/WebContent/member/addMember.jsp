@@ -36,9 +36,6 @@ text-align:center;
  	margin-top: -450px; 
 	margin-left:-405px 
  } 
- input[type="radio"]{ 
- 	zoom:250%; 
-}
 
 </style>
 </head>
@@ -70,7 +67,7 @@ text-align:center;
 		<td>
 			<input type="radio" name="m_gender" value="男" checked>男
 			<input type="radio" name="m_gender" value="女">女
-<!-- 			<input type="radio" name="m_gender" value="其他">其他 -->
+			<input type="radio" name="m_gender" value="其他">其他
 		</td>
 	</tr>
 	<tr><td>Email:</td><td  style="font-size:28px;color:black"><input type="text" name="m_email"></td></tr>
@@ -92,16 +89,21 @@ text-align:center;
 </div>
 <script src="../js/jquery-3.1.1.min.js"></script>
 <script src="../js/buttons.js"></script>
+<script src="../js/sweetalert.min.js"></script>
 <link rel="stylesheet" href="../css/buttons.css">
 <link rel="stylesheet" href="../css/bootstrap.css">
+<link rel="stylesheet" href="../css/sweetalert.css">
+
 <script>
 	$(function(){
 		$('#m_phone').blur(function(){
 			$.get('memberCheck.do',{'phone':$(this).val()},function(data){
 				if(data=="手機號碼已存在"){
-					alert("手機號碼已存在，請用其他手機註冊");
+					//sweetAlert("手機號碼已存在，請用其他手機註冊");
+					swal("手機號碼已註冊,請更換手機號碼")
+						
 				}else{
-					alert("手機號碼可用");
+					swal("手機號碼可用")
 				}
 			})
 		})
