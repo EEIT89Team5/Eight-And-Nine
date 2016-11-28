@@ -6,6 +6,7 @@ import java.util.*;
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
+import javax.xml.ws.Response;
 
 import org.json.JSONArray;
 
@@ -827,7 +828,14 @@ public class ProductServlet extends HttpServlet {
 				DCVO.setClass_id(60);
 				PKVO60.setDishClassVO(DCVO);
 				productdao.UPclassNumber(PKVO60);
-			}		
+			}	
+				
+				req.setAttribute("pkfVO10", req.getParameter("Class_number10"));
+				req.setAttribute("pkfVO20", req.getParameter("Class_number20"));
+				req.setAttribute("pkfVO30", req.getParameter("Class_number30"));
+				req.setAttribute("pkfVO40", req.getParameter("Class_number40"));
+				req.setAttribute("pkfVO50", req.getParameter("Class_number50"));
+				req.setAttribute("pkfVO60", req.getParameter("Class_number60"));
 				
 				ProductVO proVO2 = new ProductVO();
 				Pdko.setKind_id(3);
@@ -866,7 +874,8 @@ public class ProductServlet extends HttpServlet {
 	  proVO5.setProduct_img(nowimg);     
   }
   productdao2.updateProimg(proVO5);
-    
+
+  
 				
 			if (!errorMsgs.isEmpty()) {
 				RequestDispatcher failureView = req

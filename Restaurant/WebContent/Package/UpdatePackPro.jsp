@@ -185,13 +185,24 @@ input[type="radio"]{
 <br>
 <br>
 <tr>
+	<c:if test="${pkfVO10!=0}">
 		<input type="radio" name="productid" value="Appetizer"><font class="font1">前菜</font>
+	</c:if>
+	<c:if test="${pkfVO20!=0}">
 		<input type="radio" name="productid" value="Salad"><font class="font1">沙拉</font>
+	</c:if>
+	<c:if test="${pkfVO30!=0}">
 		<input type="radio" name="productid" value="Soup"><font class="font1">湯品</font>
+	</c:if>
+	<c:if test="${pkfVO40!=0}">	
 		<input type="radio" name="productid" value="Main"><font class="font1">主菜</font>
+	</c:if>
+	<c:if test="${pkfVO50!=0}">	
 		<input type="radio" name="productid" value="Dessert"><font class="font1">甜點</font>
+	</c:if>
+	<c:if test="${pkfVO60!=0}">	
 		<input type="radio" name="productid" value="Drink" ><font class="font1">飲料</font>
-		
+	</c:if>	
 			
 <table border="0" id="addPro">
 		<td>
