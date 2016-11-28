@@ -154,7 +154,7 @@ color:yellow
 #sp4{
 color:yellow
 }
-input[name="res_gender"]{ 
+input[type="radio"]{ 
  	zoom:200%; 
 }
 </style>

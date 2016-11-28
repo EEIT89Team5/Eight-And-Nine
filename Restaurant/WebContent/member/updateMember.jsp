@@ -25,6 +25,9 @@ font-weight:bold;
 text-align:center;
 height: 60px
 }
+input[type="radio"]{ 
+ 	zoom:180%; 
+}
 </style>
 </head>
 <body>

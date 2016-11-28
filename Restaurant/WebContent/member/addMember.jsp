@@ -36,6 +36,9 @@ text-align:center;
  	margin-top: -450px; 
 	margin-left:-405px 
  } 
+ input[type="radio"]{ 
+ 	zoom:250%; 
+}
 
 </style>
 </head>

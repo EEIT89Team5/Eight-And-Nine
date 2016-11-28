@@ -328,6 +328,9 @@ body,.inner-block{
 font-family: "ShowWind";
 font-weight:bold; 
  }
+ input[type="radio"]{ 
+ 	zoom:150%; 
+}
 
 ::-webkit-input-placeholder { font-family:"ShowWind";font-size: 18px;font-weight:bold}
 </style>

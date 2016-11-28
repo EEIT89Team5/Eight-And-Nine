@@ -22,7 +22,7 @@ $(document).ready(function() {
 	
 	$.each($('#todayList tr'),function(){
 		var x = $(this).find('td:eq(0)');
-		x.text(x.text().substring(0,19));
+		x.text(x.text().substring(0,16));
 	});
 	
 	$('.popup-with-zoom-anim').magnificPopup({
