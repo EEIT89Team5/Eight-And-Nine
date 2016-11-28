@@ -464,13 +464,16 @@ public class ProductServlet extends HttpServlet {
 				ProductVO pcg=new ProductVO();
 				pcg.setProduct_id(pinpcg);
 				proVO.setPcgVO(pcg);
-					
+				
+				
+				productdao.addPackPro(proVO);
+
 				req.setAttribute("proVO", proVO);
 				ProductVO PVO=new ProductVO();
 				req.setAttribute("PVO", PVO);
 		
 				
-	            productdao.addPackPro(proVO);	
+	            	
 
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
@@ -886,13 +889,18 @@ public class ProductServlet extends HttpServlet {
 			String pname = req.getParameter("product_name");
 			Integer pinpcg=new Integer(req.getParameter("product_pcg"));
 			Integer pclass=new Integer(req.getParameter("product_class"));
-
+			try {
+			ProductService productdao= new ProductService(); 	
+				
+			ProductVO imgg=productdao.getimgg(pname);
+			
 				ProductVO proVO1 = new ProductVO();
 					proVO1.setProduct_name(pname);
 					proVO1.setProduct_price(0);
 				ProductKindVO Pdko=new ProductKindVO();
 					Pdko.setKind_id(3);
 					proVO1.setProductKindVO(Pdko);
+				proVO1.setProduct_img(imgg.getProduct_img().clone());
 				DishClassVO dcv=new DishClassVO();
 					dcv.setClass_id(pclass);
 					proVO1.setDishClassVO(dcv);
@@ -908,8 +916,8 @@ public class ProductServlet extends HttpServlet {
 				proVO2.setProduct_price(0);
 				proVO2.setProduct_pcg(pinpcg);
 
-	try {
-			ProductService productdao= new ProductService(); 
+	
+			
             productdao.addPackPro(proVO1);		        	
 	            
 	  List<ProductVO> proVO=productdao.selectPackPro(proVO2);
