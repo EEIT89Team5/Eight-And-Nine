@@ -679,6 +679,13 @@ public class ProductServlet extends HttpServlet {
 				ProductService productdao6= new ProductService(); 
 				productdao6.AddClassNum(pkfVO60);
 
+//				pkfVO10.setClass_number(num10);	
+				req.setAttribute("pkfVO10", pkfVO10);
+				req.setAttribute("pkfVO20", pkfVO20);
+				req.setAttribute("pkfVO30", pkfVO30);
+				req.setAttribute("pkfVO40", pkfVO40);
+				req.setAttribute("pkfVO50", pkfVO50);
+				req.setAttribute("pkfVO60", pkfVO60);
 				req.setAttribute("PVO", PVO);
 				
 			if (!errorMsgs.isEmpty()) {

@@ -81,8 +81,8 @@ $(document).ready(function() {
 				  type: "warning",
 				  showCancelButton: true,
 				  confirmButtonColor: "#DD6B55",
-				  confirmButtonText: "刪除此筆資料",
-				  cancelButtonText: "放棄刪除",
+				  confirmButtonText: "刪除",
+				  cancelButtonText: "取消",
 				  closeOnConfirm: false,
 				  closeOnCancel: false
 				},
@@ -281,12 +281,24 @@ text-align: center
 <tr>
 	<br>
 	<br>
+	<c:if test="${pkfVO10.getClass_number()!=0}">
 		<input type="radio" name="product_id" value="Appetizer"><font class="font1">前菜</font>
+	</c:if>
+	<c:if test="${pkfVO20.getClass_number()!=0}">
 		<input type="radio" name="product_id" value="Salad"><font class="font1">沙拉</font>
+	</c:if>	
+	<c:if test="${pkfVO30.getClass_number()!=0}">
 		<input type="radio" name="product_id" value="Soup"><font class="font1">湯品</font>
+	</c:if>
+	<c:if test="${pkfVO40.getClass_number()!=0}">
 		<input type="radio" name="product_id" value="Main"><font class="font1">主菜</font>
+	</c:if>	
+	<c:if test="${pkfVO50.getClass_number()!=0}">
 		<input type="radio" name="product_id" value="Dessert"><font class="font1">甜點</font>
+	</c:if>	
+	<c:if test="${pkfVO60.getClass_number()!=0}">
 		<input type="radio" name="product_id" value="Drink" ><font class="font1">飲料</font>
+	</c:if>
 </tr>	
 				
 	<table border="0" id="addPro">
