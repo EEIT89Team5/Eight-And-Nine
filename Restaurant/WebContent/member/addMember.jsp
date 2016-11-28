@@ -70,7 +70,7 @@ text-align:center;
 		<td>
 			<input type="radio" name="m_gender" value="男" checked>男
 			<input type="radio" name="m_gender" value="女">女
-			<input type="radio" name="m_gender" value="其他">其他
+<!-- 			<input type="radio" name="m_gender" value="其他">其他 -->
 		</td>
 	</tr>
 	<tr><td>Email:</td><td  style="font-size:28px;color:black"><input type="text" name="m_email"></td></tr>
