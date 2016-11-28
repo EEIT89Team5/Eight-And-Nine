@@ -60,8 +60,8 @@ color:pink
 <img src="../img/ORDERDETAIL.png"><br><br><br><br><br>
 	<table>
 		<tr>
-			<th>商品編號</th>
-			<th>商品名稱</th>
+			<th>單點菜色</th>
+			
 			<th>餐點類別</th>
 			<th style="width: 80px">數量</th>
 			<th style="width: 200px">價格</th>
@@ -70,9 +70,9 @@ color:pink
 		<c:forEach var="orderXVO" items="${orderList}" varStatus="index">
 		   <c:if test="${orderXVO.productVO.productKindVO.kind_name == '單點菜色' }">
 			<tr>
-				<td>${orderXVO.productVO.product_id}</td>
 				<td>${orderXVO.productVO.product_name}</td>
-				<td>${orderXVO.productVO.productKindVO.kind_name}</td>
+				
+				<td>${orderXVO.productVO.dishClassVO.class_name}</td>
 				<td style="width: 80px">${orderXVO.orderX_num}</td>
 				<td style="width:200px">${orderXVO.productVO.product_price*orderXVO.orderX_num}</td>
 				
@@ -106,13 +106,21 @@ color:pink
 		
 		<tr><td></td><td></td><td></td><td></td><td></td>
 		</tr> 		
+		
+		 <tr>
+			<th>套餐名稱</th>
+			<th>套餐菜色</th>
+			
+			<th style="width: 80px">數量</th>
+			<th style="width: 200px">價格</th>
+		 </tr>
 		 <c:forEach var="mapForPackageIdAndQty" items="${mapForPackageIdAndQty}">               
            <tr><td><hr/></td><td><hr/></td><td><hr/></td><td><hr/></td><td><hr/></td>
 		    </tr> 
             <tr>
             	<td>${productSvc.findByPrimaryKey(mapForPackageIdAndQty.key).product_name}</td>    <!-- 變數productSvc 為第七行的 jsp:useBean 創造 -->
             	<td></td>
-                <td></td>
+                
                 <td>${mapForPackageIdAndQty.value}</td>
                 <td>${productSvc.findByPrimaryKey(mapForPackageIdAndQty.key).product_price * (mapForPackageIdAndQty.value)}</td>
                 <td></td>
@@ -140,9 +148,9 @@ color:pink
 <%--                   <c:out value="${numXXX}"/> --%>
                   <c:if test="${orderXVO.productVO.dishClassVO.class_id == numXXX}">              
 			        <tr>
-				      <td>${orderXVO.productVO.product_id}</td>
+				      <td></td>
 				      <td>${orderXVO.productVO.product_name}</td>
-				      <td>${orderXVO.productVO.dishClassVO.class_id}</td>
+				      
 				      <td>${orderXVO.orderX_num}</td>
 				      <td>${orderXVO.productVO.product_price}</td>
 				  
