@@ -61,7 +61,7 @@ color:pink
 	<table>
 		<tr>
 			<th>單點菜色</th>
-			
+			<th></th>
 			<th>餐點類別</th>
 			<th style="width: 80px">數量</th>
 			<th style="width: 200px">價格</th>
@@ -71,7 +71,7 @@ color:pink
 		   <c:if test="${orderXVO.productVO.productKindVO.kind_name == '單點菜色' }">
 			<tr>
 				<td>${orderXVO.productVO.product_name}</td>
-				
+				<td></td>
 				<td>${orderXVO.productVO.dishClassVO.class_name}</td>
 				<td style="width: 80px">${orderXVO.orderX_num}</td>
 				<td style="width:200px">${orderXVO.productVO.product_price*orderXVO.orderX_num}</td>
@@ -110,7 +110,7 @@ color:pink
 		 <tr>
 			<th>套餐名稱</th>
 			<th>套餐菜色</th>
-			
+			<th>餐點類別</th>
 			<th style="width: 80px">數量</th>
 			<th style="width: 200px">價格</th>
 		 </tr>
@@ -120,7 +120,7 @@ color:pink
             <tr>
             	<td>${productSvc.findByPrimaryKey(mapForPackageIdAndQty.key).product_name}</td>    <!-- 變數productSvc 為第七行的 jsp:useBean 創造 -->
             	<td></td>
-                
+                <td></td>
                 <td>${mapForPackageIdAndQty.value}</td>
                 <td>${productSvc.findByPrimaryKey(mapForPackageIdAndQty.key).product_price * (mapForPackageIdAndQty.value)}</td>
                 <td></td>
@@ -139,18 +139,15 @@ color:pink
             <tr><td><hr/></td><td><hr/></td><td><hr/></td><td><hr/></td><td><hr/></td>
 		    </tr>
 		      
-         <c:forEach var="orderXVO" items="${orderList}"  >	
            <c:forEach var="numXXX"  begin="10" end="60" step="10">
+         <c:forEach var="orderXVO" items="${orderList}"  >	
 	         <c:if test="${mapForPackageIdAndQty.key == orderXVO.productVO.product_pcg}">      	   
-<%-- 		       <c:if test="${orderXVO.productVO.productKindVO.kind_name == '套餐菜色' }">       <!-- 在此設定套餐菜色的顯示，以及""不可""修改和刪除   -->                                      --%>
-<%--                  <c:forEach var="vv" items="${productSvc.packageformat(mapForPackageIdAndQty.key)}"> --%>
-                  
-<%--                   <c:out value="${numXXX}"/> --%>
+
                   <c:if test="${orderXVO.productVO.dishClassVO.class_id == numXXX}">              
 			        <tr>
 				      <td></td>
 				      <td>${orderXVO.productVO.product_name}</td>
-				      
+				      <td>${orderXVO.productVO.dishClassVO.class_name}</td>
 				      <td>${orderXVO.orderX_num}</td>
 				      <td>${orderXVO.productVO.product_price}</td>
 				  
@@ -158,28 +155,9 @@ color:pink
 				      <td></td>
 			        </tr>	
 			       </c:if>
-<%-- 			   	</c:forEach>		       --%>
-                
-
-<%--                 <c:out value="${productSvc.packageformat(mapForPackageIdAndQty.key)}"/> --%>
-<%--                 <c:forEach var="vv" items="${productSvc.packageformat(mapForPackageIdAndQty.key)}"> --%>
-<%--                   <c:if test="${orderXVO.productVO.dishClassVO.class_id == vv.dishClassVO.class_id }">               --%>
-<!-- 			        <tr> -->
-<%-- 				      <td>${orderXVO.productVO.product_id}</td> --%>
-<%-- 				      <td>${orderXVO.productVO.product_name}</td> --%>
-<%-- 				      <td>${orderXVO.productVO.dishClassVO.class_id}</td> --%>
-<%-- 				      <td>${orderXVO.orderX_num}</td> --%>
-<%-- 				      <td>${orderXVO.productVO.product_price}</td> --%>
-				  
-<!-- 				      <td></td> -->
-<!-- 				      <td></td> -->
-<!-- 			        </tr>	 -->
-<%-- 			       </c:if> --%>
-<%-- 			   	 </c:forEach>		       --%>
-<%-- 			   </c:if>   --%>
-            </c:if>  
-             </c:forEach>                   
+              </c:if>  
 		 </c:forEach>
+            </c:forEach>                   
 		    <tr>
                <td></td><td></td><td></td> <td></td>                             
              </tr>	
