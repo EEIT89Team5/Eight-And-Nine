@@ -154,6 +154,9 @@ color:yellow
 #sp4{
 color:yellow
 }
+input[name="res_gender"]{ 
+ 	zoom:200%; 
+}
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>
