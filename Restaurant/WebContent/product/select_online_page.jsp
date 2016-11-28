@@ -92,6 +92,9 @@ webkit-border-radius: 10px;
 moz-border-radius: 10px;
 border-radius: 10px;
 }
+input[type="radio"]{ 
+ 	zoom:150%; 
+}
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>

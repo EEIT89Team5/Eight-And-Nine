@@ -145,6 +145,12 @@ color:white;
 background-color:rgba(0,0,0,0);
 text-align: center
 }
+input[type="radio"]{ 
+ 	zoom:150%; 
+}
+select{
+	font-size: 25px;
+}
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
 </head>

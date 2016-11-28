@@ -37,8 +37,13 @@ $(function() {
 	});
 	$('#myModal').focus(function(){peopleform.slideUp(300);});
 	$('#second div').click(function(){
+		var table_maxP=$(this).find("input").val();
+		var emptyselect=$('#selectnumP').empty();
+		for(var begin=1;begin<=table_maxP;begin++){
+			emptyselect.append("<option vlaue='"+begin+"'>"+begin+"</option>");
+		}
 		var table_name = $(this).find("[name='a']").text();
-		myModalLabel.text('選單').append("<b>"+ table_name +"</b>");
+		myModalLabel.html('<b>桌號</b>').append("<b>"+ table_name +"</b>");
 		pfrom.html("<input style='display:none' name='table_name' value="+table_name+" />");
 		$('#clear').attr('href','formatTable.do?table=clear&table_name='+table_name);
 		$('#paymoney').attr('href','formatTable.do?table=paymoney&table_name='+table_name);
@@ -49,6 +54,7 @@ $(function() {
 
 		document.getElementById("xx").innerHTML = d.toTimeString("zh-TW").substring(0,8);
 	}
+	
 																
 });
 </script>
@@ -210,23 +216,25 @@ body,.inner-block{
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title text-center" id="myModalLabel" >選單</h2>
+        <h2 class="modal-title text-center" id="myModalLabel" >桌號</h2>
       </div>
       <div class="modal-body">
       		<br />
 			<button id="people" type="button" class="btn btn-warning btn-lg btn-block">入座資訊</button><br />
-			
-			<form id="peopleform" role="form" action='formatTable.do' style="display:none;height:100px">
-				    <div class="form-group">
+			<form id="peopleform" role="form" action='formatTable.do' style="display:none;height:80px;font-size:25px;">
+				<br />
+				    <div class="form-group" align="center">
 					    <label for="table_numP" class="col-sm-2 control-label">人數</label>
-					    <div class="col-sm-10">
-					    <input type="text" class="form-control" id="table_numP" name="table_numP" placeholder="輸入本桌客人數量">
-					    </div>
+					    <span class="col-sm-4">
+<!-- 					    <input type="text" class="form-control" id="table_numP" name="table_numP" placeholder="輸入本桌客人數量"> -->
+					    	<select id="selectnumP" name="table_numP" style="width: 100px;">
+					    	</select>
+					    </span>
+				  		<button  type="submit" class="btn btn-info" style="font-size:20px;font-weight:bold">送出</button>
 					</div><input style='display:none' name='table' value="numP" />
 					<p></p>
-					<div class="col-sm-offset-10 col-sm-10 form-group">
-				  		<button type="submit" class="btn btn-secondary ">送出</button>
-				  	</div>
+<!-- 					<div class="col-sm-offset-10 col-sm-10 form-group"> -->
+<!-- 				  	</div> -->
 			</form>
 			<br />
 			<a href="formatTable.do" id="paymoney" class="btn btn-primary btn-lg btn-lg btn-block" role="button">結帳</a><br /><br />
@@ -272,6 +280,7 @@ body,.inner-block{
 				<p>${table.table_paid}</p>
 				<p>${table.table_numP}/${table.table_maxP}</p>
 				<p>${table.table_time}</p>
+				<input type="text" hidden value="${table.table_maxP}" />
 			</div>
 		</c:forEach>
 	</div>

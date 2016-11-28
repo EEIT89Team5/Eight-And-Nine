@@ -67,8 +67,8 @@ $(document).ready(function() {
 			  type: "warning",
 			  showCancelButton: true,
 			  confirmButtonColor: "#DD6B55",
-			  confirmButtonText: "刪除此筆資料",
-			  cancelButtonText: "放棄刪除",
+			  confirmButtonText: "刪除",
+			  cancelButtonText: "取消",
 			  closeOnConfirm: false,
 			  closeOnCancel: false
 			},
@@ -124,6 +124,9 @@ background-color:rgba(0,0,0,0);
 font-family:ShowWind;
 font-size:25px;
 color:white;
+}
+input[type="radio"]{ 
+ 	zoom:150%; 
 }
 </style>
 <link rel="Shortcut Icon" type="image/png" href="../icon/pagelogo.png" />
