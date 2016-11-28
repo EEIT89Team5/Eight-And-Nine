@@ -216,8 +216,8 @@ $("input[name='delbutton']").click(function(){
 		  type: "warning",
 		  showCancelButton: true,
 		  confirmButtonColor: "#DD6B55",
-		  confirmButtonText: "刪除此筆資料",
-		  cancelButtonText: "放棄刪除",
+		  confirmButtonText: "刪除",
+		  cancelButtonText: "取消",
 		  closeOnConfirm: false,
 		  closeOnCancel: false
 		},

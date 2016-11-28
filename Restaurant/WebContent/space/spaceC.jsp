@@ -25,7 +25,9 @@ $(document).ready(function() {
 //			text: "Write something interesting:",   
 		type: "input",   
 		showCancelButton: true,   
-		closeOnConfirm: false,   
+		closeOnConfirm: false,
+		confirmButtonText: "確認",
+		cancelButtonText: "取消",
 		animation: "slide-from-top",   
 		inputPlaceholder: "請輸入場地名稱" }, 
 		function(inputValue){   
