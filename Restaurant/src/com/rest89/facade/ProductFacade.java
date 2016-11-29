@@ -49,4 +49,15 @@ public class ProductFacade {
 
 		return list;
 	}
+	
+	@GET
+	@Path("/packages")
+	@Produces({ MediaType.APPLICATION_JSON })
+	public List<ProductVO> getAllPackages() {
+
+		List<ProductVO> list = null;
+		list = productSvc.getAllPackages();
+
+		return list;
+	}
 }
