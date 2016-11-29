@@ -146,7 +146,7 @@ font-weight:bold
 	<tr>
 		<td>折扣:</td>
 		<td><input type="TEXT" name="disc_value" size="2" maxlength="2"
-			value="<%= (discountVO==null)? "" : discountVO.getDisc_value()%>" /></td>
+			value="<%= (discountVO==null)? "" : discountVO.getDisc_value()%>" /></td><td>折</td>
 	</tr>
 
 
