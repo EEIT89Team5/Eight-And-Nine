@@ -3,6 +3,7 @@ package com.product.controller;
 import java.io.*;
 import java.util.*;
 
+import javax.mail.Session;
 import javax.servlet.*;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
@@ -679,14 +680,15 @@ public class ProductServlet extends HttpServlet {
 				pkfVO60.setProductVO(PVO6);
 				ProductService productdao6= new ProductService(); 
 				productdao6.AddClassNum(pkfVO60);
-
+				
 //				pkfVO10.setClass_number(num10);	
-				req.setAttribute("pkfVO10", pkfVO10);
-				req.setAttribute("pkfVO20", pkfVO20);
-				req.setAttribute("pkfVO30", pkfVO30);
-				req.setAttribute("pkfVO40", pkfVO40);
-				req.setAttribute("pkfVO50", pkfVO50);
-				req.setAttribute("pkfVO60", pkfVO60);
+				HttpSession session=req.getSession();
+				session.setAttribute("pkfVO10", pkfVO10);
+				session.setAttribute("pkfVO20", pkfVO20);
+				session.setAttribute("pkfVO30", pkfVO30);
+				session.setAttribute("pkfVO40", pkfVO40);
+				session.setAttribute("pkfVO50", pkfVO50);
+				session.setAttribute("pkfVO60", pkfVO60);
 				req.setAttribute("PVO", PVO);
 				
 			if (!errorMsgs.isEmpty()) {
@@ -829,13 +831,13 @@ public class ProductServlet extends HttpServlet {
 				PKVO60.setDishClassVO(DCVO);
 				productdao.UPclassNumber(PKVO60);
 			}	
-				
-				req.setAttribute("pkfVO10", req.getParameter("Class_number10"));
-				req.setAttribute("pkfVO20", req.getParameter("Class_number20"));
-				req.setAttribute("pkfVO30", req.getParameter("Class_number30"));
-				req.setAttribute("pkfVO40", req.getParameter("Class_number40"));
-				req.setAttribute("pkfVO50", req.getParameter("Class_number50"));
-				req.setAttribute("pkfVO60", req.getParameter("Class_number60"));
+				HttpSession session=req.getSession();
+				session.setAttribute("pkfVO10", req.getParameter("Class_number10"));
+				session.setAttribute("pkfVO20", req.getParameter("Class_number20"));
+				session.setAttribute("pkfVO30", req.getParameter("Class_number30"));
+				session.setAttribute("pkfVO40", req.getParameter("Class_number40"));
+				session.setAttribute("pkfVO50", req.getParameter("Class_number50"));
+				session.setAttribute("pkfVO60", req.getParameter("Class_number60"));
 				
 				ProductVO proVO2 = new ProductVO();
 				Pdko.setKind_id(3);

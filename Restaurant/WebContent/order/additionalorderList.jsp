@@ -39,14 +39,13 @@ color:pink
  <div align="center">
  <img src="../img/MOREORDERDETAIL.png"><br><br><br>
 <!-- 	<h3 style="font-family:ShowWind;color:white;font-weight: bold;font-size:50px">加點訂單明細</h3> -->
-	<table width="1000px">
+	<table>
 		<tr>
 			<th>商品編號</th>
 			<th>商品名稱</th>
 			<th>數量</th>
 			<th>價格</th>
 		</tr>
-
 		<c:forEach var="orderXVO" items="${orderList}" varStatus="index">
 			<tr>
 				<td>${orderXVO.productVO.product_id}</td>
@@ -72,8 +71,7 @@ color:pink
 
 			
 		</c:forEach>
-	
-<tr></tr>
+
 		<tr><td class="total">菜色數量:</td><td>${orderQ}</td></tr>
 		<tr><td class="total">主菜數量:</td><td>${mainQ}</td></tr>
 		<tr><td class="total">套餐數量:</td><td>${pcgQ}</td></tr>
