@@ -117,7 +117,7 @@ height: 80px;
 <!-- 		<div align="center"><img src="../img/midify.png"></div> -->
 		<br>
 		<br>
-			<div align="center"><div align="center"><img src="../img/memberMODIFY.png"></div></div>
+			<div align="center"><div align="center"><img src="../img/EMPModify.png"></div></div>
 		<br>
 		<br>
 		<Form Action="forget.do" method="POST" id="alertform">
