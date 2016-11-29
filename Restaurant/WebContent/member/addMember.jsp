@@ -36,6 +36,9 @@ text-align:center;
  	margin-top: -450px; 
 	margin-left:-405px 
  } 
+ input[type="radio"]{
+ 	zoom: 200%;
+ }
 
 </style>
 </head>
@@ -67,7 +70,6 @@ text-align:center;
 		<td>
 			<input type="radio" name="m_gender" value="男" checked>男
 			<input type="radio" name="m_gender" value="女">女
-			<input type="radio" name="m_gender" value="其他">其他
 		</td>
 	</tr>
 	<tr><td>Email:</td><td  style="font-size:28px;color:black"><input type="text" name="m_email"></td></tr>
