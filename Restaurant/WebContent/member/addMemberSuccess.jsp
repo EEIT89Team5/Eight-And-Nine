@@ -41,7 +41,7 @@ text-align:center;
 <div id="block">
 <!-- <div align="center"> -->
 <!-- <h3>成功加入會員</h3> -->
-<a href="../order/addOrder2.jsp"><img src="../img/Congratulations.png"><br></a>
+<a href="../index22.jsp"><img src="../img/Congratulations.png"><br></a>
 <br>
 <h2 style="font-family:ShowWind;font-weight: bold;font-size:60px;color:red;text-align: center"><font style="color:yellow">${memberVO.member_name}</font>您好</h2>
 <h2 style="font-family:ShowWind;font-weight: bold;font-size:60px;color:red;text-align: center">恭喜您已經成為會員囉</h2>
